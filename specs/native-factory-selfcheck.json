@@ -1,0 +1,84 @@
+{
+  "schema_version": "sparkforge.spec.v1",
+  "id": "SFS-001-selfcheck",
+  "title": "Synthetic engineering selfcheck of the owned native factory",
+  "problem": "Exercise the project's existing factory contract against its controlled implementation and tests without inventing human acceptance or live source coverage.",
+  "audience": "Synthetic engineering test operator",
+  "environment": "LOCAL_DEVELOPMENT",
+  "builder_actor": "synthetic-engineering-builder",
+  "non_goals": [
+    "No real source acquisition, model/provider calls, installation, publication or deployment.",
+    "No native host qualification or genuine end-user approval claim.",
+    "No automatic independent review or learning activation.",
+    "This synthetic fixture is not an accepted brief."
+  ],
+  "knowledge": {
+    "wiki_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "repository_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "citations": [
+      {
+        "source": "wiki",
+        "locator": "https://example.invalid/synthetic/wiki/factory-selfcheck-guidance",
+        "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      {
+        "source": "repository",
+        "locator": "https://example.invalid/synthetic/repository/factory-selfcheck-contract",
+        "revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      }
+    ],
+    "coverage": "SNAPSHOT_SCOPE",
+    "limitations": [
+      "Knowledge locators, revisions and repeated hex digests are explicit synthetic schema fixtures, not real source citations or content hashes.",
+      "No actual wiki or authoritative repository comparison is established by these knowledge fields; current live coverage is NOT_ASSESSED.",
+      "Actual controlled candidate bytes and check observations are bound by the runner at execution time, separately from these synthetic source claims.",
+      "The engineering harness's synthetic decision is not human acceptance, and no independent review is pre-recorded."
+    ]
+  },
+  "reuse": {
+    "decision": "UPDATE_EXISTING",
+    "target": "sparkforge-native-factory",
+    "rationale": "Exercise the existing project-owned factory through its real core regression command rather than introduce a duplicate runner; the source-reference envelope is explicitly synthetic.",
+    "inspected_candidates": [
+      "project-owned-factory-selfcheck-subject"
+    ]
+  },
+  "controlled_files": [
+    "docs/specs/NATIVE_FACTORY_SLICE.md",
+    "plugins/sparkforge/scripts/factory.py",
+    "tests/test_native_factory.py"
+  ],
+  "acceptance": [
+    {
+      "id": "SFS-core",
+      "behavior": "At least 43 core cases exercise strict specs, exact decisions, actual check processes, missing/foreign/stale evidence, negative review, candidate changes, repair, finite attempts, cancellation and explicit reconciliation.",
+      "checks": [
+        "core-contracts"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "core-contracts",
+      "argv": [
+        "python",
+        "-B",
+        "-c",
+        "import sys,unittest; suite=unittest.defaultTestLoader.discover('tests',pattern='test_native_factory.py'); count=suite.countTestCases(); assert count>=43, 'Missing core acceptance cases'; result=unittest.TextTestRunner(verbosity=1).run(suite); ok=result.wasSuccessful() and result.testsRun==count and not result.skipped and not result.expectedFailures; print('SPARKFORGE_CORE_ACCEPTANCE_COMPLETED' if ok else 'SPARKFORGE_CORE_ACCEPTANCE_FAILED'); sys.exit(not ok)"
+      ],
+      "timeout_seconds": 120,
+      "output_limit_bytes": 131072,
+      "max_attempts": 2,
+      "required_markers": [
+        "\nOK",
+        "SPARKFORGE_CORE_ACCEPTANCE_COMPLETED"
+      ],
+      "retain_output": false
+    }
+  ],
+  "required_reviewers": [
+    "independent-code-review"
+  ]
+}

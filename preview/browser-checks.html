@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; frame-src 'self'; style-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>SparkForge synthetic browser checks</title>
+  <script src="browser-checks.js" defer></script>
+</head>
+<body>
+  <h1>SparkForge browser checks</h1>
+  <p>This development harness exercises only synthetic input in its own preview frame. It does not inspect or change another open preview.</p>
+  <p>Run in the Copilot Browser's local-file viewer. Direct file-origin iframe access may be restricted by other browsers; that is not a product pass.</p>
+  <button type="button" id="run-checks">Run synthetic browser checks</button>
+  <pre id="results" role="status" aria-live="polite">Not run.</pre>
+  <iframe id="fixture" title="Isolated synthetic SparkForge preview" width="1280" height="900" frameborder="0"></iframe>
+</body>
+</html>

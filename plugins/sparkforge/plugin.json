@@ -1,0 +1,7 @@
+{
+  "name": "sparkforge",
+  "description": "Experimental, operator-mediated SPARK development from verified knowledge and an approved specification through implementation, checks, independent review and bounded correction.",
+  "version": "0.1.0",
+  "skills": ["skills/sparkforge"],
+  "agents": ["agents/sparkforge.agent.md"]
+}

@@ -1,0 +1,37 @@
+# Runtime and source data are not distributable plugin source.
+.sparkforge/
+runtime/
+artifacts/
+logs/
+snapshots/
+private-sources/
+.env
+.env.*
+!.env.example
+*.key
+*.pfx
+*.p12
+
+# Local tooling outputs.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+node_modules/
+dist/
+build/
+*.zip
+*.partial
+*.tmp
+
+# Operator-owned inputs and operational state are not publication artifacts.
+/sources/
+/private-inputs/
+/local-inputs/
+/session-operations/
+/checkpoints/
+*.sqlite
+*.sqlite3
+*.db
+*.bak

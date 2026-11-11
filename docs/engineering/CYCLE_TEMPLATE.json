@@ -1,0 +1,25 @@
+{
+  "schema_version": "sparkforge-engineering-cycle.v1",
+  "id": "ENG-YYYYMMDD-unique-slug",
+  "date": "YYYY-MM-DD",
+  "work_items": ["Replace with actual backlog IDs"],
+  "workstream": "Replace with scoped workstream",
+  "cycle_type": "implementation-or-governance",
+  "status": "in_progress",
+  "objective": "One bounded objective and its evidence boundary.",
+  "changes": ["Actual changes, not planned capabilities."],
+  "validation": [
+    {
+      "check": "Exact actual command or manual check",
+      "scope": "State documentation, planning-tool fixture, product fixture, or real-host scope accurately",
+      "outcome": "NOT_RUN",
+      "reference": "Actual permitted evidence or explicit reason not run"
+    }
+  ],
+  "results": ["Actual observed result, including failure and uncertainty."],
+  "limitations": ["What was not established; missing authority or evidence."],
+  "rollback": "Specific permitted corrective or recovery action, without rewriting committed history.",
+  "next_steps": ["Smallest next authorized action."],
+  "evidence": ["Repository-relative or explicitly authorized evidence reference"],
+  "public_safe": false
+}

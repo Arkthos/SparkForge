@@ -1,0 +1,550 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-11-11T23:17:33.212797+00:00",
+  "publication_edition": "2026-11-11",
+  "research_baseline": "2026-11-04",
+  "scope": "Reviewed public-source synthesis and bibliographic metadata; publication annotations do not establish current product implementation or source freshness.",
+  "counts": {
+    "chapters": 21,
+    "templates": 6,
+    "markdown_documents_including_index": 28,
+    "sources": 49,
+    "content_files_excluding_manifest": 29,
+    "unchanged_content_files": 16,
+    "publication_edited_markdown_files": 13,
+    "publication_annotations_and_portability_files": 4,
+    "markdown_hard_break_replacements": 45,
+    "markdown_hard_break_formatting_files": 10
+  },
+  "historical_validation": {
+    "recorded_at_utc": "2026-11-04T17:39:21.700214+00:00",
+    "original_manifest_sha256": "c853a9210d00d9b2ba24bdcec802cb5576a941bfcbb36e88b2d0f9c42a17aa44",
+    "recorded_counts": {
+      "chapters": 21,
+      "templates": 6,
+      "markdown_documents_including_index": 28,
+      "sources": 49,
+      "content_files_excluding_manifest": 29,
+      "approximate_markdown_word_count": 35168,
+      "markdown_links": 269,
+      "source_citations": 125,
+      "json_examples": 2
+    },
+    "recorded_checks": {
+      "document_inventory": "passed",
+      "relative_links_and_source_anchors": "passed",
+      "source_catalog_consistency": "passed",
+      "markdown_fences_and_table_structure": "passed",
+      "json_examples": "passed",
+      "illustrative_arithmetic_and_fixture": "passed"
+    },
+    "boundary": "Historical research checks as recorded on 2026-11-04, not new publication validation or execution of the labs/worked scenario."
+  },
+  "publication_checks": {
+    "reviewed_original_inventory": {
+      "result": "PASS",
+      "matched_content_files": 29
+    },
+    "published_content_hash_inventory": {
+      "result": "PASS",
+      "content_files": 29
+    },
+    "local_document_links_json_and_citations": {
+      "result": "PASS",
+      "checked_at_utc": "2026-11-11T23:17:33.212797+00:00",
+      "command": "python -B -",
+      "recipe": "../README.md#local-validation",
+      "scope": "Current 36-file research edition after the recorded formatting correction.",
+      "markdown_files": 31,
+      "json_files": 5,
+      "local_links": 213,
+      "factory_source_citations": 125,
+      "json_examples": 2
+    },
+    "trailing_whitespace": {
+      "result": "PASS",
+      "checked_at_utc": "2026-11-11T23:17:33.212797+00:00",
+      "command": "python -B -",
+      "files": 36,
+      "findings": 0,
+      "scope": "All published research text; no exception for Markdown hard breaks and no whitespace-setting overrides."
+    }
+  },
+  "evidence_boundary": {
+    "source_review": "Original dated access depths and limitations preserved in chapters 00 and 16 and sources.json.",
+    "upstream_refresh": "NOT_RUN",
+    "learning_labs": "NOT_RUN",
+    "worked_scenario": "SYNTHETIC_NOT_EXECUTED",
+    "framework_execution": "NOT_RUN",
+    "model_calls": "NOT_RUN",
+    "host_qualification": "NOT_ASSESSED",
+    "current_project_implementation": "OUTSIDE_THIS_RESEARCH_MANIFEST"
+  },
+  "editorial_notes": "../README.md",
+  "self_excluded_from_hash_inventory": true,
+  "files": [
+    {
+      "relative_path": "00-research-method.md",
+      "bytes": 10137,
+      "sha256": "d5eb429e6b39213f5d3c1d8794a3959a3a3bc5d5ec56c915d34fa7249ab941fd",
+      "reviewed_original_bytes": 10137,
+      "reviewed_original_sha256": "d5eb429e6b39213f5d3c1d8794a3959a3a3bc5d5ec56c915d34fa7249ab941fd",
+      "publication_edit": false,
+      "publication_edit_types": [],
+      "formatting_hard_break_replacements": 0
+    },
+    {
+      "relative_path": "01-foundations-and-concept-map.md",
+      "bytes": 11998,
+      "sha256": "3b5ad98c2c9738886a0108d65f60aef6198b99cf7da383797cbb71aa40ba9826",
+      "reviewed_original_bytes": 11998,
+      "reviewed_original_sha256": "3b5ad98c2c9738886a0108d65f60aef6198b99cf7da383797cbb71aa40ba9826",
+      "publication_edit": false,
+      "publication_edit_types": [],
+      "formatting_hard_break_replacements": 0
+    },
+    {
+      "relative_path": "02-ai-factory-operating-model.md",
+      "bytes": 9667,
+      "sha256": "9b61ffe4a3e5a021f5a52a1c989764866a0182306ec449a2ba713920e23351fe",
+      "reviewed_original_bytes": 9667,
+      "reviewed_original_sha256": "9b61ffe4a3e5a021f5a52a1c989764866a0182306ec449a2ba713920e23351fe",
+      "publication_edit": false,
+      "publication_edit_types": [],
+      "formatting_hard_break_replacements": 0
+    },
+    {
+      "relative_path": "03-harness-engineering.md",
+      "bytes": 12727,
+      "sha256": "254324330049040d2965ce999cf41c802b371cd9afcaa7fd4f09032fd35bb4de",
+      "reviewed_original_bytes": 12727,
+      "reviewed_original_sha256": "254324330049040d2965ce999cf41c802b371cd9afcaa7fd4f09032fd35bb4de",
+      "publication_edit": false,
+      "publication_edit_types": [],
+      "formatting_hard_break_replacements": 0
+    },
+    {
+      "relative_path": "04-context-memory-and-rag.md",
+      "bytes": 11151,
+      "sha256": "76be202e4a96a219ee2ef6db89489460ccecfc4293fd8a1b2f50fefb119db82e",
+      "reviewed_original_bytes": 11151,
+      "reviewed_original_sha256": "76be202e4a96a219ee2ef6db89489460ccecfc4293fd8a1b2f50fefb119db82e",
+      "publication_edit": false,
+      "publication_edit_types": [],
+      "formatting_hard_break_replacements": 0
+    },
+    {
+      "relative_path": "05-tools-skills-and-protocols.md",
+      "bytes": 9675,
+      "sha256": "89df329957194deba22ba9574ce8c4eefba8b94d63bb5dd094aed1a68974e417",
+      "reviewed_original_bytes": 9675,
+      "reviewed_original_sha256": "89df329957194deba22ba9574ce8c4eefba8b94d63bb5dd094aed1a68974e417",
+      "publication_edit": false,
+      "publication_edit_types": [],
+      "formatting_hard_break_replacements": 0
+    },
+    {
+      "relative_path": "06-orchestration-and-reliability.md",
+      "bytes": 10163,
+      "sha256": "3c6667c6c80bf8f29d60d4841b15f4fc24439322215140b67df54b39277a0b77",
+      "reviewed_original_bytes": 10163,
+      "reviewed_original_sha256": "3c6667c6c80bf8f29d60d4841b15f4fc24439322215140b67df54b39277a0b77",
+      "publication_edit": false,
+      "publication_edit_types": [],
+      "formatting_hard_break_replacements": 0
+    },
+    {
+      "relative_path": "07-evaluation-and-verification.md",
+      "bytes": 12292,
+      "sha256": "aa9b4986c7dc5a412d27c37a72583cbd5aeb4b93f18e3965297f35bd31413189",
+      "reviewed_original_bytes": 12292,
+      "reviewed_original_sha256": "aa9b4986c7dc5a412d27c37a72583cbd5aeb4b93f18e3965297f35bd31413189",
+      "publication_edit": false,
+      "publication_edit_types": [],
+      "formatting_hard_break_replacements": 0
+    },
+    {
+      "relative_path": "08-security-and-governance.md",
+      "bytes": 11175,
+      "sha256": "573317de021f7ea47c697eab17dba0bba6aa8e944a85e2f398820b58071f5e29",
+      "reviewed_original_bytes": 11050,
+      "reviewed_original_sha256": "2c3743bcc8b5b8273649db0466b4ba14ad5b0da189da7195801965e8075cfd7f",
+      "publication_edit": true,
+      "publication_edit_types": [
+        "publication_annotations_and_portability"
+      ],
+      "formatting_hard_break_replacements": 0
+    },
+    {
+      "relative_path": "09-models-infrastructure-and-mlops.md",
+      "bytes": 9932,
+      "sha256": "edf0be9ee924ce343b367889ec2b9ca1451442895f4dc50ec879f086b7033635",
+      "reviewed_original_bytes": 9932,
+      "reviewed_original_sha256": "edf0be9ee924ce343b367889ec2b9ca1451442895f4dc50ec879f086b7033635",
+      "publication_edit": false,
+      "publication_edit_types": [],
+      "formatting_hard_break_replacements": 0
+    },
+    {
+      "relative_path": "10-observability-economics-and-operations.md",
+      "bytes": 9783,
+      "sha256": "028aa1d3757a73dba467c742b97c302ec5cfb9abc19fe614d9f5dd4f319f4430",
+      "reviewed_original_bytes": 9783,
+      "reviewed_original_sha256": "028aa1d3757a73dba467c742b97c302ec5cfb9abc19fe614d9f5dd4f319f4430",
+      "publication_edit": false,
+      "publication_edit_types": [],
+      "formatting_hard_break_replacements": 0
+    },
+    {
+      "relative_path": "11-spec-driven-software-factories.md",
+      "bytes": 9918,
+      "sha256": "935d57c6ff76ed43bf1b7f0a58f158cb374a0fc6061806a429377a53d08e62f7",
+      "reviewed_original_bytes": 9918,
+      "reviewed_original_sha256": "935d57c6ff76ed43bf1b7f0a58f158cb374a0fc6061806a429377a53d08e62f7",
+      "publication_edit": false,
+      "publication_edit_types": [],
+      "formatting_hard_break_replacements": 0
+    },
+    {
+      "relative_path": "12-reference-architecture-and-decisions.md",
+      "bytes": 9304,
+      "sha256": "9f2ac41072a9ee77cb478b6af03eab13864d872f0d89998a9be615db50cbc563",
+      "reviewed_original_bytes": 9076,
+      "reviewed_original_sha256": "160db549ac826966a95883ac91e09a820a886a45f22b25d7cfffb63fc4a4328b",
+      "publication_edit": true,
+      "publication_edit_types": [
+        "publication_annotations_and_portability"
+      ],
+      "formatting_hard_break_replacements": 0
+    },
+    {
+      "relative_path": "13-allbright-stack-analysis.md",
+      "bytes": 10166,
+      "sha256": "9ae5b3259b01826c0272e832e7b20f61f5d69f852b351db7a86600db49cc987a",
+      "reviewed_original_bytes": 10166,
+      "reviewed_original_sha256": "9ae5b3259b01826c0272e832e7b20f61f5d69f852b351db7a86600db49cc987a",
+      "publication_edit": false,
+      "publication_edit_types": [],
+      "formatting_hard_break_replacements": 0
+    },
+    {
+      "relative_path": "14-learning-path-and-labs.md",
+      "bytes": 11246,
+      "sha256": "c761b5c645ae3d6765b80c7d09a556f65a7ebc99afafca8e2da7f3e23868b445",
+      "reviewed_original_bytes": 11246,
+      "reviewed_original_sha256": "c761b5c645ae3d6765b80c7d09a556f65a7ebc99afafca8e2da7f3e23868b445",
+      "publication_edit": false,
+      "publication_edit_types": [],
+      "formatting_hard_break_replacements": 0
+    },
+    {
+      "relative_path": "15-glossary.md",
+      "bytes": 12755,
+      "sha256": "32d5ff0e1ba5466bc6f03ea1b6363c2f9c84437e3d60f447b128e5b800156878",
+      "reviewed_original_bytes": 12755,
+      "reviewed_original_sha256": "32d5ff0e1ba5466bc6f03ea1b6363c2f9c84437e3d60f447b128e5b800156878",
+      "publication_edit": false,
+      "publication_edit_types": [],
+      "formatting_hard_break_replacements": 0
+    },
+    {
+      "relative_path": "16-sources-and-reading-guide.md",
+      "bytes": 29519,
+      "sha256": "58118d76e479f7ae6a951811564258d89db6735d424dfeb59d0cfc6dc5dc1c56",
+      "reviewed_original_bytes": 29511,
+      "reviewed_original_sha256": "649afffe2702af244bce99df3c01f6f88973a059ac68261f9f6f25939043370d",
+      "publication_edit": true,
+      "publication_edit_types": [
+        "markdown_hard_break_formatting_only"
+      ],
+      "formatting_hard_break_replacements": 4
+    },
+    {
+      "relative_path": "17-evidence-map-and-open-questions.md",
+      "bytes": 11475,
+      "sha256": "0e3dc4a8412c0bed00689f7e49b7cc372d98c3f359f6998c173ce34de4a7aa38",
+      "reviewed_original_bytes": 11431,
+      "reviewed_original_sha256": "282bb89b85bc4a33cb47c9eadf8b4b23b77f73cfdc9d56641307e035fb675254",
+      "publication_edit": true,
+      "publication_edit_types": [
+        "publication_annotations_and_portability"
+      ],
+      "formatting_hard_break_replacements": 0
+    },
+    {
+      "relative_path": "18-worked-factory-scenario.md",
+      "bytes": 10829,
+      "sha256": "ee7388512c3bbb2eec642a6e9e5fa52aa82e709afe01950a695942c601f5403e",
+      "reviewed_original_bytes": 10821,
+      "reviewed_original_sha256": "160d65aeb47c77d2903a6ec8b823aa0b43311dd9c62a33c642a08d896c070d49",
+      "publication_edit": true,
+      "publication_edit_types": [
+        "markdown_hard_break_formatting_only"
+      ],
+      "formatting_hard_break_replacements": 4
+    },
+    {
+      "relative_path": "19-competency-assessment.md",
+      "bytes": 10621,
+      "sha256": "5aee2083aea8f80199d749e15bb4786374636291d00d25ea5212766f5dfa218a",
+      "reviewed_original_bytes": 10621,
+      "reviewed_original_sha256": "5aee2083aea8f80199d749e15bb4786374636291d00d25ea5212766f5dfa218a",
+      "publication_edit": false,
+      "publication_edit_types": [],
+      "formatting_hard_break_replacements": 0
+    },
+    {
+      "relative_path": "20-eric-risco-video-review.md",
+      "bytes": 15373,
+      "sha256": "9a219381b242ff068b771aee8dc0199ab6946912e07b06563c9173633b035edd",
+      "reviewed_original_bytes": 15363,
+      "reviewed_original_sha256": "23b18c98cd52d6803e84129fd6199d510ff3d9c70a0481f3b6ba589bf5faafb1",
+      "publication_edit": true,
+      "publication_edit_types": [
+        "markdown_hard_break_formatting_only"
+      ],
+      "formatting_hard_break_replacements": 5
+    },
+    {
+      "relative_path": "README.md",
+      "bytes": 10227,
+      "sha256": "b6df94a98e165dcdf255602ce242432012962d3c1c2d30a6c21b0ad8e91a77e8",
+      "reviewed_original_bytes": 9837,
+      "reviewed_original_sha256": "5a5cff48f19151d85f3d8b49ad1fd0ff31f208c34602e23aed739c34c92603fa",
+      "publication_edit": true,
+      "publication_edit_types": [
+        "publication_annotations_and_portability",
+        "markdown_hard_break_formatting_only"
+      ],
+      "formatting_hard_break_replacements": 2
+    },
+    {
+      "relative_path": "sources.json",
+      "bytes": 15298,
+      "sha256": "6dd5dacf0a6800154cbc8d0f059fc3a7fd8918e0b6961c495b27f4e8c193234e",
+      "reviewed_original_bytes": 15298,
+      "reviewed_original_sha256": "6dd5dacf0a6800154cbc8d0f059fc3a7fd8918e0b6961c495b27f4e8c193234e",
+      "publication_edit": false,
+      "publication_edit_types": [],
+      "formatting_hard_break_replacements": 0
+    },
+    {
+      "relative_path": "templates/architecture-decision-record.md",
+      "bytes": 2170,
+      "sha256": "e9007f7585a53992db103b7e4ec7990e135d94f836171368d716b85f33a2c52a",
+      "reviewed_original_bytes": 2156,
+      "reviewed_original_sha256": "1c98055b5555e66219e1d9524d3d91d88707c39fe2d8e2f782e04611de4cc5b6",
+      "publication_edit": true,
+      "publication_edit_types": [
+        "markdown_hard_break_formatting_only"
+      ],
+      "formatting_hard_break_replacements": 7
+    },
+    {
+      "relative_path": "templates/evaluation-plan.md",
+      "bytes": 2902,
+      "sha256": "b33ee27fd692c5db8b752efad7f9fd518340153913a6b7149c410a5aa3e36895",
+      "reviewed_original_bytes": 2892,
+      "reviewed_original_sha256": "be178ec09a4791e73858167f93ee108471daf7df24122acdaf4f408806a472ca",
+      "publication_edit": true,
+      "publication_edit_types": [
+        "markdown_hard_break_formatting_only"
+      ],
+      "formatting_hard_break_replacements": 5
+    },
+    {
+      "relative_path": "templates/harness-and-task-contract.md",
+      "bytes": 2769,
+      "sha256": "a5446ce5d255283ccc201c452fb59c01df5406899f2312fd076b3d87e881a761",
+      "reviewed_original_bytes": 2763,
+      "reviewed_original_sha256": "a0a55ecec8f8a5ab976647a787517e77098f3ff0db63c21f44f77527b249ba11",
+      "publication_edit": true,
+      "publication_edit_types": [
+        "markdown_hard_break_formatting_only"
+      ],
+      "formatting_hard_break_replacements": 3
+    },
+    {
+      "relative_path": "templates/incident-and-learning-review.md",
+      "bytes": 2631,
+      "sha256": "9b330f00f80f16eae245091ae293531e9b17881f222658ab3474a130bd387681",
+      "reviewed_original_bytes": 2613,
+      "reviewed_original_sha256": "511c8b4ca89ef55c5558f72b69356fe550f449832a4b61d6702e0764305c22d2",
+      "publication_edit": true,
+      "publication_edit_types": [
+        "markdown_hard_break_formatting_only"
+      ],
+      "formatting_hard_break_replacements": 9
+    },
+    {
+      "relative_path": "templates/release-evidence-record.md",
+      "bytes": 2317,
+      "sha256": "4c1d3c787a1cdcedcc2cbd30c0172481d63a42c8f6acc1e568521829ea94e5d5",
+      "reviewed_original_bytes": 2311,
+      "reviewed_original_sha256": "5474d06257acf541507cac5c8304d68d8758c6ff8d8437859df194842cce7eea",
+      "publication_edit": true,
+      "publication_edit_types": [
+        "markdown_hard_break_formatting_only"
+      ],
+      "formatting_hard_break_replacements": 3
+    },
+    {
+      "relative_path": "templates/use-case-charter.md",
+      "bytes": 2652,
+      "sha256": "af383fd295571dcc4bab747eab4f9037f7896baa29a3d485fe41918f8886bbda",
+      "reviewed_original_bytes": 2646,
+      "reviewed_original_sha256": "179f0988f6c6bdc9c213fef83fb79070e9191e06a85f915a643538e2b281be6b",
+      "publication_edit": true,
+      "publication_edit_types": [
+        "markdown_hard_break_formatting_only"
+      ],
+      "formatting_hard_break_replacements": 3
+    }
+  ],
+  "publication_validation_history": [
+    {
+      "id": "pre-formatting-publication-checks",
+      "recorded_at_utc": "2026-11-11T22:49:02.545518+00:00",
+      "manifest_sha256": "fa429e4b0b5580a1db9c39da9c24a78ff6517716d474904099d92c3fae260aae",
+      "counts": {
+        "chapters": 21,
+        "templates": 6,
+        "markdown_documents_including_index": 28,
+        "sources": 49,
+        "content_files_excluding_manifest": 29,
+        "unchanged_content_files": 25,
+        "publication_edited_markdown_files": 4
+      },
+      "checks": {
+        "reviewed_original_inventory": {
+          "result": "PASS",
+          "matched_content_files": 29
+        },
+        "published_content_hash_inventory": {
+          "result": "PASS",
+          "content_files": 29
+        },
+        "local_document_links_json_and_citations": {
+          "result": "PASS",
+          "checked_at_utc": "2026-11-11T22:49:02.545518+00:00",
+          "command": "python -B -",
+          "recipe": "../README.md#local-validation",
+          "scope": "Entire 36-file research edition, including this factory collection and the two self-improvement documents.",
+          "markdown_files": 31,
+          "json_files": 5,
+          "local_links": 213,
+          "factory_source_citations": 125,
+          "json_examples": 2
+        }
+      },
+      "scope": "Earlier publication checks, before this formatting correction. The documentation recipe did not check trailing whitespace."
+    }
+  ],
+  "publication_corrections": [
+    {
+      "id": "2026-11-11-markdown-hard-break-formatting",
+      "recorded_at_utc": "2026-11-11T23:15:11.019072+00:00",
+      "reason": "Integration found Markdown two-space hard breaks that violate the unchanged normal trailing-whitespace gate.",
+      "initial_finding": {
+        "result": "FAIL",
+        "trailing_whitespace_lines": 45,
+        "files": 10,
+        "inside_code_fences": 0
+      },
+      "transformation": "Replace only the two trailing hard-break spaces with an explicit HTML br element outside code fences.",
+      "wording_and_layout": "Wording and hard-line-break meaning preserved; reversing only those replacements reproduces every pre-correction file hash.",
+      "authored_line_endings": "CRLF preserved; no newline normalization or whitespace-rule change.",
+      "original_source_files": "UNCHANGED",
+      "validation": {
+        "reverse_transform_sha256": "PASS",
+        "crlf_preservation": "PASS",
+        "final_hashes_links_and_whitespace": "PASS",
+        "checked_at_utc": "2026-11-11T23:17:33.212797+00:00",
+        "original_factory_hashes_preserved": 29,
+        "normal_git_diff_check": "PASS"
+      },
+      "files": [
+        {
+          "relative_path": "16-sources-and-reading-guide.md",
+          "hard_breaks_replaced": 4,
+          "before_bytes": 29511,
+          "before_sha256": "649afffe2702af244bce99df3c01f6f88973a059ac68261f9f6f25939043370d",
+          "after_bytes": 29519,
+          "after_sha256": "58118d76e479f7ae6a951811564258d89db6735d424dfeb59d0cfc6dc5dc1c56"
+        },
+        {
+          "relative_path": "18-worked-factory-scenario.md",
+          "hard_breaks_replaced": 4,
+          "before_bytes": 10821,
+          "before_sha256": "160d65aeb47c77d2903a6ec8b823aa0b43311dd9c62a33c642a08d896c070d49",
+          "after_bytes": 10829,
+          "after_sha256": "ee7388512c3bbb2eec642a6e9e5fa52aa82e709afe01950a695942c601f5403e"
+        },
+        {
+          "relative_path": "20-eric-risco-video-review.md",
+          "hard_breaks_replaced": 5,
+          "before_bytes": 15363,
+          "before_sha256": "23b18c98cd52d6803e84129fd6199d510ff3d9c70a0481f3b6ba589bf5faafb1",
+          "after_bytes": 15373,
+          "after_sha256": "9a219381b242ff068b771aee8dc0199ab6946912e07b06563c9173633b035edd"
+        },
+        {
+          "relative_path": "README.md",
+          "hard_breaks_replaced": 2,
+          "before_bytes": 10223,
+          "before_sha256": "799446bc3bfc29f1b5f62a3031c88e05bf5e4508b822b5e5de48dcd5b66c4cc2",
+          "after_bytes": 10227,
+          "after_sha256": "b6df94a98e165dcdf255602ce242432012962d3c1c2d30a6c21b0ad8e91a77e8"
+        },
+        {
+          "relative_path": "templates/architecture-decision-record.md",
+          "hard_breaks_replaced": 7,
+          "before_bytes": 2156,
+          "before_sha256": "1c98055b5555e66219e1d9524d3d91d88707c39fe2d8e2f782e04611de4cc5b6",
+          "after_bytes": 2170,
+          "after_sha256": "e9007f7585a53992db103b7e4ec7990e135d94f836171368d716b85f33a2c52a"
+        },
+        {
+          "relative_path": "templates/evaluation-plan.md",
+          "hard_breaks_replaced": 5,
+          "before_bytes": 2892,
+          "before_sha256": "be178ec09a4791e73858167f93ee108471daf7df24122acdaf4f408806a472ca",
+          "after_bytes": 2902,
+          "after_sha256": "b33ee27fd692c5db8b752efad7f9fd518340153913a6b7149c410a5aa3e36895"
+        },
+        {
+          "relative_path": "templates/harness-and-task-contract.md",
+          "hard_breaks_replaced": 3,
+          "before_bytes": 2763,
+          "before_sha256": "a0a55ecec8f8a5ab976647a787517e77098f3ff0db63c21f44f77527b249ba11",
+          "after_bytes": 2769,
+          "after_sha256": "a5446ce5d255283ccc201c452fb59c01df5406899f2312fd076b3d87e881a761"
+        },
+        {
+          "relative_path": "templates/incident-and-learning-review.md",
+          "hard_breaks_replaced": 9,
+          "before_bytes": 2613,
+          "before_sha256": "511c8b4ca89ef55c5558f72b69356fe550f449832a4b61d6702e0764305c22d2",
+          "after_bytes": 2631,
+          "after_sha256": "9b330f00f80f16eae245091ae293531e9b17881f222658ab3474a130bd387681"
+        },
+        {
+          "relative_path": "templates/release-evidence-record.md",
+          "hard_breaks_replaced": 3,
+          "before_bytes": 2311,
+          "before_sha256": "5474d06257acf541507cac5c8304d68d8758c6ff8d8437859df194842cce7eea",
+          "after_bytes": 2317,
+          "after_sha256": "4c1d3c787a1cdcedcc2cbd30c0172481d63a42c8f6acc1e568521829ea94e5d5"
+        },
+        {
+          "relative_path": "templates/use-case-charter.md",
+          "hard_breaks_replaced": 3,
+          "before_bytes": 2646,
+          "before_sha256": "179f0988f6c6bdc9c213fef83fb79070e9191e06a85f915a643538e2b281be6b",
+          "after_bytes": 2652,
+          "after_sha256": "af383fd295571dcc4bab747eab4f9037f7896baa29a3d485fe41918f8886bbda"
+        }
+      ]
+    }
+  ]
+}

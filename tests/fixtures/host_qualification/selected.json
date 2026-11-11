@@ -1,0 +1,49 @@
+{
+  "schema_version": "sparkforge-host-qualification.v1",
+  "scope_type": "ENVIRONMENT",
+  "environment_id": "synthetic-corp",
+  "record_revision": "synthetic-record-r1",
+  "selection": {
+    "status": "SELECTED",
+    "reason": "Fixture-only selection assertion; not an operator decision.",
+    "client": {
+      "product": "Synthetic Suite",
+      "distribution": "synthetic-distribution",
+      "launcher": "synthetic-launcher-never-invoked",
+      "build": "synthetic-build-1",
+      "profile_id": "synthetic-profile",
+      "profile_revision": "synthetic-profile-r1",
+      "config_revision": "synthetic-config-r1",
+      "os": "synthetic-os",
+      "architecture": "synthetic-architecture"
+    }
+  },
+  "capabilities": [
+    {
+      "id": "approval_ingress",
+      "status": "OBSERVED",
+      "reason": "Synthetic observation assertion; no real-world evidence.",
+      "evidence": {
+        "class": "LIVE_HOST_RESULT",
+        "reference": "synthetic:live-claim-only",
+        "revision": "synthetic-evidence-r1",
+        "binding": {
+          "environment_id": "synthetic-corp",
+          "record_revision": "synthetic-record-r1",
+          "capability_id": "approval_ingress",
+          "client": {
+            "product": "Synthetic Suite",
+            "distribution": "synthetic-distribution",
+            "launcher": "synthetic-launcher-never-invoked",
+            "build": "synthetic-build-1",
+            "profile_id": "synthetic-profile",
+            "profile_revision": "synthetic-profile-r1",
+            "config_revision": "synthetic-config-r1",
+            "os": "synthetic-os",
+            "architecture": "synthetic-architecture"
+          }
+        }
+      }
+    }
+  ]
+}

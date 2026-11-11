@@ -1,0 +1,13 @@
+{
+  "schema_version": "sparkforge-host-qualification.v1",
+  "scope_type": "ENVIRONMENT",
+  "environment_id": "synthetic-corp",
+  "record_revision": "synthetic-record-r1",
+  "selection": {
+    "status": "UNSELECTED",
+    "status": "UNSELECTED",
+    "reason": "Deliberately ambiguous synthetic JSON; must be rejected.",
+    "client": null
+  },
+  "capabilities": []
+}

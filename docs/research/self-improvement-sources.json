@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "prepared_on": "2026-11-11",
+  "historical_review_date": "2026-11-05",
+  "requirement": "SF-21",
+  "scope": "Fresh public-source-only synthesis; no private comparisons, raw media, transcripts, or upstream source redistribution.",
+  "publication_activity": "Local bibliographic, content, and portability review of existing public-source findings.",
+  "new_upstream_fetch": false,
+  "frameworks_executed": false,
+  "measured_improvement": "NOT_ASSESSED",
+  "video": {
+    "id": "aggJvNZxfKA",
+    "url": "https://www.youtube.com/watch?v=aggJvNZxfKA",
+    "title": "I Built a Self-Improving Software Factory",
+    "channel": "Eric Tech",
+    "channel_url": "https://www.youtube.com/@EricWTech",
+    "published_at_as_reported": "2026-10-06T17:46:12-07:00",
+    "duration_seconds_as_reported": 756.961,
+    "historical_review": {
+      "method": "Available English auto-captions and one selected frame; not uninterrupted audiovisual coverage.",
+      "unique_caption_segments": 382,
+      "time_range": ["00:00", "12:15"],
+      "selected_frame_seconds": [539],
+      "frame_scope": "Review-skill composition map, not an independently reproduced execution.",
+      "publication_reinspection_of_captions_or_frames": false
+    },
+    "linked_repository": "https://github.com/EricTechPro/super-board",
+    "linked_repository_code_reviewed": false,
+    "raw_captions_frames_or_video_included": false,
+    "limits": [
+      "Caption terminology and presentation performance claims are not independently verified.",
+      "The video-linked Super Board and separately supplied Fluent are different projects.",
+      "The video is distinct from the Eric Risco factory video.",
+      "Presentation claims about hooks and secret protection are not an implementation audit."
+    ]
+  },
+  "fluent": {
+    "repository": "mrinalwadhwa/fluent",
+    "url": "https://github.com/mrinalwadhwa/fluent",
+    "visibility_at_historical_review": "public",
+    "commit": "0871f94c95306230ad3729d736fbd8abc9e572bb",
+    "tree": "294fa4af770c17d4723c497695c65983a38c18ec",
+    "commit_date": "2026-11-01T23:07:23Z",
+    "root_license_at_review": "Apache-2.0",
+    "historical_reviewed_sources": [
+      {
+        "path": "README.md",
+        "url": "https://github.com/mrinalwadhwa/fluent/blob/0871f94c95306230ad3729d736fbd8abc9e572bb/README.md",
+        "depth": "Full text"
+      },
+      {
+        "path": "LICENSE",
+        "url": "https://github.com/mrinalwadhwa/fluent/blob/0871f94c95306230ad3729d736fbd8abc9e572bb/LICENSE",
+        "depth": "Opening license text; not a legal or dependency audit"
+      },
+      {
+        "path": "src/learner.rs",
+        "url": "https://github.com/mrinalwadhwa/fluent/blob/0871f94c95306230ad3729d736fbd8abc9e572bb/src/learner.rs",
+        "depth": "Production functions through load_verified_handoff and opening test source; remainder not reviewed"
+      }
+    ],
+    "implementation_execution": false,
+    "tests_executed": false,
+    "advertised_install_platform_at_pin": "macOS only",
+    "native_windows_qualification": "NOT_ASSESSED",
+    "selected_custom_host_qualification": "NOT_ASSESSED",
+    "adoption": "Design reference only; no runtime or dependency adoption",
+    "upstream_code_or_license_text_included": false,
+    "limits": [
+      "Historical selected-module reading does not establish whole-runtime, sandbox, caller-authorization, or promotion-path correctness.",
+      "Optional execution and landing features are not project authorizations.",
+      "Atomic handoff writing does not establish write-once immutability.",
+      "Normalization notes were not established as operationally logged by the inspected stamping function.",
+      "An earlier optional prompts/learner.md lookup returned 404 and was not used as evidence.",
+      "AWS Fargate is a separate runtime and data boundary, not an approved fallback.",
+      "No new source fetch or upstream execution was performed for this publication."
+    ]
+  }
+}

@@ -1,0 +1,2124 @@
+{
+  "schema_version": 1,
+  "prepared_on": "2026-11-11",
+  "purpose": "Public bibliographic metadata and bounded historical review references for the source-neutral prior-art synthesis.",
+  "historical_observation_date": "2026-11-05",
+  "publication_verification": "Repository identities, public visibility, pins, and reference coordinates checked against existing public-source metadata; no new upstream fetch.",
+  "review_boundary": "Historical inspections are selected documentation, source, specification, or test-source reading, not executed tests or whole-runtime audits.",
+  "upstream_refresh": "NOT_RUN",
+  "framework_execution": "NOT_RUN",
+  "redistributed_upstream_code_or_source_text": false,
+  "license_assessment": "Recorded classifications are scoped historical observations, not legal clearance or a transitive dependency audit.",
+  "license_qualifications": [
+    "BMad roots were classified MIT from recorded grant text despite API NOASSERTION; trademark notices remain separate.",
+    "Pester's recorded root grant is Apache-2.0 despite API NOASSERTION.",
+    "Promptfoo's recorded grant contains MIT terms without an MIT title.",
+    "12-Factor Agents distinguishes Apache-2.0 code from README-declared CC-BY-SA-4.0 written content.",
+    "No root reuse license was established for the Archon-based factory wrapper or ZazenCodes root/v1.",
+    "The ZazenCodes v2 subtree has a scoped GPLv3 license; do not extend it to sibling material."
+  ],
+  "repositories": [
+    {
+      "id": "spec-kit",
+      "repository": "github/spec-kit",
+      "url": "https://github.com/github/spec-kit",
+      "commit": "ec9a6f3b94c0aa856f77e550785a1ddde1993de1",
+      "commit_url": "https://github.com/github/spec-kit/commit/ec9a6f3b94c0aa856f77e550785a1ddde1993de1",
+      "tree": "e051c0f444dcf35f3e2a9608ad991de5658d1432",
+      "commit_date": "2026-11-04T22:34:17Z",
+      "observed_at_utc": "2026-11-05T01:09:20.516173+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Specifications and lifecycle",
+      "historical_review_depth": "Selected implementation and documentation",
+      "root_license_at_review": "MIT",
+      "license_sources": [
+        {
+          "path": "LICENSE",
+          "classification_at_review": "MIT",
+          "scope": "repository_root",
+          "source_url": "https://github.com/github/spec-kit/blob/ec9a6f3b94c0aa856f77e550785a1ddde1993de1/LICENSE"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "spec-kit-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              205
+            ]
+          ],
+          "source_url": "https://github.com/github/spec-kit/blob/ec9a6f3b94c0aa856f77e550785a1ddde1993de1/README.md",
+          "git_blob": "a4ea4f520add603de250c59f96037f0eb7be46e5",
+          "source_sha256_at_historical_review": "076c7ae6d7f58798a0c063ad398356bf64f1ce1002202b5f215a83d893c6fa29"
+        },
+        {
+          "id": "spec-kit-gate",
+          "path": "src/specify_cli/workflows/step/gate/__init__.py",
+          "kind": "implementation",
+          "historical_reviewed_line_ranges": [
+            [
+              20,
+              215
+            ]
+          ],
+          "source_url": "https://github.com/github/spec-kit/blob/ec9a6f3b94c0aa856f77e550785a1ddde1993de1/src/specify_cli/workflows/step/gate/__init__.py",
+          "git_blob": "b20e26d18c0ddcf6cf1fd10d5ff83afdc8dbe318",
+          "source_sha256_at_historical_review": "55da91c2d0cf0cfd674ae5af804e905d93dbed2ac6ea74da84ccbda4dc035474"
+        },
+        {
+          "id": "spec-kit-state",
+          "path": "src/specify_cli/workflows/engine.py",
+          "kind": "implementation",
+          "historical_reviewed_line_ranges": [
+            [
+              630,
+              695
+            ],
+            [
+              808,
+              895
+            ]
+          ],
+          "source_url": "https://github.com/github/spec-kit/blob/ec9a6f3b94c0aa856f77e550785a1ddde1993de1/src/specify_cli/workflows/engine.py",
+          "git_blob": "7cd85c091aa63514ddd3240c827f826c5c65c44f",
+          "source_sha256_at_historical_review": "286252739c4f51e9eab5869cc4d5d6f1a25c1914a72021984ba97a961d7cae7b"
+        },
+        {
+          "id": "spec-kit-offline",
+          "path": "docs/install/air-gapped.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              94
+            ]
+          ],
+          "source_url": "https://github.com/github/spec-kit/blob/ec9a6f3b94c0aa856f77e550785a1ddde1993de1/docs/install/air-gapped.md",
+          "git_blob": "81505e640bd455913b512291588cc09658407dc3",
+          "source_sha256_at_historical_review": "c33d314743a1242a3165b632865a1525dfd137269c70d56019e596ce13a134b2"
+        }
+      ]
+    },
+    {
+      "id": "openspec",
+      "repository": "Fission-AI/OpenSpec",
+      "url": "https://github.com/Fission-AI/OpenSpec",
+      "commit": "3e4d5f0769e2857c8eb54f149cbf5e4f703fa04c",
+      "commit_url": "https://github.com/Fission-AI/OpenSpec/commit/3e4d5f0769e2857c8eb54f149cbf5e4f703fa04c",
+      "tree": "5cfdc04d588ee8bc101541afdccc45527ecef9d7",
+      "commit_date": "2026-11-04T17:05:54Z",
+      "observed_at_utc": "2026-11-05T01:09:20.295950+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Specifications and lifecycle",
+      "historical_review_depth": "Selected implementation and documentation",
+      "root_license_at_review": "MIT",
+      "license_sources": [
+        {
+          "path": "LICENSE",
+          "classification_at_review": "MIT",
+          "scope": "repository_root",
+          "source_url": "https://github.com/Fission-AI/OpenSpec/blob/3e4d5f0769e2857c8eb54f149cbf5e4f703fa04c/LICENSE"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "openspec-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              205
+            ]
+          ],
+          "source_url": "https://github.com/Fission-AI/OpenSpec/blob/3e4d5f0769e2857c8eb54f149cbf5e4f703fa04c/README.md",
+          "git_blob": "7b8da04ac27fb1fa5a9578303873559e0c1b6ad2",
+          "source_sha256_at_historical_review": "e19ee7362ad043eeff0d3d1f1f0e5bf1ae195f4b34aa28e0107eae5eeaaad446"
+        },
+        {
+          "id": "openspec-artifacts",
+          "path": "src/core/artifact-graph/types.ts",
+          "kind": "implementation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              79
+            ]
+          ],
+          "source_url": "https://github.com/Fission-AI/OpenSpec/blob/3e4d5f0769e2857c8eb54f149cbf5e4f703fa04c/src/core/artifact-graph/types.ts",
+          "git_blob": "9e281ad074e507d351efbe6c14bac53209005052",
+          "source_sha256_at_historical_review": "922b4b13b5f86994312e9e737b966046a6b9149b086eb5b7cf5014d4efad8970"
+        },
+        {
+          "id": "openspec-validation",
+          "path": "src/core/artifact-graph/schema.ts",
+          "kind": "implementation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              120
+            ]
+          ],
+          "source_url": "https://github.com/Fission-AI/OpenSpec/blob/3e4d5f0769e2857c8eb54f149cbf5e4f703fa04c/src/core/artifact-graph/schema.ts",
+          "git_blob": "ebaff3bcf40d3a552d53e6271094a5caf50658d6",
+          "source_sha256_at_historical_review": "29b22548191348feab826b8a08217cb051b20dba497f791686c9e168f2e5e04d"
+        }
+      ]
+    },
+    {
+      "id": "spec-kitty",
+      "repository": "spec-kitty/spec-kitty",
+      "url": "https://github.com/spec-kitty/spec-kitty",
+      "commit": "d7f91f37542c68d7ba019a3d22d5f5edec3e96f0",
+      "commit_url": "https://github.com/spec-kitty/spec-kitty/commit/d7f91f37542c68d7ba019a3d22d5f5edec3e96f0",
+      "tree": "b888f5e2172b8309f3504ea1a2df5e19d41fd7ad",
+      "commit_date": "2026-11-04T23:44:07Z",
+      "observed_at_utc": "2026-11-05T01:10:28.389479+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Specifications and lifecycle",
+      "historical_review_depth": "Selected README",
+      "root_license_at_review": "MIT",
+      "license_sources": [
+        {
+          "path": "LICENSE",
+          "classification_at_review": "MIT",
+          "scope": "repository_root",
+          "source_url": "https://github.com/spec-kitty/spec-kitty/blob/d7f91f37542c68d7ba019a3d22d5f5edec3e96f0/LICENSE"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "spec-kitty-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              160
+            ]
+          ],
+          "source_url": "https://github.com/spec-kitty/spec-kitty/blob/d7f91f37542c68d7ba019a3d22d5f5edec3e96f0/README.md",
+          "git_blob": "95a847bf3eff0e8385ad0f007877d2f281da2235",
+          "source_sha256_at_historical_review": "564e4a15c43ff31e42f3b2799368f038443c9362519fc95710b7460942bd38a3"
+        }
+      ]
+    },
+    {
+      "id": "bmad-method",
+      "repository": "bmad-code-org/BMAD-METHOD",
+      "url": "https://github.com/bmad-code-org/BMAD-METHOD",
+      "commit": "022be9314e4facd16826104a9f8033e1c5ed4fdc",
+      "commit_url": "https://github.com/bmad-code-org/BMAD-METHOD/commit/022be9314e4facd16826104a9f8033e1c5ed4fdc",
+      "tree": "1e58238b28eb5fef0e88ac370cb40903ae511a14",
+      "commit_date": "2026-11-02T17:53:33Z",
+      "observed_at_utc": "2026-11-05T01:09:20.261272+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Specifications and lifecycle",
+      "historical_review_depth": "README and license",
+      "root_license_at_review": "MIT",
+      "license_sources": [
+        {
+          "path": "LICENSE",
+          "classification_at_review": "MIT",
+          "scope": "repository_root",
+          "source_url": "https://github.com/bmad-code-org/BMAD-METHOD/blob/022be9314e4facd16826104a9f8033e1c5ed4fdc/LICENSE"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "bmad-method-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              125
+            ]
+          ],
+          "source_url": "https://github.com/bmad-code-org/BMAD-METHOD/blob/022be9314e4facd16826104a9f8033e1c5ed4fdc/README.md",
+          "git_blob": "bd9fbb40ccb25207194dc9ed88b24134f4ae3d0c",
+          "source_sha256_at_historical_review": "7547d18b57a7004a057ace1b03dd10394bd6f687f4174172b73d7d7cf5687d5a"
+        }
+      ]
+    },
+    {
+      "id": "bmad-builder",
+      "repository": "bmad-code-org/bmad-builder",
+      "url": "https://github.com/bmad-code-org/bmad-builder",
+      "commit": "d4a921c49db71ad09c2dc62b8e62266b1f26ca4f",
+      "commit_url": "https://github.com/bmad-code-org/bmad-builder/commit/d4a921c49db71ad09c2dc62b8e62266b1f26ca4f",
+      "tree": "6345db2c7553067f7ccbf6ad014c3b75f9741bb4",
+      "commit_date": "2026-09-25T10:18:09Z",
+      "observed_at_utc": "2026-11-05T01:16:10.301665+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Skills and component generation",
+      "historical_review_depth": "README and license",
+      "root_license_at_review": "MIT",
+      "license_sources": [
+        {
+          "path": "LICENSE",
+          "classification_at_review": "MIT",
+          "scope": "repository_root",
+          "source_url": "https://github.com/bmad-code-org/bmad-builder/blob/d4a921c49db71ad09c2dc62b8e62266b1f26ca4f/LICENSE"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "bmad-builder-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              75
+            ]
+          ],
+          "source_url": "https://github.com/bmad-code-org/bmad-builder/blob/d4a921c49db71ad09c2dc62b8e62266b1f26ca4f/README.md",
+          "git_blob": "da02ee81e3c73b140ed46657a9541ff9f1a708cd",
+          "source_sha256_at_historical_review": "566f6efdab4af36e090c81e06907e242cddceb51df7d9e0eee58e6de7769b9ec"
+        }
+      ]
+    },
+    {
+      "id": "bmad-tea",
+      "repository": "bmad-code-org/bmad-method-test-architecture-enterprise",
+      "url": "https://github.com/bmad-code-org/bmad-method-test-architecture-enterprise",
+      "commit": "a2819f62fc1b56486d223895eaa50578b490f2f5",
+      "commit_url": "https://github.com/bmad-code-org/bmad-method-test-architecture-enterprise/commit/a2819f62fc1b56486d223895eaa50578b490f2f5",
+      "tree": "a3f4d458e8cedc04896d0954f90aea4a8382ae02",
+      "commit_date": "2026-10-31T10:38:31Z",
+      "observed_at_utc": "2026-11-05T01:16:10.295625+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Testing and evaluation",
+      "historical_review_depth": "README, license, and selected skill contract",
+      "root_license_at_review": "MIT",
+      "license_sources": [
+        {
+          "path": "LICENSE",
+          "classification_at_review": "MIT",
+          "scope": "repository_root",
+          "source_url": "https://github.com/bmad-code-org/bmad-method-test-architecture-enterprise/blob/a2819f62fc1b56486d223895eaa50578b490f2f5/LICENSE"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "bmad-tea-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              164
+            ]
+          ],
+          "source_url": "https://github.com/bmad-code-org/bmad-method-test-architecture-enterprise/blob/a2819f62fc1b56486d223895eaa50578b490f2f5/README.md",
+          "git_blob": "694e834f811e121a3390e59af2a35e0703633e93",
+          "source_sha256_at_historical_review": "8d57dfc761d2c8ae3c3fd9f8cd86193c6c2909adaed8b312899c9d84390434c5"
+        },
+        {
+          "id": "tea-trace",
+          "path": "skills/bmad-tea-trace/SKILL.md",
+          "kind": "skill-contract",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              94
+            ]
+          ],
+          "source_url": "https://github.com/bmad-code-org/bmad-method-test-architecture-enterprise/blob/a2819f62fc1b56486d223895eaa50578b490f2f5/skills/bmad-tea-trace/SKILL.md",
+          "git_blob": "74a322c0c3390aa05cfc0cb54be9cdb2e84eca29",
+          "source_sha256_at_historical_review": "702df8170d83c2993b334c05d5d1c3078c36f7a66af0df823b11d26af7504529"
+        }
+      ]
+    },
+    {
+      "id": "bmad-loop",
+      "repository": "bmad-code-org/bmad-loop",
+      "url": "https://github.com/bmad-code-org/bmad-loop",
+      "commit": "49eb8a3f15b1cab9758948b5b341516de9c044df",
+      "commit_url": "https://github.com/bmad-code-org/bmad-loop/commit/49eb8a3f15b1cab9758948b5b341516de9c044df",
+      "tree": "b6fba277a06a69f8b2987706d3dd9087149219d0",
+      "commit_date": "2026-11-02T03:33:28Z",
+      "observed_at_utc": "2026-11-05T01:16:10.816630+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Factory orchestration",
+      "historical_review_depth": "Selected adapter implementation, profile, and documentation",
+      "root_license_at_review": "MIT",
+      "license_sources": [
+        {
+          "path": "LICENSE",
+          "classification_at_review": "MIT",
+          "scope": "repository_root",
+          "source_url": "https://github.com/bmad-code-org/bmad-loop/blob/49eb8a3f15b1cab9758948b5b341516de9c044df/LICENSE"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "bmad-loop-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              175
+            ]
+          ],
+          "source_url": "https://github.com/bmad-code-org/bmad-loop/blob/49eb8a3f15b1cab9758948b5b341516de9c044df/README.md",
+          "git_blob": "92fc0e4c5557a4e440bca643d7098a0d89802f85",
+          "source_sha256_at_historical_review": "cd3662535f89659b6ea7c9b3fcf12c4655eecf7622141406f1d300a9529e9981"
+        },
+        {
+          "id": "bmad-loop-permissions",
+          "path": "src/bmad_loop/adapters/profile.py",
+          "kind": "implementation",
+          "historical_reviewed_line_ranges": [
+            [
+              461,
+              525
+            ]
+          ],
+          "source_url": "https://github.com/bmad-code-org/bmad-loop/blob/49eb8a3f15b1cab9758948b5b341516de9c044df/src/bmad_loop/adapters/profile.py",
+          "git_blob": "28e4437438a41e2653de0a5686263b8fd3d302ae",
+          "source_sha256_at_historical_review": "c23cd353c11db5416a44bda8c067941cbba24e7d6cf06faf808bffd376bf22e2"
+        },
+        {
+          "id": "bmad-loop-copilot",
+          "path": "src/bmad_loop/data/profiles/copilot.toml",
+          "kind": "configuration",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              60
+            ]
+          ],
+          "source_url": "https://github.com/bmad-code-org/bmad-loop/blob/49eb8a3f15b1cab9758948b5b341516de9c044df/src/bmad_loop/data/profiles/copilot.toml",
+          "git_blob": "4a287ab7517226cb36441ade4cfbda24d7aad4a0",
+          "source_sha256_at_historical_review": "e524f91cb99d90ba3e60fa265e6806c507eec4f7d04fd6a9fff74ee15f9916d6"
+        },
+        {
+          "id": "bmad-loop-policy",
+          "path": "docs/reference/configuration.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              125
+            ]
+          ],
+          "source_url": "https://github.com/bmad-code-org/bmad-loop/blob/49eb8a3f15b1cab9758948b5b341516de9c044df/docs/reference/configuration.md",
+          "git_blob": "e6b772cfc4c8d8b20c19f3a2447d41baaec442a9",
+          "source_sha256_at_historical_review": "adac227ff3199e7ba43fe9b7033a07607e30f4b74435d9dc4add99bfc99b809c"
+        },
+        {
+          "id": "bmad-loop-transport",
+          "path": "docs/adapter-authoring-guide.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              120
+            ]
+          ],
+          "source_url": "https://github.com/bmad-code-org/bmad-loop/blob/49eb8a3f15b1cab9758948b5b341516de9c044df/docs/adapter-authoring-guide.md",
+          "git_blob": "513bc689ffb3aaba163469c263fc545b9a09c8ec",
+          "source_sha256_at_historical_review": "bf84eaa960f51002370bca8e27692ed88353407dd8753bd5a2290a9b7f08e1f8"
+        }
+      ]
+    },
+    {
+      "id": "superpowers",
+      "repository": "obra/superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "commit": "22f0b463e7a5e579904dd6211a520321035526f7",
+      "commit_url": "https://github.com/obra/superpowers/commit/22f0b463e7a5e579904dd6211a520321035526f7",
+      "tree": "8fddc972a73e9af7501442df0e638d8e29842b6b",
+      "commit_date": "2026-11-03T22:17:07Z",
+      "observed_at_utc": "2026-11-05T01:09:20.608586+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Skills and engineering practice",
+      "historical_review_depth": "Selected README and skill contracts",
+      "root_license_at_review": "MIT",
+      "license_sources": [
+        {
+          "path": "LICENSE",
+          "classification_at_review": "MIT",
+          "scope": "repository_root",
+          "source_url": "https://github.com/obra/superpowers/blob/22f0b463e7a5e579904dd6211a520321035526f7/LICENSE"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "superpowers-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              195
+            ]
+          ],
+          "source_url": "https://github.com/obra/superpowers/blob/22f0b463e7a5e579904dd6211a520321035526f7/README.md",
+          "git_blob": "c5bb59fdaf17ba154e803c549cd71a73ef36c24b",
+          "source_sha256_at_historical_review": "79f29f50c735862d2e304ea547b4c9aa67d9db6909ff6fb7b5ea922d7bcbc3e7"
+        },
+        {
+          "id": "superpowers-intake",
+          "path": "skills/brainstorming/SKILL.md",
+          "kind": "skill-contract",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              125
+            ]
+          ],
+          "source_url": "https://github.com/obra/superpowers/blob/22f0b463e7a5e579904dd6211a520321035526f7/skills/brainstorming/SKILL.md",
+          "git_blob": "9eb0edc7fedf26e1d3e2f3f223e5bcc5058aed6a",
+          "source_sha256_at_historical_review": "2c9ca71f94886f9ca9f4aef055f7cafb3e1a9bdf3aeebf8f4cb547c69405d207"
+        },
+        {
+          "id": "superpowers-tdd",
+          "path": "skills/test-driven-development/SKILL.md",
+          "kind": "skill-contract",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              120
+            ]
+          ],
+          "source_url": "https://github.com/obra/superpowers/blob/22f0b463e7a5e579904dd6211a520321035526f7/skills/test-driven-development/SKILL.md",
+          "git_blob": "46838cc9e893c06259e3bdad0fc2425b36242f15",
+          "source_sha256_at_historical_review": "64b03fce4aee5a97a93160cea8111f3ba13a17b7c001db4bd5836d67fd10705d"
+        },
+        {
+          "id": "superpowers-verification",
+          "path": "skills/verification-before-completion/SKILL.md",
+          "kind": "skill-contract",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              120
+            ]
+          ],
+          "source_url": "https://github.com/obra/superpowers/blob/22f0b463e7a5e579904dd6211a520321035526f7/skills/verification-before-completion/SKILL.md",
+          "git_blob": "7d45333cc4a49c57a80df6c1fe2fa777a207afbc",
+          "source_sha256_at_historical_review": "2befe7fc55bcadaa3d97dd9e8efeb633d2561c0ebe74c5a8b17c4d9e7e4520b3"
+        },
+        {
+          "id": "superpowers-workers",
+          "path": "skills/subagent-driven-development/SKILL.md",
+          "kind": "skill-contract",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              115
+            ]
+          ],
+          "source_url": "https://github.com/obra/superpowers/blob/22f0b463e7a5e579904dd6211a520321035526f7/skills/subagent-driven-development/SKILL.md",
+          "git_blob": "45195787cb3f5d141af203e2fdc12f158be14522",
+          "source_sha256_at_historical_review": "1baf70e307bde682c462513c86116333f1f066168c6710f45145bf5f0b00828d"
+        }
+      ]
+    },
+    {
+      "id": "addy-skills",
+      "repository": "addyosmani/agent-skills",
+      "url": "https://github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "commit_url": "https://github.com/addyosmani/agent-skills/commit/301b02b12bff98e4688e6984af6556802322bbde",
+      "tree": "f6cf69d25c76d19be91cf3609c227a6b826eea5d",
+      "commit_date": "2026-11-01T19:24:49Z",
+      "observed_at_utc": "2026-11-05T01:10:28.350143+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Skills and engineering practice",
+      "historical_review_depth": "Selected README, intake skill, and Copilot guide",
+      "root_license_at_review": "MIT",
+      "license_sources": [
+        {
+          "path": "LICENSE",
+          "classification_at_review": "MIT",
+          "scope": "repository_root",
+          "source_url": "https://github.com/addyosmani/agent-skills/blob/301b02b12bff98e4688e6984af6556802322bbde/LICENSE"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "addy-skills-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              175
+            ]
+          ],
+          "source_url": "https://github.com/addyosmani/agent-skills/blob/301b02b12bff98e4688e6984af6556802322bbde/README.md",
+          "git_blob": "7f610b8ca80ff9bc7ba7f95f3209430c3481891d",
+          "source_sha256_at_historical_review": "b74ab722eeee706ff1c5c3ee55f5f2328368ec28c6368900bc80b857b5bc6b72"
+        },
+        {
+          "id": "addy-intake",
+          "path": "skills/interview-me/SKILL.md",
+          "kind": "skill-contract",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              145
+            ]
+          ],
+          "source_url": "https://github.com/addyosmani/agent-skills/blob/301b02b12bff98e4688e6984af6556802322bbde/skills/interview-me/SKILL.md",
+          "git_blob": "200f9186ffa234708aa5deec1946c6dfcb7a7335",
+          "source_sha256_at_historical_review": "ace4b675999bb504593d572e0f73f3d7e803ad6fddf318445598c82c11939db2"
+        },
+        {
+          "id": "addy-copilot",
+          "path": "docs/copilot-cli-setup.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              64
+            ]
+          ],
+          "source_url": "https://github.com/addyosmani/agent-skills/blob/301b02b12bff98e4688e6984af6556802322bbde/docs/copilot-cli-setup.md",
+          "git_blob": "0abed10f61e49193d6fb9fc7b5597311240cfe32",
+          "source_sha256_at_historical_review": "e624f0bff64f42b3a8034c7cba5e8a1907da81ad1e6f9ba3b6f9bcd5544993ec"
+        }
+      ]
+    },
+    {
+      "id": "rsc-harness",
+      "repository": "ericrisco/rsc-harness",
+      "url": "https://github.com/ericrisco/rsc-harness",
+      "commit": "726aaf3ba87c584329fc821f243a7ce5e62450fd",
+      "commit_url": "https://github.com/ericrisco/rsc-harness/commit/726aaf3ba87c584329fc821f243a7ce5e62450fd",
+      "tree": "8e4e8fb4f99ded141236151d7e7ebee3f56b2055",
+      "commit_date": "2026-11-04T11:15:02Z",
+      "observed_at_utc": "2026-11-05T01:09:20.246980+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Project knowledge and governance",
+      "historical_review_depth": "Selected implementation, test source, and README",
+      "root_license_at_review": "MIT",
+      "license_sources": [
+        {
+          "path": "LICENSE",
+          "classification_at_review": "MIT",
+          "scope": "repository_root",
+          "source_url": "https://github.com/ericrisco/rsc-harness/blob/726aaf3ba87c584329fc821f243a7ce5e62450fd/LICENSE"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "rsc-harness-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              125
+            ]
+          ],
+          "source_url": "https://github.com/ericrisco/rsc-harness/blob/726aaf3ba87c584329fc821f243a7ce5e62450fd/README.md",
+          "git_blob": "e84ad353c44dbe4197b7ab3a118ddedd0592ee79",
+          "source_sha256_at_historical_review": "015c1e1d9baf09dec82cfe84627d7d388f7253188faec04fbc51294b8a145624"
+        },
+        {
+          "id": "rsc-acceptance",
+          "path": "scripts/lib/onboarding-apply.js",
+          "kind": "implementation",
+          "historical_reviewed_line_ranges": [
+            [
+              205,
+              315
+            ]
+          ],
+          "source_url": "https://github.com/ericrisco/rsc-harness/blob/726aaf3ba87c584329fc821f243a7ce5e62450fd/scripts/lib/onboarding-apply.js",
+          "git_blob": "92f106fa93290d2f026726e76cf96b4fbf42c818",
+          "source_sha256_at_historical_review": "979f64feb9d33e2929289b4241de5e4161b3f5feebec47621f5bedafcac55e64"
+        },
+        {
+          "id": "rsc-acceptance-tests",
+          "path": "tests/onboarding-cli.test.js",
+          "kind": "test-source",
+          "historical_reviewed_line_ranges": [
+            [
+              40,
+              135
+            ]
+          ],
+          "source_url": "https://github.com/ericrisco/rsc-harness/blob/726aaf3ba87c584329fc821f243a7ce5e62450fd/tests/onboarding-cli.test.js",
+          "git_blob": "6435eb82fa10d0c8bd50012c5549b349fe5d213f",
+          "source_sha256_at_historical_review": "45dee76595f3e975e0056020f8d85930431af7b390836c31bff22a252cc58321"
+        },
+        {
+          "id": "rsc-host-surfaces",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              349,
+              405
+            ]
+          ],
+          "source_url": "https://github.com/ericrisco/rsc-harness/blob/726aaf3ba87c584329fc821f243a7ce5e62450fd/README.md",
+          "git_blob": "e84ad353c44dbe4197b7ab3a118ddedd0592ee79",
+          "source_sha256_at_historical_review": "015c1e1d9baf09dec82cfe84627d7d388f7253188faec04fbc51294b8a145624"
+        }
+      ]
+    },
+    {
+      "id": "agent-os",
+      "repository": "buildermethods/agent-os",
+      "url": "https://github.com/buildermethods/agent-os",
+      "commit": "e892e61d322759165e7d9173e92c1010406c9f4d",
+      "commit_url": "https://github.com/buildermethods/agent-os/commit/e892e61d322759165e7d9173e92c1010406c9f4d",
+      "tree": "f5d96e5a9d1a60e568cf9a15889d73bd21e42e0e",
+      "commit_date": "2026-10-07T04:18:58Z",
+      "observed_at_utc": "2026-11-05T01:10:28.551757+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Project knowledge and governance",
+      "historical_review_depth": "README",
+      "root_license_at_review": "MIT",
+      "license_sources": [
+        {
+          "path": "LICENSE",
+          "classification_at_review": "MIT",
+          "scope": "repository_root",
+          "source_url": "https://github.com/buildermethods/agent-os/blob/e892e61d322759165e7d9173e92c1010406c9f4d/LICENSE"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "agent-os-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              41
+            ]
+          ],
+          "source_url": "https://github.com/buildermethods/agent-os/blob/e892e61d322759165e7d9173e92c1010406c9f4d/README.md",
+          "git_blob": "78e2756db5055ef039a6f94053e55187dc55fec1",
+          "source_sha256_at_historical_review": "e02b640d2f1eb40d06ead692329b85be0f078bf1dd02b367c3931fda531e7fe0"
+        }
+      ]
+    },
+    {
+      "id": "sssf",
+      "repository": "disler/super-simple-software-factory",
+      "url": "https://github.com/disler/super-simple-software-factory",
+      "commit": "de31374882e7a4e3e5b7bb9bd09e69dc2f779356",
+      "commit_url": "https://github.com/disler/super-simple-software-factory/commit/de31374882e7a4e3e5b7bb9bd09e69dc2f779356",
+      "tree": "43c39abcc40df09d552bb8736c28f53950ad4894",
+      "commit_date": "2026-08-02T17:57:38Z",
+      "observed_at_utc": "2026-11-05T01:09:20.777014+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Factory orchestration",
+      "historical_review_depth": "Selected implementation and README",
+      "root_license_at_review": "MIT",
+      "license_sources": [
+        {
+          "path": "LICENSE",
+          "classification_at_review": "MIT",
+          "scope": "repository_root",
+          "source_url": "https://github.com/disler/super-simple-software-factory/blob/de31374882e7a4e3e5b7bb9bd09e69dc2f779356/LICENSE"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "sssf-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              210
+            ]
+          ],
+          "source_url": "https://github.com/disler/super-simple-software-factory/blob/de31374882e7a4e3e5b7bb9bd09e69dc2f779356/README.md",
+          "git_blob": "0e73560581ac9cb01f6e7f92417ad182aa31f8f8",
+          "source_sha256_at_historical_review": "671478e3b20e7d0e5ff15b64cdfbd87117d4972dc02537888c5852b2e793b169"
+        },
+        {
+          "id": "sssf-run-acceptance",
+          "path": ".claude/skills/sssf/templates/adws/adw_modules/runner.py",
+          "kind": "implementation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              142
+            ]
+          ],
+          "source_url": "https://github.com/disler/super-simple-software-factory/blob/de31374882e7a4e3e5b7bb9bd09e69dc2f779356/.claude/skills/sssf/templates/adws/adw_modules/runner.py",
+          "git_blob": "86bf2b30797f6e66e0aaf5fd02835a02dbd7b0f3",
+          "source_sha256_at_historical_review": "b14af2d15d809747a678e2633af95b1b846d1bb010fc4646b8a9b5574b29e35f"
+        },
+        {
+          "id": "sssf-agent-calls",
+          "path": ".claude/skills/sssf/templates/adws/adw_modules/agents.py",
+          "kind": "implementation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              300
+            ]
+          ],
+          "source_url": "https://github.com/disler/super-simple-software-factory/blob/de31374882e7a4e3e5b7bb9bd09e69dc2f779356/.claude/skills/sssf/templates/adws/adw_modules/agents.py",
+          "git_blob": "7c9adb8ca41204c46ca74e673c9fa155144cb7e4",
+          "source_sha256_at_historical_review": "a69f25115afe1eabb3702005469d18882b9c27a5a7ea705d7be26be797525eea"
+        },
+        {
+          "id": "sssf-tracing",
+          "path": ".claude/skills/sssf/templates/adws/adw_modules/tracer.py",
+          "kind": "implementation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              130
+            ]
+          ],
+          "source_url": "https://github.com/disler/super-simple-software-factory/blob/de31374882e7a4e3e5b7bb9bd09e69dc2f779356/.claude/skills/sssf/templates/adws/adw_modules/tracer.py",
+          "git_blob": "54eb6385edbcfb0470fdab5fed93edd61b136040",
+          "source_sha256_at_historical_review": "f35a034f89d8d6c416fbe6ccc3ad59593e1b892736fce80429705d9b72f328e3"
+        },
+        {
+          "id": "sssf-git",
+          "path": ".claude/skills/sssf/templates/adws/adw_modules/git_helper.py",
+          "kind": "implementation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              120
+            ]
+          ],
+          "source_url": "https://github.com/disler/super-simple-software-factory/blob/de31374882e7a4e3e5b7bb9bd09e69dc2f779356/.claude/skills/sssf/templates/adws/adw_modules/git_helper.py",
+          "git_blob": "368d633493dd6d8f76ae177378d04b3aa986a31d",
+          "source_sha256_at_historical_review": "ea3e5fa959c37bc258e4ded8f3bae53ca7a13ed2a64355202bf6765924c062d7"
+        }
+      ]
+    },
+    {
+      "id": "attractor",
+      "repository": "strongdm/attractor",
+      "url": "https://github.com/strongdm/attractor",
+      "commit": "fb57a55ed97372a27ac90102f436947e29f48426",
+      "commit_url": "https://github.com/strongdm/attractor/commit/fb57a55ed97372a27ac90102f436947e29f48426",
+      "tree": "ec671752f6acb7ad2239e212186b9706e30f5b2b",
+      "commit_date": "2026-03-17T21:33:04Z",
+      "observed_at_utc": "2026-11-05T01:10:28.739083+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Orchestration specifications",
+      "historical_review_depth": "README and selected specification",
+      "root_license_at_review": "Apache-2.0",
+      "license_sources": [
+        {
+          "path": "LICENSE",
+          "classification_at_review": "Apache-2.0",
+          "scope": "repository_root",
+          "source_url": "https://github.com/strongdm/attractor/blob/fb57a55ed97372a27ac90102f436947e29f48426/LICENSE"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "attractor-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              23
+            ]
+          ],
+          "source_url": "https://github.com/strongdm/attractor/blob/fb57a55ed97372a27ac90102f436947e29f48426/README.md",
+          "git_blob": "f6db0fb68dffdd8f5ba850ed4a9019f3418a9566",
+          "source_sha256_at_historical_review": "0b5f8d1b8ed4db6bec9060bb6b39dddbd38dec06a6958cd24f2dba4773068773"
+        },
+        {
+          "id": "attractor-design",
+          "path": "attractor-spec.md",
+          "kind": "specification",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              110
+            ]
+          ],
+          "source_url": "https://github.com/strongdm/attractor/blob/fb57a55ed97372a27ac90102f436947e29f48426/attractor-spec.md",
+          "git_blob": "aaaa969f0d5c1144b5c3b30b389e5fb6c588e53a",
+          "source_sha256_at_historical_review": "235354496e2bc35cba9822cded2ebd71ff35a8fb7fce4e51f52b2788586e92ec"
+        }
+      ]
+    },
+    {
+      "id": "fabro",
+      "repository": "fabro-sh/fabro",
+      "url": "https://github.com/fabro-sh/fabro",
+      "commit": "1f5da01b47eeccb43b6b3bc79fe9cc455882a100",
+      "commit_url": "https://github.com/fabro-sh/fabro/commit/1f5da01b47eeccb43b6b3bc79fe9cc455882a100",
+      "tree": "e8a302f2e0090513e97ae767a9ef17b91a742c3f",
+      "commit_date": "2026-11-04T16:19:43Z",
+      "observed_at_utc": "2026-11-05T01:10:28.537351+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Factory orchestration",
+      "historical_review_depth": "README",
+      "root_license_at_review": "MIT",
+      "license_sources": [
+        {
+          "path": "LICENSE.md",
+          "classification_at_review": "MIT",
+          "scope": "repository_root",
+          "source_url": "https://github.com/fabro-sh/fabro/blob/1f5da01b47eeccb43b6b3bc79fe9cc455882a100/LICENSE.md"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "fabro-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              185
+            ]
+          ],
+          "source_url": "https://github.com/fabro-sh/fabro/blob/1f5da01b47eeccb43b6b3bc79fe9cc455882a100/README.md",
+          "git_blob": "73a1e4ffc68a65abde36a4421600a86520b1395f",
+          "source_sha256_at_historical_review": "5a84078fc0b121be81c1cfc538c1dac92000c78bbe93cf8385e493140ab2705d"
+        }
+      ]
+    },
+    {
+      "id": "roast",
+      "repository": "Shopify/roast",
+      "url": "https://github.com/Shopify/roast",
+      "commit": "93b2f5c99982bd3e8df426fa09da02a64a454263",
+      "commit_url": "https://github.com/Shopify/roast/commit/93b2f5c99982bd3e8df426fa09da02a64a454263",
+      "tree": "0f2934e91980d182f091a02a47328571ee282488",
+      "commit_date": "2026-10-21T17:43:55Z",
+      "observed_at_utc": "2026-11-05T01:10:28.562705+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Factory orchestration",
+      "historical_review_depth": "Selected README",
+      "root_license_at_review": "MIT",
+      "license_sources": [
+        {
+          "path": "LICENSE.md",
+          "classification_at_review": "MIT",
+          "scope": "repository_root",
+          "source_url": "https://github.com/Shopify/roast/blob/93b2f5c99982bd3e8df426fa09da02a64a454263/LICENSE.md"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "roast-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              200
+            ]
+          ],
+          "source_url": "https://github.com/Shopify/roast/blob/93b2f5c99982bd3e8df426fa09da02a64a454263/README.md",
+          "git_blob": "b6e2ed6a10ec8901609e121f1cb13c184888e2e1",
+          "source_sha256_at_historical_review": "efb9ff53ef1e0d250955476484e80dd6d8b5a24b9b529ac1cd43e54c7c0786b3"
+        }
+      ]
+    },
+    {
+      "id": "deepagents",
+      "repository": "langchain-ai/deepagents",
+      "url": "https://github.com/langchain-ai/deepagents",
+      "commit": "6cd647ba201d4612aeaa2d49d9588bd6e46ce250",
+      "commit_url": "https://github.com/langchain-ai/deepagents/commit/6cd647ba201d4612aeaa2d49d9588bd6e46ce250",
+      "tree": "99cc10239a113bddcfe61b52d61eb8b88d0f66c6",
+      "commit_date": "2026-11-04T23:59:49Z",
+      "observed_at_utc": "2026-11-05T01:10:28.606570+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Alternative agent runtimes",
+      "historical_review_depth": "README",
+      "root_license_at_review": "MIT",
+      "license_sources": [
+        {
+          "path": "LICENSE",
+          "classification_at_review": "MIT",
+          "scope": "repository_root",
+          "source_url": "https://github.com/langchain-ai/deepagents/blob/6cd647ba201d4612aeaa2d49d9588bd6e46ce250/LICENSE"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "deepagents-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              115
+            ]
+          ],
+          "source_url": "https://github.com/langchain-ai/deepagents/blob/6cd647ba201d4612aeaa2d49d9588bd6e46ce250/README.md",
+          "git_blob": "22c546cffc2365f7c97c2781aadb1b74eb28d2c3",
+          "source_sha256_at_historical_review": "738b16b9e3451b3e51f2818baa8e5c752960495b938c2b3ed4011c816fe9718d"
+        }
+      ]
+    },
+    {
+      "id": "openhands-sdk",
+      "repository": "OpenHands/software-agent-sdk",
+      "url": "https://github.com/OpenHands/software-agent-sdk",
+      "commit": "2b4d980b6a54ef6685e4337e7643c40ec24be1bb",
+      "commit_url": "https://github.com/OpenHands/software-agent-sdk/commit/2b4d980b6a54ef6685e4337e7643c40ec24be1bb",
+      "tree": "50cd9f67b0923c46c8bd6208aa62eba3119a00a4",
+      "commit_date": "2026-11-04T20:21:18Z",
+      "observed_at_utc": "2026-11-05T01:14:04.576629+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Alternative agent runtimes",
+      "historical_review_depth": "Selected README",
+      "root_license_at_review": "MIT",
+      "license_sources": [
+        {
+          "path": "LICENSE",
+          "classification_at_review": "MIT",
+          "scope": "repository_root",
+          "source_url": "https://github.com/OpenHands/software-agent-sdk/blob/2b4d980b6a54ef6685e4337e7643c40ec24be1bb/LICENSE"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "openhands-sdk-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              180
+            ]
+          ],
+          "source_url": "https://github.com/OpenHands/software-agent-sdk/blob/2b4d980b6a54ef6685e4337e7643c40ec24be1bb/README.md",
+          "git_blob": "386dc8945133cb51969192b0b29c8396719cbff6",
+          "source_sha256_at_historical_review": "95094c9745c7cc58136d4eaa1688fb6038aafefec2be05344293f6df7e55dbf8"
+        }
+      ]
+    },
+    {
+      "id": "mini-swe-agent",
+      "repository": "SWE-agent/mini-swe-agent",
+      "url": "https://github.com/SWE-agent/mini-swe-agent",
+      "commit": "04d809ceab9df28f9adaed044884180159172930",
+      "commit_url": "https://github.com/SWE-agent/mini-swe-agent/commit/04d809ceab9df28f9adaed044884180159172930",
+      "tree": "05aef37afee93a52cea7d571b00d435f28c81bd6",
+      "commit_date": "2026-09-03T05:05:59Z",
+      "observed_at_utc": "2026-11-05T01:14:04.535499+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Alternative agent runtimes",
+      "historical_review_depth": "Selected README",
+      "root_license_at_review": "MIT",
+      "license_sources": [
+        {
+          "path": "LICENSE.md",
+          "classification_at_review": "MIT",
+          "scope": "repository_root",
+          "source_url": "https://github.com/SWE-agent/mini-swe-agent/blob/04d809ceab9df28f9adaed044884180159172930/LICENSE.md"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "mini-swe-agent-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              155
+            ]
+          ],
+          "source_url": "https://github.com/SWE-agent/mini-swe-agent/blob/04d809ceab9df28f9adaed044884180159172930/README.md",
+          "git_blob": "7db1d82dfa92eaa00adeb10c8681677a9e6ec639",
+          "source_sha256_at_historical_review": "9982d90b7566f2f3fa5e9811b475d5e8e2a84e2df80cf3f1e4be6e820b129835"
+        }
+      ]
+    },
+    {
+      "id": "copilot-sdk",
+      "repository": "github/copilot-sdk",
+      "url": "https://github.com/github/copilot-sdk",
+      "commit": "c072001600018fe166910cfcb6eb42e769b9209d",
+      "commit_url": "https://github.com/github/copilot-sdk/commit/c072001600018fe166910cfcb6eb42e769b9209d",
+      "tree": "8234a4da147b4c89615f513189296291b447b8ec",
+      "commit_date": "2026-11-04T17:30:44Z",
+      "observed_at_utc": "2026-11-05T01:09:20.446541+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Host integration",
+      "historical_review_depth": "README and selected official SDK documentation",
+      "root_license_at_review": "MIT",
+      "license_sources": [
+        {
+          "path": "LICENSE",
+          "classification_at_review": "MIT",
+          "scope": "repository_root",
+          "source_url": "https://github.com/github/copilot-sdk/blob/c072001600018fe166910cfcb6eb42e769b9209d/LICENSE"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "copilot-sdk-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              170
+            ]
+          ],
+          "source_url": "https://github.com/github/copilot-sdk/blob/c072001600018fe166910cfcb6eb42e769b9209d/README.md",
+          "git_blob": "4420f13a1d91b9b172cdc9081798832f74dc36c4",
+          "source_sha256_at_historical_review": "096fa46c7ec63d4c92323566dbc3babce5f3b431ae063a2b96eecbcb27f5b9bb"
+        },
+        {
+          "id": "sdk-local-cli",
+          "path": "docs/setup/local-cli.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              150
+            ]
+          ],
+          "source_url": "https://github.com/github/copilot-sdk/blob/c072001600018fe166910cfcb6eb42e769b9209d/docs/setup/local-cli.md",
+          "git_blob": "f383e35ba31c99b10a4686bd867451e000706c5d",
+          "source_sha256_at_historical_review": "b1bf97295f46958812ee259fccdef147770ffa49607bb02d4682e0082bcd60ed"
+        },
+        {
+          "id": "sdk-pretool",
+          "path": "docs/hooks/pre-tool-use.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              105
+            ]
+          ],
+          "source_url": "https://github.com/github/copilot-sdk/blob/c072001600018fe166910cfcb6eb42e769b9209d/docs/hooks/pre-tool-use.md",
+          "git_blob": "cfcee3c568fb8cb61c0eb93d2b63751817960a14",
+          "source_sha256_at_historical_review": "a1928a3db7a0097817676052f51e42ba371996b573387be3f8e12bea03a4ef8c"
+        }
+      ]
+    },
+    {
+      "id": "gh-aw",
+      "repository": "github/gh-aw",
+      "url": "https://github.com/github/gh-aw",
+      "commit": "0aa2738ed88dea9f3f0e400381dde0f102efafd4",
+      "commit_url": "https://github.com/github/gh-aw/commit/0aa2738ed88dea9f3f0e400381dde0f102efafd4",
+      "tree": "a5c241a9a6c5bd6a9d8974f2fdea8f0752de66d4",
+      "commit_date": "2026-11-05T00:51:19Z",
+      "observed_at_utc": "2026-11-05T01:14:04.907599+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Governed external effects",
+      "historical_review_depth": "Selected README",
+      "root_license_at_review": "MIT",
+      "license_sources": [
+        {
+          "path": "LICENSE",
+          "classification_at_review": "MIT",
+          "scope": "repository_root",
+          "source_url": "https://github.com/github/gh-aw/blob/0aa2738ed88dea9f3f0e400381dde0f102efafd4/LICENSE"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "gh-aw-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              88
+            ]
+          ],
+          "source_url": "https://github.com/github/gh-aw/blob/0aa2738ed88dea9f3f0e400381dde0f102efafd4/README.md",
+          "git_blob": "4e0667b04eb87108ea18aa995aecc7c108c61d91",
+          "source_sha256_at_historical_review": "2df16c5f3ae9282f0dfd717b9dacd47a84d74964705786a8e93c7e93f6f36bfa"
+        }
+      ]
+    },
+    {
+      "id": "eve-foreman",
+      "repository": "vercel-labs/eve-software-factory-template",
+      "url": "https://github.com/vercel-labs/eve-software-factory-template",
+      "commit": "6bc5febab95de4c05fa08b164f544650f6aa11aa",
+      "commit_url": "https://github.com/vercel-labs/eve-software-factory-template/commit/6bc5febab95de4c05fa08b164f544650f6aa11aa",
+      "tree": "2729646be08cfef3a22cf5d4ab21e76fad8c870d",
+      "commit_date": "2026-09-29T14:57:51Z",
+      "observed_at_utc": "2026-11-05T01:14:04.901809+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Factory orchestration",
+      "historical_review_depth": "Selected implementation, instructions, and README",
+      "root_license_at_review": "MIT",
+      "license_sources": [
+        {
+          "path": "LICENSE",
+          "classification_at_review": "MIT",
+          "scope": "repository_root",
+          "source_url": "https://github.com/vercel-labs/eve-software-factory-template/blob/6bc5febab95de4c05fa08b164f544650f6aa11aa/LICENSE"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "eve-foreman-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              75
+            ]
+          ],
+          "source_url": "https://github.com/vercel-labs/eve-software-factory-template/blob/6bc5febab95de4c05fa08b164f544650f6aa11aa/README.md",
+          "git_blob": "b64f7688cf2d6fea1bac1989af367a5fcb397fe2",
+          "source_sha256_at_historical_review": "0956fe7db06c3cfa35fd3ec25066a84d5f1dc3aa4bdf8dee541efbd40eb82f84"
+        },
+        {
+          "id": "eve-pipeline-instructions",
+          "path": "agent/instructions.ts",
+          "kind": "instruction-in-source",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              91
+            ]
+          ],
+          "source_url": "https://github.com/vercel-labs/eve-software-factory-template/blob/6bc5febab95de4c05fa08b164f544650f6aa11aa/agent/instructions.ts",
+          "git_blob": "dd23a6d973fb4671ff5c9a357ee03a59b9134492",
+          "source_sha256_at_historical_review": "8528ee750bad5bcaccc68d9a3781a041562fa1bbf3520bc459b952d26f84753d"
+        },
+        {
+          "id": "eve-sandbox",
+          "path": "agent/sandbox.ts",
+          "kind": "implementation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              39
+            ]
+          ],
+          "source_url": "https://github.com/vercel-labs/eve-software-factory-template/blob/6bc5febab95de4c05fa08b164f544650f6aa11aa/agent/sandbox.ts",
+          "git_blob": "87efbb8efbff61dc333653bcf02d92bebf2c76de",
+          "source_sha256_at_historical_review": "7bca4fa11ccf57bd8e6078f56d08680d420330acf5d42306f779b597e4a6ff0d"
+        },
+        {
+          "id": "eve-review-wrapper",
+          "path": "agent/tools/run_reviewer.ts",
+          "kind": "implementation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              34
+            ]
+          ],
+          "source_url": "https://github.com/vercel-labs/eve-software-factory-template/blob/6bc5febab95de4c05fa08b164f544650f6aa11aa/agent/tools/run_reviewer.ts",
+          "git_blob": "9b4fbcc4f81723422e36f9d3c393afb17e2bcb9f",
+          "source_sha256_at_historical_review": "10f3fe2d7b50860657fbf6ba582c8e6ae94a98335bfc192088ef4899da505509"
+        },
+        {
+          "id": "eve-trust",
+          "path": "agent/lib/trust.ts",
+          "kind": "implementation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              133
+            ]
+          ],
+          "source_url": "https://github.com/vercel-labs/eve-software-factory-template/blob/6bc5febab95de4c05fa08b164f544650f6aa11aa/agent/lib/trust.ts",
+          "git_blob": "b46267fd6a3544ff8db8675e2c19f192234c054e",
+          "source_sha256_at_historical_review": "746d130eaed61f22212da6a60571ae5e4d7131e08eb15cca7f3f913078863fb5"
+        },
+        {
+          "id": "eve-brain-write",
+          "path": "agent/tools/update_factory_brain.ts",
+          "kind": "implementation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              66
+            ]
+          ],
+          "source_url": "https://github.com/vercel-labs/eve-software-factory-template/blob/6bc5febab95de4c05fa08b164f544650f6aa11aa/agent/tools/update_factory_brain.ts",
+          "git_blob": "69ca557ed5a15c0b2d6fe40c0531e1347884fd7f",
+          "source_sha256_at_historical_review": "b4208a329dab82399cdca83a4e7fa3ceb56710108d4e88444b08e8e94d3fdda4"
+        },
+        {
+          "id": "eve-approval",
+          "path": "agent/lib/github/approval.ts",
+          "kind": "implementation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              175
+            ]
+          ],
+          "source_url": "https://github.com/vercel-labs/eve-software-factory-template/blob/6bc5febab95de4c05fa08b164f544650f6aa11aa/agent/lib/github/approval.ts",
+          "git_blob": "d1e5f870c611d56cd8c5acbcf78911faeab565ae",
+          "source_sha256_at_historical_review": "5bb9fef0f7ef2aa3372917c63c584ecacbff91cddb268b5f9058ecdbb3c4f49d"
+        }
+      ]
+    },
+    {
+      "id": "archon-factory",
+      "repository": "coleam00/ai-software-factory",
+      "url": "https://github.com/coleam00/ai-software-factory",
+      "commit": "f6d8f69e452607ceedc6d42f2ed0398db543ba71",
+      "commit_url": "https://github.com/coleam00/ai-software-factory/commit/f6d8f69e452607ceedc6d42f2ed0398db543ba71",
+      "tree": "a198664a911a5d3e084efbac5e4d92276814dcc1",
+      "commit_date": "2026-10-27T03:07:06Z",
+      "observed_at_utc": "2026-11-05T01:14:04.503533+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Factory orchestration",
+      "historical_review_depth": "Selected README and root inventory",
+      "root_license_at_review": "NOT_ESTABLISHED",
+      "license_sources": [],
+      "historical_inspections": [
+        {
+          "id": "archon-factory-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              180
+            ]
+          ],
+          "source_url": "https://github.com/coleam00/ai-software-factory/blob/f6d8f69e452607ceedc6d42f2ed0398db543ba71/README.md",
+          "git_blob": "e4476bf461014add0e91730f69efb0698d9be98f",
+          "source_sha256_at_historical_review": "3445735e661b3e523fc623f1ebe671f75639aaa1dcf9f0b572fe3ebac6ed1632"
+        }
+      ]
+    },
+    {
+      "id": "waza",
+      "repository": "microsoft/waza",
+      "url": "https://github.com/microsoft/waza",
+      "commit": "f5789f75fa00924411734d07fd4012ba80e2154c",
+      "commit_url": "https://github.com/microsoft/waza/commit/f5789f75fa00924411734d07fd4012ba80e2154c",
+      "tree": "10db6fce5c92fe4e056ba93b27377922e8947fbf",
+      "commit_date": "2026-11-04T21:40:52Z",
+      "observed_at_utc": "2026-11-05T01:10:28.875769+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Testing and evaluation",
+      "historical_review_depth": "Selected implementation, test source, and documentation",
+      "root_license_at_review": "MIT",
+      "license_sources": [
+        {
+          "path": "LICENSE",
+          "classification_at_review": "MIT",
+          "scope": "repository_root",
+          "source_url": "https://github.com/microsoft/waza/blob/f5789f75fa00924411734d07fd4012ba80e2154c/LICENSE"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "waza-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              175
+            ]
+          ],
+          "source_url": "https://github.com/microsoft/waza/blob/f5789f75fa00924411734d07fd4012ba80e2154c/README.md",
+          "git_blob": "6ccb0930d98d3433ed72f9fce62ed868843e8f6a",
+          "source_sha256_at_historical_review": "de3dcf7610ac6dd67a87c2d8ecec3eca3847599923fc23378753895957a2893d"
+        },
+        {
+          "id": "waza-cli",
+          "path": "internal/execution/sdkclient.go",
+          "kind": "implementation",
+          "historical_reviewed_line_ranges": [
+            [
+              90,
+              180
+            ]
+          ],
+          "source_url": "https://github.com/microsoft/waza/blob/f5789f75fa00924411734d07fd4012ba80e2154c/internal/execution/sdkclient.go",
+          "git_blob": "27681a17280e4bea964efb2e48e05dcfcff9e404",
+          "source_sha256_at_historical_review": "73c3ac756560e3cc605ef092512886990445e39710311cf46cbd56a2d0e5b160"
+        },
+        {
+          "id": "waza-judge-runtime",
+          "path": "internal/execution/evidence_judge.go",
+          "kind": "implementation",
+          "historical_reviewed_line_ranges": [
+            [
+              475,
+              529
+            ]
+          ],
+          "source_url": "https://github.com/microsoft/waza/blob/f5789f75fa00924411734d07fd4012ba80e2154c/internal/execution/evidence_judge.go",
+          "git_blob": "7bc8fe07e23808e077fd2d487c1ae10717a94f84",
+          "source_sha256_at_historical_review": "b5099c1005a6f9ef139f0857ffc31e908369917504ecfc9103de89a8ffd8f386"
+        },
+        {
+          "id": "waza-judge",
+          "path": "internal/graders/evidence_prompt_grader.go",
+          "kind": "implementation",
+          "historical_reviewed_line_ranges": [
+            [
+              20,
+              170
+            ]
+          ],
+          "source_url": "https://github.com/microsoft/waza/blob/f5789f75fa00924411734d07fd4012ba80e2154c/internal/graders/evidence_prompt_grader.go",
+          "git_blob": "8e2194a6a113d145661702e565bbadbc83c0ccfe",
+          "source_sha256_at_historical_review": "e7faf07287a4e2d2c9781f77b0cacb0f2776c1171aecd3b2b15a335727509164"
+        },
+        {
+          "id": "waza-evidence-tests",
+          "path": "cmd/waza/evidence_grade_test.go",
+          "kind": "test-source",
+          "historical_reviewed_line_ranges": [
+            [
+              110,
+              195
+            ]
+          ],
+          "source_url": "https://github.com/microsoft/waza/blob/f5789f75fa00924411734d07fd4012ba80e2154c/cmd/waza/evidence_grade_test.go",
+          "git_blob": "5e9cca06d1bce6de1a9b50f9a4c7f931cd5e1fee",
+          "source_sha256_at_historical_review": "85eea5d637d1259215593aee6429b8581fdc1a31fe262fbf8a00fcb581a3d214"
+        },
+        {
+          "id": "waza-text-route",
+          "path": "site/src/content/docs/guides/runner-contract.mdx",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              195,
+              260
+            ]
+          ],
+          "source_url": "https://github.com/microsoft/waza/blob/f5789f75fa00924411734d07fd4012ba80e2154c/site/src/content/docs/guides/runner-contract.mdx",
+          "git_blob": "df92ddfabfe8880c3c6112a6e5696d0fef343f21",
+          "source_sha256_at_historical_review": "e9bbe2b47b1726e5d81a9087da234b2b763632667c0907f6932a0fc5166aec4b"
+        }
+      ]
+    },
+    {
+      "id": "promptfoo",
+      "repository": "promptfoo/promptfoo",
+      "url": "https://github.com/promptfoo/promptfoo",
+      "commit": "e3e2bb871540ae153a630878ecb17e56cfb487e3",
+      "commit_url": "https://github.com/promptfoo/promptfoo/commit/e3e2bb871540ae153a630878ecb17e56cfb487e3",
+      "tree": "3a7231b18c04e27130fd6a071cf21040186aa4c0",
+      "commit_date": "2026-11-04T22:20:50Z",
+      "observed_at_utc": "2026-11-05T01:24:12.287179+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Testing and evaluation",
+      "historical_review_depth": "README, selected implementation, and privacy documentation",
+      "root_license_at_review": "MIT",
+      "license_sources": [
+        {
+          "path": "LICENSE",
+          "classification_at_review": "MIT",
+          "scope": "repository_root",
+          "source_url": "https://github.com/promptfoo/promptfoo/blob/e3e2bb871540ae153a630878ecb17e56cfb487e3/LICENSE"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "promptfoo-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              98
+            ]
+          ],
+          "source_url": "https://github.com/promptfoo/promptfoo/blob/e3e2bb871540ae153a630878ecb17e56cfb487e3/README.md",
+          "git_blob": "2a56017c2609e3a92d7d5539147c9c7e620a3420",
+          "source_sha256_at_historical_review": "7fd57809624e22da73bf6b6feb027c9e09aec74e0099bdea711fe2e276e87c4a"
+        },
+        {
+          "id": "promptfoo-privacy",
+          "path": "site/docs/red-team/troubleshooting/data-handling.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              159
+            ]
+          ],
+          "source_url": "https://github.com/promptfoo/promptfoo/blob/e3e2bb871540ae153a630878ecb17e56cfb487e3/site/docs/red-team/troubleshooting/data-handling.md",
+          "git_blob": "a72f4f9e94cc71f5b4b6209a6698b317299a6c2c",
+          "source_sha256_at_historical_review": "99cede11952d621c3c01349fb957cbb82e3a38af96a2f197b2d4b2aed38e6d68"
+        },
+        {
+          "id": "promptfoo-remote",
+          "path": "src/redteam/remoteGeneration.ts",
+          "kind": "implementation",
+          "historical_reviewed_line_ranges": [
+            [
+              120,
+              202
+            ]
+          ],
+          "source_url": "https://github.com/promptfoo/promptfoo/blob/e3e2bb871540ae153a630878ecb17e56cfb487e3/src/redteam/remoteGeneration.ts",
+          "git_blob": "8759d4c90f6ad91f84d40f88f6438b902d6fec16",
+          "source_sha256_at_historical_review": "ba5fb52c216ccf7ebe400ed6c2b8db69a912b6e1015d102905dff49765218c02"
+        }
+      ]
+    },
+    {
+      "id": "rigour",
+      "repository": "rigour-labs/rigour",
+      "url": "https://github.com/rigour-labs/rigour",
+      "commit": "7e0ef7f4e4ef614d55d83d2958e2603f65f019e7",
+      "commit_url": "https://github.com/rigour-labs/rigour/commit/7e0ef7f4e4ef614d55d83d2958e2603f65f019e7",
+      "tree": "1f0e427eff8a409a9c021bbf62979029e8d5f201",
+      "commit_date": "2026-10-19T11:22:31Z",
+      "observed_at_utc": "2026-11-05T01:16:10.721467+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Project knowledge and governance",
+      "historical_review_depth": "Selected implementation and documentation",
+      "root_license_at_review": "MIT",
+      "license_sources": [
+        {
+          "path": "LICENSE",
+          "classification_at_review": "MIT",
+          "scope": "repository_root",
+          "source_url": "https://github.com/rigour-labs/rigour/blob/7e0ef7f4e4ef614d55d83d2958e2603f65f019e7/LICENSE"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "rigour-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              140
+            ]
+          ],
+          "source_url": "https://github.com/rigour-labs/rigour/blob/7e0ef7f4e4ef614d55d83d2958e2603f65f019e7/README.md",
+          "git_blob": "81e8df61c444aeaab06389f7e32ff0582c03f44d",
+          "source_sha256_at_historical_review": "91f776a292acfccad1e881a524d3a38ae13709e41e1613095be2a1a2089cf151"
+        },
+        {
+          "id": "rigour-lessons",
+          "path": "packages/rigour-core/src/review-learning/lessons.ts",
+          "kind": "implementation",
+          "historical_reviewed_line_ranges": [
+            [
+              135,
+              245
+            ]
+          ],
+          "source_url": "https://github.com/rigour-labs/rigour/blob/7e0ef7f4e4ef614d55d83d2958e2603f65f019e7/packages/rigour-core/src/review-learning/lessons.ts",
+          "git_blob": "dc5e4c0d2aff090f8e0316cbf643befbf6daa19a",
+          "source_sha256_at_historical_review": "479c9dcbc5e6640b15eaaa9b16d2eeeb060ed9e3716d99217b18236b5bb950ec"
+        },
+        {
+          "id": "rigour-profiles",
+          "path": "docs/PROFILES.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              36
+            ]
+          ],
+          "source_url": "https://github.com/rigour-labs/rigour/blob/7e0ef7f4e4ef614d55d83d2958e2603f65f019e7/docs/PROFILES.md",
+          "git_blob": "8038481d2223803e144e7ad277b365c6e87d3621",
+          "source_sha256_at_historical_review": "400325c6b4f3a644253a5da2879a8b8a94b58996a762ac07a7fa9cb5cab4bd77"
+        },
+        {
+          "id": "rigour-goal",
+          "path": "docs/GOAL.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              75
+            ]
+          ],
+          "source_url": "https://github.com/rigour-labs/rigour/blob/7e0ef7f4e4ef614d55d83d2958e2603f65f019e7/docs/GOAL.md",
+          "git_blob": "06b579a9352c53bbd13f4c8f6e3c9d2519a72a2e",
+          "source_sha256_at_historical_review": "50690e2137f3f0e6306185446e04c494883fb904c60ee4677c46b5cfbc63717c"
+        }
+      ]
+    },
+    {
+      "id": "compound-engineering",
+      "repository": "EveryInc/compound-engineering-plugin",
+      "url": "https://github.com/EveryInc/compound-engineering-plugin",
+      "commit": "799ac9aeb97bf1c51238c38122915470413c26c5",
+      "commit_url": "https://github.com/EveryInc/compound-engineering-plugin/commit/799ac9aeb97bf1c51238c38122915470413c26c5",
+      "tree": "0a7c3838f736aee166c8c1e65490ba3a6601d9eb",
+      "commit_date": "2026-11-04T20:33:36Z",
+      "observed_at_utc": "2026-11-05T01:16:10.431024+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Project knowledge and governance",
+      "historical_review_depth": "Selected workflow guides",
+      "root_license_at_review": "MIT",
+      "license_sources": [
+        {
+          "path": "LICENSE",
+          "classification_at_review": "MIT",
+          "scope": "repository_root",
+          "source_url": "https://github.com/EveryInc/compound-engineering-plugin/blob/799ac9aeb97bf1c51238c38122915470413c26c5/LICENSE"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "compound-engineering-overview",
+          "path": "docs/guides/ce-work.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              100
+            ]
+          ],
+          "source_url": "https://github.com/EveryInc/compound-engineering-plugin/blob/799ac9aeb97bf1c51238c38122915470413c26c5/docs/guides/ce-work.md",
+          "git_blob": "4787282d96ce6086188008eb9d2b7d9a9cf1186b",
+          "source_sha256_at_historical_review": "7703889a0a4c206a2b7f07ee9c7a39982412d2f53c06c1e5c973de26df052d2c"
+        },
+        {
+          "id": "compound-work",
+          "path": "docs/guides/ce-work.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              100
+            ]
+          ],
+          "source_url": "https://github.com/EveryInc/compound-engineering-plugin/blob/799ac9aeb97bf1c51238c38122915470413c26c5/docs/guides/ce-work.md",
+          "git_blob": "4787282d96ce6086188008eb9d2b7d9a9cf1186b",
+          "source_sha256_at_historical_review": "7703889a0a4c206a2b7f07ee9c7a39982412d2f53c06c1e5c973de26df052d2c"
+        },
+        {
+          "id": "compound-learning",
+          "path": "docs/guides/ce-compound.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              145
+            ]
+          ],
+          "source_url": "https://github.com/EveryInc/compound-engineering-plugin/blob/799ac9aeb97bf1c51238c38122915470413c26c5/docs/guides/ce-compound.md",
+          "git_blob": "7ae2a5dbfc05b89a4ceeeb67e04c4a8326cdd1ad",
+          "source_sha256_at_historical_review": "8b4bd7f4dc32ddc2ff0c2cc08b685d8a716db6db1447aff423a1796a7084bdee"
+        }
+      ]
+    },
+    {
+      "id": "gsd-core",
+      "repository": "open-gsd/gsd-core",
+      "url": "https://github.com/open-gsd/gsd-core",
+      "commit": "93bb3b283998b5845cd94be98c9ce240d2946c12",
+      "commit_url": "https://github.com/open-gsd/gsd-core/commit/93bb3b283998b5845cd94be98c9ce240d2946c12",
+      "tree": "2f7da874e9ce3be78b1ee5186856cd28be5fed55",
+      "commit_date": "2026-11-05T00:10:27Z",
+      "observed_at_utc": "2026-11-05T01:14:04.616946+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Specifications and lifecycle",
+      "historical_review_depth": "README",
+      "root_license_at_review": "MIT",
+      "license_sources": [
+        {
+          "path": "LICENSE",
+          "classification_at_review": "MIT",
+          "scope": "repository_root",
+          "source_url": "https://github.com/open-gsd/gsd-core/blob/93bb3b283998b5845cd94be98c9ce240d2946c12/LICENSE"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "gsd-core-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              128
+            ]
+          ],
+          "source_url": "https://github.com/open-gsd/gsd-core/blob/93bb3b283998b5845cd94be98c9ce240d2946c12/README.md",
+          "git_blob": "82770333164cd599dfa2f1ee44cc66997913cc40",
+          "source_sha256_at_historical_review": "66fe062ee3705af835b09ffa8da112fd14bc8a6025f0d4fb22b4291d353268a9"
+        }
+      ]
+    },
+    {
+      "id": "gsd-archived",
+      "repository": "gsd-build/get-shit-done",
+      "url": "https://github.com/gsd-build/get-shit-done",
+      "commit": "bdcaab2c752d9a33a1a1ca9acf3a3c81fb991815",
+      "commit_url": "https://github.com/gsd-build/get-shit-done/commit/bdcaab2c752d9a33a1a1ca9acf3a3c81fb991815",
+      "tree": "1bf7f9bd0710f92a971167da107c7e6ded5b79ad",
+      "commit_date": "2026-05-31T13:34:35Z",
+      "observed_at_utc": "2026-11-05T01:09:20.251995+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": true,
+      "category": "Historical discovery",
+      "historical_review_depth": "README and repository metadata",
+      "root_license_at_review": "MIT",
+      "license_sources": [
+        {
+          "path": "LICENSE",
+          "classification_at_review": "MIT",
+          "scope": "repository_root",
+          "source_url": "https://github.com/gsd-build/get-shit-done/blob/bdcaab2c752d9a33a1a1ca9acf3a3c81fb991815/LICENSE"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "gsd-archived-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              12
+            ]
+          ],
+          "source_url": "https://github.com/gsd-build/get-shit-done/blob/bdcaab2c752d9a33a1a1ca9acf3a3c81fb991815/README.md",
+          "git_blob": "6232a8c42bbdcd0ad5f290c41806c2728c68d194",
+          "source_sha256_at_historical_review": "6530ef6aad23383980a7c405d32c40e73c798ee4263a883f804aef31548569b6"
+        }
+      ]
+    },
+    {
+      "id": "engineering-plugin",
+      "repository": "anthropics/knowledge-work-plugins",
+      "url": "https://github.com/anthropics/knowledge-work-plugins",
+      "commit": "d900840716eb262e1feb17c6f4406c9ce0e06bcf",
+      "commit_url": "https://github.com/anthropics/knowledge-work-plugins/commit/d900840716eb262e1feb17c6f4406c9ce0e06bcf",
+      "tree": "c37947d1b6db88f6a143e5696ddefa4e7030ad6f",
+      "commit_date": "2026-11-04T02:50:55Z",
+      "observed_at_utc": "2026-11-05T01:14:04.659447+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Skills and component generation",
+      "historical_review_depth": "Selected engineering-package README and manifest capture",
+      "root_license_at_review": "Apache-2.0",
+      "license_sources": [
+        {
+          "path": "LICENSE",
+          "classification_at_review": "Apache-2.0",
+          "scope": "repository_root",
+          "source_url": "https://github.com/anthropics/knowledge-work-plugins/blob/d900840716eb262e1feb17c6f4406c9ce0e06bcf/LICENSE"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "engineering-plugin-overview",
+          "path": "engineering/README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              136
+            ]
+          ],
+          "source_url": "https://github.com/anthropics/knowledge-work-plugins/blob/d900840716eb262e1feb17c6f4406c9ce0e06bcf/engineering/README.md",
+          "git_blob": "b3a368d30c744e6ee6f185733447022bf8878844",
+          "source_sha256_at_historical_review": "168c529ed659b79ac5736de9b9d9b9089c06e1998452f155e58ab2f6261d402f"
+        }
+      ]
+    },
+    {
+      "id": "gitleaks",
+      "repository": "gitleaks/gitleaks",
+      "url": "https://github.com/gitleaks/gitleaks",
+      "commit": "5f6ec56cfa6f8c67648d863582c7ae2f206d5c1c",
+      "commit_url": "https://github.com/gitleaks/gitleaks/commit/5f6ec56cfa6f8c67648d863582c7ae2f206d5c1c",
+      "tree": "c006ee7b5e6f1bcd7713d11e81cd2bf1ff73c826",
+      "commit_date": "2026-10-23T20:44:59Z",
+      "observed_at_utc": "2026-11-05T01:24:12.166715+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Deterministic quality tools",
+      "historical_review_depth": "Selected README",
+      "root_license_at_review": "MIT",
+      "license_sources": [
+        {
+          "path": "LICENSE",
+          "classification_at_review": "MIT",
+          "scope": "repository_root",
+          "source_url": "https://github.com/gitleaks/gitleaks/blob/5f6ec56cfa6f8c67648d863582c7ae2f206d5c1c/LICENSE"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "gitleaks-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              175
+            ]
+          ],
+          "source_url": "https://github.com/gitleaks/gitleaks/blob/5f6ec56cfa6f8c67648d863582c7ae2f206d5c1c/README.md",
+          "git_blob": "6bdd5d960fd9f81a5221819509c4e9f5cb7d251e",
+          "source_sha256_at_historical_review": "65e87e68f4a16aefa1f1fba55b2e7a9b9bc8716393b7ddb013fc7c7bef4e4bc1"
+        }
+      ]
+    },
+    {
+      "id": "pester",
+      "repository": "pester/Pester",
+      "url": "https://github.com/pester/Pester",
+      "commit": "98e56d65da1642a7158992b50ded240c42a3ac18",
+      "commit_url": "https://github.com/pester/Pester/commit/98e56d65da1642a7158992b50ded240c42a3ac18",
+      "tree": "ec3ddfd0180e08b86b91da1262b759adfc3cf206",
+      "commit_date": "2026-09-09T19:34:54Z",
+      "observed_at_utc": "2026-11-05T01:24:12.071393+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Deterministic quality tools",
+      "historical_review_depth": "Selected README and actual license",
+      "root_license_at_review": "Apache-2.0",
+      "license_sources": [
+        {
+          "path": "LICENSE",
+          "classification_at_review": "Apache-2.0",
+          "scope": "repository_root",
+          "source_url": "https://github.com/pester/Pester/blob/98e56d65da1642a7158992b50ded240c42a3ac18/LICENSE"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "pester-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              155
+            ]
+          ],
+          "source_url": "https://github.com/pester/Pester/blob/98e56d65da1642a7158992b50ded240c42a3ac18/README.md",
+          "git_blob": "a66cd068ad27e43d0fc7bbe80bf9fbd852502f8d",
+          "source_sha256_at_historical_review": "91dde4c51d8a54fc6489a823bdd45f192fa4c1b995b95b2fa4430b3fd00072f3"
+        }
+      ]
+    },
+    {
+      "id": "twelve-factor",
+      "repository": "humanlayer/12-factor-agents",
+      "url": "https://github.com/humanlayer/12-factor-agents",
+      "commit": "d20c728368bf9c189d6d7aab704744decb6ec0cc",
+      "commit_url": "https://github.com/humanlayer/12-factor-agents/commit/d20c728368bf9c189d6d7aab704744decb6ec0cc",
+      "tree": "5de5a9fdaa39d004cb165ba459aff109d040d0e9",
+      "commit_date": "2025-09-21T14:37:40Z",
+      "observed_at_utc": "2026-11-05T01:24:12.149242+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Engineering principles",
+      "historical_review_depth": "Selected README and factor documents",
+      "root_license_at_review": "Apache-2.0",
+      "license_sources": [
+        {
+          "path": "LICENSE",
+          "classification_at_review": "Apache-2.0",
+          "scope": "repository_root",
+          "source_url": "https://github.com/humanlayer/12-factor-agents/blob/d20c728368bf9c189d6d7aab704744decb6ec0cc/LICENSE"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "twelve-factor-overview",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              200
+            ]
+          ],
+          "source_url": "https://github.com/humanlayer/12-factor-agents/blob/d20c728368bf9c189d6d7aab704744decb6ec0cc/README.md",
+          "git_blob": "bf87693afef770e5da83ab3109b90f734f60b6e6",
+          "source_sha256_at_historical_review": "898b8879be9279c5c90e302e58232ac4f4f4ab051efe69cff30738b2efbac3c7"
+        },
+        {
+          "id": "factor-pause",
+          "path": "content/factor-06-launch-pause-resume.md",
+          "kind": "conceptual-document",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              29
+            ]
+          ],
+          "source_url": "https://github.com/humanlayer/12-factor-agents/blob/d20c728368bf9c189d6d7aab704744decb6ec0cc/content/factor-06-launch-pause-resume.md",
+          "git_blob": "7a344a6c2bf79256718e5e661bd0e664518d36f6",
+          "source_sha256_at_historical_review": "b6574ff34e727a88c56621f9d37a2de14375878c6a3eddf8c1bcb86a344467e2"
+        },
+        {
+          "id": "factor-control",
+          "path": "content/factor-08-own-your-control-flow.md",
+          "kind": "conceptual-document",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              86
+            ]
+          ],
+          "source_url": "https://github.com/humanlayer/12-factor-agents/blob/d20c728368bf9c189d6d7aab704744decb6ec0cc/content/factor-08-own-your-control-flow.md",
+          "git_blob": "99b5288f47104922c2a3a37f7b15078c0ed942d1",
+          "source_sha256_at_historical_review": "3eec4727a3f5607efca7486430eff693810a12f7fcdb1dc0c6cc4ec4c97adcab"
+        },
+        {
+          "id": "factor-errors",
+          "path": "content/factor-09-compact-errors.md",
+          "kind": "conceptual-document",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              85
+            ]
+          ],
+          "source_url": "https://github.com/humanlayer/12-factor-agents/blob/d20c728368bf9c189d6d7aab704744decb6ec0cc/content/factor-09-compact-errors.md",
+          "git_blob": "948c927a4f52f04a5f72cb3e26e15ec221eeae9a",
+          "source_sha256_at_historical_review": "32232adfb5ff0f7a28c29547ef3e5894ff16d37777c8446e8f7675fbac5cab79"
+        },
+        {
+          "id": "factor-reducer-heading",
+          "path": "content/factor-12-stateless-reducer.md",
+          "kind": "text-only-document",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              12
+            ]
+          ],
+          "source_url": "https://github.com/humanlayer/12-factor-agents/blob/d20c728368bf9c189d6d7aab704744decb6ec0cc/content/factor-12-stateless-reducer.md",
+          "git_blob": "1370f5dc4d819521526623c2cc2fe68c88bba8ab",
+          "source_sha256_at_historical_review": "4bafcd1337db57c193fb9fdc713272011f18d37714db9930df2443a0e422ca3a"
+        }
+      ]
+    },
+    {
+      "id": "zazen-factory",
+      "repository": "zazencodes/zazencodes-season-3",
+      "url": "https://github.com/zazencodes/zazencodes-season-3",
+      "commit": "6c2b66b0f38fc883f773fe098214c0cef4ea7654",
+      "commit_url": "https://github.com/zazencodes/zazencodes-season-3/commit/6c2b66b0f38fc883f773fe098214c0cef4ea7654",
+      "tree": "46ce44cdb0b7c19a3e715bd0d4134ef63bf02e78",
+      "commit_date": "2026-11-03T19:04:50Z",
+      "observed_at_utc": "2026-11-05T13:01:42.831420+00:00",
+      "visibility_at_observation": "public",
+      "archived_at_observation": false,
+      "category": "Video-linked factory walkthrough",
+      "historical_review_depth": "Selected v1 skill and role contracts; separate v2 README and license only",
+      "root_license_at_review": "NOT_ESTABLISHED",
+      "license_sources": [
+        {
+          "path": "src/software-factory-claude-code-v2/LICENSE",
+          "classification_at_review": "GPLv3",
+          "scope": "src/software-factory-claude-code-v2 only; root/v1 not established",
+          "source_url": "https://github.com/zazencodes/zazencodes-season-3/blob/6c2b66b0f38fc883f773fe098214c0cef4ea7654/src/software-factory-claude-code-v2/LICENSE"
+        }
+      ],
+      "historical_inspections": [
+        {
+          "id": "zazen-factory-overview",
+          "path": "src/software-factory-claude-code/README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              112
+            ]
+          ],
+          "source_url": "https://github.com/zazencodes/zazencodes-season-3/blob/6c2b66b0f38fc883f773fe098214c0cef4ea7654/src/software-factory-claude-code/README.md",
+          "git_blob": "a34ceb08bf93ec30cc11e819844720b83796d73a",
+          "source_sha256_at_historical_review": "53c9bd4ae82bd45c4a4b142154c5aa337f74fb6be2c824a004d56dcbcca59b2e"
+        },
+        {
+          "id": "zazen-video-index",
+          "path": "README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              38
+            ]
+          ],
+          "source_url": "https://github.com/zazencodes/zazencodes-season-3/blob/6c2b66b0f38fc883f773fe098214c0cef4ea7654/README.md",
+          "git_blob": "7fdef48b4a1819044018bb11cc6ba6ebaf5edc7b",
+          "source_sha256_at_historical_review": "e9cf39332abcce5e209073b6543fa33e0ea8bd98e1fb9c83fb5c460cd37cac82"
+        },
+        {
+          "id": "zazen-build-prompt",
+          "path": "src/software-factory-claude-code/BUILD_PROMPT.md",
+          "kind": "prompt-template",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              106
+            ]
+          ],
+          "source_url": "https://github.com/zazencodes/zazencodes-season-3/blob/6c2b66b0f38fc883f773fe098214c0cef4ea7654/src/software-factory-claude-code/BUILD_PROMPT.md",
+          "git_blob": "ab7d5e4998e4237be960b0a086650afb58cd382b",
+          "source_sha256_at_historical_review": "cd1e9c7a0116a7faae173fc3cfa9ac2e1929e640dae27c28d5ffce18cd9c25b1"
+        },
+        {
+          "id": "zazen-orchestrator",
+          "path": "src/software-factory-claude-code/.claude/skills/factory/SKILL.md",
+          "kind": "skill-contract",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              221
+            ]
+          ],
+          "source_url": "https://github.com/zazencodes/zazencodes-season-3/blob/6c2b66b0f38fc883f773fe098214c0cef4ea7654/src/software-factory-claude-code/.claude/skills/factory/SKILL.md",
+          "git_blob": "744086da794cd4ab5a177277c2a3c10c9f9da060",
+          "source_sha256_at_historical_review": "2c06932abc4b3bf6810980cfe5e717a70b6d62034428b49013db2cbfce5690d9"
+        },
+        {
+          "id": "zazen-spec-writer",
+          "path": "src/software-factory-claude-code/.claude/agents/spec-writer.md",
+          "kind": "skill-contract",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              65
+            ]
+          ],
+          "source_url": "https://github.com/zazencodes/zazencodes-season-3/blob/6c2b66b0f38fc883f773fe098214c0cef4ea7654/src/software-factory-claude-code/.claude/agents/spec-writer.md",
+          "git_blob": "df08de1f21bf14a8c64767d95437b14a9c602c8f",
+          "source_sha256_at_historical_review": "46998bf65cdc935d3ea27753ccc3781d4ee852f4769077bf0c8d5acd68155af3"
+        },
+        {
+          "id": "zazen-builder",
+          "path": "src/software-factory-claude-code/.claude/agents/builder.md",
+          "kind": "skill-contract",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              96
+            ]
+          ],
+          "source_url": "https://github.com/zazencodes/zazencodes-season-3/blob/6c2b66b0f38fc883f773fe098214c0cef4ea7654/src/software-factory-claude-code/.claude/agents/builder.md",
+          "git_blob": "4317392914dee7aa6085ea037e176062fdf445a2",
+          "source_sha256_at_historical_review": "16126f86388b4c3f65a61d30b5c69d97b34997252283dc11f2e53c2b6f94c459"
+        },
+        {
+          "id": "zazen-code-reviewer",
+          "path": "src/software-factory-claude-code/.claude/agents/reviewer-code.md",
+          "kind": "skill-contract",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              68
+            ]
+          ],
+          "source_url": "https://github.com/zazencodes/zazencodes-season-3/blob/6c2b66b0f38fc883f773fe098214c0cef4ea7654/src/software-factory-claude-code/.claude/agents/reviewer-code.md",
+          "git_blob": "cf373e178d7b76ce4eb62eabf03829c030b489e0",
+          "source_sha256_at_historical_review": "6d5dc8eda9f81e2bed198d7e098ff2a39a1b152f9595cf0d5caf7ed555773619"
+        },
+        {
+          "id": "zazen-approver",
+          "path": "src/software-factory-claude-code/.claude/agents/approver.md",
+          "kind": "skill-contract",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              65
+            ]
+          ],
+          "source_url": "https://github.com/zazencodes/zazencodes-season-3/blob/6c2b66b0f38fc883f773fe098214c0cef4ea7654/src/software-factory-claude-code/.claude/agents/approver.md",
+          "git_blob": "b58bf444a719f8c15d11ed781256146dfe467aa9",
+          "source_sha256_at_historical_review": "92e0baf08b0663c19a1913e742d467d68213f2a28ce605e9dace8ffddb56fc78"
+        },
+        {
+          "id": "zazen-v2-overview",
+          "path": "src/software-factory-claude-code-v2/README.md",
+          "kind": "documentation",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              180
+            ]
+          ],
+          "source_url": "https://github.com/zazencodes/zazencodes-season-3/blob/6c2b66b0f38fc883f773fe098214c0cef4ea7654/src/software-factory-claude-code-v2/README.md",
+          "git_blob": "f0e64f4d033ed85dcb420a7b5675ace935bd7b2b",
+          "source_sha256_at_historical_review": "f027fbc9b7d9bf78f9d39725f17f892b3f9c092cc7c0640c5b3b1893e4c99984"
+        },
+        {
+          "id": "zazen-v2-license",
+          "path": "src/software-factory-claude-code-v2/LICENSE",
+          "kind": "license-document",
+          "historical_reviewed_line_ranges": [
+            [
+              1,
+              50
+            ]
+          ],
+          "source_url": "https://github.com/zazencodes/zazencodes-season-3/blob/6c2b66b0f38fc883f773fe098214c0cef4ea7654/src/software-factory-claude-code-v2/LICENSE",
+          "git_blob": "f288702d2fa16d3cdf0035b15a9fcbc552cd88e7",
+          "source_sha256_at_historical_review": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+        }
+      ]
+    }
+  ],
+  "video_references": [
+    {
+      "id": "ctoaIC4LHmI",
+      "url": "https://www.youtube.com/watch?v=ctoaIC4LHmI",
+      "title": "Build Your Own AI Software Factory with Claude Code",
+      "channel": "ZazenCodes",
+      "channel_url": "https://www.youtube.com/@ZazenCodes",
+      "published_at_as_reported": "2026-10-07T09:00:05-07:00",
+      "duration_seconds_as_reported": 1681.601,
+      "linked_public_repository": "https://github.com/zazencodes/zazencodes-season-3",
+      "boundary": "Bibliographic reference only in this publication; raw captions, frames, and video are not included. v1 and v2 findings refer to the distinct pinned repository paths."
+    }
+  ],
+  "counts": {
+    "repositories": 33,
+    "historical_inspection_entries": 90,
+    "repositories_with_selected_implementation_ranges": 9,
+    "root_license_not_established": 2,
+    "video_bibliographic_references": 1
+  }
+}

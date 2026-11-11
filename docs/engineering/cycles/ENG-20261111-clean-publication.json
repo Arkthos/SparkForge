@@ -1,0 +1,64 @@
+{
+  "schema_version": "sparkforge-engineering-cycle.v1",
+  "id": "ENG-20261111-clean-publication",
+  "date": "2026-11-11",
+  "work_items": ["WP-000", "WP-002", "WP-026"],
+  "workstream": "clean-publication",
+  "cycle_type": "initial-publication",
+  "status": "validated",
+  "objective": "Prepare and verify a standalone snapshot of project-owned software, source-neutral documentation and reviewed public research without restricted data or private history.",
+  "changes": [
+    "Created an independent repository and copied only selected project-owned executable code, synthetic tests and static assets.",
+    "Authored source-neutral project records and native documentation instead of publishing private platform evidence or contextual records.",
+    "Included reviewed public-source research with provenance and execution/rights limitations.",
+    "Preserved the original private history separately and excluded captured private sources, operational state, credentials and archives."
+  ],
+  "validation": [
+    {
+      "check": "python -B -m unittest discover -s tests -p test_native_factory.py",
+      "scope": "Unchanged owned core in the independent publication checkout",
+      "outcome": "PASS",
+      "reference": "54 cases, 6.895 seconds; docs/VALIDATION_HISTORY.md"
+    },
+    {
+      "check": "Full Python suite, Node cases, synthetic browser checks, both profile builds/native metadata and complete content/link preflight",
+      "scope": "310 Python cases: 308 passed, two privilege skips; 40 Node and 51 browser cases passed; 58 Markdown files and 278 links checked",
+      "outcome": "PASS",
+      "reference": "docs/engineering/evidence/CLEAN_PUBLICATION_VALIDATION_20261111.json"
+    },
+    {
+      "check": "Final staged whitespace, root-publication project-state and complete outgoing byte/content/link gate",
+      "scope": "100 files; all staged bytes match checked files; 58 Markdown files and 280 local links; no private history or selected credential/private-source indicators",
+      "outcome": "PASS",
+      "reference": "Validation history preserves CRLF recognition and 45 corrected Markdown hard breaks; research hashes were regenerated and rechecked"
+    },
+    {
+      "check": "Exact GitHub commit and private visibility after push",
+      "scope": "Repository publication only",
+      "outcome": "NOT_RUN",
+      "reference": "Publication pending; no hosted CI or release claim"
+    }
+  ],
+  "results": [
+    "The publication has a separate clean history rather than a rewritten private history.",
+    "The complete local software, browser, package and documentation checks passed within their stated scopes; the two privilege skips remain explicit.",
+    "The clean snapshot is prepared for publication; an actual remote result will be recorded separately."
+  ],
+  "limitations": [
+    "No private source content or original runtime/reviewer records are included.",
+    "Examples are synthetic and do not authenticate a user or attest real source coverage.",
+    "Publication is not installation, model-driven acceptance, target qualification, public licensing or learning promotion."
+  ],
+  "rollback": "Preserve original data and immutable committed cycles. Correct the publication through new reviewed commits; no forced history rewrite or unrelated deletion.",
+  "next_steps": [
+    "Finish publication integration and run the complete local checks.",
+    "Review the entire outgoing payload and verify the approved private destination.",
+    "Push only the clean branch and verify the actual remote commit."
+  ],
+  "evidence": [
+    "docs/delivery/GITHUB_PUBLICATION.md",
+    "docs/PROJECT_STATUS.md",
+    "docs/VALIDATION_HISTORY.md"
+  ],
+  "public_safe": false
+}

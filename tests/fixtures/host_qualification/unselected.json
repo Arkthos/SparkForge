@@ -1,0 +1,19 @@
+{
+  "schema_version": "sparkforge-host-qualification.v1",
+  "scope_type": "ENVIRONMENT",
+  "environment_id": "synthetic-corp",
+  "record_revision": "synthetic-record-r1",
+  "selection": {
+    "status": "UNSELECTED",
+    "reason": "Synthetic example of an unanswered client selection.",
+    "client": null
+  },
+  "capabilities": [
+    {
+      "id": "approval_ingress",
+      "status": "NOT_ASSESSED",
+      "reason": "No selected host has been assessed.",
+      "evidence": null
+    }
+  ]
+}

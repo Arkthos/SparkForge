@@ -1,0 +1,153 @@
+{
+  "schema_version": "sparkforge.clean-publication-validation.v1",
+  "date": "2026-11-11",
+  "scope": "Independent checkout of owned software, source-neutral documentation and reviewed public research",
+  "local_tools": {
+    "python": "3.12.10",
+    "node": "24.20.0",
+    "git": "2.56.0.windows.2",
+    "platform": "Windows",
+    "dependencies_installed": false
+  },
+  "code_copy": {
+    "unchanged_owned_software_test_and_asset_files": 29,
+    "original_private_git_history_imported": false,
+    "private_source_captures_included": false,
+    "runtime_state_included": false,
+    "raw_transcripts_or_images_included": false,
+    "authored_bytes_preserved_by_gitattributes": true
+  },
+  "python_suite": {
+    "command": "python -B -m unittest discover -s tests",
+    "collected": 310,
+    "passed": 308,
+    "skipped": 2,
+    "failed": 0,
+    "errors": 0,
+    "duration_seconds": 73.848,
+    "outcome": "PASS_WITH_SKIPS",
+    "skips": {
+      "file": "tests/test_native_knowledge.py",
+      "methods": [
+        "test_actual_file_symlink_escape_is_rejected_when_host_permits_creation",
+        "test_actual_directory_symlink_escape_is_rejected_when_host_permits_creation"
+      ],
+      "reason": "Windows did not grant the synthetic symlink-creation privilege. No elevation or bypass was attempted."
+    }
+  },
+  "preview_node_suite": {
+    "command": "node --test --test-reporter=spec tests\\test_preview_model.cjs tests\\test_preview_assets.cjs",
+    "passed": 40,
+    "failed": 0,
+    "skipped": 0,
+    "duration_ms": 223.5969
+  },
+  "preview_browser_suite": {
+    "harness": "preview/browser-checks.html",
+    "scope": "synthetic_browser_preview_only",
+    "outcome": "PASS",
+    "passed": 51,
+    "viewports": [
+      {"width": 1280, "height": 900},
+      {"width": 490, "height": 828},
+      {"width": 390, "height": 844}
+    ],
+    "execution_authorized": false,
+    "real_user_acceptance": "NOT_ASSESSED",
+    "external_asset_origin_observed": false,
+    "scope_limit": "New synthetic checks against the publication's own preview frame, not another open preview or an installed factory.",
+    "asset_sha256": {
+      "preview/app.js": "8dcfd527bd80727dd6dc2ae491176408512c050ea4fe4a9a37d64d4aef500ed7",
+      "preview/browser-checks.html": "88f0784a0145cc2ec067eb002a730a092dc0003e6edd2bb4ae30740cd05a9185",
+      "preview/browser-checks.js": "ddace79cda36a316746f40297f2b228c68ae36134a1579ba93162b77938f114d",
+      "preview/index.html": "ff331f663fb2ff8d377a64c034463d84c323307827c44735db11d71c59f6dd05",
+      "preview/model.js": "7b1dbfbf931b02af4d8f6e10caac6363bbd2dfcd6a552dc3af8598255f0ad4f7",
+      "preview/styles.css": "693bc3f15b95b55a46ca661f8a84b2996dbaa4b9231e5af04f7bc31472f798ea"
+    }
+  },
+  "package_assemblies": [
+    {
+      "profile": "corp",
+      "owned_files": 9,
+      "package_sha256": "eeb9d673711b7bf1c0b3a19826eed1adfa28855f59263c9cad88f1cd988b01aa",
+      "validation_scope": "STRUCTURAL_ONLY",
+      "compatibility": "NOT_ASSESSED"
+    },
+    {
+      "profile": "acro",
+      "owned_files": 8,
+      "package_sha256": "58cb14f40b14824514a63b4bc3ef1d473f686dff766155d3d94efaea1632a040",
+      "validation_scope": "STRUCTURAL_ONLY",
+      "compatibility": "NOT_ASSESSED"
+    }
+  ],
+  "native_metadata": {
+    "client": "GitHub Copilot CLI 1.0.106-2",
+    "auto_update_disabled": true,
+    "profiles": ["corp", "acro"],
+    "plugin": {"name": "sparkforge", "source": "external", "enabled": true},
+    "skill": {"name": "sparkforge", "source": "plugin", "enabled": true},
+    "exact_profile_skill_paths_checked": true,
+    "model_session_started": false,
+    "installation_performed": false,
+    "scope": "LOCAL_NATIVE_METADATA_ONLY"
+  },
+  "documentation_and_content_preflight": {
+    "outcome": "PASS",
+    "files_before_this_receipt": 99,
+    "markdown_files": 58,
+    "local_links_checked": 278,
+    "link_errors": [],
+    "credential_or_private_source_indicator_findings": [],
+    "positive_file_scope": [
+      "root contributor/readme/ignore/byte-preservation files",
+      "docs",
+      "plugins",
+      "preview",
+      "research",
+      "scripts",
+      "specs",
+      "tests"
+    ],
+    "limits": "Content ownership/source review plus a finite indicator check; not a universal secret detector, security certification or permission for excluded sources."
+  },
+  "worker_checks": {
+    "runtime_documentation": {
+      "package_cases_passed": 39,
+      "integration_cases_passed": 5,
+      "dogfood_cases_passed": 7,
+      "initial_failure": "Required validate-spec wording was absent; the documentation was corrected and the unchanged assertions passed on rerun."
+    },
+    "public_research": {
+      "files": 36,
+      "markdown_files": 31,
+      "json_files": 5,
+      "content_hashes_checked": 35,
+      "local_links_checked": 213,
+      "source_citations_checked": 125,
+      "json_examples_checked": 2,
+      "public_repository_references": 33,
+      "historical_public_inspection_references": 90,
+      "scope": "Worker-reported local content/metadata checks; no new upstream network or framework execution."
+    }
+  },
+  "limits": [
+    "No actual private wiki/code comparison or private historical reviewer verdict was exported.",
+    "The changed publication candidate has no admitted independent self-job review; its example decisions and source references are synthetic.",
+    "No real model-driven user task, live connector, installed-host lifecycle, deployment, hosted CI or learning promotion was performed.",
+    "Private visibility does not grant future permission to add restricted data."
+  ],
+  "final_staged_preflight": {
+    "outcome": "PASS",
+    "files": 100,
+    "markdown_files": 58,
+    "local_links_checked": 280,
+    "all_staged_bytes_equal_working_bytes": true,
+    "original_private_history_imported": false,
+    "indicator_findings": [],
+    "whitespace_corrections": [
+      "Recognized intentionally preserved CRLF line endings while retaining normal whitespace rules.",
+      "Replaced 45 Markdown hard-break space suffixes with explicit line breaks and regenerated affected research inventories; wording and executable files stayed unchanged."
+    ]
+  }
+}
