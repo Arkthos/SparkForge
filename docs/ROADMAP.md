@@ -11,7 +11,7 @@ deployment, actual user or independent learning-acceptance milestone.
 
 | Milestone | Outcome | State |
 |---|---|---|
-| P0: baseline and repository governance | Requirements, traceability and explicitly scoped publication | Baseline retained; clean publication in progress |
+| P0: baseline and repository governance | Requirements, traceability and explicitly scoped publication | Baseline retained; clean private-repository snapshot published and verified |
 | P1: host and control feasibility | Approved host/profile/data/store/resources and actual control evidence | Tools exist; deployment qualification remains open |
 | P2: local foundation | Native package, executable contracts, state and control mechanisms | Assisted subset implemented; trusted boundary incomplete |
 | P3: intent and reuse | Source-backed clarification, comparison and exact specification | Native workflow and snapshot helper implemented; live acceptance open |
@@ -36,3 +36,7 @@ No new product milestone is created or completed.
 WP-002 tracks publication of this bounded repository snapshot. Neither a GitHub
 push nor a local test advances actual environment qualification, user acceptance,
 learning promotion or organizational release.
+
+The initial 100-file snapshot was published and its exact GitHub ref/tree
+verified on 2026-11-11. WP-002 is complete for this clean software/public-research
+scope, not for a private-workspace/history backup.

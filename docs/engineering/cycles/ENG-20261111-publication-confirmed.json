@@ -1,0 +1,58 @@
+{
+  "schema_version": "sparkforge-engineering-cycle.v1",
+  "id": "ENG-20261111-publication-confirmed",
+  "date": "2026-11-11",
+  "work_items": ["WP-002"],
+  "workstream": "clean-publication",
+  "cycle_type": "evidence-closure",
+  "status": "validated",
+  "objective": "Record the actual private GitHub publication of the checked clean software/research snapshot without rewriting the preparation cycle.",
+  "changes": [
+    "Updated the four living records and publication guide with the actual initial remote commit and verified scope.",
+    "Closed WP-002 only for the clean project-owned/public-research snapshot; private workspace/history remains excluded.",
+    "Preserved the initial cycle's pre-push state and all executable, test, research and package bytes."
+  ],
+  "validation": [
+    {
+      "check": "Current-account/private-destination/origin checks and scoped existing-credential git push --set-upstream origin main",
+      "scope": "Only the prepared clean branch",
+      "outcome": "PASS",
+      "reference": "Actual initial publication commit a30cdba0df37ae032388e89ad7725c5b20a895c2"
+    },
+    {
+      "check": "GitHub ref, commit, recursive tree and private visibility comparison",
+      "scope": "All 100 initial remote file objects match the local tree; empty root parent list; no truncated result",
+      "outcome": "PASS",
+      "reference": "2026-11-11T23:29:09.300328+00:00; tree c5b8250841c3277e51405205fb52f05fcac56db2"
+    },
+    {
+      "check": "Closure documentation, lifecycle and whitespace checks",
+      "scope": "Six documentation paths; 23 project Markdown files, 68 links, 31 requirements, 44 work packages, 96 scenarios, 16 contracts, 25 decisions and two cycles",
+      "outcome": "PASS",
+      "reference": "python -B scripts\\validate_plan.py --base HEAD; git --no-pager diff --cached --check"
+    }
+  ],
+  "results": [
+    "The private repository contains the actual clean software, tests, documentation and public research, not an empty container.",
+    "Publication is complete for the declared clean scope; excluded private material was not inferred cleared.",
+    "The original private working history was preserved separately rather than force-pushed, rewritten or deleted."
+  ],
+  "limitations": [
+    "This is not a full private-workspace backup or permission to add restricted data.",
+    "Local validation is not hosted CI, installed-host qualification, genuine user acceptance or production release.",
+    "The changed publication self-check candidate has no imported private review assertion."
+  ],
+  "rollback": "Preserve committed cycles and original data. Use new reviewed corrective commits; do not force rewrite or delete the repository without explicit scope.",
+  "next_steps": [
+    "Publish this documentation-only closure and verify the final remote head.",
+    "Continue GitHub-bound work in the clean checkout while keeping excluded private inputs separate.",
+    "Qualify actual host/user journeys under their independent permissions."
+  ],
+  "evidence": [
+    "docs/delivery/GITHUB_PUBLICATION.md",
+    "docs/engineering/evidence/CLEAN_PUBLICATION_VALIDATION_20261111.json",
+    "docs/PROJECT_STATUS.md",
+    "docs/VALIDATION_HISTORY.md"
+  ],
+  "public_safe": false
+}

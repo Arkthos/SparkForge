@@ -1,8 +1,8 @@
 # SparkForge project status
 
 **As of:** 2026-11-11.
-**Position:** preparing a clean, self-contained publication of the implemented
-native assisted factory. The software is experimental, not deployment-qualified.
+**Position:** the clean, self-contained software and public-research snapshot
+is published. The native assisted factory remains experimental, not deployment-qualified.
 
 The publication contains project-owned code, source-neutral documentation,
 synthetic fixtures and reviewed public-source research. Private source captures,
@@ -40,9 +40,13 @@ No earlier private source/read/review receipt is imported as evidence for this
 publication candidate.
 
 The private [GitHub destination](https://github.com/Arkthos/SparkForge) exists.
-The verified clean snapshot is ready for its first push. The
+The initial publication commit is
+[`a30cdba0df37ae032388e89ad7725c5b20a895c2`](https://github.com/Arkthos/SparkForge/commit/a30cdba0df37ae032388e89ad7725c5b20a895c2).
+GitHub's private `main` ref and all 100 file objects were verified against that
+local commit, including its empty parent list. The
 [publication scope](delivery/GITHUB_PUBLICATION.md) defines the included material
-and the final outgoing-tree/history checks.
+and exclusions. Subsequent documentation-only closure records do not change
+the tested software.
 
 ## Remaining work
 
@@ -61,7 +65,7 @@ documentation/spec candidate; do not attach an earlier private token or verdict.
 
 ## Next actions
 
-1. Finish and verify the clean publication, then confirm the exact GitHub commit.
+1. Use this repository for GitHub-bound work; keep excluded private material outside it.
 2. Run a small real task only in a genuinely approved host/data/resource scope.
 3. Qualify source freshness, lifecycle and actual control boundaries independently.
 4. Implement and evaluate governed learning without granting it promotion authority.

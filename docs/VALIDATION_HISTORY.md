@@ -51,3 +51,28 @@ link coverage, and no privilege workaround was attempted.
 Repository `.gitattributes` preserves authored bytes, so reviewed source/research
 hashes do not silently change through checkout newline conversion. No global
 Git configuration or credentials were changed.
+
+## 2026-11-11: verified private GitHub publication
+
+The clean root commit
+`a30cdba0df37ae032388e89ad7725c5b20a895c2` was pushed to the existing private
+repository using the current authenticated account. No force push, private
+Git database, unrelated refs, credential switch or global configuration
+change was used.
+
+| Actual operation | Result | Evidence boundary |
+|---|---|---|
+| Current account, repository ID/privacy and origin URL checks | PASS | Bound the action to the intended private repository immediately before the push |
+| Scoped existing-credential Git push of `main` | PASS | Actual new branch created; upstream configured only in this clean checkout |
+| GitHub ref and commit reads | PASS | Remote `main` equals the initial snapshot; the root commit has no parents |
+| Recursive GitHub tree comparison | PASS | All 100 remote paths, modes, object types and blob IDs exactly match the local committed tree; response was not truncated |
+| Private visibility and local worktree check | PASS | Repository remains private and publication checkout is clean |
+| `python -B scripts\validate_plan.py --base HEAD` and staged whitespace | PASS | Six documentation paths; 23 project Markdown files, 68 links, 31 requirements, 44 work packages, 96 scenarios, 16 contracts, 25 decisions and two immutable cycles |
+
+Verification completed at `2026-11-11T23:29:09.300328+00:00`.
+The verified tree is `c5b8250841c3277e51405205fb52f05fcac56db2`.
+Raw transport diagnostics are not repository evidence. No hosted CI result,
+real model task, installed-host acceptance or production release is asserted.
+
+The first cycle's pending push was accurate at preparation time and remains
+historical. This new closure records the real result without rewriting it.

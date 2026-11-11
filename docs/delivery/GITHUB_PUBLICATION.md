@@ -1,8 +1,14 @@
 # Clean repository publication
 
 **Destination:** private [Arkthos/SparkForge](https://github.com/Arkthos/SparkForge).
-**Current state:** clean publication candidate under local verification;
-first push pending.
+**Current state:** clean private publication completed and verified.
+
+The initial snapshot is commit
+[`a30cdba0df37ae032388e89ad7725c5b20a895c2`](https://github.com/Arkthos/SparkForge/commit/a30cdba0df37ae032388e89ad7725c5b20a895c2),
+with tree `c5b8250841c3277e51405205fb52f05fcac56db2`. At
+`2026-11-11T23:29:09.300328+00:00`, the GitHub `main` ref, private visibility,
+empty root-commit parent list and all 100 file objects matched the checked
+local snapshot. Documentation-only closure follows in a separate cycle.
 
 The owner requested repository publication and autonomous completion. The
 implemented approach uses a new clean history for non-sensitive project-owned
@@ -35,6 +41,9 @@ authorized for another destination. Private visibility is not data-owner
 permission.
 
 ## Verification before publication
+
+The procedure below also applies to future updates; it is not permission to
+expand the cleared content scope.
 
 Run the existing software/documentation checks in this independent checkout.
 Verify that tests do not depend on private sibling directories. Review the
