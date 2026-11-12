@@ -1,80 +1,36 @@
 # Test and acceptance strategy
 
-The [requirements](../PRODUCT_REQUIREMENTS.md) and
-[acceptance matrix](ACCEPTANCE_MATRIX.csv) define **96 planned scenarios**
-covering 31 requirements. A mapping is not an implemented feature, executed
-test or pass. The native slice has executable synthetic/contract/integration
-coverage; deployed-host and real user acceptance remain separate.
+The active [scenario matrix](ACCEPTANCE_MATRIX.csv) defines **100 planned scenarios** across 50 work packages and 41 requirements. Scenario IDs TC-101 through TC-200 are planning identities, not a claim of 100 executed tests. Earlier TC-001 through TC-096 remain in the archived baseline for historical evidence.
 
-## Evidence classes
+## Progressive evidence
 
-| Class | Can establish | Cannot substitute for |
+| Layer | Required evidence | Cannot establish |
 |---|---|---|
-| Documentation | Traceability, links and lifecycle consistency | Runtime behavior or genuine approval |
-| Unit/contract | Deterministic behavior and rejection of negative fixtures | Authenticated identities or OS confinement |
-| Integration | Real owned helpers/processes cooperating on synthetic inputs | Actual provider/model or deployment acceptance |
-| Browser fixture | Specified interactions on synthetic tab-local data | A real domain user's acceptance |
-| Native metadata | The selected client discovers exact package resources | A model-driven workflow or full installed lifecycle |
-| Live-host evaluation | A specifically authorized selected-host observation | Another environment or organizational release |
-| Manual release | Actual owner/reviewer decisions for the exact artifact | Unperformed submission or deployment |
+| Planning/governance | Valid task graph, coverage, links, archive integrity and lifecycle updates | Product behavior, genuine approval or real platform fit |
+| Contract/unit | Side-effect-free schemas, finite bounds, transition guards and known-bad inputs | Actual host mediation or OS confinement |
+| Synthetic integration | Owned file edits/processes, fake-host task receipts, repair/drift/recovery cases | Model-selected code/repair or real reviewer independence |
+| Installed host | Exact package discovery/relocation/lifecycle and observed dispatch/recovery | Another host/build/environment |
+| Model-driven behavioral evaluation | Actual roles on representative tasks, protected rubric, retained failures and usage | Universal correctness, production release or a fabricated human decision |
+| Domain/control acceptance | Actual accountable review of selected outputs and boundary probes | Unperformed transfer/submission or all possible adversarial cases |
 
-Use the smallest relevant existing command, then escalate when shared behavior
-or a failure requires it:
+## Test development rules
 
-```powershell
-$env:PYTHONPATH = (Resolve-Path 'research_tools\.validation-deps').Path
-python -B -m unittest discover -s tests
-node --test tests\test_preview_model.cjs tests\test_preview_assets.cjs
-python -B scripts\validate_plan.py --base HEAD
-```
+Protect the behavioral oracle and evaluate known-bad controls. Include missing/malformed/stale/foreign/duplicate/reordered results, candidate changes, same-byte check reruns, wrong-role results, cancelled/revoked scope, exhausted resources, no-progress repair, semantic drift, crashes and unknown effects. A green happy path is insufficient.
 
-The full suite includes the research utilities and their declared local
-Markdown/image dependencies; see [tooling setup](../../research_tools/README.md).
-The native package tests do not acquire those dependencies. Live collectors,
-real source corpora and original checkpoints are not inputs to this suite.
+Generated tests must detect seeded defects and observe behavior. Avoid tests that simply mirror current implementation or check incidental internal names. Keep source-neutral test fixtures synthetic and owned. Do not invoke live collectors, inspect credentials, call a model or migrate real state as part of the standard suite.
 
-The [operating model](DEVELOPMENT_OPERATING_MODEL.md) covers the initial root
-commit's special documentation check. Actual command outcomes belong in
-[validation history](../VALIDATION_HISTORY.md), not in this scenario inventory.
+Run focused checks during each change. Run full relevant regression before integration when shared/runtime behavior changes; planning/CI changes receive their own negative fixtures. Preserve v1 tests until a separately scoped compatibility change is justified. Removing the disconnected preview intentionally retires its 40 Node checks and browser harness; it does not weaken native factory acceptance.
 
-## Acceptance discipline
+## Commands and platform limits
 
-Define behavior, required checks, reviewers and finite resources before the
-operation. Include real failure/repair cases, missing markers, malformed and
-foreign evidence, stale revisions, changed candidates, rejected approval,
-resource exhaustion, cancellation and uncertain outcomes.
+Use [README setup](../../README.md#validate-locally) for Python 3.12+ and repo-local Markdown/image dependencies. Full command: `python -B -m unittest discover -s tests` with PYTHONPATH configured. Native-only: `python -B -m unittest discover -s tests -p 'test_native_*.py'`. Planning: `python -B scripts/validate_plan.py --base HEAD` before commit and `HEAD~` after commit. Whitespace: `git diff --check`.
 
-Generated tests cannot alone accept their generator. Protect independent
-criteria and review control-plane changes independently. Do not remove failures,
-weaken expected outputs, change skip rules or refresh a review token to relabel
-an older opinion.
+CI runs Python checks on Linux and Windows to expose platform-specific cases; an unavailable PowerShell/symlink privilege stays an explicit skip. It does not run real corp/acro models or deployment. Local Linux review previously observed 30 platform-dependent skips; current results belong in the validation ledger, not hard-coded as an acceptance target.
 
-The current helper's decisions and reviews are assertions. The native workflow
-forbids workers from manufacturing them; actual authentication and isolation
-remain host/operator responsibilities. `CANDIDATE_VERIFIED` is narrow local
-inventory completeness and always retains its human/host/publication limits.
+## Outcome and gate semantics
 
-## Results and limitations
+PASS means the expected current evidence was observed. FAIL means an executed check found a violation. BLOCKED means a prerequisite/unknown effect prevents progress. NOT_ASSESSED means it was not evaluated. A skipped, pending, missing, truncated or timed-out required check is not a pass.
 
-PASS requires the expected current evidence. FAIL means an executed check
-observed a violation. BLOCKED means a known prerequisite or unresolved effect
-prevents progress. NOT_ASSESSED means assessment/comparison has not occurred.
-Skipped, partial, missing, timed-out or unexecuted cases are not passes.
+The coordinator requires the whole current check/reviewer/controller inventory before readiness. Evidence carries intent/plan/candidate/task/attempt/oracle/source bindings and real producer context where available. Different actor strings or test labels do not establish authentic origin.
 
-Keep all relevant attempts and corrections. A passing process exit cannot hide
-an incomplete reporter. A mock denial proves the fixture behavior, not real
-host enforcement. Product budgets/SLOs are not inferred from short engineering
-test bounds.
-
-Tests use explicitly owned synthetic directories. Do not substitute real
-records, inspect credentials, change privileges or silently move fixtures to a
-different storage/profile. Unknown process scope preserves the affected fixture
-for reconciliation rather than broad cleanup.
-
-Private historical checks, source reads and reviewer tokens are not imported
-as acceptance of the changed publication candidate. The published self-check
-example uses synthetic references and still requires its own actual review.
-
-The two metadata profiles, hosted research and GitHub publication do not close
-live wiki, model-driven journeys, installed lifecycle, Corp/Acro qualification,
-security assurance or governed learning promotion.
+Each milestone uses the [evaluation plan](EVALUATION_PLAN.md) and task-specific acceptance. Installed P6 journeys and independently accepted outputs are separate from synthetic P4 success. Learning promotion, optional parallelism and acro need their own later evidence.

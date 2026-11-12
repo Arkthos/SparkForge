@@ -1,6 +1,6 @@
 # Runtime and source data are not distributable plugin source.
 .sparkforge/
-runtime/
+/runtime/
 artifacts/
 logs/
 snapshots/

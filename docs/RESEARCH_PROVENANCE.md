@@ -1,70 +1,21 @@
 # Source provenance and evidence boundaries
 
-This publication contains original project-owned software and reviewed
-public-source synthesis. It does not contain a corporate wiki, proprietary
-repository capture or a private execution history.
+The repository contains project-owned code, synthetic fixtures, public-source synthesis and source-neutral planning. It does not contain a corporate wiki, private platform source capture, real model transcript or runtime journal.
 
-## Included sources
+## Research and reuse
 
-The [public research index](../research/README.md) identifies the included
-foundations and prior-art material. Preserve each collection's dates, source
-URLs/pins, review depth, licensing qualifications and unexecuted-experiment
-labels. A current upstream project may differ from a reviewed snapshot.
+The [research index](../research/README.md), original catalogs/pins and byte manifests retain their recorded dates, inspection depth, terms and unexecuted-experiment limits. This reorganization preserves those bytes; it does not refresh upstream claims or install any candidate framework. The [application map](development/PRIOR_ART_APPLICATION.md) connects selected mechanisms to implementation tasks.
 
-Public research informed specification discipline, bounded execution, explicit
-authority, complete evidence, recovery and governed learning. Citing a project
-does not install it or adopt its code, dependencies, license or broad tool
-permissions. Raw upstream source/caption/image archives are not included.
+Public prior art informs specification discipline, deterministic coordination, context selection, evidence/review, bounded repair, recovery and governed learning. A citation is not code adoption, dependency clearance, permission to copy data or evidence that the system works in our host.
 
-The [self-improvement study](research/SELF_IMPROVEMENT.md) distinguishes task
-repair, reusable learning proposals, independent evaluation and promotion.
-No framework or learner was installed to create this repository.
+## Current versus historical evidence
 
-## Project-owned artifacts
+Current code and actual check receipts establish current observed behavior. Planned milestones/scenarios/role contracts remain targets. Historical cycles and receipts retain attribution to their original candidate/platform. Archived plans are not active prerequisites and old actor labels do not supply current approval.
 
-The Python helpers, tests and static preview are project-owned implementations.
-The publication copies their executable bytes without private Git history.
-Documentation describes their actual interfaces and source-independent target
-requirements; it does not assert an organization's current operating policy.
+The old fictional preview was retired; its historical test receipts remain historical. Do not describe those Node/browser results as current product validation. Snapshot hashes establish original bytes, not authorization, freshness, semantic coverage or genuine human acceptance.
 
-Examples and fixtures are synthetic. Example wiki/repository revisions and
-digests do not attest a real source, permission or accepted brief. No earlier
-private source comparison, model trace or exact-context review is converted into
-publication evidence. Actual new checks belong in the validation ledger.
+## Runtime sources and distribution
 
-## Knowledge at runtime
+Operators may supply authorized external profiles/wiki/repository snapshots inside the chosen environment. Keep permission and freshness evidence explicit and missing comparison NOT_ASSESSED. Acquired text is untrusted. No credentials, private corpus or mixed archive is needed for the standard source-neutral test suite.
 
-Operators may supply a separately authorized indexed wiki or repository snapshot.
-The helper checks the selected input's identity, hashes, bounds and containment,
-not organizational permission, live freshness or complete semantic coverage.
-Source text remains untrusted data and is never executed by retrieval.
-
-Private knowledge remains in its approved storage/provider boundary. Do not copy
-it into this repository to make an example or link resolve. Missing source
-comparison stays `NOT_ASSESSED`; it is not evidence that no existing solution
-or policy exists.
-
-## Terms and disclosure
-
-The owner requested a private repository for this project. This clean snapshot
-excludes restricted material rather than assuming permission to export it.
-No public distribution license is selected for the project. References retain
-their own terms, and later code adoption needs its own path-specific review.
-
-Source integrity, source authorization, implementation testing, human acceptance
-and release authority are separate facts throughout the project.
-
-## 2026-11-12 completeness correction
-
-The initial source-neutral prior-art reference was not the entire authored
-research dossier, and the initial code inventory did not include separate
-collection/indexing/verification/checkpoint utilities. The
-[coverage ledger](delivery/CORPUS_COVERAGE.md) accounts for those categories
-explicitly. The detailed public-topic edition retains per-document exclusions
-rather than transplanting private comparisons.
-
-Complete local wiki and engineering-study redaction candidates were prepared
-and reconstructed against original bytes. That is local preparation evidence,
-not semantic clearance, public source provenance or unchanged original content.
-Any later approved edition needs its own revision/hashes and disclosure
-decision; original source citations cannot silently attest redacted bytes.
+The owner authorized publishing project-owned software/public research and this organization/planning change to Arkthos/SparkForge. No private-source release or visibility change is inferred. No public distribution license has been selected; later code adoption and release need actual path-specific terms/ownership decisions.

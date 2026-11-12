@@ -347,6 +347,13 @@ class GitLifecycleTests(FixtureCase):
         self.git("commit", "--quiet", "-m", "Synthetic coherent boundary")
         self.assertEqual(self.errors("HEAD~"), "")
 
+    def test_historical_archive_and_digest_cannot_be_rewritten_together(self) -> None:
+        self.write("docs/archive/old/snapshot.md", "Original\n")
+        self.git("add", "--all")
+        self.git("commit", "--quiet", "-m", "Synthetic historical snapshot")
+        self.write("docs/archive/old/snapshot.md", "Rewritten\n")
+        self.assertIn("Historical archive modified/deleted", self.errors("HEAD"))
+
     def test_remote_contradicts_local_only_claim(self) -> None:
         self.git("remote", "add", "fixture", "https://example.invalid/not-used.git")
         self.assertIn("remote exists despite", self.errors("HEAD"))

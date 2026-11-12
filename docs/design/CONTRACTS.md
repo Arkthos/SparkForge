@@ -1,5 +1,7 @@
 # Target contracts and implemented subset
 
+The coordinated extensions are C-017 through C-024. C-001 through C-016 remain useful logical contracts; where the old frozen-brief/manual workflow is described, it is the current assisted-v1 subset, not the target materiality policy.
+
 These are project-authored logical contracts, not copied organizational policy
 or a promise that every interface already exists. The exact implemented schema
 is `sparkforge.spec.v1` and the helper APIs described by
@@ -199,3 +201,59 @@ within a separately approved resource/data envelope; never restore revoked data.
 The learner cannot alter its own policy, oracle, provider, reviewer or budget.
 No-change is legitimate. The current native workflow supports proposal/no-change
 discipline, not a completed automatic promotion/rollback implementation.
+
+## C-017: intent plan and envelope separation
+
+**Requirements:** SF-04, SF-10, SF-25, SF-26, NFR-01, NFR-02.
+**Decisions:** D-026, D-027.
+
+IntentBaseline captures behavior/non-goals; ExecutionEnvelope captures one environment and finite permissions/resources; ExecutionPlan captures technical tasks. Equivalent technical changes require current controller/admission checks, not blanket intent reapproval. Existing v1 exact-spec semantics remain unchanged until an explicit bridge/migration is implemented.
+
+## C-018: agent role assignment and result admission
+
+**Requirements:** SF-20, SF-22, SF-27, NFR-01, NFR-02, NFR-08.
+**Decisions:** D-026, D-028.
+
+Every assignment/result binds job, task, attempt, role, intent/plan/envelope, candidate/inputs, ownership and allowance. Host completion and worker claims are untrusted until current deterministic admission. Roles communicate through explicit artifacts; independence requires observed host producer/context separation.
+
+## C-019: platform brain and semantic intent controller
+
+**Requirements:** SF-02, SF-03, SF-23, SF-24, SF-26, NFR-08, NFR-09.
+**Decisions:** D-026, D-027, D-030.
+
+Brain plans/replans from profile and cited sources. Controller independently checks cumulative intent alignment at plan/integration/repair/replan/handoff. Neither may rewrite the baseline/oracle to accept a deviation; insufficient evidence remains explicit.
+
+## C-020: diagnosis repair and technical replanning
+
+**Requirements:** SF-07, SF-09, SF-10, SF-28, SF-29, NFR-03, NFR-06, NFR-08.
+**Decisions:** D-027, D-029.
+
+Classify code/oracle/environment/intent/stale/unknown/budget failures. Route the smallest in-scope repair, refresh affected evidence and retain failed attempts. Replanning keeps criterion coverage and job-wide totals. No-progress or exhausted allowance stops new work.
+
+## C-021: durable scheduling and operation identity
+
+**Requirements:** SF-20, SF-27, SF-30, NFR-02, NFR-03.
+**Decisions:** D-028, D-029.
+
+Validate graph and role barriers, reserve before effects, bind command keys to payloads, and persist event/projection atomically. Same operation replay cannot duplicate admitted work. Unknown completion, cancellation and late results require explicit observed reconciliation.
+
+## C-022: host adapter and environment-local profiles
+
+**Requirements:** SF-13, SF-16, SF-17, SF-22, SF-23, NFR-01, NFR-05.
+**Decisions:** D-028, D-030.
+
+Host supplies only documented/observed capabilities for dispatch, poll, stop, reconcile, producer context and usage. Fake adapters are labeled. Each run has one profile and isolated sources/credentials/state; no assumed native launcher or corp/acro bridge.
+
+## C-023: aggregate budgets and independent evaluator
+
+**Requirements:** SF-06, SF-08, SF-24, SF-29, NFR-06, NFR-08.
+**Decisions:** D-029, D-031.
+
+Reserve finite job/agent/check resources before dispatch and retain totals across repairs/replans. Unreported usage is unknown. Protected behavioral evaluation stays outside coder ownership and rejects known-bad controls even when worker checks report success.
+
+## C-024: resumable contributor handoff
+
+**Requirements:** SF-11, SF-19, SF-20, SF-31, NFR-07, NFR-09.
+**Decisions:** D-032, D-033.
+
+Maintain one current backlog, detailed implementation plan, exact validation record, append-only cycle and concrete next task. Archived planning and historical IDs remain attributable but cannot gate active source-neutral work. Copilot can continue without private chat context.

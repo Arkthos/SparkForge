@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "source_commit": "f29eeb2e579f695ebf3c2ec522183ad23a555288",
+  "entries": [
+    {
+      "original_path": "README.md",
+      "disposition": "historical_snapshot",
+      "archive_path": "docs/archive/2026-11-12/README.md",
+      "sha256": "077483aaee8d16279537d9239848591ef88c9ed7585b93ae506926629f24a862"
+    },
+    {
+      "original_path": "AGENTS.md",
+      "disposition": "historical_snapshot",
+      "archive_path": "docs/archive/2026-11-12/AGENTS.md",
+      "sha256": "f6cdb885b4f2bdb0445677e64388129a705ae78601e18d9ab37d61cdd7bc40b8"
+    },
+    {
+      "original_path": "docs/PRODUCT_REQUIREMENTS.md",
+      "disposition": "historical_snapshot",
+      "archive_path": "docs/archive/2026-11-12/docs/PRODUCT_REQUIREMENTS.md",
+      "sha256": "3118abd6a0156f69a1dccac7d3c018dad2b18259831fbe61be1e26a5dab1abdd"
+    },
+    {
+      "original_path": "docs/PROJECT_STATUS.md",
+      "disposition": "historical_snapshot",
+      "archive_path": "docs/archive/2026-11-12/docs/PROJECT_STATUS.md",
+      "sha256": "6ff25dfcd9b9f00c826965727d0ccdd072dcd7913ef9f0aca8b07c63d7772d29"
+    },
+    {
+      "original_path": "docs/ROADMAP.md",
+      "disposition": "historical_snapshot",
+      "archive_path": "docs/archive/2026-11-12/docs/ROADMAP.md",
+      "sha256": "24cb781f7e6278113dcb8a774c632f67f66e1272643178bbb606c1696e0d9dd2"
+    },
+    {
+      "original_path": "docs/IMPLEMENTATION_PLAN.md",
+      "disposition": "historical_snapshot",
+      "archive_path": "docs/archive/2026-11-12/docs/IMPLEMENTATION_PLAN.md",
+      "sha256": "5fb464c2e7a000ea22f9d9795f59b4a9436bd8bf211ca5c38ab68dff85a51764"
+    },
+    {
+      "original_path": "docs/IMPLEMENTATION_BACKLOG.csv",
+      "disposition": "historical_snapshot",
+      "archive_path": "docs/archive/2026-11-12/docs/IMPLEMENTATION_BACKLOG.csv",
+      "sha256": "c2a09ca6df6c9c5f27fcb7abef2b4adcbaa5b6b857770228a25b20b089a0ea23"
+    },
+    {
+      "original_path": "docs/engineering/ACCEPTANCE_MATRIX.csv",
+      "disposition": "historical_snapshot",
+      "archive_path": "docs/archive/2026-11-12/docs/engineering/ACCEPTANCE_MATRIX.csv",
+      "sha256": "3dab507b7d9f248b0871aeb6778ed5f85e1e48c5e7c85de96914e6a03cd4de0d"
+    },
+    {
+      "original_path": "docs/design/ARCHITECTURE.md",
+      "disposition": "historical_snapshot",
+      "archive_path": "docs/archive/2026-11-12/docs/design/ARCHITECTURE.md",
+      "sha256": "a866cc97c319ec3ddff0c0fed11df988dac972c4ecb0f6bcebb5b9e15a075ee9"
+    },
+    {
+      "original_path": "docs/design/CONTRACTS.md",
+      "disposition": "historical_snapshot",
+      "archive_path": "docs/archive/2026-11-12/docs/design/CONTRACTS.md",
+      "sha256": "9a0595f72759d37b481cecf3f3362efbf3745346508caa453822d95c7e4be4dd"
+    },
+    {
+      "original_path": "docs/design/DECISIONS.md",
+      "disposition": "historical_snapshot",
+      "archive_path": "docs/archive/2026-11-12/docs/design/DECISIONS.md",
+      "sha256": "b54e8072b77e0de32b87305fc96249691cc3687a5b2c5a30b982d0d63d659f51"
+    },
+    {
+      "original_path": "docs/delivery/GITHUB_PUBLICATION.md",
+      "disposition": "moved_to_archive",
+      "archive_path": "docs/archive/2026-11-12/docs/delivery/GITHUB_PUBLICATION.md",
+      "sha256": "d891457607d32705074702414361faa90c134b56d183c590a3f87578dce60ccb"
+    },
+    {
+      "original_path": "docs/delivery/CORPUS_COVERAGE.md",
+      "disposition": "moved_to_archive",
+      "archive_path": "docs/archive/2026-11-12/docs/delivery/CORPUS_COVERAGE.md",
+      "sha256": "a52474035ea7496ab6eca4012f187925a10b0dbfba7505339e0a2cfb0f37739f"
+    },
+    {
+      "original_path": "docs/specs/CORPUS_COMPLETENESS.md",
+      "disposition": "moved_to_archive",
+      "archive_path": "docs/archive/2026-11-12/docs/specs/CORPUS_COMPLETENESS.md",
+      "sha256": "140c1f210bce16c5599f8873c2abfff1b58df34312ecc30da18217ebd4180a36"
+    },
+    {
+      "original_path": "docs/engineering/CORPUS_REVIEW.md",
+      "disposition": "moved_to_archive",
+      "archive_path": "docs/archive/2026-11-12/docs/engineering/CORPUS_REVIEW.md",
+      "sha256": "b501341db47a19de7911d6236c6ef91ab3575f47130cdcbaf75567e3e58caca7"
+    },
+    {
+      "original_path": "preview/styles.css",
+      "disposition": "retired_fictional_preview",
+      "sha256": "693bc3f15b95b55a46ca661f8a84b2996dbaa4b9231e5af04f7bc31472f798ea",
+      "recovery_commit": "f29eeb2e579f695ebf3c2ec522183ad23a555288"
+    },
+    {
+      "original_path": "preview/model.js",
+      "disposition": "retired_fictional_preview",
+      "sha256": "7b1dbfbf931b02af4d8f6e10caac6363bbd2dfcd6a552dc3af8598255f0ad4f7",
+      "recovery_commit": "f29eeb2e579f695ebf3c2ec522183ad23a555288"
+    },
+    {
+      "original_path": "preview/index.html",
+      "disposition": "retired_fictional_preview",
+      "sha256": "ff331f663fb2ff8d377a64c034463d84c323307827c44735db11d71c59f6dd05",
+      "recovery_commit": "f29eeb2e579f695ebf3c2ec522183ad23a555288"
+    },
+    {
+      "original_path": "preview/app.js",
+      "disposition": "retired_fictional_preview",
+      "sha256": "8dcfd527bd80727dd6dc2ae491176408512c050ea4fe4a9a37d64d4aef500ed7",
+      "recovery_commit": "f29eeb2e579f695ebf3c2ec522183ad23a555288"
+    },
+    {
+      "original_path": "preview/browser-checks.js",
+      "disposition": "retired_fictional_preview",
+      "sha256": "ddace79cda36a316746f40297f2b228c68ae36134a1579ba93162b77938f114d",
+      "recovery_commit": "f29eeb2e579f695ebf3c2ec522183ad23a555288"
+    },
+    {
+      "original_path": "preview/browser-checks.html",
+      "disposition": "retired_fictional_preview",
+      "sha256": "88f0784a0145cc2ec067eb002a730a092dc0003e6edd2bb4ae30740cd05a9185",
+      "recovery_commit": "f29eeb2e579f695ebf3c2ec522183ad23a555288"
+    },
+    {
+      "original_path": "tests/test_preview_model.cjs",
+      "disposition": "retired_fictional_preview",
+      "sha256": "43118d6e0d6f93c86ff388fa4278968ce6c98c94e255d4ea7150fba9bad84d6f",
+      "recovery_commit": "f29eeb2e579f695ebf3c2ec522183ad23a555288"
+    },
+    {
+      "original_path": "tests/test_preview_assets.cjs",
+      "disposition": "retired_fictional_preview",
+      "sha256": "6dd770de2a49df424bf025b9030bbe771866d0cc1a634393332ad0ac393baad2",
+      "recovery_commit": "f29eeb2e579f695ebf3c2ec522183ad23a555288"
+    },
+    {
+      "original_path": "docs/engineering/USER_PREVIEW.md",
+      "disposition": "retired_fictional_preview",
+      "sha256": "25543d8727416a78da8c84490a72134f3d5f90ac9a360ca2c9783acbd3ef5229",
+      "recovery_commit": "f29eeb2e579f695ebf3c2ec522183ad23a555288"
+    }
+  ]
+}

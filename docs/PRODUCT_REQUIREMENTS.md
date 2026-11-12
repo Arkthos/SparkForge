@@ -1,94 +1,77 @@
-# SparkForge product requirements
+# Product requirements
 
-**Baseline:** publication-safe requirements, 2026-11-11.
+**Planning baseline: 2026-11-12.** This revision adopts the owner's explicit coordinated multi-agent objective. It supersedes the earlier single-agent target and blanket full-spec reapproval as future design choices. It does not change the existing assisted-v1 runtime semantics.
 
-These are the owner's product goals and project-authored engineering
-requirements. They do not quote or establish a private platform's policies.
-The implemented local slice is narrower than the complete target product.
+## Product goal
 
-## Purpose and roles
+Convert a user's rough idea, content or existing implementation into an evidenced solution that fits the selected SPARK platform. Keep the human responsible for intent and material decisions while the factory handles ordinary planning, coding, testing, diagnosis, correction, review and recovery inside an agreed envelope.
 
-Help people turn permitted ideas, code, playbooks and knowledge into supported
-SPARK components or compatible changes to existing components. The user owns
-intent and domain acceptance. Maintainers own code review; operators own the
-actual host, permissions, data routes and resources. Applicable release and
-organization decisions remain with their real owners.
-
-Responsibilities do not require one agent or account per role. No hosted
-multi-user service, shared credential store, automatic cross-machine state
-synchronization or unrestricted application generator is implied.
+The initial delivery is a local native-host component factory. Supported component kinds must come from an actual profile, with synthetic agent/skill or small component examples used until private platform interfaces are available. Universal application generation, a hosted multi-user SaaS, production auto-deployment and automatic corp/acro synchronization are outside the first release.
 
 ## Functional requirements
 
-| ID | Requirement | Required distinction |
+| ID | Requirement | Acceptance boundary |
 |---|---|---|
-| SF-01 | Accept ideas, code, playbooks and knowledge | An input reference is not access or disclosure permission |
-| SF-02 | Clarify requirements and acceptance in plain language | Use known authorized evidence before repeating questions |
-| SF-03 | Assess existing platform/wiki capabilities first | Explain reuse/update/new and comparison limits |
-| SF-04 | Obtain exact-brief approval before implementation | A title, silence or generated approval field is insufficient |
-| SF-05 | Create or improve supported SPARK components | Do not relabel an unrelated application as a supported component |
-| SF-06 | Author meaningful tests | A separate agent per test role is not required |
-| SF-07 | Execute tests and analyze actual results | Check execution, a pass and demonstrated behavior differ |
-| SF-08 | Review quality and security | Findings do not grant user or organizational authority |
-| SF-09 | Correct failures and handle errors | Preserve failures and stop at accepted limits |
-| SF-10 | Route feedback, defects and changed intent | Material changes invalidate affected approvals/evidence |
-| SF-11 | Maintain docs, decisions and useful evidence | Do not commit sensitive runtime data |
-| SF-12 | Revisit approved source knowledge when needed | Preserve provenance, permission and freshness limits |
-| SF-13 | Use the operator-approved native Copilot host | Do not silently substitute a provider, launcher or account |
-| SF-14 | Produce a working local candidate before submission | A mock, template or successful worker turn is not acceptance |
-| SF-15 | Prepare delivery through an approved contribution route | No automatic production modification or review bypass |
-| SF-16 | Qualify the initial Corp target independently | An environment label does not establish its permissions |
-| SF-17 | Support later authorized Acro adaptation | No shared credentials, live bridge or inherited acceptance |
-| SF-18 | Require explicit scope for repository/external effects | Local creation and source access do not grant export rights |
-| SF-19 | Deliver useful user/operator/contributor documentation | Prepared material is not a published or accepted release |
-| SF-20 | Use versioned specifications and controlled development | Bound workers, artifacts, tests and independent evidence |
-| SF-21 | Include governed learning | Proposals cannot change their own policy, evaluator or authority |
+| SF-01 | Accept ideas, existing code, playbooks and content | Preserve provenance and use only inputs available within the selected environment. |
+| SF-02 | Clarify outcome, audience and observable acceptance | Reuse supplied/source-backed facts; ask only consequential missing questions. |
+| SF-03 | Assess platform fit and reuse before generation | Inspect relevant implementation; lexical matches and missing hits are insufficient. |
+| SF-04 | Bind user intent and material decisions to exact current objects | Routine technical work inside an accepted envelope can proceed; changed behavior or authority needs its decision owner. |
+| SF-05 | Create or improve supported SPARK components | A selected platform profile defines supported kinds; do not invent private framework behavior. |
+| SF-06 | Author meaningful independent behavioral tests | Protect acceptance and test negative/edge behavior rather than mirroring generated code. |
+| SF-07 | Execute checks and evaluate actual evidence | Completion, a zero exit and demonstrated acceptance are different facts. |
+| SF-08 | Review quality, security and platform fit independently | Required review must be current and genuinely separate from the builder context. |
+| SF-09 | Diagnose failures and repair within finite allowances | Preserve failed attempts, unknown effects and no-progress/budget stops. |
+| SF-10 | Route feedback, defects and changed intent | Equivalent repair stays in scope; changed goals create explicit baseline deltas. |
+| SF-11 | Maintain decisions, docs, state and useful evidence | Keep runtime/private data outside Git and evidence bound to exact revisions. |
+| SF-12 | Refresh authorized platform knowledge when needed | Keep permission, freshness, integrity and semantic coverage separate. |
+| SF-13 | Use the selected native Copilot host through an explicit adapter | Qualify actual capabilities; no invented API, account or provider fallback. |
+| SF-14 | Produce an evidenced working local candidate | A worker turn, template, mock or package metadata alone cannot establish readiness. |
+| SF-15 | Prepare and perform contribution through a selected route | External write/deployment effects have an exact target/payload scope. |
+| SF-16 | Qualify corp using corp-local context and observations | A label or source-neutral test does not establish actual environment support. |
+| SF-17 | Support independent acro adaptation and qualification | No shared credentials, runtime memory bridge or inherited corp acceptance. |
+| SF-18 | Bind external effects to explicit scope and reconcile outcomes | Local readiness is not export authority; lost responses require inspection before replay. |
+| SF-19 | Deliver useful user, operator and contributor guidance | Document actual supported behavior, limitations, recovery and accountable support. |
+| SF-20 | Use versioned contracts and controlled engineering | Deterministic admission guards, owned changes, traceability and regression evidence. |
+| SF-21 | Support governed learning after the core factory works | Inactive proposals first; independent evaluation and exact promotion/withdrawal later. |
+| SF-22 | Coordinate distinct brain, controller, coding, testing, review and diagnosis roles | Separate logical responsibility and context; parallelism is optional. |
+| SF-23 | Maintain a platform-aware brain for planning and replanning | Bind plans to environment, supported interfaces, source revisions and accepted intent. |
+| SF-24 | Enforce independent intent-control checkpoints | Detect semantic drift at planning, integration, repair, replan and final handoff. |
+| SF-25 | Separate intent baseline, execution plan and evidence | A technical revision cannot silently rewrite the user outcome or inherit stale results. |
+| SF-26 | Require human decisions when materially necessary | Classify behavior/authority/resource deltas explicitly; ordinary bounded corrections continue. |
+| SF-27 | Dispatch durable tasks with role, ownership and dependency contracts | Validate results and full barriers; do not equate model prose with completion. |
+| SF-28 | Route implementation, oracle, environment, intent and uncertain-effect failures differently | Use evidence-backed diagnosis and the smallest valid recovery route. |
+| SF-29 | Account for job-wide agent and execution resources | Preserve totals across retries/replans; unreported usage is unknown, not zero. |
+| SF-30 | Resume jobs without duplicating unknown operations | Persist operation identity before effects and reconcile cancellation/interruption. |
+| SF-31 | Keep development resumable by GitHub Copilot | Maintain a clear first task, exact evidence, next actions and dependency-ordered instructions. |
 
 ## Nonfunctional requirements
 
-| ID | Requirement | Qualification |
+| ID | Requirement | Acceptance boundary |
 |---|---|---|
-| NFR-01 | Least authority and explicit data/effect boundaries | Separate procedural guidance from actual enforcement |
-| NFR-02 | Revision-bound evidence and decisions | Do not conflate source, spec, candidate, run and attempt |
-| NFR-03 | Durable recovery and reconciled effects | A timeout is not proof an effect did not happen |
-| NFR-04 | Privacy-preserving observability and retention | Keep useful diagnostics without secrets or raw traces |
-| NFR-05 | Portability within declared support | Qualify the exact host, package, paths and dependencies |
-| NFR-06 | Finite resources and cancellation | Missing authorization never means unlimited resources |
-| NFR-07 | Maintainability and reproducibility | Prefer small reversible changes and explicit dependencies |
-| NFR-08 | Meaningful repeatable validation | Include negative controls and independent acceptance |
-| NFR-09 | Understandable operation | Explain questions, state, failures and next actions |
-| NFR-10 | Supply-chain and distribution discipline | Resolve source terms, ownership and delivery provenance |
+| NFR-01 | Least authority and explicit effect/data boundaries | Prompts/hashes/actor strings are not isolation or authenticated consent. |
+| NFR-02 | Revision-bound evidence and decisions | Separate source, intent, plan, candidate, task, run, attempt and review context. |
+| NFR-03 | Durable recovery and reconciled effects | Atomic reservations and explicit unknown states; no blind retries. |
+| NFR-04 | Privacy-preserving diagnostics and retention | Use bounded summaries; keep secrets, private sources and raw traces out of Git. |
+| NFR-05 | Portability within observed host support | Qualify package/resources/lifecycle separately in each target. |
+| NFR-06 | Finite resources and cancellable work | Bound whole jobs and agent/check attempts; report termination uncertainty. |
+| NFR-07 | Maintainability and reproducibility | Small complete changes, existing helpers, explicit dependencies and migrations. |
+| NFR-08 | Meaningful independent validation | Positive and known-bad controls; synthetic and live acceptance remain separate. |
+| NFR-09 | Understandable operation | Explain current state, next action, questions, costs and material decisions. |
+| NFR-10 | Supply-chain and distribution discipline | Path-specific terms, owned inventory and exact contribution payloads. |
 
-## Observable journeys
+## Required product journeys
 
-1. The user supplies an idea; the factory inspects permitted knowledge and
-   existing code, clarifies gaps and proposes a reviewable specification.
-2. The operator accepts, rejects or requests changes to that exact specification.
-   Missing approval stops implementation; it is not interpreted as consent.
-3. The host implements an accepted delta. Declared commands produce actual check
-   evidence, and a separate reviewer examines the same candidate and context.
-4. An in-scope failure enters a bounded repair loop. Changed intent returns to a
-   new decision; the original failure and attempts remain recorded.
-5. A stopped or interrupted run is reconciled before resuming. No invisible
-   inference retry or duplicate external write follows from a lost connection.
-6. A reviewed local candidate is handed to the user. Publication, installation,
-   deployment and organizational acceptance remain distinct effects.
-7. Permitted outcomes may produce an inactive improvement proposal or an honest
-   no-change assessment. Evaluation and promotion remain independently governed.
+1. Clarify an idea with relevant platform context and explain reuse/update/new alternatives.
+2. Establish the intent baseline and delegated envelope; expose unresolved material decisions before implementation.
+3. Brain produces a task plan; independent controller checks intent alignment; deterministic runtime admits work.
+4. Coder and test roles produce scoped artifacts; runner executes checks; reviewer and controller evaluate exact current results.
+5. Diagnostician routes a defect to bounded repair; equivalent technical replanning proceeds without unnecessary user approval.
+6. Drift, exhausted resources, new permission/data routes or uncertain effects produce the appropriate decision or reconciliation state.
+7. Restart preserves work and avoids duplicate unknown effects; feedback resumes repair or creates a new intent revision.
+8. Deliver code, evidence summaries, documentation and remaining limits; external submission remains a distinct scoped effect.
 
-## Current slice and open decisions
+## First-release scope and later extensions
 
-The native package implements an operator-assisted workflow and deterministic
-snapshot/spec/check/review helpers. Actor strings are assertions, not identity
-proof. The host/operator retains authority, isolation and source-data controls.
-Python and SQLite are local implementation choices, not production-store or
-environment qualifications.
+Required: serial multi-agent coordination, protected criteria, explicit host adapter, useful new and brownfield component journeys, bounded repair/replanning, status, cancellation/recovery, independent review, first-environment installed acceptance and reviewable delivery.
 
-The preview remains fictional and tab-local. Governed promotion/rollback,
-actual model-driven acceptance, live connectors and installed-host lifecycle
-are still target work. Numeric product SLOs, live budgets and deployment
-profiles must be approved rather than inferred from engineering test limits.
-
-The public [learning study](research/SELF_IMPROVEMENT.md) informs SF-21 without
-installing another framework or claiming that source research is an executed
-learning mechanism.
+Later: acro-local adaptation on its own evidence, measured parallel execution and governed learning promotion. None is a hidden prerequisite to the first-environment qualified local release. Environment-specific facts, organization policy, identities, budgets and license terms remain unresolved until actually supplied or observed.

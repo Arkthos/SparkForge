@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 import re
 import subprocess
@@ -173,9 +174,9 @@ def index_rows(
     return indexed
 
 
-def continuous(ids: set[str], prefix: str, width: int, report: Report) -> None:
-    expected = {f"{prefix}-{number:0{width}d}" for number in range(1, len(ids) + 1)}
-    report.require(ids == expected, f"{prefix} identifiers must be unique and contiguous from 1")
+def continuous(ids: set[str], prefix: str, width: int, report: Report, *, start: int = 1) -> None:
+    expected = {f"{prefix}-{number:0{width}d}" for number in range(start, start + len(ids))}
+    report.require(ids == expected, f"{prefix} identifiers must be unique and contiguous from {start}")
 
 
 def requirement_refs(text: str) -> set[str]:
@@ -231,7 +232,10 @@ def check_dependencies(work: dict[str, dict[str, str]], report: Report) -> None:
 
     for identifier in graph:
         visit(identifier)
-    pending = list(graph.get("WP-080", []))
+    # Local release must not depend on deferred adaptation/submission work.
+    releases = [key for key, row in work.items()
+                if row["milestone"] == "P7" and row["status"] != "deferred"]
+    pending = [dependency for key in releases for dependency in graph.get(key, [])]
     ancestors = set()
     while pending:
         identifier = pending.pop()
@@ -242,7 +246,7 @@ def check_dependencies(work: dict[str, dict[str, str]], report: Report) -> None:
     for identifier in ancestors:
         report.require(
             work[identifier]["milestone"] != "P8" and identifier not in {"WP-081", "WP-082"},
-            f"Corp local readiness incorrectly depends on deferred transfer/submission {identifier}",
+            f"Local readiness incorrectly depends on deferred transfer/submission {identifier}",
         )
 
 
@@ -317,6 +321,10 @@ def check_git(root: Path, base: str, report: Report) -> None:
         changed = set(git_lines(root, "diff", "--no-ext-diff", "--no-textconv", "--no-renames", "--name-only", revision, "--"))
         changed.update(git_lines(root, "diff", "--cached", "--no-ext-diff", "--no-textconv", "--no-renames", "--name-only", revision, "--"))
         changed.update(git_lines(root, "ls-files", "--others", "--exclude-standard"))
+        archived = {path for path in git_lines(root, "ls-tree", "-r", "--name-only", revision, "--", "docs/archive")
+                    if path != "docs/archive/README.md"}
+        for path in sorted(archived & changed):
+            report.errors.append(f"Historical archive modified/deleted: {path}")
         for path in sorted(original & changed):
             report.errors.append(f"Historical cycle modified/deleted: {path}")
         if changed:
@@ -335,12 +343,67 @@ def check_git(root: Path, base: str, report: Report) -> None:
         report.errors.append(str(error))
 
 
+def archived_ids(root: Path, report: Report) -> tuple[set[str], set[str]]:
+    """Keep historical attribution without importing old work as prerequisites."""
+    work, cases = set(), set()
+    for path in sorted((root / "docs/archive").rglob("IMPLEMENTATION_BACKLOG.csv")):
+        if not path.resolve().is_relative_to(root.resolve()):
+            report.errors.append("Archived registry escapes repository")
+            continue
+        work.update(index_rows(read_csv(path, BACKLOG_COLUMNS, report), "id", r"WP-\d{3}", report))
+    for path in sorted((root / "docs/archive").rglob("ACCEPTANCE_MATRIX.csv")):
+        if not path.resolve().is_relative_to(root.resolve()):
+            report.errors.append("Archived registry escapes repository")
+            continue
+        cases.update(index_rows(read_csv(path, TEST_COLUMNS, report), "test_id", r"TC-\d{3}", report))
+    return work, cases
+
+
+def check_archive(root: Path, report: Report) -> None:
+    """Verify frozen snapshots and intentional retirements, not historical claims."""
+    for manifest in sorted((root / "docs/archive").rglob("dispositions.json")):
+        try:
+            data = json.loads(read_text(manifest, report))
+            entries = data["entries"]
+            if data.get("schema_version") != 1 or not isinstance(entries, list):
+                raise ValueError("unsupported archive inventory")
+            for entry in entries:
+                if not isinstance(entry, dict):
+                    raise ValueError("invalid archive entry")
+                disposition = entry.get("disposition")
+                relative = entry.get("original_path") if disposition == "retired_fictional_preview" else entry.get("archive_path")
+                if not isinstance(relative, str) or not relative or ".." in Path(relative).parts:
+                    raise ValueError("invalid archive path")
+                path = (root / relative).resolve()
+                if not path.is_relative_to(root.resolve()):
+                    raise ValueError("archive path escapes repository")
+                if disposition == "retired_fictional_preview":
+                    report.require(not path.exists(), f"Retired preview path reintroduced without a new product decision: {relative}")
+                elif disposition in {"historical_snapshot", "moved_to_archive"}:
+                    if not path.is_relative_to((root / "docs/archive").resolve()):
+                        raise ValueError("snapshot is outside archive")
+                    expected = entry.get("sha256")
+                    if not isinstance(expected, str) or not re.fullmatch(r"[0-9a-f]{64}", expected):
+                        raise ValueError("invalid archive digest")
+                    report.require(path.is_file() and hashlib.sha256(path.read_bytes()).hexdigest() == expected,
+                                   f"Archived bytes changed or missing: {relative}")
+                else:
+                    raise ValueError("invalid archive disposition")
+        except (OSError, KeyError, TypeError, ValueError) as error:
+            report.errors.append(f"{manifest.name}: archive verification failed: {error}")
+
+
 def validate(root: Path, git_base: str | None = None) -> Report:
     root = root.resolve()
     report = Report()
     for name in REQUIRED:
         report.require((root / name).is_file(), f"Required file missing: {name}")
-    paths = [root / "README.md", root / "AGENTS.md", *sorted((root / "docs").rglob("*.md"))]
+    paths = [root / name for name in ("README.md", "AGENTS.md", "CONTRIBUTING.md") if (root / name).is_file()]
+    for directory in ("docs", "plugins", "research", "research_tools", ".github"):
+        paths.extend(path for path in sorted((root / directory).rglob("*.md"))
+                     if ".validation-deps" not in path.parts
+                     and (not path.is_relative_to(root / "docs/archive")
+                          or path == root / "docs/archive/README.md"))
     pages = {}
     for path in paths:
         if not path.resolve().is_relative_to(root):
@@ -360,7 +423,11 @@ def validate(root: Path, git_base: str | None = None) -> Report:
         continuous(identifiers, prefix, 2, report)
     work = index_rows(read_csv(root / "docs/IMPLEMENTATION_BACKLOG.csv", BACKLOG_COLUMNS, report), "id", r"WP-\d{3}", report)
     cases = index_rows(read_csv(root / "docs/engineering/ACCEPTANCE_MATRIX.csv", TEST_COLUMNS, report), "test_id", r"TC-\d{3}", report)
-    continuous(set(cases), "TC", 3, report)
+    case_start = min((int(identifier[3:]) for identifier in cases
+                      if re.fullmatch(r"TC-\d{3}", identifier)), default=1)
+    continuous(set(cases), "TC", 3, report, start=case_start)
+    archived_work, archived_cases = archived_ids(root, report)
+    check_archive(root, report)
     for label, rows in (("Backlog", work), ("Matrix", cases)):
         covered = set()
         for identifier, row in rows.items():
@@ -396,7 +463,7 @@ def validate(root: Path, git_base: str | None = None) -> Report:
             linked = re.search(r"^\*\*Decisions:\*\*\s*([^\n]+)", body, re.M)
             report.require(linked is not None, f"{identifier}: missing decision header")
     report.require(requirements <= contract_coverage, f"Contracts missing requirement coverage: {sorted(requirements - contract_coverage)}")
-    known = requirements | set(work) | set(cases) | set(contracts) | set(decisions)
+    known = requirements | set(work) | set(cases) | archived_work | archived_cases | set(contracts) | set(decisions)
     for page, content in pages.items():
         refs = set(re.findall(r"\b(?:SF-\d{2}|NFR-\d{2}|WP-\d{3}|TC-\d{3}|C-\d{3}|D-\d{3})\b", prose(content)))
         report.require(refs <= known, f"{page.name}: unknown references {sorted(refs - known)}")
@@ -406,8 +473,7 @@ def validate(root: Path, git_base: str | None = None) -> Report:
     report.require(gates == GATES, "Roadmap must declare P0 through P8")
     count = re.search(r"\*\*(\d+) planned\s+scenarios\*\*", text("docs/engineering/TEST_STRATEGY.md"))
     report.require(count is not None and int(count[1]) == len(cases), "Test strategy scenario count differs from matrix")
-    report.require("WP-001" in work and "WP-080" in work, "Missing baseline approval or local-delivery work package")
-    if work.get("WP-001", {}).get("status") != "done":
+    if "WP-001" in work and work["WP-001"]["status"] != "done":
         for identifier, row in work.items():
             if identifier not in {"WP-000", "WP-001"}:
                 report.require(row["status"] not in {"done", "in_progress"}, f"{identifier}: execution advanced before baseline approval")
@@ -428,7 +494,7 @@ def validate(root: Path, git_base: str | None = None) -> Report:
             continue
         if path.parent == root / CYCLE_DIRECTORY:
             cycles += 1
-            check_cycle(path, data, set(work), report)
+            check_cycle(path, data, set(work) | archived_work, report)
     report.require(cycles > 0, "No engineering cycles")
     if git_base is not None:
         check_git(root, git_base, report)
@@ -452,7 +518,7 @@ def main() -> int:
         "limits": [
             "Does not run product, host, model, installation or acceptance scenarios.",
             "Does not authenticate decisions, establish semantic correctness or fetch external URLs.",
-            "Local links may use the approved sibling docs corpus; these are not portable runtime dependencies.",
+            "Historical archive links retain original-commit context; active documentation links and archive bytes are checked separately.",
         ],
     }, indent=2))
     return 1 if report.errors else 0

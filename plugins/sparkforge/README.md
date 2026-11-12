@@ -136,5 +136,6 @@ python -B -m unittest discover -s tests -p test_native_integration.py
 
 These exercise owned contracts and fixture behavior, not a native model run,
 live authorized sources, Corp/Acro qualification or operator acceptance.
-The separate browser preview is a fictional, tab-local user-journey prototype;
-it is not this native execution path.
+The separate fictional browser preview was retired during the WP-100 cleanup.
+The coordinated multi-agent target is described in the repository architecture;
+this package still implements assisted v1 until that work is delivered.

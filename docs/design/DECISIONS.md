@@ -30,6 +30,8 @@ silently replace a host, identity, provider or endpoint.
 
 ## D-004: native composition and minimal control plane
 
+**Status:** retained as assisted-v1 implementation history; superseded for target composition by D-026.
+
 **Requirements:** SF-05, SF-11, SF-13, SF-20, NFR-07, NFR-09.
 
 IMPLEMENTED LOCAL CHOICE: one agent/skill uses existing host reasoning and
@@ -74,7 +76,7 @@ reservations. Production-store, synchronization and power-loss claims are open.
 
 Canonical specs, controlled-byte manifests, exact check commands and current
 review context prevent accidental stale admission. Material changes require
-new decisions/evidence. Same-privilege tampering and actor authentication remain
+new decisions/evidence. For the coordinated target, distinguish unchanged intent from technical plan revisions under D-027; v1 continues to bind its entire frozen spec. Same-privilege tampering and actor authentication remain
 outside the helper's trust claims.
 
 ## D-010: ownership and concurrency
@@ -179,7 +181,7 @@ relabeled as an actual user or deployed-provider evaluation.
 **Requirements:** SF-13, NFR-05, NFR-07, NFR-10.
 
 IMPLEMENTED LOCAL CHOICE: Python 3.10+ standard library. Git supports project
-checks; Node.js is used only for the existing static preview tests. No runtime
+checks. The fictional static preview and its Node tests were retired in the WP-100 reorganization; Node is no longer required. No runtime
 framework, dependency acquisition or model service is automatically installed.
 
 ## D-023: genuine decision origin
@@ -206,3 +208,51 @@ REQUIRED TARGET: permitted observations, inactive proposals, independent
 evaluation, exact promotion, monitoring and safe withdrawal. No-change is valid.
 The learner cannot change its own authority, protected acceptance, provider or
 budget. The current workflow does not claim promotion/rollback is implemented.
+
+## D-026: coordinated roles with a deterministic control plane
+
+**Requirements:** SF-20, SF-22, SF-23, SF-24, SF-27, NFR-07.
+
+ACCEPTED TARGET: distinct brain, intent controller, coder, test author, reviewer and diagnostician responsibilities, with deterministic test execution and coordination. Supersedes D-004 as destination; the old package remains assisted. Sequential agents first; concurrency is optional.
+
+## D-027: material decisions and split artifacts
+
+**Requirements:** SF-04, SF-10, SF-25, SF-26, NFR-01, NFR-02.
+
+ACCEPTED TARGET: separate intent, execution envelope, technical plan and evidence. Ordinary bounded repairs/replans preserve intent approval after controller/admission checks. Material behavior/authority/resource changes need their decision owner. Do not bypass current v1 manual decisions while implementing this target.
+
+## D-028: explicit host protocol before native wiring
+
+**Requirements:** SF-13, SF-22, SF-27, SF-30, NFR-03, NFR-05.
+
+ACCEPTED TARGET: a small capability-based adapter plus deterministic fake. No model SDK/framework choice or native launcher is implied. Actual host/build capability selection remains OPEN at P6; absent features narrow support rather than silently changing providers.
+
+## D-029: job-wide resource and recovery invariants
+
+**Requirements:** SF-09, SF-28, SF-29, SF-30, NFR-03, NFR-06.
+
+ACCEPTED TARGET: operation reservations, idempotency, typed failures, no-progress detection and aggregate budgets survive task/plan/agent changes. Unknown usage/effects stay unknown. Existing per-check v1 bounds are reused, not mistaken for complete job accounting.
+
+## D-030: environment-local knowledge and independent target evidence
+
+**Requirements:** SF-03, SF-12, SF-16, SF-17, SF-23, NFR-01, NFR-04, NFR-05.
+
+ACCEPTED TARGET: each run uses one selected platform/environment profile. corp and acro keep separate credentials, sources, journals and model routes. Shared reviewed code does not require a live bridge or export of corp runtime knowledge.
+
+## D-031: protected oracle and progressive evidence
+
+**Requirements:** SF-06, SF-07, SF-08, SF-14, SF-24, NFR-08.
+
+ACCEPTED TARGET: define known-good/known-bad behavioral fixtures first, then fake-host integrations, fault/recovery cases and actual installed model journeys. Do not relabel fixture-authored repairs, worker prose, metadata or historical receipts as live acceptance.
+
+## D-032: one active roadmap and explicit history
+
+**Requirements:** SF-11, SF-19, SF-20, SF-31, NFR-07.
+
+IMPLEMENTED PLANNING CHOICE: active work begins WP-100; old IDs/scenarios remain in a byte-preserved archive for old cycles. Remove the disconnected fictional preview; preserve runtime tests and research/source bytes. Publication/private-corpus history no longer dominates active milestones.
+
+## D-033: core factory before optional expansion
+
+**Requirements:** SF-14, SF-17, SF-21, SF-31, NFR-07, NFR-09.
+
+ACCEPTED DELIVERY ORDER: core serial factory, recovery and first-environment installed qualification precede optional measured parallelism and learning promotion. Acro remains an independent target with its own priority/context, not a hidden prerequisite for the first local release.

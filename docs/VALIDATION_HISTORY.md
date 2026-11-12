@@ -218,3 +218,22 @@ review scripts and validation notes remain in authorized local review storage.
 The [public summary](engineering/evidence/PRIVATE_CORPUS_REVIEW_SUMMARY_20261112.json)
 contains only aggregate outcomes. No original source identifier, text, image,
 private manifest, policy or operational record is included.
+
+## 2026-11-12: WP-100 coordinated-factory organization
+
+The owner requested repository cleanup, a detailed multi-agent roadmap and Copilot continuation. Current implementation remains assisted v1. The fictional preview/Node suite was retired; its historical results above are not current product evidence. Prior plans/publication material were archived with original-byte dispositions; old cycles/receipts remain unchanged.
+
+Initial broadened link/lifecycle validation exposed references in the not-yet-updated status file and missing new lifecycle records; these were corrected as part of completing this change. Final check outcomes are recorded below after execution. No real host/model/environment acceptance is claimed.
+
+| Reorganization check | Actual outcome | Scope |
+|---|---|---|
+| First full check-wrapper run | Python 411 collected, 381 passed, 30 skipped; plan passed; whitespace failed on generated Markdown hard breaks | Failure retained; trailing whitespace removed |
+| Added archive-history regression | 44 planning-validator cases passed | Includes historical snapshot rewrite rejection |
+| Final local full regression | 412 collected; 382 passed; 30 skipped; zero failures/errors | Linux/Python 3.12.14; 29 Windows-only and one PowerShell parser integration skip |
+| Planning/link/archive validation | PASS: 41 requirements, 50 active tasks, 100 planned scenarios, 24 contracts, 33 decisions, eight cycles | Managed active Markdown and frozen historical bytes; not product acceptance |
+| Retained source/test/research and cycles | PASS: 107 retained files and seven historical cycles have unchanged Git blob IDs | Runtime implementation/research preserved; validator changes intentional |
+| Runtime-source ignore check | PASS: root runtime output ignored; plugins/sparkforge/runtime source trackable | Corrected root ignore scope |
+| git diff --check | PASS after removing generated trailing whitespace | Final staged boundary checked before publication |
+| Hosted Linux/Windows CI | NOT_RUN at local checkpoint | Actual outcome recorded only after publication |
+
+The source-neutral test additions cover CI event-base selection, active/historical IDs, archive integrity, current documentation links and immutable archive history. The obsolete preview and its 40 Node checks were intentionally retired; no native acceptance tests were removed.

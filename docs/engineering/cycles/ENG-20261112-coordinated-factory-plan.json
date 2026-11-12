@@ -1,0 +1,65 @@
+{
+  "schema_version": "sparkforge-engineering-cycle.v1",
+  "id": "ENG-20261112-coordinated-factory-plan",
+  "date": "2026-11-12",
+  "work_items": [
+    "WP-100"
+  ],
+  "workstream": "coordinated-factory-baseline",
+  "cycle_type": "organization-and-governance",
+  "status": "validated",
+  "objective": "Organize SparkForge for dependency-ordered multi-agent development and a concrete GitHub Copilot continuation.",
+  "changes": [
+    "Replace active planning with 50 work packages, 100 scenarios, target architecture, role/data/state contracts and material decision policy.",
+    "Preserve prior planning/publication snapshots and immutable history; retire disconnected fictional preview and Node tests.",
+    "Add Copilot repository instructions, first task, continuation prompt, progressive evaluation and Linux/Windows regression CI.",
+    "Broaden planning validation to active Markdown, archive integrity and separate active/historical identities.",
+    "Anchor runtime-output ignore so the future plugin runtime source is trackable."
+  ],
+  "validation": [
+    {
+      "check": "python -B scripts/check_repository.py --base HEAD",
+      "scope": "Linux/Python 3.12.14 full source-neutral regression and planning/whitespace checks",
+      "outcome": "PASS",
+      "reference": "412 collected, 382 passed, 30 environment skips; zero failures/errors; final plan and whitespace pass."
+    },
+    {
+      "check": "Retained Git blob comparison and archive integrity",
+      "scope": "107 retained implementation/test/research files; all seven earlier cycles; frozen archived dispositions",
+      "outcome": "PASS",
+      "reference": "docs/engineering/evidence/REORGANIZATION_20261112.json"
+    },
+    {
+      "check": "First intermediate wrapper/formatting correction",
+      "scope": "Observed test pass followed by generated Markdown whitespace failure",
+      "outcome": "PASS",
+      "reference": "Failure recorded in validation history; corrected and affected check rerun successfully."
+    },
+    {
+      "check": "Hosted Linux/Windows CI and remote tree",
+      "scope": "Publication follow-up",
+      "outcome": "NOT_RUN",
+      "reference": "Will be observed after publication; not asserted by this local cycle."
+    }
+  ],
+  "results": [
+    "Local planning/cleanup scope validated; 50 active tasks and 100 planned scenarios are ready for Copilot.",
+    "Existing assisted v1 implementation and public research/source bytes preserved; no coordinated runtime or live environment acceptance claimed.",
+    "First implementation task is WP-110; retired preview is recoverable from prior Git history."
+  ],
+  "limitations": [
+    "No actual corp/acro or model-driven acceptance; hosted CI not yet observed.",
+    "No independent reviewer or human approval was fabricated."
+  ],
+  "rollback": "Create a corrective/revert commit; retain historical cycles and source byte identities. Retired preview is recoverable at f29eeb2e579f695ebf3c2ec522183ad23a555288.",
+  "next_steps": [
+    "Implement WP-110 from FIRST_TASK.md, then dependency-ready P1 work."
+  ],
+  "evidence": [
+    "docs/VALIDATION_HISTORY.md",
+    "docs/development/REPOSITORY_CLEANUP.md",
+    "docs/archive/2026-11-12/dispositions.json",
+    "docs/engineering/evidence/REORGANIZATION_20261112.json"
+  ],
+  "public_safe": true
+}
