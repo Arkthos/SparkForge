@@ -1,9 +1,16 @@
 # Clean repository publication
 
 **Destination:** [Arkthos/SparkForge](https://github.com/Arkthos/SparkForge).
-**Current state:** initial publication verified; the reviewed corpus/tooling
-increment is ready for publication under the owner's original code/research
-request. GitHub reports public visibility; that setting will not be changed.
+**Current state:** reviewed corpus/tooling expansion published and verified
+under the owner's code/research request. GitHub reports public visibility;
+that setting was not changed by this work.
+
+Publication commit `5242e25542f107349339b21ec8868c1a68481098`, tree
+`ba3f1cb7145eecac8e584850ae9cb88b16413ce8`, was verified at
+`2026-11-12T17:30:16.076530+00:00`. Every one of the 157 remote file objects
+matched the local commit, including 28 tooling-directory files representing
+all 19 authored inputs and all 14 detailed dossier documents. Private review
+outputs, source captures and dependency caches were absent.
 
 The initial private-only hold was an agent-selected conservative default,
 not a private-visibility condition in the owner's request. It is corrected

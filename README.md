@@ -108,10 +108,10 @@ The original working history is preserved separately, not rewritten.
 **2026-11-12 scope correction:** the owner requested publication of the code
 and research without requiring private visibility. The initial private-only
 guard was unnecessarily restrictive for this reviewed, non-sensitive material.
-The detailed public research and authored tooling at
-`13e15010ffc80546fc0cb8ef3ea58fbcc43c3886` are approved task scope; repository
-visibility will not be changed. Publication verification is recorded separately.
-This does not clear the private wiki/study candidates or their original inputs.
+The detailed public research and authored tooling are now published in
+verified commit `5242e25542f107349339b21ec8868c1a68481098`; all 157 remote file
+objects matched the checked local tree and visibility was not changed.
+This does not clear or include the private wiki/study candidates or their original inputs.
 
 No private source is a test or installation dependency. Authorized private
 knowledge can be supplied separately at runtime; it does not become repository

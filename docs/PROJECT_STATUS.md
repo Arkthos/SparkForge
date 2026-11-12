@@ -1,10 +1,10 @@
 # SparkForge project status
 
 **As of:** 2026-11-12.
-**Position:** the initial software/public-research snapshot is online; the
-expanded corpus/tooling update is validated and committed locally, with its
-unnecessary private-only hold corrected for reviewed non-sensitive content.
-Publication verification is pending. The native assisted
+**Position:** the expanded reviewed code and detailed public-research corpus
+are published and verified. The unnecessary private-only hold was corrected
+without changing repository visibility or including private source material.
+The native assisted
 factory remains experimental, not deployment-qualified.
 
 The publication contains project-owned code, source-neutral documentation,
@@ -16,13 +16,14 @@ are excluded. No private collection is needed to run the test suite.
 workspace. All 24 original application/test/preview code files are present and
 byte-identical. WP-003 restored all 19 inventoried research/checkpoint utility
 inputs and 14 detailed public-topic documents in local commit
-`13e15010ffc80546fc0cb8ef3ea58fbcc43c3886`. GitHub now reports the repository
-as public. The first guard stopped before `git push`, but the owner's explicit
-publication request did not impose private visibility. The correction permits
-only the already reviewed code/public-research payload in the same repository,
-without changing visibility or inventing an answer to the earlier question.
-WP-004 has complete local wiki/study review candidates,
-but those private candidates and unreviewed attachments are not on GitHub.
+`13e15010ffc80546fc0cb8ef3ea58fbcc43c3886`. These additions are now online in
+verified publication commit `5242e25542f107349339b21ec8868c1a68481098`.
+All 157 remote file objects matched the local tree. Repository visibility is
+public and was not changed by the resumed upload. The earlier stopped guard
+and its correction remain recorded; no user answer was fabricated.
+WP-004 has complete local wiki/study review candidates. Advisory text/media
+review is underway locally; those candidates and attachments are not on GitHub
+and remain unapproved for release.
 See the [completeness specification](specs/CORPUS_COMPLETENESS.md) and
 [review-preparation guide](engineering/CORPUS_REVIEW.md).
 
@@ -96,9 +97,10 @@ documentation/spec candidate; do not attach an earlier private token or verdict.
 
 ## Next actions
 
-1. Publish and verify the reviewed code/public-research update without changing
-   visibility or including restricted material.
-2. Review the complete local private corpus before any separately authorized upload.
+1. Use the published detailed research and portable tooling; preserve the
+   distinction between source references and acquired/private source copies.
+2. Finish advisory review of the local private corpus, then obtain the applicable
+   exact release decision before any restricted upload.
 3. Use this checkout for GitHub-bound work; keep excluded private material outside it.
 4. Run a small real task only in a genuinely approved host/data/resource scope.
 5. Qualify source freshness, lifecycle and actual control boundaries independently.

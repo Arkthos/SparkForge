@@ -1,10 +1,10 @@
 # What the repository includes
 
-**Updated:** 2026-11-12. **The additions below describe the local working
-repository until the resulting GitHub revision is verified.** Commit `13e1501`
-is ready locally. The initial private-only hold is corrected for the reviewed
-non-sensitive code/public research already covered by the owner's publication
-request. No repository visibility change or private-corpus upload is implied.
+**Updated:** 2026-11-12. **The reviewed code/public-research additions are now
+on GitHub**, verified in commit `5242e25542f107349339b21ec8868c1a68481098`
+against all 157 remote file objects. The initial private-only hold was corrected
+for this reviewed non-sensitive payload. No repository visibility change or
+private-corpus upload occurred.
 
 This is a completeness statement, not permission to
 disclose excluded material. The owner requested all research, a scrubbed wiki
@@ -28,8 +28,8 @@ See the [research index](../../research/README.md), detailed
 The tooling's 72 cases passed without skips; the full integrated Python run
 passed 394 of 396 cases, with two existing Windows symlink-privilege skips.
 See the [completeness specification](../specs/CORPUS_COMPLETENESS.md) and
-validation history for scope and corrections. Local completion is not an
-uploaded result until the exact remote commit is verified.
+validation history for scope and corrections. The actual remote comparison,
+not merely local completion, establishes the published result.
 
 ## Complete local review, not published wiki content
 

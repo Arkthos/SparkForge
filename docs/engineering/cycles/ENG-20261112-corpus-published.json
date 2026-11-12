@@ -1,0 +1,65 @@
+{
+  "schema_version": "sparkforge-engineering-cycle.v1",
+  "id": "ENG-20261112-corpus-published",
+  "date": "2026-11-12",
+  "work_items": ["WP-003", "WP-004"],
+  "workstream": "corpus-completeness",
+  "cycle_type": "publication-closure",
+  "status": "validated",
+  "objective": "Record actual publication of the reviewed code/public-research expansion while keeping private corpus review and release separate.",
+  "changes": [
+    "Closed WP-003 using the actual GitHub main-ref and all-file-object comparison.",
+    "Updated current coverage and project records so local preparation is no longer confused with the uploaded code/research.",
+    "Preserved earlier blocked/scope-correction cycles and all tested code/research bytes.",
+    "Kept WP-004 private text/media review local and release authority unresolved."
+  ],
+  "validation": [
+    {
+      "check": "Guarded existing-credential git push and GitHub ref/tree verification",
+      "scope": "Reviewed branch in the same requested repository",
+      "outcome": "PASS",
+      "reference": "5242e25542f107349339b21ec8868c1a68481098; tree ba3f1cb7145eecac8e584850ae9cb88b16413ce8; all 157 remote file objects match"
+    },
+    {
+      "check": "Remote exclusions, visibility and local upstream/worktree",
+      "scope": "No private review/archive/runtime/dependency outputs; no visibility modification",
+      "outcome": "PASS",
+      "reference": "2026-11-12T17:30:16.076530+00:00 verification; repository remains public, upstream matches and worktree clean"
+    },
+    {
+      "check": "Documentation closure lifecycle and whitespace",
+      "scope": "Eight documentation paths; 26 project Markdown files, 84 links, 46 work packages and six cycles",
+      "outcome": "PASS",
+      "reference": "python -B scripts\\validate_plan.py --base HEAD; git --no-pager diff --cached --check"
+    },
+    {
+      "check": "Private wiki/study release",
+      "scope": "Separate source/data-owner and semantic/media conditions",
+      "outcome": "NOT_ASSESSED",
+      "reference": "Advisory review is local; no private corpus is uploaded"
+    }
+  ],
+  "results": [
+    "All 19 inventoried authored research/checkpoint inputs and 14 detailed public dossier documents are represented in the verified online tree.",
+    "The original application code remains unchanged and present.",
+    "The full private wiki/study upload is still incomplete; this closure does not label it published."
+  ],
+  "limitations": [
+    "Public-source research does not include raw captured third-party code, article/media archives or restricted comparisons.",
+    "Local private review, even when advisory inspection completes, cannot fabricate human/source-owner release authority.",
+    "No hosted CI, live collector, deployment or actual model-driven user acceptance is claimed."
+  ],
+  "rollback": "Use new reviewed commits; preserve all source originals and earlier cycles. No force-push, visibility reset or private-data publication is implied.",
+  "next_steps": [
+    "Publish this documentation closure and verify its final remote identity.",
+    "Complete local advisory text/media review with honest unreadable/withheld dispositions.",
+    "Obtain the applicable exact release decision before any private-corpus upload."
+  ],
+  "evidence": [
+    "docs/delivery/CORPUS_COVERAGE.md",
+    "docs/delivery/GITHUB_PUBLICATION.md",
+    "docs/engineering/evidence/CORPUS_COMPLETENESS_20261112.json",
+    "docs/VALIDATION_HISTORY.md"
+  ],
+  "public_safe": false
+}

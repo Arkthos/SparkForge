@@ -170,3 +170,24 @@ The earlier stopped guard and blocked cycle are preserved as historical facts.
 | Local reviewed implementation and clean state | PASS | Implementation `13e1501`, preserved blocked handoff `b8e5a32`; no new private payload added |
 | Documentation correction, complete outgoing content and byte verification | PASS | 157 staged files, 76 Markdown documents, 735 local links and 76 unpushed historical blobs checked; no unresolved sensitive indicators or private review/dependency outputs |
 | Actual resumed publication and remote verification | NOT_RUN at correction preparation | Record only after observing the result |
+
+## 2026-11-12: expanded code and public research published
+
+The reviewed main branch was pushed under the owner's original publication
+request, without a force push, credential/account change, repository visibility
+edit or private-corpus inclusion.
+
+| Actual check | Result | Scope |
+|---|---|---|
+| Guarded push to the unchanged repository/owner | PASS | Same repository ID and expected remote parent; only the reviewed branch |
+| GitHub main-ref and complete recursive tree comparison | PASS | Commit `5242e25542f107349339b21ec8868c1a68481098`; all 157 paths, modes, types and blob IDs match |
+| Explicit exclusion check | PASS | No `.private.json`, binary source attachments, private archives, SQLite state or validation dependency outputs in the remote tree |
+| Resulting visibility | Public, unchanged | No visibility-edit command was performed |
+| Local upstream and working state | PASS | Upstream matches the published head; working tree clean |
+| `python -B scripts\validate_plan.py --base HEAD` and staged whitespace | PASS | Eight documentation paths; 26 project Markdown files, 84 links, 46 work packages and six cycles; no tested code/research changes |
+
+Verification time: `2026-11-12T17:30:16.076530+00:00`.
+Tree: `ba3f1cb7145eecac8e584850ae9cb88b16413ce8`.
+The detailed dossier and authored tools are now genuinely online; the local
+wiki/study candidates are not. Advisory text/media review of those private
+inputs proceeds locally and cannot grant release authority.
