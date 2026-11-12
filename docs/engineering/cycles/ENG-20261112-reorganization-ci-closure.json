@@ -1,0 +1,56 @@
+{
+  "schema_version": "sparkforge-engineering-cycle.v1",
+  "id": "ENG-20261112-reorganization-ci-closure",
+  "date": "2026-11-12",
+  "work_items": [
+    "WP-100"
+  ],
+  "workstream": "coordinated-factory-baseline",
+  "cycle_type": "publication-and-ci-closure",
+  "status": "validated",
+  "objective": "Record actual hosted Linux/Windows regressions and exact publication identity after the planning reorganization.",
+  "changes": [
+    "Update the four living records with observed hosted results and verified remote source/tree.",
+    "Append a new cycle/receipt without rewriting earlier evidence or changing runtime implementation."
+  ],
+  "validation": [
+    {
+      "check": "GitHub Actions run 43293165473",
+      "scope": "Commit 8b8c16781be4de39e4e06c0e25b4060fb207b54c; Linux/Windows repository regression matrix",
+      "outcome": "PASS",
+      "reference": "https://github.com/Arkthos/SparkForge/actions/runs/43293165473"
+    },
+    {
+      "check": "Remote commit/tree verification",
+      "scope": "195 blobs; exact staged-tree identity",
+      "outcome": "PASS",
+      "reference": "5c547723a2b87044750769ffb09e0ee24cff52db"
+    },
+    {
+      "check": "python -B scripts/validate_plan.py --base HEAD and staged whitespace",
+      "scope": "Documentation-only closure boundary",
+      "outcome": "PASS",
+      "reference": "Local closure checks before publication; hosted source results above refer to the tested first commit."
+    }
+  ],
+  "results": [
+    "Windows: all 412 tests passed, zero skips.",
+    "Linux: 383 passed, 29 Windows-only skips, zero failures/errors.",
+    "Both jobs passed planning and whitespace checks.",
+    "Next task is WP-110; coordinated runtime remains unimplemented."
+  ],
+  "limitations": [
+    "Hosted repository tests are not real corp/acro, installed multi-agent lifecycle, model-driven repair or independent domain acceptance.",
+    "This closure adds documentation/evidence; it does not relabel the prior CI source commit."
+  ],
+  "rollback": "Correct with a new commit/cycle; preserve original hosted receipts and historical source/tree attribution.",
+  "next_steps": [
+    "Use COPILOT_HANDOFF.md and FIRST_TASK.md to implement WP-110, then dependency-ready P1 work."
+  ],
+  "evidence": [
+    "docs/engineering/evidence/REORGANIZATION_CI_20261112.json",
+    "docs/VALIDATION_HISTORY.md",
+    "https://github.com/Arkthos/SparkForge/actions/runs/43293165473"
+  ],
+  "public_safe": true
+}

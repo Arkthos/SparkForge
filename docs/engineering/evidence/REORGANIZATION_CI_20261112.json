@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "source_commit": "8b8c16781be4de39e4e06c0e25b4060fb207b54c",
+  "tree_sha": "5c547723a2b87044750769ffb09e0ee24cff52db",
+  "remote_blob_count": 195,
+  "exact_tree_match": true,
+  "run_id": 43293165473,
+  "run_url": "https://github.com/Arkthos/SparkForge/actions/runs/43293165473",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "job_id": 131444412100,
+      "os": "ubuntu-latest",
+      "collected": 412,
+      "passed": 383,
+      "skipped": 29,
+      "failures": 0,
+      "errors": 0,
+      "plan": "PASS",
+      "whitespace": "PASS"
+    },
+    {
+      "job_id": 131444412594,
+      "os": "windows-latest",
+      "collected": 412,
+      "passed": 412,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "plan": "PASS",
+      "whitespace": "PASS"
+    }
+  ],
+  "scope": "Hosted source-neutral repository regressions only; no actual platform/model/production acceptance."
+}

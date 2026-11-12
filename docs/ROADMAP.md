@@ -77,4 +77,4 @@ Any newly requested feature gets explicit intent/criterion impact, dependency an
 
 ## Latest checkpoint
 
-WP-100 completed the repository/planning reorganization. Existing core behavior remains assisted v1. The next implementation task is WP-110. Fresh local checks collected 412 Python cases: 382 passed and 30 platform-dependent cases skipped, with no failures/errors. Planning/archive/link checks pass. Hosted CI results will be recorded after actual execution. See [validation history](VALIDATION_HISTORY.md); none of these checks prefill coordinated-runtime milestone acceptance.
+WP-100 completed the repository/planning reorganization. Existing core behavior remains assisted v1. The next implementation task is WP-110. Fresh local checks collected 412 Python cases: 382 passed and 30 platform-dependent cases skipped, with no failures/errors. Planning/archive/link checks pass. Hosted CI on `8b8c167` passed: Windows 412/412, Linux 383 passed with 29 Windows-only skips. Remote publication was verified. See [validation history](VALIDATION_HISTORY.md); none of these checks prefill coordinated-runtime milestone acceptance.

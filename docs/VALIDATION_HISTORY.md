@@ -237,3 +237,14 @@ Initial broadened link/lifecycle validation exposed references in the not-yet-up
 | Hosted Linux/Windows CI | NOT_RUN at local checkpoint | Actual outcome recorded only after publication |
 
 The source-neutral test additions cover CI event-base selection, active/historical IDs, archive integrity, current documentation links and immutable archive history. The obsolete preview and its 40 Node checks were intentionally retired; no native acceptance tests were removed.
+
+## 2026-11-12: hosted reorganization checks and publication closure
+
+Published `8b8c16781be4de39e4e06c0e25b4060fb207b54c` with remote tree `5c547723a2b87044750769ffb09e0ee24cff52db`; the remote tree exactly matches the staged local tree and contains 195 tracked files. [Workflow run 43293165473](https://github.com/Arkthos/SparkForge/actions/runs/43293165473) completed successfully.
+
+| Hosted job | Actual result | Scope |
+|---|---|---|
+| ubuntu-latest / Python 3.12 | 412 collected, 383 passed, 29 Windows-only skips; no failures/errors | PowerShell integration also executed; plan and whitespace checks pass |
+| windows-latest / Python 3.12 | 412 collected, all 412 passed, zero skips/failures/errors | Windows storage/network and PowerShell cases executed; plan and whitespace checks pass |
+
+The follow-up changes only current status/backlog/roadmap, this appended validation entry and new closure evidence/cycle. The tested implementation is unchanged. These are repository regressions, not actual corp/acro or model-driven factory acceptance. Next implementation task remains WP-110.
