@@ -1,0 +1,121 @@
+{
+  "schema_version": "sparkforge.corpus-completeness.v1",
+  "date": "2026-11-12",
+  "scope": "Research/code completeness and local restricted-corpus review preparation",
+  "existing_application_code": {
+    "original_tracked_code_files": 24,
+    "published_files_matching_original_bytes": 24,
+    "missing": [],
+    "changed": [],
+    "scope": "Application helpers, tests, scripts and preview source; not captured upstream code or original Git history."
+  },
+  "research_expansion": {
+    "status": "IMPLEMENTED_PENDING_PUBLICATION",
+    "original_authored_prior_art_documents_to_account_for": 14,
+    "detailed_public_dossier_documents_completed": 14,
+    "detailed_public_dossier_bytes": 260805,
+    "public_research_files": 54,
+    "public_research_content_hashes_checked": 53,
+    "public_research_local_links_checked": 651,
+    "public_research_integration_outcome": "PASS_WITH_DECLARED_EXCLUSIONS",
+    "original_authored_research_utility_files_to_account_for": 19,
+    "captured_third_party_source_redistribution": "NOT_AUTHORIZED_BY_THIS_RECORD",
+    "additional_inventory": "Four authored checkpoint freeze/test/verifier scripts were found outside the research tools directories; duplicate verifier copies may be consolidated only with explicit mapping.",
+    "tooling_integration": "PASS",
+    "authored_inputs_represented": 19,
+    "tooling_publication_paths": 29,
+    "tooling_targeted_tests_passed": 72,
+    "tooling_targeted_tests_skipped": 0,
+    "tooling_source_map": "research_tools/SOURCE_COVERAGE.json",
+    "checkpoint_verifiers_identical": false
+  },
+  "local_review_tool": {
+    "path": "scripts/prepare_wiki_review.py",
+    "targeted_command": "python -B -m unittest discover -s tests -p test_prepare_wiki_review.py",
+    "targeted_outcome": "PASS",
+    "test_cases": 14,
+    "duration_seconds": 0.929,
+    "network_or_model_calls": false,
+    "automatic_publication": false,
+    "new_runtime_dependencies": false,
+    "unit_fixture_limit": "Positive unit fixtures isolate repository-location detection to keep fixtures under tests; actual repository refusal is tested separately and real preparation used a new non-repository local output."
+  },
+  "actual_local_preparation": [
+    {
+      "collection": "retained_wiki",
+      "pages": 117,
+      "attachments": 57,
+      "ancillary_items": 27,
+      "original_bytes_verified": 7610113,
+      "candidate_pages": 117,
+      "declared_redaction_spans": 710,
+      "all_original_hashes_and_bytes_match": true,
+      "every_non_redacted_character_preserved": true,
+      "status": "REVIEW_REQUIRED",
+      "semantic_review_completed": false,
+      "attachment_review_completed": false,
+      "publication_authorized": false,
+      "source_text_or_private_manifest_included_here": false
+    },
+    {
+      "collection": "locally_authored_engineering_study",
+      "pages": 14,
+      "attachments": 0,
+      "ancillary_items": 0,
+      "original_bytes_verified": 141893,
+      "candidate_pages": 14,
+      "declared_redaction_spans": 181,
+      "all_original_hashes_and_bytes_match": true,
+      "every_non_redacted_character_preserved": true,
+      "status": "REVIEW_REQUIRED",
+      "semantic_review_completed": false,
+      "publication_authorized": false,
+      "source_text_or_private_manifest_included_here": false
+    }
+  ],
+  "remaining_release_blockers": [
+    "Mechanical redaction may retain confidential meaning, unidentified names or encoded secrets.",
+    "Opaque attachments have not undergone content review or scrubbing.",
+    "No affirmative source/data-owner release decision for the exact scrubbed corpus/destination was obtained.",
+    "Private original histories, raw transcripts, archives and captured third-party source are not included in the safe publication."
+  ],
+  "captured_upstream_repository": {
+    "inventory_entries": 846,
+    "blobs": 623,
+    "directories": 223,
+    "source_content_published": false,
+    "scope": "Previously retained upstream reference snapshot, not project-authored application or research-tool code.",
+    "inspection_limit": "Counts came from the actual git_type inventory field; an initial projection used absent type fields and was corrected before recording these counts."
+  },
+  "full_integration": {
+    "command": "python -B -m unittest discover -s tests",
+    "environment": "PYTHONPATH explicitly set to ignored research_tools/.validation-deps",
+    "tests_collected": 396,
+    "tests_passed": 394,
+    "tests_skipped": 2,
+    "failures": 0,
+    "errors": 0,
+    "duration_seconds": 99.085,
+    "outcome": "PASS_WITH_SKIPS",
+    "skip_reason": "Existing actual synthetic symlink-creation cases lack Windows privilege; no elevation or workaround.",
+    "research_dependencies": "Declared packages restored only after missing-parser errors, into an ignored owned directory; no vendor code is included in publication.",
+    "live_collectors_or_original_archive_execution": false
+  },
+  "final_publication_preflight": {
+    "outcome": "PASS",
+    "files": 155,
+    "changed_paths": 68,
+    "markdown_files": 76,
+    "local_links": 735,
+    "all_staged_bytes_match_checked_files": true,
+    "private_review_or_dependency_outputs_staged": false,
+    "unresolved_content_indicators": [],
+    "false_positive_review": {
+      "initial_result": "FLAGGED_FOR_REVIEW",
+      "path": "research_tools/wiki/test_collect_wiki.py",
+      "matches": 5,
+      "disposition": "Explicitly synthetic ExampleProject/example-org service-alias URLs used by passive classifier tests; no actual private endpoint or network operation. Exact fixture-only matches were reviewed, not globally ignored."
+    },
+    "original_native_package_preview_and_selfcheck_spec_unchanged": true
+  }
+}

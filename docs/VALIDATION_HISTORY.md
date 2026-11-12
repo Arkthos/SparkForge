@@ -76,3 +76,58 @@ real model task, installed-host acceptance or production release is asserted.
 
 The first cycle's pending push was accurate at preparation time and remains
 historical. This new closure records the real result without rewriting it.
+
+## 2026-11-12: full research/tooling accounting and local wiki review
+
+The owner clarified that a condensed reference was insufficient and requested
+all research, a scrubbed wiki and all code. The original application-code
+comparison found 24 tracked code/test/preview files, all already present with
+identical bytes. Collection/indexing/verification utilities outside that
+application repository and detailed public-topic documents are being added
+under separate owned assignments.
+
+The authored-tool inventory also found four checkpoint freeze/test/verifier
+scripts outside the research directories, bringing the expected original
+utility inventory to 19 files including requirements metadata. Their archive
+contents and historical power/session operations are not execution inputs.
+The captured upstream repository is a different category: its index records
+623 blobs and 223 directories. An initial metadata-only count used nonexistent
+type fields; inspecting the schema and using `git_type` corrected that projection.
+No upstream source content was read or published by the count.
+
+A full local review preparation was implemented instead of labeling a summary
+or a credential-pattern scan a scrubbed/wiki publication. It copies every
+declared source item after hash/size validation, keeps all page text except
+recorded mechanical spans, preserves opaque files as unreviewed originals and
+refuses output inside a Git repository. No source/provider/network collection
+or original-corpus modification was performed.
+
+| Actual check | Result | Scope and limits |
+|---|---|---|
+| Original-to-publication code comparison | PASS: 24 unchanged files | Main application/tests/preview; not captured upstream code or omitted research utilities |
+| `python -B -m unittest discover -s tests -p test_prepare_wiki_review.py` | PASS: 14 cases in 0.929 seconds | Synthetic local data; positive fixtures isolate repository detection; actual refusal covered separately |
+| `python -B scripts\prepare_wiki_review.py --help` | PASS | Usage only; no source read, output or network operation |
+| Actual local wiki preparation with explicit root/output/policy/confirmation | PASS as review preparation | 117 pages, 57 attachments, 27 ancillary items; 7,610,113 original bytes; 710 declared redaction spans |
+| Actual local engineering-study preparation | PASS as review preparation | All 14 authored documents; 141,893 original bytes; 181 declared redaction spans |
+| Full source/copy/candidate reconstruction checks | PASS | Every original hash and byte matched; every candidate was reconstructed exactly from declared spans; no truncation or summaries |
+| Semantic/content review, attachment scrubbing and exact source-owner release decision | NOT_ASSESSED | Permission and safe-to-publish flags remain false; private candidate text/manifests/policy are not committed |
+| Detailed public-research worker validation | PASS | 14 detailed dossier documents, 260,805 bytes; all source documents have dispositions; 54 research files, 53 hashes and 651 links checked |
+| Independent integrated research JSON/link/content-indicator check | PASS | 54 files, 45 Markdown documents, 651 local links; no selected private-source/credential indicators; exclusions remain explicit |
+| Interim `python -B scripts\validate_plan.py --base HEAD` | PASS | 26 project Markdown files, 79 links, 46 work packages and three cycles; not completion of still-running tooling integration |
+| Authored-tool source accounting | PASS: 19/19 inputs, 29 publication paths | Both nonidentical checkpoint verifiers retain separate entry points; private configuration/findings are not copied |
+| Preserved research suites before dependency restore | ERROR: five missing-parser cases in 33 collected | Declared Markdown/image packages restored only into ignored target-owned validation dependencies; all 33 then passed |
+| First expanded research-tool suite | FAIL: one portability case in 66 collected | PowerShell rejected ordinary synchronized metadata as a link; guard corrected to reject actual symlinks/junctions |
+| Final targeted `test_research_tools.py` selector with explicit local `PYTHONPATH` | PASS: 72 cases, no skips | 43 preserved cases plus 29 focused regressions; no real collectors or original archives used |
+| Authored-tool compile and PowerShell parser/help checks | PASS | 24 Python files compiled in memory; a synthetic PowerShell source was parsed, not executed |
+| Owned dependency scratch cleanup | Initial failure corrected | Empty read-only scratch directory inspected, then removed with `-Force`; no ACL change or unrelated deletion; dependencies remain ignored |
+| Full `python -B -m unittest discover -s tests` with scoped research dependency path | PASS: 396 collected, 394 passed, two skips in 99.085 seconds | Application, research tools and local review preparation together; existing Windows symlink privilege skips remain |
+| First complete publication-content scan | Flagged for review | Five source-alias URL strings in one classifier test used public service-domain syntax; no raw private source was printed |
+| Scoped fixture review and complete content/link recheck | PASS | Those five strings are explicit ExampleProject/example-org classifier fixtures with no network use; 155 files, 76 Markdown pages and 735 local links, no unresolved indicators |
+| `python -B scripts\validate_plan.py --base HEAD`, staged whitespace and byte check | PASS | 68 changed paths; 26 project Markdown files, 84 project links, 46 work packages, three cycles; every staged byte matches checked content |
+| New safe-content commit/push and exact remote verification | NOT_RUN at preparation boundary | Record actual observation afterward; private review material and validation dependencies remain excluded |
+
+The engineering-study index labels its subject repository revision separately
+from the authored documents' own hashes. Both original source collections are
+unchanged. Local outputs have explicit `REVIEW_REQUIRED` status; opaque
+attachments remain `NOT_REVIEWED`. An unavailable clarification did not grant
+data-owner authority, and no new private material was uploaded.

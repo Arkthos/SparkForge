@@ -1,0 +1,85 @@
+{
+  "schema_version": "sparkforge-engineering-cycle.v1",
+  "id": "ENG-20261112-corpus-completeness",
+  "date": "2026-11-12",
+  "work_items": ["WP-003", "WP-004"],
+  "workstream": "corpus-completeness",
+  "cycle_type": "implementation",
+  "status": "validated",
+  "objective": "Restore missing detailed public research and authored tools, and prepare every indexed wiki/study item locally without conflating redaction with release authority.",
+  "changes": [
+    "Compared all 24 original tracked application/test/preview code files with the existing publication; every file matched.",
+    "Specified complete research/tool dispositions rather than representing a condensed reference as the full corpus.",
+    "Restored 14 detailed public dossier documents with document-level exclusions and all 19 authored research/checkpoint inputs with portable explicit configuration.",
+    "Implemented a local-only verified full-text review preparer with explicit new non-repository output, recorded redaction spans and conservative failure behavior.",
+    "Prepared all indexed wiki pages/attachments/ancillary files and all authored engineering-study documents locally; kept original bytes and unreviewed media outside Git."
+  ],
+  "validation": [
+    {
+      "check": "Original-to-publication application/test/preview byte comparison",
+      "scope": "24 original tracked code files",
+      "outcome": "PASS",
+      "reference": "No missing or changed code; docs/engineering/evidence/CORPUS_COMPLETENESS_20261112.json"
+    },
+    {
+      "check": "python -B -m unittest discover -s tests -p test_prepare_wiki_review.py",
+      "scope": "14 owned synthetic cases; no network or private source inputs",
+      "outcome": "PASS",
+      "reference": "0.929 seconds; complete accounting/redaction/negative/output-failure cases"
+    },
+    {
+      "check": "Actual local review preparation and full original/candidate reconstruction",
+      "scope": "117 wiki pages, 57 attachments, 27 ancillary items and 14 engineering-study documents",
+      "outcome": "PASS",
+      "reference": "All original hashes/bytes match; every non-redacted character retained; no private text or manifests uploaded"
+    },
+    {
+      "check": "Detailed public research, authored utilities and final integration validation",
+      "scope": "14 dossier documents; 19 tool inputs; 396 Python cases with 394 passed/two privilege skips; all 155 files and 735 links reviewed",
+      "outcome": "PASS",
+      "reference": "Validation history preserves dependency/parser corrections and the five reviewed synthetic service-URL classifier examples"
+    },
+    {
+      "check": "Staged whitespace, project lifecycle and exact working/staged byte comparison",
+      "scope": "68 changed paths; 26 project Markdown files, 84 links, 46 work packages and three cycles",
+      "outcome": "PASS",
+      "reference": "python -B scripts\\validate_plan.py --base HEAD; git --no-pager diff --cached --check; all staged bytes match"
+    },
+    {
+      "check": "New safe-content GitHub commit verification",
+      "scope": "Repository publication",
+      "outcome": "NOT_RUN",
+      "reference": "To be observed after committing/pushing; private review candidates remain excluded"
+    },
+    {
+      "check": "Semantic/media review and source/data-owner release decision",
+      "scope": "Restricted wiki/study corpus",
+      "outcome": "NOT_ASSESSED",
+      "reference": "The unavailable scope response was not approval; mechanical preparation always keeps publication_authorized=false"
+    }
+  ],
+  "results": [
+    "Application code was already present; all inventoried authored research utilities and detailed public topics are now represented and tested.",
+    "Complete local review candidates now exist instead of only a summary or a claim that a scrubbed wiki was published.",
+    "The requested restricted-corpus upload remains incomplete while semantic/media review and exact release authority are missing."
+  ],
+  "limitations": [
+    "Mechanical patterns cannot establish absence of confidential content.",
+    "Attachment bytes are preserved but not scrubbed or semantically reviewed.",
+    "No private source captures, private histories, credentials, runtime records or unlicensed source copies are included in the publication.",
+    "Preparation and local tests are not actual host/user acceptance, hosted CI or release approval."
+  ],
+  "rollback": "Preserve original corpora and existing committed cycles. Correct owned code/docs in a new commit; retain incomplete local review outputs for reconciliation rather than recursively deleting them.",
+  "next_steps": [
+    "Finish safe public research/tooling integration and publish only reviewed non-sensitive additions.",
+    "Review every local candidate and attachment and obtain actual source/data-owner clearance for any restricted upload.",
+    "Keep published and local-only coverage explicit rather than claiming the entire workspace was transferred."
+  ],
+  "evidence": [
+    "docs/specs/CORPUS_COMPLETENESS.md",
+    "docs/engineering/CORPUS_REVIEW.md",
+    "docs/engineering/evidence/CORPUS_COMPLETENESS_20261112.json",
+    "docs/VALIDATION_HISTORY.md"
+  ],
+  "public_safe": false
+}

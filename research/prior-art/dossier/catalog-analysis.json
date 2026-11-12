@@ -1,0 +1,442 @@
+{
+  "schema_version": 1,
+  "publication_edition": "2026-11-12",
+  "historical_research_date": "2026-11-05",
+  "purpose": "Original public-source commentary for the detailed catalog and inspection register; identity and range metadata remain in ../sources.json.",
+  "boundary": "Historical source reading only. No upstream code, private comparison, runtime result, or new source inspection is represented by these notes.",
+  "overview_inspection_note": "Selected candidate screening. Statements remain upstream documentation claims unless a separately registered mechanism supplies narrower implementation evidence.",
+  "candidates": [
+    {
+      "id": "spec-kit",
+      "historical_disposition": "Compare first",
+      "description": "A specification/process toolkit with integrations, presets, extensions, workflows, step plugins, persisted runs, bundles, and catalogs. The reviewed source is broader than a static linear prompt collection.",
+      "reusable_contribution": "Artifact-oriented intent and acceptance, explicit workflow state, resumable gates, and a versioned component inventory.",
+      "conditions": [
+        "A caller-supplied gate verdict is not authenticated human consent. Generic reject-to-skip behavior cannot stand in for a mandatory accepted-brief gate.",
+        "Selected state persistence uses atomic replacement and poisons a failed-save instance; it is not a complete transaction proof across artifacts and external effects.",
+        "Offline bundles have OS/Python and component-specific limits. A manifest need not contain the dependency closure; adapter catalogs/archives and Windows PowerShell requirements remain relevant."
+      ]
+    },
+    {
+      "id": "openspec",
+      "historical_disposition": "Compare first",
+      "description": "A lightweight artifact-first change workflow for existing software. Proposals, specifications, design, tasks, application, and archival make a proposed change distinct from the current specification.",
+      "reusable_contribution": "Brownfield change artifacts, explicit dependencies, relative-path and graph validation, and separate current versus proposed contracts.",
+      "conditions": [
+        "Valid structure or artifact existence is not semantic completeness or human approval. The selected code checks bounded declarations, Windows/POSIX relative paths, duplicate IDs, references, prerequisites, and cycles.",
+        "Copilot documentation does not demonstrate a customized host's compatibility.",
+        "Shared specification stores are described as beta. Combining complete specification systems without one canonical owner can duplicate state."
+      ]
+    },
+    {
+      "id": "spec-kitty",
+      "historical_disposition": "Alternative lifecycle substrate",
+      "description": "A repository-native development workflow documenting work packages, lifecycle lanes, worktrees, review, acceptance, merge, and retrospective learning.",
+      "reusable_contribution": "Traceable work-package boundaries, visible review state, and separation of agent execution workspaces from the canonical project record.",
+      "conditions": [
+        "The captured main branch is a 4.x release-candidate line with stable launch acceptance explicitly pending.",
+        "Only selected README material was reviewed; runtime governance was not exercised.",
+        "Its merge/push route needs its own authorization assessment and does not define the selected product's delivery policy."
+      ]
+    },
+    {
+      "id": "bmad-method",
+      "historical_disposition": "Methodology reference",
+      "description": "A structured methodology organized around specialist roles, requirements, planning, and delivery artifacts.",
+      "reusable_contribution": "Guided translation of user intent into engineering artifacts and explicit handoffs between responsibilities.",
+      "conditions": [
+        "The captured main is v7 preview alpha; stable v6 is another branch. Their interfaces and adoption claims must not be mixed.",
+        "A complete installation adds another methodology and dependency surface; individual artifacts may be the more appropriate reuse unit."
+      ],
+      "license_qualification": "The recorded root MIT grant includes a separate trademark notice; branding rights are not implied."
+    },
+    {
+      "id": "bmad-builder",
+      "historical_disposition": "Generator reference",
+      "description": "A BMad-ecosystem toolkit for authoring agents, skills, workflows, and distributable modules.",
+      "reusable_contribution": "Treat generated agent capabilities as packages with structure, validation, dependencies, and documentation rather than isolated prompt text.",
+      "conditions": [
+        "The module-generation implementation was not deeply traced.",
+        "One ecosystem's marketplace acceptance is not another host's acceptance, and broad Agent Skills format support does not guarantee identical runtime behavior."
+      ],
+      "license_qualification": "MIT grant plus a separate trademark notice; no branding permission is inferred."
+    },
+    {
+      "id": "bmad-tea",
+      "historical_disposition": "Compare first",
+      "description": "Test Engineering Architect combines risk-based planning, automation, test review, nonfunctional evidence, behavioral evaluation, and requirements traceability.",
+      "reusable_contribution": "Requirements-to-evidence matrices, risk-prioritized test generation, distinct test-quality review, and explicit concerns or authorized waivers.",
+      "conditions": [
+        "The selected trace skill depends on BMad configuration and sibling knowledge/contracts, and names scope-bound outputs.",
+        "Optional synthetic oracles and inferred journeys must not silently replace accepted requirements.",
+        "Stack execution support varies; documented red-mode generation differs from expanding coverage of existing behavior."
+      ],
+      "license_qualification": "The recorded grant is MIT with a separate trademark notice."
+    },
+    {
+      "id": "bmad-loop",
+      "historical_disposition": "High-value control-loop reference",
+      "description": "A Python controller around coding CLIs, documenting story selection, implementation, verification, independent review, commit, durable state, and bounded attempts.",
+      "reusable_contribution": "Separate CLI adapters from transport, observe actual completion rather than model prose, retain deferred work, distinguish environment faults, and use fresh review context.",
+      "conditions": [
+        "Early beta; native Windows psmux transport is described as experimental.",
+        "The bundled Copilot profile grants all tools, paths, and URLs and cites a specific macOS/CLI hook observation. It distinguishes main-session and subagent events and waits briefly for later usage records.",
+        "The captured profile has no non-bypass mapping. Adapter platform rejection and missing mappings are integration constraints, not permission to bypass policy.",
+        "Budget enforcement, verification selection, policy reload on resume, implementer-influenced review, and local merge behavior require deliberate assessment."
+      ],
+      "license_qualification": "Recorded MIT grant with a separate trademark notice."
+    },
+    {
+      "id": "superpowers",
+      "historical_disposition": "Compare first",
+      "description": "An engineering skill library spanning discovery, design approval, planning, TDD, diagnosis, review, and verification across coding hosts.",
+      "reusable_contribution": "Understand context and intent before building, observe meaningful failures, review against the specification, and obtain fresh evidence before claiming completion.",
+      "conditions": [
+        "Strong instructions are not runtime enforcement.",
+        "Do not inherit blanket deletion of pre-existing code, an agent's ability to exceed a cap, or cleanup that discards useful user work or evidence.",
+        "Fresh-worker context and spec/quality review still require bounded delegation and host-owned authority.",
+        "Some optional visual features fetch external resources, requiring separate data and execution permission."
+      ]
+    },
+    {
+      "id": "addy-skills",
+      "historical_disposition": "Compare first",
+      "description": "Lifecycle-oriented engineering skills for focused intent discovery, specification, TDD, review, and delivery.",
+      "reusable_contribution": "One-question-at-a-time intake, a plain-language statement of intent, explicit non-goals, and focused quality-review checklists.",
+      "conditions": [
+        "Intake confidence percentages are heuristics rather than calibrated evidence, and responsive-user confirmation is not an authentication protocol.",
+        "Individual-skill copying can omit shared references.",
+        "Copilot skill discovery is distinct from Claude lifecycle-command registration; manifest mode, precedence, and component paths matter."
+      ]
+    },
+    {
+      "id": "rsc-harness",
+      "historical_disposition": "Compare first",
+      "description": "A project-local meta-harness for selecting, deferring, or excluding capabilities, maintaining discoverable knowledge, and applying a specifically identified onboarding plan.",
+      "reusable_contribution": "Exact-plan binding, stale-plan rejection, governed artifact digests, decision ledgers, provenance, receipts/backups, and explicit reasons not to install a capability.",
+      "conditions": [
+        "A plan hash binds content, not the identity or authority of the person accepting it.",
+        "Historical test-source assertions cover no-write preview, wrong-plan rejection, and receipts; the tests were not run.",
+        "Host support is surface-specific; the captured table marks Copilot session memory unsupported.",
+        "The public harness is not a separately verified complete implementation of the Risco video factory."
+      ]
+    },
+    {
+      "id": "agent-os",
+      "historical_disposition": "Focused knowledge reference",
+      "description": "A lightweight documented system for discovering, indexing, and injecting project standards and shaping specifications.",
+      "reusable_contribution": "Select the standards relevant to the current task instead of loading an undifferentiated knowledge dump.",
+      "conditions": [
+        "README review only, not a complete execution factory or tested host integration.",
+        "Existing code patterns require judgment before promotion into authoritative standards."
+      ]
+    },
+    {
+      "id": "sssf",
+      "historical_disposition": "High-value control-loop reference",
+      "description": "A small framework with deterministic Python phases and final acceptance, typed agent envelopes, JSONL traces, and a SQLite mirror.",
+      "reusable_contribution": "Separate human/agent/code phases, bounded schema and claim-gate corrections, accumulated usage, current-run acceptance, and explicit process ownership records.",
+      "conditions": [
+        "The reviewed backend validation accepts Pi only; this is not a drop-in Copilot plugin.",
+        "Post-call write checking occurs before accepting the envelope, not before the effect; it is not a sandbox.",
+        "The Git helper stages all changes with git add -A, which is not a safe automatic default for dirty or shared work.",
+        "Final acceptance depends on the caller supplying the right condition. Trace storage is observable, not inherently tamper-proof.",
+        "The separate example branch was not inspected."
+      ]
+    },
+    {
+      "id": "attractor",
+      "historical_disposition": "Design-contract reference",
+      "description": "Natural-language specifications for graph orchestration, a coding-agent loop, and a unified model interface.",
+      "reusable_contribution": "Declared graphs, pluggable handlers, state, checkpoint/resume, human nodes, and a headless engine separated from backend and presentation concerns.",
+      "conditions": [
+        "This is specification evidence, not an installed executable runtime.",
+        "Only the opening main orchestration specification was semantically reviewed; companion specifications were not deeply inspected."
+      ]
+    },
+    {
+      "id": "fabro",
+      "historical_disposition": "Product comparison",
+      "description": "A graph-oriented factory product describing human gates, model routing, server/UI operation, checkpoints, durable outputs, and cloud sandboxes.",
+      "reusable_contribution": "Visible graphs, inspectable outputs, and deliberate intervention points.",
+      "conditions": [
+        "README quality guarantees and scale claims were not independently validated.",
+        "Local server hosting does not prove local execution or storage.",
+        "Cloud sandbox selection, automatic provider fallbacks, Git checkpoint policy, and selected-host integration need separate review."
+      ]
+    },
+    {
+      "id": "roast",
+      "historical_disposition": "Composition reference",
+      "description": "A Ruby DSL combining model calls, local coding agents, shell/code steps, iteration, mapping, and reusable workflow scopes.",
+      "reusable_contribution": "Make deterministic operations explicit instead of using model calls for known sequencing or mechanical work.",
+      "conditions": [
+        "The captured agent providers are Pi and Claude, not a qualified adapter for another selected host.",
+        "It adds Ruby and provider configuration; local filesystem access does not imply isolation."
+      ]
+    },
+    {
+      "id": "deepagents",
+      "historical_disposition": "Architecture comparison",
+      "description": "A LangChain/LangGraph-based harness with subagents, filesystem backends, context management, memory, skills, and tool approval.",
+      "reusable_contribution": "Explicit backend interfaces, context offloading, and durable state as separate capabilities.",
+      "conditions": [
+        "Adopting this runtime is an explicit integration decision, not automatic use of the requested coding host.",
+        "The README places security at the tool/sandbox boundary rather than trusting model self-restraint.",
+        "Optional hosted tracing introduces its own data destination; README review is not runtime acceptance."
+      ]
+    },
+    {
+      "id": "openhands-sdk",
+      "historical_disposition": "Architecture comparison",
+      "description": "A composable software-agent SDK and Agent Server with tools, conversations, workspace choices, events, and typed clients.",
+      "reusable_contribution": "Separate execution engine, workspace, API/client, UI, and automation lifecycle.",
+      "conditions": [
+        "This SDK repository is not the complete OpenHands product or automation service.",
+        "Provider and host compatibility were not proven, and benchmark badges do not predict another component workload's acceptance."
+      ]
+    },
+    {
+      "id": "mini-swe-agent",
+      "historical_disposition": "Minimality reference",
+      "description": "A deliberately small software-agent loop emphasizing a linear trajectory and independent shell execution.",
+      "reusable_contribution": "A simple observable baseline showing that every capability does not require a large framework.",
+      "conditions": [
+        "The reviewed version is v2.",
+        "One unrestricted shell tool can have broad authority. Bash-oriented execution and external model adapters are not native Windows or customized-host acceptance."
+      ]
+    },
+    {
+      "id": "copilot-sdk",
+      "historical_disposition": "Conditional integration candidate",
+      "description": "Programmatic Copilot sessions and tools, with documented local CLI connections, events, and lifecycle hooks.",
+      "reusable_contribution": "Explicit runtime connection, structured events, and documented pre-tool approval/denial hooks where the selected host supports them.",
+      "conditions": [
+        "Historical Node, Python, and .NET paths can automatically include a standard CLI. Do not silently replace an operator-selected host.",
+        "Exact executable, version, protocol, identity, plugins, cancellation, and permission behavior remain qualification work.",
+        "Examples using approve-all are not a recommended authorization policy. Documentation is not proof of complete hook coverage."
+      ]
+    },
+    {
+      "id": "gh-aw",
+      "historical_disposition": "Control-boundary reference",
+      "description": "Markdown-defined agentic workflows compiled into GitHub Actions, with read-oriented agent jobs and separately validated safe-output writes.",
+      "reusable_contribution": "Separate reasoning from privileged mutation and validate structured requests in the effect executor.",
+      "conditions": [
+        "Actions is a distinct execution and storage destination, not an assumed local runtime or an approved sink for restricted records.",
+        "The chosen release's advisories, generated workflow, permissions, and egress require inspection rather than reliance on a security label."
+      ]
+    },
+    {
+      "id": "eve-foreman",
+      "historical_disposition": "High-value product comparison",
+      "description": "Foreman routes work through classifier, analyst, implementer, and reviewer stations, with a maintained factory brain and draft-PR delivery.",
+      "reusable_contribution": "Clarification before building, self-contained handoffs, separate review, unattended identity distinctions, and different policies for shared knowledge and shipping.",
+      "conditions": [
+        "Selected sandbox code uses hosted Vercel Sandbox even during local development; the README also specifies a public Blob configuration.",
+        "Station order and revision limits are present in orchestrator instructions; a complete code-enforced state machine was not established.",
+        "Trusted/scheduled brain writes and draft PRs have different approval conditions from ordinary requests and ready-for-review shipping.",
+        "The trust helpers use session context, but full webhook/channel verification was not traced.",
+        "The brain tool performs a bounded document overwrite, not an immutable evidence-history update."
+      ]
+    },
+    {
+      "id": "archon-factory",
+      "historical_disposition": "Reference only; licensing unresolved",
+      "description": "A factory setup around a pinned Archon SDLC pack, describing release intent, independent reviewers, user journeys, holdouts, scheduling, and staging feedback.",
+      "reusable_contribution": "Mission/non-goals, user-level acceptance journeys, independent holdouts, and calibration using deliberate defects.",
+      "conditions": [
+        "No root reuse license was established in the capture; source copying needs separately resolved permission.",
+        "The underlying Archon implementation was not deeply reviewed.",
+        "Automatic merge, deployment, and scheduled external actions are not authorized defaults."
+      ]
+    },
+    {
+      "id": "waza",
+      "historical_disposition": "Compare first, route by route",
+      "description": "A Copilot-oriented evaluation CLI for skills, agents, workflows, repository/CLI/MCP scenarios, trials, graders, and recorded evidence.",
+      "reusable_contribution": "Freeze and bind evidence, isolate actor from judge, limit verdict tools, fail on missing/invalid callbacks, and distinguish process controls from live quality.",
+      "conditions": [
+        "Ordinary custom-CLI execution, text-only execution, evidence judging, and preserved-snapshot grading have different contracts.",
+        "Ordinary execution honors a usable COPILOT_CLI_PATH, otherwise uses an embedded CLI, without arbitrary PATH fallback.",
+        "The evidence judge requires an absolute native executable identifying the tested pinned installation; matching version strings or arbitrary wrappers are insufficient.",
+        "Test-source assertions describe Linux/macOS preserved-snapshot help. That limitation is not a claim about every Windows route.",
+        "Text-only execution excludes tools, skills, fixtures/files, MCP, and agent definitions; its success would not qualify a tool-using factory.",
+        "Foreign identity, digest-tamper, and source-preservation assertions were read, not executed."
+      ]
+    },
+    {
+      "id": "promptfoo",
+      "historical_disposition": "Conditional complementary evaluator",
+      "description": "An evaluation and red-teaming CLI/library with provider comparison, configurable assertions, rubrics, regression analysis, and adversarial cases.",
+      "reusable_contribution": "Behavioral evaluation as a distinct layer from ordinary unit tests, with explicit cases, rubrics, and comparisons.",
+      "conditions": [
+        "A local runner does not imply local data. Target calls, generation, grading, hosted-only features, telemetry, and sharing have separate paths.",
+        "The selected implementation considers explicit disable flags, cloud preference/endpoints, and local credential availability.",
+        "Disabling remote generation is not network isolation. No attack-generation workload, scan, or model trial was executed."
+      ],
+      "license_qualification": "The historical grant contains MIT terms without an MIT title; the research classifier was corrected after inspecting the grant."
+    },
+    {
+      "id": "rigour",
+      "historical_disposition": "Compare first for feedback governance",
+      "description": "A review/checking system using repository rules and lessons, task tracking, and evidence-based lesson promotion, withdrawal, and demotion.",
+      "reusable_contribution": "Candidate versus verified knowledge, counterevidence, human-decision precedence, recurrence criteria, task identity, and scoped profiles.",
+      "conditions": [
+        "Human-origin recurrence can promote a lesson without a new explicit approval of that exact lesson; bot-only agreement is not sufficient.",
+        "The optional goal check is narrower than semantic acceptance and may not run without a PR body, making it insufficient as a sole pre-code gate.",
+        "Profiles do not establish OS isolation or authorize configured destinations.",
+        "Setup changes hooks and may add components; that is separate from reading the source."
+      ]
+    },
+    {
+      "id": "compound-engineering",
+      "historical_disposition": "Compare first for learning discipline",
+      "description": "A workflow collection connecting intent, planning, implementation, review, and durable learning from verified outcomes.",
+      "reusable_contribution": "Host-owned verification/delivery and the cheapest useful representation of a durable lesson, preferring a test or rule over duplicate narrative where possible.",
+      "conditions": [
+        "Instruction contracts do not prove runtime enforcement.",
+        "Full learning mode can discover histories across agent installations; project knowledge work does not imply permission to read unrelated transcripts.",
+        "Lessons should preserve root causes, failed approaches, evidence, applicability, and retirement conditions rather than only the final success story."
+      ]
+    },
+    {
+      "id": "gsd-core",
+      "historical_disposition": "Context-lifecycle reference",
+      "description": "A discuss-plan-execute-verify-ship workflow retaining durable phase artifacts and delegating substantial work into fresh contexts.",
+      "reusable_contribution": "Explicit context handoffs, resumable phase state, and verification separate from implementation.",
+      "conditions": [
+        "Fresh-context size and portability depend on the actual host.",
+        "Installer runtime conversion means raw command copies are not necessarily equivalent.",
+        "Avoid importing an entire second workflow or automatically spawning workers for simple work; this was README-level review."
+      ]
+    },
+    {
+      "id": "gsd-archived",
+      "historical_disposition": "Historical redirect only",
+      "description": "The captured repository is archived and its README redirects current development to open-gsd/gsd-core.",
+      "reusable_contribution": "Verify repository identity, archival status, and successor relationships rather than treating a popular historical link as the current implementation.",
+      "conditions": [
+        "Do not select this snapshot as the maintained development home or transfer its old feature claims to the successor without checking."
+      ]
+    },
+    {
+      "id": "engineering-plugin",
+      "historical_disposition": "Plugin packaging and workflow reference",
+      "description": "The engineering package provides structured review, debugging, architecture, incident, testing, and documentation workflows with optional connectors.",
+      "reusable_contribution": "Understandable domain workflows with a useful baseline experience even when optional integrations are not connected.",
+      "conditions": [
+        "The package primarily targets Cowork and Claude Code; this study did not qualify another host.",
+        "Connector categories are not installed or authorized services.",
+        "Only the engineering slice and selected manifest material were screened, not the complete repository plugin estate."
+      ]
+    },
+    {
+      "id": "gitleaks",
+      "historical_disposition": "Secret-scanning reference",
+      "description": "A deterministic scanner for credential-like content in Git history, files, and input streams, with machine-readable reporting.",
+      "reusable_contribution": "Secret-pattern checking and redacted evidence as one concrete quality gate.",
+      "conditions": [
+        "The captured README states that feature development ended and future releases focus on security patches, naming a successor not vetted here.",
+        "A maintained, approved scanner must be chosen deliberately; a clean scan does not prove complete confidentiality or application security.",
+        "No scanner installation or execution occurred in this study."
+      ]
+    },
+    {
+      "id": "pester",
+      "historical_disposition": "Relevant PowerShell test framework",
+      "description": "A PowerShell testing and mocking framework with assertions, execution, coverage, and machine-readable integration.",
+      "reusable_contribution": "Behavior tests and service-isolating mocks for PowerShell/Windows component helpers.",
+      "conditions": [
+        "Mocks constrain effects and also constrain the evidence they provide.",
+        "Installed Windows versions, the current source, and release packages are different artifacts. No Pester installation or tests were run."
+      ],
+      "license_qualification": "Actual recorded root grant is Apache-2.0 despite the historical API NOASSERTION label."
+    },
+    {
+      "id": "twelve-factor",
+      "historical_disposition": "Conceptual foundation",
+      "description": "Practitioner principles for owned prompts, context, control flow, structured outputs, pause/resume, human contact, focused work, and bounded error recovery.",
+      "reusable_contribution": "Persist meaningful business state and interrupt between proposed action and execution; use explicit bounded escalation rather than unlimited self-healing.",
+      "conditions": [
+        "Conceptual guidance and illustrative pseudocode are not a qualified runtime.",
+        "Factor 12 is largely image-based; the selected heading/link text does not establish what the uninspected diagrams show."
+      ],
+      "license_qualification": "The README declares CC-BY-SA-4.0 for written content separately from the Apache-2.0 code grant."
+    },
+    {
+      "id": "zazen-factory",
+      "historical_disposition": "High-value conceptual example; conditional code reuse",
+      "description": "A video-linked small Claude skill-led factory that evolves toward parallel jobs. Later v1 contracts use per-job state, worktrees, distinct artifact owners, complete review rounds, and bounded builder resumptions.",
+      "reusable_contribution": "Comprehensible control structure, inspectable handoffs, one intended state writer, complete current-round review, separate workspace/port identities, and visible blockers.",
+      "conditions": [
+        "Original board.json prompt, recorded evolution, later pinned v1, and separate v2 are different evidence layers.",
+        "V1 rules are instructions, not verified deterministic permission controls. The demo uses bypass permissions and does not demonstrate mandatory human brief approval before coding.",
+        "V1 permits model-authorized local-main merge but says never to push; this is not proof of automatic production deployment.",
+        "Two builder resumptions mean up to three review rounds per invocation; fresh user rework gets a new allowance, not an enforced lifetime budget.",
+        "Claude/Bash interfaces require adaptation. Other reviewer contracts, the dashboard, general recovery, and v2 executable implementation were not audited.",
+        "V2 README describes script/state gates and PR delivery while retaining model-authorized merging; those claims were not runtime-tested."
+      ],
+      "license_qualification": "No standard root/v1 license was established despite an invitation to copy. V2 has a scoped GPLv3 license, not a grant for sibling folders and not a noncommercial-only restriction."
+    }
+  ],
+  "focused_inspection_notes": {
+    "spec-kit-gate": "Configured verdicts, non-TTY pause, invalid-input failures, and abort/retry/skip semantics. These mechanisms do not authenticate caller-supplied human consent.",
+    "spec-kit-state": "Run identity validation and atomic per-file persistence, including failure poisoning; not a whole-engine or external-effect transaction audit.",
+    "spec-kit-offline": "OS/Python-specific dependency bundles, PowerShell requirements, and component-specific catalog/archive and offline limits.",
+    "openspec-artifacts": "Relative-path constraints for Windows/POSIX forms, bounded artifact declarations, and apply prerequisites.",
+    "openspec-validation": "Schema parsing, duplicate IDs, dependency references/cycles, and the distinction between structural validity and semantic acceptance.",
+    "tea-trace": "Traceability, scope-bound outputs, required sibling knowledge, and formal versus optionally synthetic oracles.",
+    "bmad-loop-permissions": "Non-bypass mapping, platform rejection, and exact replacement of launch permission arguments.",
+    "bmad-loop-copilot": "Broad bypass flags, version/OS-specific hook assumptions, main-session attribution, and usage-record grace.",
+    "bmad-loop-policy": "Gate/review defaults, advisory versus enforced budgets, configured verification commands, and pause/resume policy.",
+    "bmad-loop-transport": "Separate coding-CLI and multiplexer contracts; observed effects and unknown liveness must be reported honestly.",
+    "superpowers-intake": "Read context before asking, compare approaches, and obtain the required design decision.",
+    "superpowers-tdd": "Observe a meaningful failing test; blanket delete-first policy is not appropriate for legitimate existing work.",
+    "superpowers-verification": "Fresh actual evidence before completion claims; a procedural contract rather than runtime enforcement.",
+    "superpowers-workers": "Fresh worker context, specification/quality review, persistent ledgers, and autonomy/cleanup rules requiring adaptation.",
+    "addy-intake": "Focused questions, intent and non-goals, responsive-user confirmation, and the limits of heuristic confidence percentages.",
+    "addy-copilot": "Manifest precedence, discovered Copilot skills versus absent Claude lifecycle commands, and shared-reference portability.",
+    "rsc-acceptance": "Governed artifact inventory/digests, exact plan identity, receipts, backups, and provenance; content binding is not authenticated consent.",
+    "rsc-acceptance-tests": "Assertions for no-write preview, wrong-plan rejection, and receipt persistence; source reading, not executed tests.",
+    "rsc-host-surfaces": "Different assistant output surfaces and explicitly unsupported Copilot session memory.",
+    "sssf-run-acceptance": "Phase completion versus whole-run acceptance, nonempty successful phases, and consistent status/exit reporting.",
+    "sssf-agent-calls": "Pi-only backend validation, typed envelopes, bounded corrections, accumulated usage, and post-call write checking.",
+    "sssf-tracing": "Trace schemas, run/phase identities, JSONL append, SQLite mirror, and process-ownership fields; not tamper-proof audit storage.",
+    "sssf-git": "Repository-root discovery and broad git add -A behavior that should not be copied blindly.",
+    "attractor-design": "Declared graph, handlers, state, human nodes, backend and presentation separation; specification, not implemented behavior.",
+    "sdk-local-cli": "Explicit runtime connection and caller responsibility for custom CLI compatibility; bundled defaults differ by SDK.",
+    "sdk-pretool": "Documented pre-execution approval/denial and language-specific hook interfaces; not proof of complete host enforcement.",
+    "eve-pipeline-instructions": "Station order, clarification, self-contained handoffs, bounded rework, and draft delivery are expressed in the orchestrator prompt.",
+    "eve-sandbox": "Hosted Vercel Sandbox is selected in local development as well as production.",
+    "eve-review-wrapper": "Separate reviewer invocation with a required output schema and self-contained message.",
+    "eve-trust": "Separate service identity and trusted/context attributes; full upstream webhook/channel verification was not traced.",
+    "eve-brain-write": "Configured repository brain key, action policy, whole-document overwrite, and explicit error results.",
+    "eve-approval": "Different policies for unattended/trusted callers, intake-thread comments, shared-brain mutation, draft PRs, and shipping.",
+    "waza-cli": "Usable explicit COPILOT_CLI_PATH versus embedded CLI; no silent fallback to arbitrary PATH executables.",
+    "waza-judge-runtime": "Owned transport cleanup and the isolated judge's exact pinned native-installation restriction.",
+    "waza-judge": "Frozen evidence, isolated executor, restricted verdict tools, and explicit failure on invalid, duplicate, or missing callbacks.",
+    "waza-evidence-tests": "Foreign evaluation/task/run/attempt, digest tamper, original-file preservation, and snapshot-platform help assertions; not executed.",
+    "waza-text-route": "Explicit execution opt-in, restricted text-only capability route, cancellation, and synthetic versus live evidence.",
+    "promptfoo-privacy": "Separate target, generation, grading, telemetry, hosted-only features, sharing, and network-boundary controls.",
+    "promptfoo-remote": "Explicit-disable precedence, cloud preference/endpoints, and remote fallback when suitable local credentials are absent.",
+    "rigour-lessons": "Human-decision precedence, withdrawal/demotion, counterevidence, human-origin recurrence, and bot-only rejection.",
+    "rigour-profiles": "Documented scoped state and identity configuration; not proof of operating-system isolation.",
+    "rigour-goal": "Optional path/symbol checks, uncheckable semantic criteria, and no-check behavior without a PR description.",
+    "compound-work": "Host-owned verification, canonical commits/delivery, plan boundaries, and return-to-caller execution.",
+    "compound-learning": "Durable, non-obvious, material learning, cheapest useful representation, retirement, and cross-history privacy implications.",
+    "factor-pause": "Launch/pause/resume interfaces and the distinction between choosing a tool and invoking it.",
+    "factor-control": "Deterministic interruption, human decisions, and durable continuation rather than in-memory waiting.",
+    "factor-errors": "Useful error context, bounded recovery, and escalation rather than unlimited self-healing.",
+    "factor-reducer-heading": "Heading and links only; the two referenced diagrams were not fetched or visually inspected.",
+    "zazen-video-index": "Explicit public link between the supplied video and v1 lesson folder; not a review of other repository lessons.",
+    "zazen-build-prompt": "Original shared board.json design, artifact roles, review barrier, and model-authorized local integration; upstream retains it as historical.",
+    "zazen-orchestrator": "Later v1 per-job state, worktrees, absolute paths, complete review barrier, two resumptions/three rounds, fresh rework, local merge, and never-push instructions.",
+    "zazen-spec-writer": "Existing-code grounding, reuse, observable acceptance, non-goals, and consequential assumptions deferred to the final approver rather than a pre-code human gate.",
+    "zazen-builder": "Branch/path checks, actual repository validation commands, per-criterion evidence, explicit-path staging, preserved round history, and BLOCKED reporting.",
+    "zazen-code-reviewer": "Current diff and previous findings, rerun checks, path/line evidence, and separation of defects from style notes.",
+    "zazen-approver": "Model APPROVE authorizes local-main integration; risk categories or product decisions can escalate. This is not human authorization.",
+    "zazen-v2-overview": "Separate issue-driven successor, documented script/state gates, PR delivery, recovery and cost claims; executable implementation not reviewed.",
+    "zazen-v2-license": "Scoped GPLv3 title and opening preamble, including charging for copies and redistribution responsibilities; not a complete legal assessment."
+  }
+}

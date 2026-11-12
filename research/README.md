@@ -1,6 +1,6 @@
 # Public-source research library
 
-**Publication edition:** 2026-11-11. **Research baselines:** 2026-11-04 and
+**Publication edition:** 2026-11-12. **Research baselines:** 2026-11-04 and
 2026-11-05, as identified by each collection.
 
 This library contains original public-source synthesis, synthetic teaching
@@ -13,7 +13,7 @@ qualification. It supplies no live wiki access.
 | Collection | Contents | Evidence boundary |
 |---|---|---|
 | [AI factory and harness engineering](ai-factory/README.md) | 21 chapters, one index, six unfilled templates, and 49 public source entries | Preserves the 2026-11-04 authored research; proposed labs and the worked scenario were not executed |
-| [Prior-art mechanisms and reuse reference](prior-art/README.md) | Fresh source-neutral synthesis and 33 pinned public repository references | Historical documentation and selected source-reading findings; not installation, execution, or a whole-repository audit |
+| [Prior-art mechanisms and detailed dossier](prior-art/dossier/README.md) | Fourteen detailed topical counterparts, introductory reference, all 33 pinned repositories and 90 inspections, primary-source/video analysis, and discovery leads | Explicit document-by-document exclusions; historical selected reading, not new installation, execution, whole-repository audit, or private-source publication |
 | [Self-improvement](../docs/research/SELF_IMPROVEMENT.md) | Fresh account of the Eric Tech video and the separately supplied Fluent repository | Historical review scope is explicit; proposed learning is not measured improvement or self-approval |
 
 Use the factory collection for concepts, tradeoffs, exercises, and source
@@ -28,8 +28,8 @@ not the current state of SparkForge.
 
 ## Selection and editorial record
 
-All 28 original factory Markdown files and its public source catalog were
-read before selection. Their 29 content hashes matched the original manifest.
+For the initial 2026-11-11 factory selection, all 28 original factory Markdown
+files and its public source catalog were read. Their 29 content hashes matched the original manifest.
 The six templates remain unfilled. No source article, raw transcript, frame,
 image, archive, or executable resource was imported.
 
@@ -69,11 +69,26 @@ formatting from portability, preserve pre-correction hashes and earlier check
 results, and bind the current bytes. Originals were not edited.
 
 These are publication annotations and portability changes to reviewed
-public-source writing, not declassification by removing names. The
-contextualized prior-art dossier was **not copied or redacted into this
-repository**. Its public repository identities, pins, license observations,
-and bounded public-source findings were used to write a new reference.
-Private comparisons and historical local artifact paths are not evidence here.
+public-source writing, not declassification by removing names. The initial
+prior-art reference used public identities, pins, license observations, and
+bounded findings without copying the contextualized original dossier.
+
+**Detailed prior-art expansion, 2026-11-12:** all 14 original document topics
+now have [detailed publication counterparts](prior-art/dossier/README.md).
+They preserve the public analysis and tradeoffs rather than replacing the
+research with the introductory reference. The
+[disposition ledger](prior-art/dossier/document-dispositions.json) accounts
+for every original, names the retained public topics and precise categories
+withheld, and binds each new counterpart's bytes.
+
+The expansion includes the full 33-candidate analysis, all 90 historical
+inspection coordinates and notes, industrial/standards sources, all six
+registry results, seven additional leads, the Risco transcript-topic revisit,
+and the detailed ZazenCodes timestamp/version/artifact analysis. It adds no
+source capture, transcript, screenshot, private operating fact, or new
+framework execution. Restricted comparisons are withheld, not transplanted
+under different organization names. The complete mixed-context original is
+therefore **not** published, and no private-content clearance is claimed.
 
 The [factory manifest](ai-factory/corpus-manifest.json) records original and
 published hashes, identifies changed files, and separates the original
@@ -82,6 +97,12 @@ published hashes, identifies changed files, and separates the original
 research edition, including the two self-improvement documents. Each manifest
 excludes itself from its own hash list; the outer inventory includes the
 factory manifest.
+
+The [prior manifest](publication-history/PUB-20261111-library.json) is
+retained byte-for-byte as an immutable historical snapshot. Existing check
+objects and formatting-correction records in the current inventory remain
+unchanged; the new edition adds separately dated results instead of claiming
+the earlier 36-file checks validated the larger library.
 
 ## What is excluded
 
@@ -123,7 +144,8 @@ The following standard-library-only PowerShell recipe checks this edition
 from the repository root. It does not fetch URLs, run research examples, call
 models, or execute source tools. It checks inventory membership and hashes,
 JSON syntax, inline Markdown file/anchor links, JSON examples, source-ID
-consistency, and trailing spaces/tabs. It is a bounded documentation check,
+consistency, the complete dossier dispositions/catalog/register, and trailing
+spaces/tabs. It is a bounded documentation check,
 not a complete Markdown renderer, legal assessment, or secret scanner.
 
 ```powershell
@@ -132,7 +154,7 @@ import hashlib
 import json
 import re
 from pathlib import Path
-from urllib.parse import unquote, urlsplit
+from urllib.parse import quote, unquote, urlsplit
 
 root = Path.cwd().resolve()
 inventory = root / "research" / "publication-manifest.json"
@@ -213,11 +235,119 @@ for path, text in pages.items():
         refs = re.findall(r"\[(S\d{2})\]\(", text)
         assert set(refs) <= set(ids), path
         citations += len(refs)
+
+dossier = root / "research" / "prior-art" / "dossier"
+dispositions = json.loads((dossier / "document-dispositions.json").read_text(encoding="utf-8"))
+original_names = {
+    "README.md", "SCOPE.md", "REUSE_MAP.md", "SPECIFICATIONS_AND_INTAKE.md",
+    "FACTORY_PATTERNS.md", "QUALITY_AND_EVALUATION.md",
+    "KNOWLEDGE_AND_GOVERNANCE.md", "COMPATIBILITY_AND_LICENSING.md",
+    "INDUSTRY_AND_THEORY.md", "DISCOVERY_APPENDIX.md",
+    "COVERAGE_AND_VALIDATION.md", "CATALOG.md", "EVIDENCE.md",
+    "VIDEO_ZAZEN_FACTORY.md",
+}
+documents = dispositions["documents"]
+assert len(documents) == 14
+assert {d["source_document"] for d in documents} == original_names
+assert {d["publication_document"] for d in documents} == original_names
+assert {p.name for p in dossier.glob("*.md")} == original_names
+for doc in documents:
+    path = dossier / doc["publication_document"]
+    raw = path.read_bytes()
+    assert len(raw) == doc["publication_bytes"], doc
+    assert hashlib.sha256(raw).hexdigest() == doc["publication_sha256"], doc
+    assert doc["retained_public_topics"] and doc["withheld_material"], doc
+assert dispositions["complete_original_dossier_reproduced"] is False
+assert dispositions["private_content_publication_permission_established"] is False
+assert dispositions["upstream_source_captures_included"] is False
+assert dispositions["raw_transcripts_images_or_session_records_included"] is False
+
+public = json.loads((dossier.parent / "sources.json").read_text(encoding="utf-8"))
+analysis = json.loads((dossier / "catalog-analysis.json").read_text(encoding="utf-8"))
+repositories = public["repositories"]
+repository_ids = {r["id"] for r in repositories}
+candidate_ids = {c["id"] for c in analysis["candidates"]}
+assert len(repositories) == len(repository_ids) == len(analysis["candidates"]) == 33
+assert candidate_ids == repository_ids
+inspection_ids = set()
+focused_ids = set()
+reviewed_lines = {}
+catalog = pages[(dossier / "CATALOG.md").resolve()]
+register = pages[(dossier / "EVIDENCE.md").resolve()]
+assert set(re.findall(r"^## (.+)$", catalog, re.M)) == repository_ids
+for repo in repositories:
+    assert repo["visibility_at_observation"] == "public", repo["id"]
+    assert re.fullmatch(r"[0-9a-f]{40}", repo["commit"]), repo["id"]
+    for entry in repo["historical_inspections"]:
+        assert entry["id"] not in inspection_ids, entry["id"]
+        inspection_ids.add(entry["id"])
+        if entry["id"] != repo["id"] + "-overview":
+            focused_ids.add(entry["id"])
+        expected_url = f'https://github.com/{repo["repository"]}/blob/{repo["commit"]}/{quote(entry["path"], safe="/")}'
+        assert entry["source_url"] == expected_url, entry["id"]
+        assert re.fullmatch(r"[0-9a-f]{64}", entry["source_sha256_at_historical_review"])
+        assert re.fullmatch(r"[0-9a-f]{40}", entry["git_blob"])
+        key = (repo["id"], entry["path"])
+        reviewed_lines.setdefault(key, set())
+        for start, end in entry["historical_reviewed_line_ranges"]:
+            assert 1 <= start <= end, entry["id"]
+            reviewed_lines[key].update(range(start, end + 1))
+            assert f'{entry["source_url"]}#L{start}-L{end}' in register, entry["id"]
+assert len(inspection_ids) == 90 and len(reviewed_lines) == 88
+assert sum(map(len, reviewed_lines.values())) == 10471
+assert focused_ids == set(analysis["focused_inspection_notes"])
+assert set(re.findall(r"^## (.+)$", register, re.M)) == inspection_ids | {"zazen-video"}
+for text in analysis["focused_inspection_notes"].values():
+    assert text in register
+for candidate in analysis["candidates"]:
+    assert candidate["description"] in catalog, candidate["id"]
+    assert candidate["reusable_contribution"] in catalog, candidate["id"]
+    assert all(value in catalog for value in candidate["conditions"]), candidate["id"]
+
+context = json.loads((dossier / "public-context-sources.json").read_text(encoding="utf-8"))
+assert len(context["primary_sources"]) == 6
+assert len(context["registry_discovery"]["results"]) == 6
+assert len(context["additional_leads"]) == 7
+videos = {v["id"]: v for v in context["videos"]}
+assert len(videos) == len(context["videos"]) == 2
+video_page = pages[(dossier / "VIDEO_ZAZEN_FACTORY.md").resolve()]
+video_times = {int(v) for v in re.findall(r"\?v=ctoaIC4LHmI&t=(\d+)s", video_page)}
+assert video_times == {v["seconds"] for v in videos["ctoaIC4LHmI"]["timestamp_topics"]}
+assert len(video_times) == 21
+scope_page = pages[(dossier / "SCOPE.md").resolve()]
+assert len(videos["p6nnqerea7w"]["timestamp_topics"]) == 7
+assert all(v["range"] in scope_page for v in videos["p6nnqerea7w"]["timestamp_topics"])
+assert all(v["raw_captions_frames_or_media_included"] is False for v in videos.values())
+discovery_urls = {r["url"] for r in context["registry_discovery"]["results"]}
+by_repository = {r["repository"].lower(): r for r in repositories}
+pinned_links = 0
+for path, text in pages.items():
+    if not path.is_relative_to(dossier):
+        continue
+    for url in re.findall(r"\[[^]]+\]\((https://github\.com/[^)]+)\)", text):
+        if url in discovery_urls:
+            continue
+        parts = urlsplit(url).path.strip("/").split("/")
+        if len(parts) >= 4 and parts[2] in {"blob", "tree", "commit"}:
+            repo = by_repository["/".join(parts[:2]).lower()]
+            assert parts[3] == repo["commit"], (path, url)
+            pinned_links += 1
+
+previous = root / "research" / "publication-history" / "PUB-20261111-library.json"
+assert hashlib.sha256(previous.read_bytes()).hexdigest() == "d9f1d2c4be76836d1791068d5bf1f7abcbaea6367474ec767a87cbb0ec2940dd"
+historical = json.loads(previous.read_text(encoding="utf-8"))
+for key in ("checks", "validation_history", "publication_corrections"):
+    assert manifest[key] == historical[key], ("Historical record altered", key)
 print(json.dumps({
     "result": "PASS", "published_files": len(actual),
     "hashed_content_files": len(records), "markdown_files": len(pages),
     "json_files": json_count, "local_links": local_links,
     "json_examples": examples, "factory_source_citations": citations,
+    "dossier_documents": len(documents), "prior_art_candidates": len(repository_ids),
+    "prior_art_inspections": len(inspection_ids), "dossier_pinned_links": pinned_links,
+    "discovery_results": 6, "additional_leads": 7,
+    "video_timestamp_topics": len(video_times),
+    "historical_check_records_preserved": True,
     "trailing_whitespace_findings": 0,
 }, sort_keys=True))
 '@ | python -B -

@@ -32,6 +32,28 @@ research in a fresh history. Keep restricted originals and operational state
 outside. Validate the complete outgoing tree/history and exact private remote
 commit, not only a selected diff or successful shell exit.
 
+### WP-003: complete public research and tooling
+
+Restore detailed public-topic research and all reviewed project-authored
+collection/indexing/verification utilities rather than claiming a short reference
+is the complete corpus. Preserve behavior, public citations, source rights,
+tests and explicit network/input/output scope. Account for every original
+authored file and explain withheld material; do not silently omit it.
+
+The [completeness specification](specs/CORPUS_COMPLETENESS.md) separates safe
+publication from the local review of private wiki/engineering content.
+
+### WP-004: page-by-page local review and release decision
+
+Prepare every indexed original page, attachment and ancillary item with verified
+hashes and full-text mechanical candidates. Preserve all non-redacted text
+rather than summarizing. The [review tool](engineering/CORPUS_REVIEW.md) always
+keeps permission false and opaque attachments unreviewed.
+
+Review confidential meaning and media, then obtain the actual source/data-owner
+decision for the exact candidate/destination. No response, token-pattern scan
+or private repository is a substitute. Keep unresolved items locally withheld.
+
 ## P1: actual host and control feasibility
 
 ### WP-010: selected host

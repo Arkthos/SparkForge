@@ -22,10 +22,16 @@ Use the smallest relevant existing command, then escalate when shared behavior
 or a failure requires it:
 
 ```powershell
+$env:PYTHONPATH = (Resolve-Path 'research_tools\.validation-deps').Path
 python -B -m unittest discover -s tests
 node --test tests\test_preview_model.cjs tests\test_preview_assets.cjs
 python -B scripts\validate_plan.py --base HEAD
 ```
+
+The full suite includes the research utilities and their declared local
+Markdown/image dependencies; see [tooling setup](../../research_tools/README.md).
+The native package tests do not acquire those dependencies. Live collectors,
+real source corpora and original checkpoints are not inputs to this suite.
 
 The [operating model](DEVELOPMENT_OPERATING_MODEL.md) covers the initial root
 commit's special documentation check. Actual command outcomes belong in

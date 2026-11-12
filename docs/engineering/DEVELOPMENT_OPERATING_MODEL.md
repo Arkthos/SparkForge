@@ -30,12 +30,19 @@ not executable policy.
 ## Engineering commands
 
 ```powershell
+$env:PYTHONPATH = (Resolve-Path 'research_tools\.validation-deps').Path
 python -B -m unittest discover -s tests
 node --test tests\test_preview_model.cjs tests\test_preview_assets.cjs
 python -B scripts\validate_plan.py --base HEAD
 git --no-pager diff --check
 git --no-pager diff --cached --check
 ```
+
+The complete suite includes the newly published research utilities. Use
+Python 3.12+ and their explicitly declared, ignored local dependencies as
+described in [research tooling](../../research_tools/README.md).
+Native-only tests remain standard-library checks. Restore packages only after
+their manifest is introduced or a chosen check reports missing dependencies.
 
 After a non-root commit, use `--base HEAD~`. For the first clean-publication
 commit, use `validate(root, git_base=None)`, then independently inspect the
@@ -45,7 +52,7 @@ a historical parent or import restricted history to satisfy the check.
 The validator checks project structure, references, dependencies, local links
 and lifecycle documentation. It does not prove semantic correctness, authentic
 approvals, source permissions, product qualification or live host behavior.
-No new test dependency is required for these checks.
+The planning checker itself remains standard-library-only.
 
 ## Ownership and data
 

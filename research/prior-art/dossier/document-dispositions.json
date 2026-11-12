@@ -1,0 +1,325 @@
+{
+  "schema_version": 1,
+  "publication_edition": "2026-11-12",
+  "historical_source_baseline": "2026-11-05",
+  "scope": "Document-by-document disposition of the 14 original authored prior-art documents. Names are source-document topic identifiers, not private storage paths.",
+  "method": "Detailed original public analysis is retained in topical publication counterparts. Source-specific private facts are omitted, not anonymized or transposed to invented organizations. Public repository metadata stays in ../sources.json; public analytical notes are in catalog-analysis.json.",
+  "complete_original_dossier_reproduced": false,
+  "private_content_publication_permission_established": false,
+  "private_source_identifiers_paths_or_fingerprints_included": false,
+  "upstream_source_captures_included": false,
+  "raw_transcripts_images_or_session_records_included": false,
+  "publication_hash_scope": "Counterpart hashes bind only the new public Markdown bytes, never the mixed-context originals. This file is bound by the outer publication inventory.",
+  "counts": {
+    "source_markdown_documents": 14,
+    "source_documents_with_disposition": 14,
+    "detailed_markdown_counterparts": 14,
+    "byte_for_byte_original_document_copies": 0,
+    "pinned_public_candidates": 33,
+    "retained_historical_inspections": 90
+  },
+  "documents": [
+    {
+      "source_document": "README.md",
+      "publication_document": "README.md",
+      "disposition": "PUBLIC_ANALYSIS_REAUTHORED_WITH_EXCLUSIONS",
+      "retained_public_topics": [
+        "Main finding and reusable mechanism shortlist",
+        "Research versus adoption and runtime acceptance",
+        "All adoption-changing findings, including gates, host routes, egress, readiness, release maturity and license scope",
+        "Reading routes and relationships to public learning and self-improvement research",
+        "Explicit public coverage and source/media boundaries"
+      ],
+      "withheld_material": [
+        "Private collection relationships and internal operating context",
+        "Source-specific implementation/contribution comparisons",
+        "Local resume pointers, archive locations and historical permission state"
+      ],
+      "review_ceiling": "Public synthesis and historical metadata, not a new framework or private-source review.",
+      "publication_bytes": 10873,
+      "publication_sha256": "91ad375c362ad5218b7945cc619f0ab7f2eb6b4ca42d8a5567d38cc59d88beb4"
+    },
+    {
+      "source_document": "SCOPE.md",
+      "publication_document": "SCOPE.md",
+      "disposition": "PUBLIC_GOALS_AND_ANALYSIS_REAUTHORED_PRIVATE_BRIEF_WITHHELD",
+      "retained_public_topics": [
+        "Domain-expert intake and maintainable-component goals",
+        "Reuse/update/new assessment and explicit missing comparison",
+        "General logical capabilities without prescribing an agent topology",
+        "Requester intent, readiness and external authority as distinct decisions",
+        "All seven Risco timestamp ranges and transcript/frame review limits",
+        "Research actions versus execution and publication authority"
+      ],
+      "withheld_material": [
+        "Organization-specific product/operating brief and audience assignments",
+        "Private repositories, wiki identities, pins and implementation claims",
+        "Source-specific deployment ordering and actual routing",
+        "Historical local storage, identity and transfer permission decisions"
+      ],
+      "review_ceiling": "General user-requested goals and public comparison questions, not a restatement of private policy under generic names.",
+      "publication_bytes": 11175,
+      "publication_sha256": "0a360a04a6c84194cf8ccabe2941700c5229bc9e20312c12a1f3e9f5544fa47f"
+    },
+    {
+      "source_document": "REUSE_MAP.md",
+      "publication_document": "REUSE_MAP.md",
+      "disposition": "PUBLIC_MECHANISM_MAP_REAUTHORED_PRIVATE_MAPPING_WITHHELD",
+      "retained_public_topics": [
+        "Complete capability-to-candidate comparison",
+        "Public mechanism and integration caveats for every mapped capability",
+        "Reuse existing capability, adapt source, reuse a pattern, or reference-only distinctions",
+        "Bounded public-landscape finding without claiming universal absence",
+        "All ten important evidence/authority distinctions",
+        "Zazen artifact, review-barrier, worktree and recovery supplement"
+      ],
+      "withheld_material": [
+        "Private component/source inventory claims",
+        "Organization-specific packaging, contribution and approval facts",
+        "Original deployment and local-only permission mapping"
+      ],
+      "review_ceiling": "Research-navigation PA-R labels are not current backlog IDs, adoption decisions or claims that private requirements were anonymously reproduced.",
+      "publication_bytes": 12173,
+      "publication_sha256": "f942d36b0ad163b2e32a6b837b4824a5c29d274b99becb85a54982c6f03135fb"
+    },
+    {
+      "source_document": "SPECIFICATIONS_AND_INTAKE.md",
+      "publication_document": "SPECIFICATIONS_AND_INTAKE.md",
+      "disposition": "PUBLIC_ANALYSIS_REAUTHORED_WITH_EXCLUSIONS",
+      "retained_public_topics": [
+        "Focused interview, heuristic confidence and confirmation limits",
+        "Context-first Superpowers discovery",
+        "Spec Kit real verdict/pause/rejection behavior and its authority limits",
+        "RunState identity, atomic replacement and failure poisoning",
+        "Offline dependency closure, platform and catalog/archive constraints",
+        "OpenSpec path/artifact/dependency/cycle validation versus semantic acceptance",
+        "Spec Kitty and BMad process/generator alternatives and release maturity",
+        "RSC selection, exact-plan receipts and unexecuted test-source assertions",
+        "Complete brief-quality question set"
+      ],
+      "withheld_material": [
+        "Claims about available private source content or existing internal adapters",
+        "Private implementation and approval-process comparisons"
+      ],
+      "review_ceiling": "Historical selected public-source findings; tests were read, not run.",
+      "publication_bytes": 11386,
+      "publication_sha256": "879ff8bb7ce8990a68b23971c57c3fd02b7da0d4b9da093caf4d666a501154b6"
+    },
+    {
+      "source_document": "FACTORY_PATTERNS.md",
+      "publication_document": "FACTORY_PATTERNS.md",
+      "disposition": "PUBLIC_ANALYSIS_REAUTHORED_WITH_EXCLUSIONS",
+      "retained_public_topics": [
+        "SSSF phase/run acceptance, typed gates, bounded corrections, cumulative usage, traces and Pi-only/post-call/broad-staging limits",
+        "BMad Loop adapter/transport separation, liveness, bypass profile, budgets, review policy and platform limits",
+        "Foreman stations, review wrapper, prompt-versus-code controls, caller/action policies, hosted sandbox and brain overwrite",
+        "Attractor specification boundaries, Fabro graph/product claims and Roast composition",
+        "Deep Agents, OpenHands, mini-SWE-agent and Archon alternative-runtime/rights tradeoffs",
+        "All cross-cutting controller/recovery/authority distinctions",
+        "Zazen v1 evolution and separate unreviewed v2 implementation"
+      ],
+      "withheld_material": [
+        "Private adapter comparisons and internal operating defaults",
+        "Source-specific branch/PR distribution and contribution mechanics"
+      ],
+      "review_ceiling": "Selected source and documentation, not entire engine, sandbox or webhook qualification.",
+      "publication_bytes": 15076,
+      "publication_sha256": "0d4bf041be7770d1b199fc0703fb77e975f27a8711883e0aea6055dbe1897f0d"
+    },
+    {
+      "source_document": "QUALITY_AND_EVALUATION.md",
+      "publication_document": "QUALITY_AND_EVALUATION.md",
+      "disposition": "PUBLIC_ANALYSIS_REAUTHORED_WITH_EXCLUSIONS",
+      "retained_public_topics": [
+        "All evidence layers and their limits",
+        "TEA oracle/traceability and TDD meaningful-failure versus destructive adoption",
+        "Execution, assertion failure, unavailable checks, skips and invalid evidence",
+        "Pester mocking and artifact-version distinctions",
+        "Every reviewed Waza ordinary, isolated-judge, runtime, test-source and text-only route",
+        "Promptfoo route-specific generation/grading/target/telemetry/hosted egress",
+        "Gitleaks maintenance and clean-scan limits; Rigour optional goal limitations",
+        "Fresh verification procedure and all ten negative feedback-loop scenarios"
+      ],
+      "withheld_material": [
+        "Private acceptance criteria or suites",
+        "Actual internal source/data routes",
+        "Source-specific host qualification assertions"
+      ],
+      "review_ceiling": "No candidate tests, scans, adversarial workload or live evaluation executed.",
+      "publication_bytes": 12317,
+      "publication_sha256": "15fe95dc1576d930ef958a723093c92ef0212e2c7ac27ff3b8dcbe91831c4a2a"
+    },
+    {
+      "source_document": "KNOWLEDGE_AND_GOVERNANCE.md",
+      "publication_document": "KNOWLEDGE_AND_GOVERNANCE.md",
+      "disposition": "PUBLIC_ANALYSIS_REAUTHORED_WITH_EXCLUSIONS",
+      "retained_public_topics": [
+        "Knowledge categories, provenance, source precedence and relevant retrieval",
+        "RSC exact decisions and current-view versus history distinction",
+        "Rigour states, human decisions, counterevidence, recurrence and withdrawal",
+        "Compound durable lessons, cheapest representation, retirement and cross-history privacy",
+        "Foreman scoped shared-brain mutation and caller-specific policy",
+        "Recovery identity, revision validity, owned effects and reconciliation",
+        "Permitted engineering knowledge versus unrestricted data transfer",
+        "Independent-learning publication cross-reference without claiming improvement"
+      ],
+      "withheld_material": [
+        "Private wiki contents and actual source discrepancies",
+        "Local checkpoint/history facts",
+        "Concrete organization-specific transfer topology and source permissions"
+      ],
+      "review_ceiling": "Public knowledge-governance mechanisms, not actual private policy or demonstrated learning promotion.",
+      "publication_bytes": 11249,
+      "publication_sha256": "0a4b9722ee3bc2ed71e2a14f321e4773cab2863ea3dde033894bc1a24283ef02"
+    },
+    {
+      "source_document": "COMPATIBILITY_AND_LICENSING.md",
+      "publication_document": "COMPATIBILITY_AND_LICENSING.md",
+      "disposition": "PUBLIC_ANALYSIS_REAUTHORED_WITH_EXCLUSIONS",
+      "retained_public_topics": [
+        "Executable, SDK, skills, manifests, Windows and offline compatibility surfaces",
+        "All host-specific RSC, Agent Skills, BMad, SDK, Waza and Spec Kit caveats",
+        "Locality/egress comparisons across all seven original resource groups",
+        "Worktree, post-call, model approval, digest and action-specific control limits",
+        "Every root/file/content/trademark/GPL license exception",
+        "Concrete-reuse attribution and dependency records",
+        "Independent deployment and transfer qualification without private routing facts"
+      ],
+      "withheld_material": [
+        "Private host configuration and launchers",
+        "Personal storage destinations and identity approvals",
+        "Original environment ordering, routing and transfer procedures"
+      ],
+      "review_ceiling": "Historical classifications are not legal clearance or a transitive audit; compatibility remains operation- and host-specific.",
+      "publication_bytes": 11837,
+      "publication_sha256": "184c50db7be0401e22683b773622133808a6ae9c19acf0d3d49bdde6b0db609d"
+    },
+    {
+      "source_document": "INDUSTRY_AND_THEORY.md",
+      "publication_document": "INDUSTRY_AND_THEORY.md",
+      "disposition": "PUBLIC_ANALYSIS_REAUTHORED_WITH_EXCLUSIONS",
+      "retained_public_topics": [
+        "Both Stripe Minions articles, blueprints, context/tools, bounded CI and isolation limits",
+        "Uber workload-specific quality/cost, deterministic operations, context and trace-permission tradeoffs",
+        "Anthropic initializer/incremental sessions, recovery, verification and unresolved topology",
+        "12-Factor control/pause/errors/reducer-diagram and content-license limits",
+        "Agent Skills and official Copilot packaging standards versus enforcement",
+        "Risco inspiration, bounded repository discovery and public corpus links",
+        "OpenAI HTTP 403 explicitly retained as inaccessible evidence"
+      ],
+      "withheld_material": [
+        "Private workload details and organization-specific factual comparisons",
+        "Full upstream article/manual bodies"
+      ],
+      "review_ceiling": "Historical practitioner reading and original synthesis; performance statistics were not reproduced or made into project forecasts.",
+      "publication_bytes": 10562,
+      "publication_sha256": "ef3a6b8279d854755f4ed4b37af4b56a90d4d5d6329cfe5c1b74cda45d0ad2f4"
+    },
+    {
+      "source_document": "DISCOVERY_APPENDIX.md",
+      "publication_document": "DISCOVERY_APPENDIX.md",
+      "disposition": "PUBLIC_DISCOVERY_FACTS_RETAINED_PRIVATE_PAYLOADS_EXCLUDED",
+      "retained_public_topics": [
+        "Search categories, purposeful selection and public-only source-binding method",
+        "All six actual registry result names, resource types, relevance scores and URLs",
+        "Different discovery and reviewed pins for Waza and engineering plugin",
+        "All seven unvetted/inaccessible additional leads",
+        "Focused Zazen supplement and source relationship",
+        "Foreman path correction, partial inventories and visual/read limitations"
+      ],
+      "withheld_material": [
+        "Original query/session records and raw registry payloads",
+        "Private search context",
+        "Executable or captured source resources"
+      ],
+      "review_ceiling": "Relevance is not trust or adoption. Leads not vetted remain explicitly distinct from the 33 pinned candidates.",
+      "publication_bytes": 8904,
+      "publication_sha256": "db27e54632639cc8b3417861b26ce49c86aa12c72315f2852065b701a2845b4c"
+    },
+    {
+      "source_document": "COVERAGE_AND_VALIDATION.md",
+      "publication_document": "COVERAGE_AND_VALIDATION.md",
+      "disposition": "PUBLIC_COVERAGE_RETAINED_PRIVATE_RECEIPTS_WITHHELD",
+      "retained_public_topics": [
+        "All public source/capture/inspection/line and review-depth denominators",
+        "Evidence levels and historical verifier responsibilities",
+        "Historical 16 utility tests, indexing, 14-document/498-link/321-anchor outcome and explicit execution limits",
+        "Promptfoo classifier failure/correction, OpenAI 403 and Foreman path correction",
+        "Zazen caption/frame/companion/license coverage and absent-byte limits",
+        "Publication-local validation and separation from historical receipts",
+        "Remaining uncertainty and independent current-evidence boundary"
+      ],
+      "withheld_material": [
+        "Private archive contents, inventory details and storage identities",
+        "Personal machine paths and original source-specific commands",
+        "Mixed-context original receipts and document fingerprints",
+        "Raw sources, images, transcripts and checkpoint records"
+      ],
+      "review_ceiling": "Historical outcomes are attributed, not rerun; only publication-local integrity can be independently checked from these bytes.",
+      "publication_bytes": 13362,
+      "publication_sha256": "b4bb23a5b8842d0f77c71837adcaf95e8bf3ff09051f0bdcda3f519bc361c436"
+    },
+    {
+      "source_document": "CATALOG.md",
+      "publication_document": "CATALOG.md",
+      "disposition": "COMPLETE_PUBLIC_CANDIDATE_CATALOG_RENDERED",
+      "retained_public_topics": [
+        "All 33 public candidate identities, immutable pins, commit dates, archival state and review depth",
+        "Every original public description, reusable mechanism and adoption qualification",
+        "Historical research dispositions, not installed dependencies",
+        "License source coordinates and every material scope exception",
+        "Links to complete retained historical inspection metadata"
+      ],
+      "withheld_material": [
+        "Original local source-cache links and captured bytes",
+        "Source-specific private fit judgments"
+      ],
+      "review_ceiling": "Public identity metadata plus original analysis; no whole-repository audit, upstream refresh, installation or selected architecture.",
+      "publication_bytes": 55256,
+      "publication_sha256": "226459b9db65481ce520f86550313642658572a865594c82b90b4ddeadb483c7"
+    },
+    {
+      "source_document": "EVIDENCE.md",
+      "publication_document": "EVIDENCE.md",
+      "disposition": "COMPLETE_PUBLIC_INSPECTION_COORDINATES_RENDERED",
+      "retained_public_topics": [
+        "All 90 inspection IDs, kinds, public paths and inclusive historical ranges",
+        "All selected reading notes and evidence-level limitations",
+        "Existing historical public source SHA-256 and Git blob identities",
+        "Video reference with absent caption/media and non-runtime limits"
+      ],
+      "withheld_material": [
+        "Inert local capture paths and source bytes",
+        "Original transcript fingerprints, supplied image and frame payloads",
+        "Private storage and source-record identities"
+      ],
+      "review_ceiling": "Historical coordinate bindings are not rehashed upstream bytes, executed tests or exhaustive semantic/security review.",
+      "publication_bytes": 59786,
+      "publication_sha256": "b0f0b9f4738d750a2574fd746fbaedf11d1917c88c255d3753161c3a66b72fa7"
+    },
+    {
+      "source_document": "VIDEO_ZAZEN_FACTORY.md",
+      "publication_document": "VIDEO_ZAZEN_FACTORY.md",
+      "disposition": "DETAILED_PUBLIC_VIDEO_ANALYSIS_RETAINED_MEDIA_EXCLUDED",
+      "retained_public_topics": [
+        "Source identity, reported date/duration, sponsorship and historical review method",
+        "Four evidence layers and later companion commit relationship",
+        "All 21 timestamped analytical topics",
+        "All artifact owners/interfaces, complete review barrier and exact resumption/round distinction",
+        "State/worktree evolution, fresh-shell paths, ports/browser identity and recovery limits",
+        "All retain-versus-adapt findings and authority/delivery distinctions",
+        "Separate v2 documentation and scoped GPLv3/commercial-use qualification",
+        "778/1556 caption denominator, two sampled frames and complete excluded/unreviewed coverage limits"
+      ],
+      "withheld_material": [
+        "Supplied overview image, raw captions, video, frames and extraction fingerprints",
+        "Original browser/capture records and personal locations",
+        "Private integration and operating comparisons",
+        "Captured companion source or full license text"
+      ],
+      "review_ceiling": "Historical authored analysis, not a new viewing, continuous listening, framework execution, productivity benchmark or media redistribution permission.",
+      "publication_bytes": 16849,
+      "publication_sha256": "db7764085c3b99018ff785e24efbf80ca239ec04676cdd62ce02df1bface12ba"
+    }
+  ]
+}

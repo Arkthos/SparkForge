@@ -35,3 +35,8 @@ build/
 *.sqlite3
 *.db
 *.bak
+
+# Corpus-review outputs and policies contain private originals.
+/publication-review/
+*.private.json
+*redaction-policy*.json

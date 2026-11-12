@@ -1,0 +1,350 @@
+{
+  "schema_version": 1,
+  "publication_edition": "2026-11-12",
+  "historical_research_date": "2026-11-05",
+  "purpose": "Public primary-source, video-review, and discovery identities supplementing the 33-repository pinned catalog.",
+  "boundary": "Historical authored observations only; no new external search, source fetch, video viewing, candidate installation, or model execution. Full article bodies, source captures, registry payloads, captions, images, and session records are not redistributed.",
+  "upstream_refresh": "NOT_RUN",
+  "primary_sources": [
+    {
+      "id": "stripe-minions-1",
+      "title": "Minions: Stripe's one-shot, end-to-end coding agents",
+      "publisher": "Stripe",
+      "url": "https://stripe.dev/blog/minions-stripes-one-shot-end-to-end-coding-agents",
+      "published_date_as_recorded": "2026-02-09",
+      "historical_access": "READ",
+      "publication_document": "INDUSTRY_AND_THEORY.md",
+      "evidence_limit": "Practitioner account, not an acquired public Minions implementation or reproduced production result."
+    },
+    {
+      "id": "stripe-minions-2",
+      "title": "Minions, Part 2",
+      "publisher": "Stripe",
+      "url": "https://stripe.dev/blog/minions-stripes-one-shot-end-to-end-coding-agents-part-2",
+      "published_date_as_recorded": "2026-02-19",
+      "historical_access": "READ",
+      "publication_document": "INDUSTRY_AND_THEORY.md",
+      "evidence_limit": "Deterministic blueprints, curated context/tools, bounded repair and human PR review; no transferred performance or isolation claim."
+    },
+    {
+      "id": "uber-efficient-factory",
+      "title": "Building an efficient software factory",
+      "publisher": "Uber",
+      "url": "https://www.uber.com/gp/en/blog/efficient-software-factory/",
+      "published_date_as_recorded": "2026-08-27",
+      "historical_access": "READ_ACROSS_TWO_FETCH_RANGES",
+      "publication_document": "INDUSTRY_AND_THEORY.md",
+      "evidence_limit": "Workload benchmarks, quality/cost, context and tooling lessons; reported productivity/cost results were not reproduced."
+    },
+    {
+      "id": "anthropic-long-running-harnesses",
+      "title": "Effective harnesses for long-running agents",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/research/effective-harnesses-for-long-running-agents",
+      "historical_access": "READ",
+      "historical_redirect": "The engineering URL redirected to this research URL during the historical retrieval.",
+      "publication_document": "INDUSTRY_AND_THEORY.md",
+      "evidence_limit": "Initializer/incremental-session and recovery practices; not proof of one best agent topology or an enforced security boundary."
+    },
+    {
+      "id": "agent-skills-specification",
+      "title": "Agent Skills specification",
+      "url": "https://agentskills.io/specification",
+      "historical_access": "READ",
+      "publication_documents": [
+        "INDUSTRY_AND_THEORY.md",
+        "COMPATIBILITY_AND_LICENSING.md"
+      ],
+      "evidence_limit": "Packaging/progressive-disclosure format; allowed-tools is experimental and host-dependent, not universal enforcement."
+    },
+    {
+      "id": "copilot-cli-plugin-reference",
+      "title": "GitHub Copilot CLI plugin reference",
+      "publisher": "GitHub",
+      "url": "https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-plugin-reference",
+      "historical_access": "READ",
+      "publication_documents": [
+        "INDUSTRY_AND_THEORY.md",
+        "COMPATIBILITY_AND_LICENSING.md"
+      ],
+      "evidence_limit": "Mutable public documentation on manifest modes, schemas, component paths, managed/repository settings and updates; not a customized-host runtime test."
+    }
+  ],
+  "videos": [
+    {
+      "id": "p6nnqerea7w",
+      "label": "Eric Risco factory walkthrough",
+      "url": "https://www.youtube.com/watch?v=p6nnqerea7w",
+      "historical_review_date": "2026-11-05",
+      "publication_document": "SCOPE.md",
+      "earlier_publication_review": "../../ai-factory/20-eric-risco-video-review.md",
+      "review_method": "Historical second review of the complete available Spanish automatic transcript; not repeated for this publication.",
+      "unique_caption_segments": 477,
+      "caption_span": "00:00-17:20",
+      "new_frame_claims_in_second_pass": false,
+      "frame_limit": "Advertising interrupted fresh frame inspection; earlier qualified visual observations remain in the separate original public review.",
+      "timestamp_topics": [
+        {
+          "range": "04:00-05:29",
+          "topic": "Persistent project knowledge"
+        },
+        {
+          "range": "06:34-08:11",
+          "topic": "Common intake, grounded specifications, isolated work and test-driven builder"
+        },
+        {
+          "range": "08:12-10:13",
+          "topic": "Focused review roles"
+        },
+        {
+          "range": "10:14-10:52",
+          "topic": "Model consolidation of reviews and rework requests"
+        },
+        {
+          "range": "11:03-12:31",
+          "topic": "Separate risk/human routing and supporting hooks/code"
+        },
+        {
+          "range": "12:32-13:50",
+          "topic": "Identifiable parallel jobs and non-programmer users"
+        },
+        {
+          "range": "14:32-15:29",
+          "topic": "Human review and upload in the content example"
+        }
+      ],
+      "evidence_limit": "Proof-of-concept inspiration, not a universal human pre-code specification gate or target-host acceptance. Historical public repository discovery did not establish a complete separately named implementation.",
+      "raw_captions_frames_or_media_included": false
+    },
+    {
+      "id": "ctoaIC4LHmI",
+      "title": "Build Your Own AI Software Factory with Claude Code",
+      "channel": "ZazenCodes",
+      "channel_url": "https://www.youtube.com/@ZazenCodes",
+      "url": "https://www.youtube.com/watch?v=ctoaIC4LHmI",
+      "reported_premiere_date": "2026-10-07",
+      "displayed_duration": "28:01",
+      "sponsorship_disclosed": "Anthropic",
+      "historical_review_date": "2026-11-05",
+      "publication_document": "VIDEO_ZAZEN_FACTORY.md",
+      "base_catalog_video_reference": "ctoaIC4LHmI",
+      "companion_repository_id": "zazen-factory",
+      "companion_commit": "6c2b66b0f38fc883f773fe098214c0cef4ea7654",
+      "companion_commit_date": "2026-11-03T19:04:50Z",
+      "review_method": "Historical available English auto-caption review, a supplied overview and two selected main-video frames, plus selected later companion contracts.",
+      "unique_caption_segments": 778,
+      "caption_dom_rows_before_deduplication": 1556,
+      "caption_span": "00:00-27:47",
+      "substantive_outro_approximately": "27:28",
+      "last_caption_limit": "The final caption appears to be music recognition.",
+      "selected_frame_positions": [
+        "13:06",
+        "19:27"
+      ],
+      "frame_method_limit": "Historical duration/seek positions were checked without advertisements; this is not continuous visual coverage or a new viewing.",
+      "timestamp_topics": [
+        {
+          "seconds": 41,
+          "topic": "Initial overview"
+        },
+        {
+          "seconds": 85,
+          "topic": "Spec writer, builder, four reviewers and approver"
+        },
+        {
+          "seconds": 115,
+          "topic": "Model-selected merge or escalation"
+        },
+        {
+          "seconds": 198,
+          "topic": "General trigger, agent, PR and human-merge explanation"
+        },
+        {
+          "seconds": 258,
+          "topic": "Bypass permissions enabled"
+        },
+        {
+          "seconds": 304,
+          "topic": "LLM session running an orchestration skill"
+        },
+        {
+          "seconds": 512,
+          "topic": "Model-generated starter backlog"
+        },
+        {
+          "seconds": 639,
+          "topic": "Dirty working-tree precondition"
+        },
+        {
+          "seconds": 680,
+          "topic": "Builder follows the generated spec without a demonstrated human gate"
+        },
+        {
+          "seconds": 743,
+          "topic": "Parallel reviews and escalation"
+        },
+        {
+          "seconds": 810,
+          "topic": "Later human approval from another session"
+        },
+        {
+          "seconds": 860,
+          "topic": "Free-form command arguments"
+        },
+        {
+          "seconds": 883,
+          "topic": "Readable metadata and ignored runtime files"
+        },
+        {
+          "seconds": 976,
+          "topic": "Worktrees introduced"
+        },
+        {
+          "seconds": 1042,
+          "topic": "Concurrent jobs from separate sessions"
+        },
+        {
+          "seconds": 1179,
+          "topic": "Owning a small comprehensible system"
+        },
+        {
+          "seconds": 1327,
+          "topic": "Dirty backlog state blocks approved integration"
+        },
+        {
+          "seconds": 1421,
+          "topic": "Factory changes interfere with another merge"
+        },
+        {
+          "seconds": 1453,
+          "topic": "Worktree confirmation and future intake integrations"
+        },
+        {
+          "seconds": 1489,
+          "topic": "Proposed monitoring and post-deployment correction"
+        },
+        {
+          "seconds": 1578,
+          "topic": "Agent/context cost and subscription discussion"
+        }
+      ],
+      "review_limitations": [
+        "Initial prompt, recording, later v1 contracts and separate v2 are different revisions/evidence layers.",
+        "Selected v1 contracts only; other three reviewer contracts and dashboard implementation were not audited.",
+        "V2 README and opening license text only; executable implementation was not reviewed.",
+        "Full captions and video were not retained in the historical deliverable; extraction fingerprints cannot be independently rehashed from absent bytes.",
+        "No installation, model trial, subscription signup, deployment, production benchmark or measured productivity result."
+      ],
+      "raw_captions_frames_or_media_included": false
+    }
+  ],
+  "registry_discovery": {
+    "endpoint": "https://agentfinder.github.com/api/v1/search",
+    "requested_results": 6,
+    "score_meaning": "Historical relevance only, not trust, licensing, security, compatibility or quality.",
+    "raw_query_or_response_payload_included": false,
+    "results": [
+      {
+        "id": "registry-agent-skills",
+        "name": "Agent Skills",
+        "type": "application/vnd.anthropic.claude-plugin+json",
+        "score": 95,
+        "url": "https://github.com/addyosmani/agent-skills/tree/301b02b12bff98e4688e6984af6556802322bbde",
+        "follow_up": "Selected source review; candidate addy-skills."
+      },
+      {
+        "id": "registry-maui-git-workflow",
+        "name": "Git Workflow Skill",
+        "type": "application/agent-skills+md",
+        "score": 82,
+        "url": "https://github.com/dotnet/maui-labs/tree/e2f4a89e8d3ccc0ead6fabef2a4f43bdd241ce82/src/Comet/.copilot/skills/git-workflow",
+        "follow_up": "Discovery-only project-specific example; not installed or deeply reviewed."
+      },
+      {
+        "id": "registry-waza-git-workflow",
+        "name": "Git Workflow Skill",
+        "type": "application/agent-skills+md",
+        "score": 82,
+        "url": "https://github.com/microsoft/waza/tree/394196ccd02f5f161ed643ff731bff5930a75401/.github/skills/git-workflow",
+        "follow_up": "Sample not deeply reviewed; Waza evaluator source was independently pinned to a different commit."
+      },
+      {
+        "id": "registry-squad-git-workflow",
+        "name": "Git Workflow for Squad",
+        "type": "application/agent-skills+md",
+        "score": 82,
+        "url": "https://github.com/microsoft/github-vteam-industry-demos/tree/52a1e8c92456b3469b9a4afdc06d3f2cc4ab6796/industries/healthcare-life-sciences/claim-processing/.github/skills/git-workflow",
+        "follow_up": "Discovery-only; workflow and domain conventions not adopted."
+      },
+      {
+        "id": "registry-rigour-reviewer",
+        "name": "Rigour Code Reviewer",
+        "type": "application/mcp-server+json",
+        "score": 79,
+        "url": "https://api.mcp.github.com/v0.1/servers/io.github.rigour-labs%2Frigour/versions/7.0.14",
+        "follow_up": "Descriptor led to selected Rigour source reading; no MCP server installed, connected or invoked."
+      },
+      {
+        "id": "registry-engineering-plugin",
+        "name": "Engineering Plugin",
+        "type": "application/vnd.anthropic.claude-plugin+json",
+        "score": 73,
+        "url": "https://github.com/anthropics/knowledge-work-plugins/tree/2574e29377c7173d0cecffef29a6ecbd7f8ccb5d/engineering",
+        "follow_up": "Engineering slice screened at the newer separate catalog revision; not whole-estate or host acceptance."
+      }
+    ]
+  },
+  "additional_leads": [
+    {
+      "id": "lead-codeaf",
+      "url": "https://github.com/Agent-Field/CodeAF",
+      "status": "DISCOVERY_ONLY",
+      "reason": "Software-factory search context; no pinned implementation review."
+    },
+    {
+      "id": "lead-squid",
+      "url": "https://github.com/iusztinpaul/squid",
+      "status": "DISCOVERY_ONLY",
+      "reason": "Related agent/factory approach, not a qualified dependency."
+    },
+    {
+      "id": "lead-warp",
+      "url": "https://github.com/warpdotdev/warp",
+      "status": "DISCOVERY_ONLY",
+      "reason": "Agentic-development context; no acceptance or audit."
+    },
+    {
+      "id": "lead-goose",
+      "url": "https://github.com/block/goose",
+      "status": "NOT_ACQUIRED",
+      "reason": "Referenced by Stripe; underlying source was not deeply inspected."
+    },
+    {
+      "id": "lead-betterleaks",
+      "url": "https://github.com/betterleaks/betterleaks",
+      "status": "DISCOVERY_ONLY",
+      "reason": "Gitleaks successor reference, not vetted or automatically substituted."
+    },
+    {
+      "id": "lead-archon",
+      "url": "https://github.com/coleam00/Archon",
+      "status": "DEPENDENCY_NOT_DEEPLY_REVIEWED",
+      "reason": "Named by the wrapper; wrapper reading is not underlying implementation review."
+    },
+    {
+      "id": "lead-openai-harness-engineering",
+      "url": "https://openai.com/index/harness-engineering/",
+      "status": "FETCH_FAILED",
+      "historical_http_status": 403,
+      "reason": "Not used as newly read evidence; no replacement source or current availability claim."
+    }
+  ],
+  "counts": {
+    "read_primary_web_sources": 6,
+    "video_analysis_references": 2,
+    "registry_results": 6,
+    "additional_leads": 7,
+    "risco_timestamp_ranges": 7,
+    "zazen_timestamp_topics": 21
+  }
+}

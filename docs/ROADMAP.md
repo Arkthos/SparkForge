@@ -28,6 +28,18 @@ P8 are not hidden prerequisites to that goal.
 
 ## Current change effect
 
+The 2026-11-12 completeness request adds WP-003 for detailed public research and
+authored research tools, plus WP-004 for complete local restricted-corpus review.
+The original application code is already present. The local wiki/study
+preparation preserves every indexed original and all non-redacted page text;
+it does not authorize publication or complete semantic/media review.
+These are repository-completeness work packages, not new product milestones.
+
+All 19 authored tooling inputs and 14 detailed public dossier topics are now
+represented. The expanded integration suite passes 394 cases with two
+explicit Windows privilege skips. Private wiki/study release remains blocked
+under WP-004; safe tooling/public-research completion does not resolve it.
+
 This clean publication keeps owned executable behavior while replacing
 restricted contextual material with source-neutral guidance and adding reviewed
 public research. It preserves the original private history separately.

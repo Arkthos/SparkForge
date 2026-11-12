@@ -53,3 +53,18 @@ their own terms, and later code adoption needs its own path-specific review.
 
 Source integrity, source authorization, implementation testing, human acceptance
 and release authority are separate facts throughout the project.
+
+## 2026-11-12 completeness correction
+
+The initial source-neutral prior-art reference was not the entire authored
+research dossier, and the initial code inventory did not include separate
+collection/indexing/verification/checkpoint utilities. The
+[coverage ledger](delivery/CORPUS_COVERAGE.md) accounts for those categories
+explicitly. The detailed public-topic edition retains per-document exclusions
+rather than transplanting private comparisons.
+
+Complete local wiki and engineering-study redaction candidates were prepared
+and reconstructed against original bytes. That is local preparation evidence,
+not semantic clearance, public source provenance or unchanged original content.
+Any later approved edition needs its own revision/hashes and disclosure
+decision; original source citations cannot silently attest redacted bytes.

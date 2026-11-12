@@ -1,6 +1,6 @@
 # SparkForge project status
 
-**As of:** 2026-11-11.
+**As of:** 2026-11-12.
 **Position:** the clean, self-contained software and public-research snapshot
 is published. The native assisted factory remains experimental, not deployment-qualified.
 
@@ -8,6 +8,15 @@ The publication contains project-owned code, source-neutral documentation,
 synthetic fixtures and reviewed public-source research. Private source captures,
 runtime journals, raw transcripts, archives and original private Git history
 are excluded. No private collection is needed to run the test suite.
+
+**Completeness correction:** the initial upload was not the complete research
+workspace. All 24 original application/test/preview code files are present and
+byte-identical. WP-003 restored all 19 inventoried research/checkpoint utility
+inputs and 14 detailed public-topic documents; final publication verification
+is pending. WP-004 has complete local wiki/study review candidates,
+but those private candidates and unreviewed attachments are not on GitHub.
+See the [completeness specification](specs/CORPUS_COMPLETENESS.md) and
+[review-preparation guide](engineering/CORPUS_REVIEW.md).
 
 ## Implemented
 
@@ -39,6 +48,11 @@ See [validation history](VALIDATION_HISTORY.md) and the
 No earlier private source/read/review receipt is imported as evidence for this
 publication candidate.
 
+The 2026-11-12 expanded full suite collected 396 cases: 394 passed and the same
+two Windows symlink-privilege cases were skipped. It includes all 72 research-tool
+cases and 14 new local review-preparation cases. No live service collection,
+private checkpoint read or semantic wiki approval was performed.
+
 The private [GitHub destination](https://github.com/Arkthos/SparkForge) exists.
 The initial publication commit is
 [`a30cdba0df37ae032388e89ad7725c5b20a895c2`](https://github.com/Arkthos/SparkForge/commit/a30cdba0df37ae032388e89ad7725c5b20a895c2).
@@ -50,7 +64,7 @@ the tested software.
 
 ## Remaining work
 
-The [backlog](IMPLEMENTATION_BACKLOG.csv) has 44 work packages, mapped to 31
+The [backlog](IMPLEMENTATION_BACKLOG.csv) has 46 work packages, mapped to 31
 requirements and 96 planned acceptance scenarios. Implemented local mechanisms
 must be reused, not rebuilt while qualifying broader contracts.
 
@@ -59,16 +73,24 @@ installed lifecycle, representative model-driven user acceptance and independent
 learning promotion remain open. Separate target-environment evidence is required;
 the `corp` and `acro` labels are not permissions or certifications.
 
+The full local review accounts for 117 wiki pages, 57 attachments, 27 ancillary
+files and all 14 authored engineering-study documents. Original hashes and
+full candidate reconstruction were verified; no excerpt truncation or summary
+replaced them. Mechanical redactions do not establish semantic safety or
+source/data-owner permission. That review/release decision remains a real blocker.
+
 The self-check harness uses explicitly synthetic decisions and cannot manufacture
 a reviewer. This publication has no admitted independent review of its changed
 documentation/spec candidate; do not attach an earlier private token or verdict.
 
 ## Next actions
 
-1. Use this repository for GitHub-bound work; keep excluded private material outside it.
-2. Run a small real task only in a genuinely approved host/data/resource scope.
-3. Qualify source freshness, lifecycle and actual control boundaries independently.
-4. Implement and evaluate governed learning without granting it promotion authority.
+1. Finish the safe research/tooling expansion and review the complete local
+   private corpus before any separately authorized upload.
+2. Use this repository for GitHub-bound work; keep excluded private material outside it.
+3. Run a small real task only in a genuinely approved host/data/resource scope.
+4. Qualify source freshness, lifecycle and actual control boundaries independently.
+5. Implement and evaluate governed learning without granting it promotion authority.
 
 No hosted CI, installed-host acceptance, private-source export, cross-environment
 transfer or production release is claimed.

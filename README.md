@@ -41,10 +41,22 @@ UX prototype, not an AI run or actual platform comparison.
 
 ## Development
 
-Python 3.10+ and its standard library support the helpers. Git is used by the
-project-state checker. Node.js is needed only for the existing preview tests.
+Python 3.10+ and its standard library support the native factory helpers.
+The separate research utilities use Python 3.12+ and the explicitly declared
+Markdown/image packages. Git supports project checks; Node.js is needed only
+for the preview tests. No research dependency is part of the native plugin.
+
+For the native package alone:
 
 ```powershell
+python -B -m unittest discover -s tests -p "test_native_*.py"
+```
+
+For the complete suite, first follow the scoped dependency instructions in
+[research tools](research_tools/README.md), then:
+
+```powershell
+$env:PYTHONPATH = (Resolve-Path 'research_tools\.validation-deps').Path
 python -B -m unittest discover -s tests
 node --test tests\test_preview_model.cjs tests\test_preview_assets.cjs
 python -B scripts\validate_plan.py --base HEAD
@@ -75,6 +87,14 @@ are not source files and are excluded from Git.
   and [governed learning](docs/research/SELF_IMPROVEMENT.md).
 - [Publication scope](docs/delivery/GITHUB_PUBLICATION.md) and
   [contributor instructions](AGENTS.md).
+
+The [corpus coverage ledger](docs/delivery/CORPUS_COVERAGE.md) distinguishes
+complete application code, detailed public research, authored research tools
+and local-only wiki/study review candidates. It does not label a condensed
+reference or a mechanical redaction pass as the full published wiki.
+All 19 inventoried research/checkpoint utility inputs are represented in
+[the portable tooling edition](research_tools/README.md), with explicit
+adaptation and test records rather than embedded private configuration.
 
 ## Publication boundary
 

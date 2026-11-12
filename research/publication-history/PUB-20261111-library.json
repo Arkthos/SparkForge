@@ -1,0 +1,407 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-11-11T23:17:33.212797+00:00",
+  "publication_edition": "2026-11-11",
+  "scope": "Only research and the two public-source self-improvement documents; not an inventory of the entire project or a publication receipt.",
+  "inventory_rule": "All files below research plus docs/research/SELF_IMPROVEMENT.md and docs/research/self-improvement-sources.json; this manifest is excluded from its own hash list.",
+  "self_excluded_from_hash_inventory": true,
+  "counts": {
+    "published_files_including_this_manifest": 36,
+    "hashed_content_files": 35,
+    "markdown_files": 31,
+    "json_files_including_this_manifest": 5,
+    "factory_original_markdown_documents": 28,
+    "factory_public_sources": 49,
+    "prior_art_public_repositories": 33,
+    "prior_art_historical_inspection_entries": 90,
+    "factory_unchanged_content_files": 16,
+    "factory_edited_markdown_files": 13,
+    "factory_formatting_correction_files": 10,
+    "factory_markdown_hard_break_replacements": 45
+  },
+  "checks": [
+    {
+      "check": "Original factory inventory compared with actual source bytes",
+      "result": "PASS",
+      "matched_content_files": 29
+    },
+    {
+      "check": "Manual review of all selected factory Markdown and public source catalog",
+      "result": "PASS",
+      "markdown_documents": 28,
+      "public_source_entries": 49,
+      "boundary": "Bounded content review; not a legal or exhaustive security audit."
+    },
+    {
+      "check": "Prior-art public identity, pin, source-reference and range consistency against existing metadata",
+      "result": "PASS",
+      "repositories": 33,
+      "historical_inspection_entries": 90,
+      "boundary": "Local metadata verification only; no new upstream fetch or framework execution."
+    },
+    {
+      "check": "Publication recipe in research/README.md",
+      "command": "python -B -",
+      "result": "PASS",
+      "invocation": "PowerShell here-string recipe in research/README.md; executed locally from the publication root.",
+      "published_files": 36,
+      "hashed_content_files": 35,
+      "markdown_files": 31,
+      "json_files": 5,
+      "local_links": 213,
+      "factory_source_citations": 125,
+      "json_examples": 2,
+      "scope_note": "Reran on current bytes after the formatting-only correction; earlier results retained in validation_history.",
+      "checked_at_utc": "2026-11-11T23:17:33.212797+00:00",
+      "trailing_whitespace_findings": 0
+    },
+    {
+      "check": "Bounded publication content and portability scan",
+      "result": "PASS",
+      "command": "python -B -",
+      "invocation": "Local standard-library assertions over all inventoried research content and this manifest.",
+      "files": 36,
+      "remaining_indicator_findings": 0,
+      "scope": "Finite machine-specific path, excluded-context, credential-token, file-type, and symlink indicators; not an exhaustive security or legal assessment.",
+      "initial_attempt": {
+        "result": "FAIL",
+        "indicator_findings": 1,
+        "classification": "FALSE_POSITIVE",
+        "explanation": "A sentence explicitly excluding private wiki exports matched an overly broad generic term indicator.",
+        "correction": "Refined the indicator to collection-specific paths after manual triage; did not alter the document to hide the match."
+      },
+      "scope_note": "Reran on current bytes after the formatting-only correction; earlier results retained in validation_history.",
+      "checked_at_utc": "2026-11-11T23:17:33.212797+00:00"
+    },
+    {
+      "check": "Public catalog and self-improvement bibliographic consistency",
+      "command": "python -B -",
+      "result": "PASS",
+      "repositories": 33,
+      "historical_inspection_entries": 90,
+      "self_improvement_metadata": "MATCHED",
+      "boundary": "Compared allowed public bibliographic fields and original review limits; no raw captures copied or upstream fetched."
+    },
+    {
+      "check": "Authored prior-art GitHub citations bound to catalog pins",
+      "command": "python -B -",
+      "result": "PASS",
+      "repository_links": 45,
+      "license_exceptions": "PRESERVED",
+      "archived_repository_marker": "PRESERVED"
+    },
+    {
+      "check": "Hard-break reverse transformation and CRLF preservation",
+      "command": "python -B -",
+      "result": "PASS",
+      "files": 10,
+      "hard_breaks": 45,
+      "unchanged_other_factory_files": 19,
+      "inside_code_fences": 0
+    },
+    {
+      "check": "Trailing whitespace in all published research text",
+      "command": "python -B -",
+      "result": "PASS",
+      "files": 36,
+      "checked_at_utc": "2026-11-11T23:17:33.212797+00:00",
+      "findings": 0
+    },
+    {
+      "check": "Normal Git whitespace check on owned working-tree changes",
+      "command": "git --no-pager diff --check -- research docs\\research\\SELF_IMPROVEMENT.md docs\\research\\self-improvement-sources.json",
+      "result": "PASS",
+      "scope": "Working-tree changes only; coordinator restages separately. No whitespace setting overrides.",
+      "checked_at_utc": "2026-11-11T23:17:33.212797+00:00",
+      "exit_code": 0
+    }
+  ],
+  "not_established": [
+    "Current external URL availability or upstream behavior",
+    "Candidate framework installation, tests, benchmarks, host acceptance, or measured learning improvement",
+    "Legal clearance for redistributing upstream source or dependencies",
+    "Complete absence of confidential content or secrets beyond the bounded review and scans",
+    "Repository push, GitHub commit identity, or hosted CI"
+  ],
+  "files": [
+    {
+      "relative_path": "docs/research/self-improvement-sources.json",
+      "bytes": 4050,
+      "sha256": "78bfb00e3a387ea4e2f5cb7007021f1d2d0ecdaef36d7807657230d0a39296b6"
+    },
+    {
+      "relative_path": "docs/research/SELF_IMPROVEMENT.md",
+      "bytes": 11105,
+      "sha256": "8972ffa11c0e9ab1482dd4e4eff3b45af5c6e181b9e56251e75622a9389a1f68"
+    },
+    {
+      "relative_path": "research/ai-factory/00-research-method.md",
+      "bytes": 10137,
+      "sha256": "d5eb429e6b39213f5d3c1d8794a3959a3a3bc5d5ec56c915d34fa7249ab941fd"
+    },
+    {
+      "relative_path": "research/ai-factory/01-foundations-and-concept-map.md",
+      "bytes": 11998,
+      "sha256": "3b5ad98c2c9738886a0108d65f60aef6198b99cf7da383797cbb71aa40ba9826"
+    },
+    {
+      "relative_path": "research/ai-factory/02-ai-factory-operating-model.md",
+      "bytes": 9667,
+      "sha256": "9b61ffe4a3e5a021f5a52a1c989764866a0182306ec449a2ba713920e23351fe"
+    },
+    {
+      "relative_path": "research/ai-factory/03-harness-engineering.md",
+      "bytes": 12727,
+      "sha256": "254324330049040d2965ce999cf41c802b371cd9afcaa7fd4f09032fd35bb4de"
+    },
+    {
+      "relative_path": "research/ai-factory/04-context-memory-and-rag.md",
+      "bytes": 11151,
+      "sha256": "76be202e4a96a219ee2ef6db89489460ccecfc4293fd8a1b2f50fefb119db82e"
+    },
+    {
+      "relative_path": "research/ai-factory/05-tools-skills-and-protocols.md",
+      "bytes": 9675,
+      "sha256": "89df329957194deba22ba9574ce8c4eefba8b94d63bb5dd094aed1a68974e417"
+    },
+    {
+      "relative_path": "research/ai-factory/06-orchestration-and-reliability.md",
+      "bytes": 10163,
+      "sha256": "3c6667c6c80bf8f29d60d4841b15f4fc24439322215140b67df54b39277a0b77"
+    },
+    {
+      "relative_path": "research/ai-factory/07-evaluation-and-verification.md",
+      "bytes": 12292,
+      "sha256": "aa9b4986c7dc5a412d27c37a72583cbd5aeb4b93f18e3965297f35bd31413189"
+    },
+    {
+      "relative_path": "research/ai-factory/08-security-and-governance.md",
+      "bytes": 11175,
+      "sha256": "573317de021f7ea47c697eab17dba0bba6aa8e944a85e2f398820b58071f5e29"
+    },
+    {
+      "relative_path": "research/ai-factory/09-models-infrastructure-and-mlops.md",
+      "bytes": 9932,
+      "sha256": "edf0be9ee924ce343b367889ec2b9ca1451442895f4dc50ec879f086b7033635"
+    },
+    {
+      "relative_path": "research/ai-factory/10-observability-economics-and-operations.md",
+      "bytes": 9783,
+      "sha256": "028aa1d3757a73dba467c742b97c302ec5cfb9abc19fe614d9f5dd4f319f4430"
+    },
+    {
+      "relative_path": "research/ai-factory/11-spec-driven-software-factories.md",
+      "bytes": 9918,
+      "sha256": "935d57c6ff76ed43bf1b7f0a58f158cb374a0fc6061806a429377a53d08e62f7"
+    },
+    {
+      "relative_path": "research/ai-factory/12-reference-architecture-and-decisions.md",
+      "bytes": 9304,
+      "sha256": "9f2ac41072a9ee77cb478b6af03eab13864d872f0d89998a9be615db50cbc563"
+    },
+    {
+      "relative_path": "research/ai-factory/13-allbright-stack-analysis.md",
+      "bytes": 10166,
+      "sha256": "9ae5b3259b01826c0272e832e7b20f61f5d69f852b351db7a86600db49cc987a"
+    },
+    {
+      "relative_path": "research/ai-factory/14-learning-path-and-labs.md",
+      "bytes": 11246,
+      "sha256": "c761b5c645ae3d6765b80c7d09a556f65a7ebc99afafca8e2da7f3e23868b445"
+    },
+    {
+      "relative_path": "research/ai-factory/15-glossary.md",
+      "bytes": 12755,
+      "sha256": "32d5ff0e1ba5466bc6f03ea1b6363c2f9c84437e3d60f447b128e5b800156878"
+    },
+    {
+      "relative_path": "research/ai-factory/16-sources-and-reading-guide.md",
+      "bytes": 29519,
+      "sha256": "58118d76e479f7ae6a951811564258d89db6735d424dfeb59d0cfc6dc5dc1c56"
+    },
+    {
+      "relative_path": "research/ai-factory/17-evidence-map-and-open-questions.md",
+      "bytes": 11475,
+      "sha256": "0e3dc4a8412c0bed00689f7e49b7cc372d98c3f359f6998c173ce34de4a7aa38"
+    },
+    {
+      "relative_path": "research/ai-factory/18-worked-factory-scenario.md",
+      "bytes": 10829,
+      "sha256": "ee7388512c3bbb2eec642a6e9e5fa52aa82e709afe01950a695942c601f5403e"
+    },
+    {
+      "relative_path": "research/ai-factory/19-competency-assessment.md",
+      "bytes": 10621,
+      "sha256": "5aee2083aea8f80199d749e15bb4786374636291d00d25ea5212766f5dfa218a"
+    },
+    {
+      "relative_path": "research/ai-factory/20-eric-risco-video-review.md",
+      "bytes": 15373,
+      "sha256": "9a219381b242ff068b771aee8dc0199ab6946912e07b06563c9173633b035edd"
+    },
+    {
+      "relative_path": "research/ai-factory/corpus-manifest.json",
+      "bytes": 22940,
+      "sha256": "0413de24cfc0bf6e722f369649bda7df3011cd4da1a2aba6d1c97243f92b32f3"
+    },
+    {
+      "relative_path": "research/ai-factory/README.md",
+      "bytes": 10227,
+      "sha256": "b6df94a98e165dcdf255602ce242432012962d3c1c2d30a6c21b0ad8e91a77e8"
+    },
+    {
+      "relative_path": "research/ai-factory/sources.json",
+      "bytes": 15298,
+      "sha256": "6dd5dacf0a6800154cbc8d0f059fc3a7fd8918e0b6961c495b27f4e8c193234e"
+    },
+    {
+      "relative_path": "research/ai-factory/templates/architecture-decision-record.md",
+      "bytes": 2170,
+      "sha256": "e9007f7585a53992db103b7e4ec7990e135d94f836171368d716b85f33a2c52a"
+    },
+    {
+      "relative_path": "research/ai-factory/templates/evaluation-plan.md",
+      "bytes": 2902,
+      "sha256": "b33ee27fd692c5db8b752efad7f9fd518340153913a6b7149c410a5aa3e36895"
+    },
+    {
+      "relative_path": "research/ai-factory/templates/harness-and-task-contract.md",
+      "bytes": 2769,
+      "sha256": "a5446ce5d255283ccc201c452fb59c01df5406899f2312fd076b3d87e881a761"
+    },
+    {
+      "relative_path": "research/ai-factory/templates/incident-and-learning-review.md",
+      "bytes": 2631,
+      "sha256": "9b330f00f80f16eae245091ae293531e9b17881f222658ab3474a130bd387681"
+    },
+    {
+      "relative_path": "research/ai-factory/templates/release-evidence-record.md",
+      "bytes": 2317,
+      "sha256": "4c1d3c787a1cdcedcc2cbd30c0172481d63a42c8f6acc1e568521829ea94e5d5"
+    },
+    {
+      "relative_path": "research/ai-factory/templates/use-case-charter.md",
+      "bytes": 2652,
+      "sha256": "af383fd295571dcc4bab747eab4f9037f7896baa29a3d485fe41918f8886bbda"
+    },
+    {
+      "relative_path": "research/prior-art/README.md",
+      "bytes": 20426,
+      "sha256": "84a196caa62f57d528b4db7412caafd73b1f782ab2c1188495276c7a6cbdfe7e"
+    },
+    {
+      "relative_path": "research/prior-art/sources.json",
+      "bytes": 90547,
+      "sha256": "e7220c17e7b12f562e8e449e18fc2c7a6f910213ccac2de0ea5083ba925bdcc7"
+    },
+    {
+      "relative_path": "research/README.md",
+      "bytes": 11610,
+      "sha256": "0251a19202c9dfebf3386b11b13810e8f2344a67bd1c206bc8f2b5142f6ba9be"
+    }
+  ],
+  "validation_history": [
+    {
+      "id": "pre-formatting-publication-checks",
+      "recorded_at_utc": "2026-11-11T22:49:02.545518+00:00",
+      "manifest_sha256": "efde16961f88e3091539d5132c3a6db878ce54e4c98f958f93f9d740fbcd9644",
+      "counts": {
+        "published_files_including_this_manifest": 36,
+        "hashed_content_files": 35,
+        "markdown_files": 31,
+        "json_files_including_this_manifest": 5,
+        "factory_original_markdown_documents": 28,
+        "factory_public_sources": 49,
+        "prior_art_public_repositories": 33,
+        "prior_art_historical_inspection_entries": 90
+      },
+      "checks": [
+        {
+          "check": "Original factory inventory compared with actual source bytes",
+          "result": "PASS",
+          "matched_content_files": 29
+        },
+        {
+          "check": "Manual review of all selected factory Markdown and public source catalog",
+          "result": "PASS",
+          "markdown_documents": 28,
+          "public_source_entries": 49,
+          "boundary": "Bounded content review; not a legal or exhaustive security audit."
+        },
+        {
+          "check": "Prior-art public identity, pin, source-reference and range consistency against existing metadata",
+          "result": "PASS",
+          "repositories": 33,
+          "historical_inspection_entries": 90,
+          "boundary": "Local metadata verification only; no new upstream fetch or framework execution."
+        },
+        {
+          "check": "Publication recipe in research/README.md",
+          "command": "python -B -",
+          "result": "PASS",
+          "invocation": "PowerShell here-string recipe in research/README.md; executed locally from the publication root.",
+          "checked_at_utc": "2026-11-11T22:49:02.545518+00:00",
+          "published_files": 36,
+          "hashed_content_files": 35,
+          "markdown_files": 31,
+          "json_files": 5,
+          "local_links": 213,
+          "factory_source_citations": 125,
+          "json_examples": 2
+        },
+        {
+          "check": "Bounded publication content and portability scan",
+          "result": "PASS",
+          "command": "python -B -",
+          "invocation": "Local standard-library assertions over all inventoried research content and this manifest.",
+          "checked_at_utc": "2026-11-11T22:49:02.545518+00:00",
+          "files": 36,
+          "remaining_indicator_findings": 0,
+          "scope": "Finite machine-specific path, excluded-context, credential-token, file-type, and symlink indicators; not an exhaustive security or legal assessment.",
+          "initial_attempt": {
+            "result": "FAIL",
+            "indicator_findings": 1,
+            "classification": "FALSE_POSITIVE",
+            "explanation": "A sentence explicitly excluding private wiki exports matched an overly broad generic term indicator.",
+            "correction": "Refined the indicator to collection-specific paths after manual triage; did not alter the document to hide the match."
+          }
+        },
+        {
+          "check": "Public catalog and self-improvement bibliographic consistency",
+          "command": "python -B -",
+          "result": "PASS",
+          "repositories": 33,
+          "historical_inspection_entries": 90,
+          "self_improvement_metadata": "MATCHED",
+          "boundary": "Compared allowed public bibliographic fields and original review limits; no raw captures copied or upstream fetched."
+        },
+        {
+          "check": "Authored prior-art GitHub citations bound to catalog pins",
+          "command": "python -B -",
+          "result": "PASS",
+          "repository_links": 45,
+          "license_exceptions": "PRESERVED",
+          "archived_repository_marker": "PRESERVED"
+        }
+      ],
+      "scope": "Earlier publication validation retained without reinterpretation. Its documentation recipe did not check trailing whitespace."
+    }
+  ],
+  "publication_corrections": [
+    {
+      "id": "2026-11-11-markdown-hard-break-formatting",
+      "recorded_at_utc": "2026-11-11T23:15:11.019072+00:00",
+      "details": "ai-factory/corpus-manifest.json",
+      "formatted_factory_files": 10,
+      "hard_break_replacements": 45,
+      "additional_updated_documents": [
+        "research/README.md",
+        "research/ai-factory/corpus-manifest.json",
+        "research/publication-manifest.json"
+      ],
+      "boundary": "Formatting and truthful documentation/inventory updates only; no original source, product code/test, Git state, or whitespace-configuration writes.",
+      "validation_result": "PASS",
+      "checked_at_utc": "2026-11-11T23:17:33.212797+00:00"
+    }
+  ]
+}

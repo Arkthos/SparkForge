@@ -37,10 +37,16 @@ operator-approved host, tools, data and resource envelope.
 Use the smallest checks covering a change. The existing commands are:
 
 ```powershell
+$env:PYTHONPATH = (Resolve-Path 'research_tools\.validation-deps').Path
 python -B -m unittest discover -s tests
 python -B scripts\validate_plan.py --base HEAD
 git --no-pager diff --check
 ```
+
+The full suite includes research tooling and needs Python 3.12+ with the
+declared packages restored into that ignored directory; see
+`research_tools/README.md`. Do not install globally. Native-only selectors use
+the standard library and do not require those research dependencies.
 
 For a coherent implementation or governance commit, update all four living
 records: `PROJECT_STATUS.md`, `IMPLEMENTATION_BACKLOG.csv`, `ROADMAP.md` and

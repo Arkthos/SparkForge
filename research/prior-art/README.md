@@ -23,6 +23,34 @@ public-source metadata, not against a newly fetched upstream revision. The
 historical findings below remain bounded by their recorded inspection ranges.
 No candidate framework was installed, run, benchmarked, or adopted here.
 
+## Detailed per-topic publication edition
+
+**Added 2026-11-12:** the [detailed dossier](dossier/README.md) now accounts
+for all 14 original prior-art documents. This page remains the introductory
+reference; it is no longer the only published treatment of those topics.
+
+The expansion preserves the public analysis, not the original private
+operating context. Its [document dispositions](dossier/document-dispositions.json)
+identify what each counterpart retains and what stays withheld. Source-specific
+private facts are not transplanted into anonymous examples. No upstream code,
+raw captions, screenshot, frame, or full article is imported.
+
+| Detailed topic | Reference |
+|---|---|
+| Product goals and full capability comparison | [Scope](dossier/SCOPE.md), [reuse map](dossier/REUSE_MAP.md) |
+| Intake, gates, artifacts, and accepted plans | [Specifications and intake](dossier/SPECIFICATIONS_AND_INTAKE.md) |
+| Controllers, products, and alternative runtimes | [Factory patterns](dossier/FACTORY_PATTERNS.md) |
+| Tests, independent judging, and correction | [Quality and evaluation](dossier/QUALITY_AND_EVALUATION.md) |
+| Knowledge, learning, recovery, and authority | [Knowledge and governance](dossier/KNOWLEDGE_AND_GOVERNANCE.md) |
+| Host compatibility, egress, and scoped rights | [Compatibility and licensing](dossier/COMPATIBILITY_AND_LICENSING.md) |
+| Industrial accounts and discovery limits | [Industry and theory](dossier/INDUSTRY_AND_THEORY.md), [discovery appendix](dossier/DISCOVERY_APPENDIX.md) |
+| Full video-topic and version analysis | [ZazenCodes](dossier/VIDEO_ZAZEN_FACTORY.md) |
+| Every candidate and historical source range | [33-candidate catalog](dossier/CATALOG.md), [90-inspection register](dossier/EVIDENCE.md) |
+| Denominators and actual validation boundaries | [Coverage and validation](dossier/COVERAGE_AND_VALIDATION.md) |
+
+The new publication did not refresh the upstream sources, run their tests, or
+repeat the video reviews. Historical observations remain dated and bounded.
+
 ## 1. Shape intent before starting execution
 
 **Spec Kit** provides a useful distinction between a workflow step and a

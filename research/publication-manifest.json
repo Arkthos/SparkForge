@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-11-11T23:17:33.212797+00:00",
-  "publication_edition": "2026-11-11",
+  "generated_at_utc": "2026-11-12T16:41:35.610123+00:00",
+  "publication_edition": "2026-11-12",
   "scope": "Only research and the two public-source self-improvement documents; not an inventory of the entire project or a publication receipt.",
   "inventory_rule": "All files below research plus docs/research/SELF_IMPROVEMENT.md and docs/research/self-improvement-sources.json; this manifest is excluded from its own hash list.",
   "self_excluded_from_hash_inventory": true,
   "counts": {
-    "published_files_including_this_manifest": 36,
-    "hashed_content_files": 35,
-    "markdown_files": 31,
-    "json_files_including_this_manifest": 5,
+    "published_files_including_this_manifest": 54,
+    "hashed_content_files": 53,
+    "markdown_files": 45,
+    "json_files_including_this_manifest": 9,
     "factory_original_markdown_documents": 28,
     "factory_public_sources": 49,
     "prior_art_public_repositories": 33,
@@ -17,7 +17,19 @@
     "factory_unchanged_content_files": 16,
     "factory_edited_markdown_files": 13,
     "factory_formatting_correction_files": 10,
-    "factory_markdown_hard_break_replacements": 45
+    "factory_markdown_hard_break_replacements": 45,
+    "prior_art_original_document_dispositions": 14,
+    "prior_art_detailed_markdown_counterparts": 14,
+    "prior_art_registered_source_files": 88,
+    "prior_art_distinct_historical_line_coordinates": 10471,
+    "prior_art_primary_web_references": 6,
+    "prior_art_video_analysis_references": 2,
+    "prior_art_registry_discovery_results": 6,
+    "prior_art_additional_leads": 7,
+    "historical_publication_snapshots": 1,
+    "prior_art_dossier_markdown_bytes": 260805,
+    "prior_art_authored_topic_counterparts": 12,
+    "prior_art_rendered_reference_counterparts": 2
   },
   "checks": [
     {
@@ -285,9 +297,94 @@
       "sha256": "af383fd295571dcc4bab747eab4f9037f7896baa29a3d485fe41918f8886bbda"
     },
     {
+      "relative_path": "research/prior-art/dossier/catalog-analysis.json",
+      "bytes": 37966,
+      "sha256": "714e7394310926f25198047651e0ba76a608b2e041d19fd66b99d37d5b302c8e"
+    },
+    {
+      "relative_path": "research/prior-art/dossier/CATALOG.md",
+      "bytes": 55256,
+      "sha256": "226459b9db65481ce520f86550313642658572a865594c82b90b4ddeadb483c7"
+    },
+    {
+      "relative_path": "research/prior-art/dossier/COMPATIBILITY_AND_LICENSING.md",
+      "bytes": 11837,
+      "sha256": "184c50db7be0401e22683b773622133808a6ae9c19acf0d3d49bdde6b0db609d"
+    },
+    {
+      "relative_path": "research/prior-art/dossier/COVERAGE_AND_VALIDATION.md",
+      "bytes": 13362,
+      "sha256": "b4bb23a5b8842d0f77c71837adcaf95e8bf3ff09051f0bdcda3f519bc361c436"
+    },
+    {
+      "relative_path": "research/prior-art/dossier/DISCOVERY_APPENDIX.md",
+      "bytes": 8904,
+      "sha256": "db27e54632639cc8b3417861b26ce49c86aa12c72315f2852065b701a2845b4c"
+    },
+    {
+      "relative_path": "research/prior-art/dossier/document-dispositions.json",
+      "bytes": 19223,
+      "sha256": "f47c9c03938b5a501ca84227bfb7599e4d9c7798667b3aaf9283870a030ed5f5"
+    },
+    {
+      "relative_path": "research/prior-art/dossier/EVIDENCE.md",
+      "bytes": 59786,
+      "sha256": "b0f0b9f4738d750a2574fd746fbaedf11d1917c88c255d3753161c3a66b72fa7"
+    },
+    {
+      "relative_path": "research/prior-art/dossier/FACTORY_PATTERNS.md",
+      "bytes": 15076,
+      "sha256": "0d4bf041be7770d1b199fc0703fb77e975f27a8711883e0aea6055dbe1897f0d"
+    },
+    {
+      "relative_path": "research/prior-art/dossier/INDUSTRY_AND_THEORY.md",
+      "bytes": 10562,
+      "sha256": "ef3a6b8279d854755f4ed4b37af4b56a90d4d5d6329cfe5c1b74cda45d0ad2f4"
+    },
+    {
+      "relative_path": "research/prior-art/dossier/KNOWLEDGE_AND_GOVERNANCE.md",
+      "bytes": 11249,
+      "sha256": "0a4b9722ee3bc2ed71e2a14f321e4773cab2863ea3dde033894bc1a24283ef02"
+    },
+    {
+      "relative_path": "research/prior-art/dossier/public-context-sources.json",
+      "bytes": 15016,
+      "sha256": "ea909f33b7198f1430d9e2d93cfb34a9212837ae3d70da632948a34f3bb12a14"
+    },
+    {
+      "relative_path": "research/prior-art/dossier/QUALITY_AND_EVALUATION.md",
+      "bytes": 12317,
+      "sha256": "15fe95dc1576d930ef958a723093c92ef0212e2c7ac27ff3b8dcbe91831c4a2a"
+    },
+    {
+      "relative_path": "research/prior-art/dossier/README.md",
+      "bytes": 10873,
+      "sha256": "91ad375c362ad5218b7945cc619f0ab7f2eb6b4ca42d8a5567d38cc59d88beb4"
+    },
+    {
+      "relative_path": "research/prior-art/dossier/REUSE_MAP.md",
+      "bytes": 12173,
+      "sha256": "f942d36b0ad163b2e32a6b837b4824a5c29d274b99becb85a54982c6f03135fb"
+    },
+    {
+      "relative_path": "research/prior-art/dossier/SCOPE.md",
+      "bytes": 11175,
+      "sha256": "0a360a04a6c84194cf8ccabe2941700c5229bc9e20312c12a1f3e9f5544fa47f"
+    },
+    {
+      "relative_path": "research/prior-art/dossier/SPECIFICATIONS_AND_INTAKE.md",
+      "bytes": 11386,
+      "sha256": "879ff8bb7ce8990a68b23971c57c3fd02b7da0d4b9da093caf4d666a501154b6"
+    },
+    {
+      "relative_path": "research/prior-art/dossier/VIDEO_ZAZEN_FACTORY.md",
+      "bytes": 16849,
+      "sha256": "db7764085c3b99018ff785e24efbf80ca239ec04676cdd62ce02df1bface12ba"
+    },
+    {
       "relative_path": "research/prior-art/README.md",
-      "bytes": 20426,
-      "sha256": "84a196caa62f57d528b4db7412caafd73b1f782ab2c1188495276c7a6cbdfe7e"
+      "bytes": 22469,
+      "sha256": "22822486b5ff1c16797a19ed3c385a1f943d29b097267ad87465c751a6cc0e7e"
     },
     {
       "relative_path": "research/prior-art/sources.json",
@@ -295,9 +392,14 @@
       "sha256": "e7220c17e7b12f562e8e449e18fc2c7a6f910213ccac2de0ea5083ba925bdcc7"
     },
     {
+      "relative_path": "research/publication-history/PUB-20261111-library.json",
+      "bytes": 17008,
+      "sha256": "d9f1d2c4be76836d1791068d5bf1f7abcbaea6367474ec767a87cbb0ec2940dd"
+    },
+    {
       "relative_path": "research/README.md",
-      "bytes": 11610,
-      "sha256": "0251a19202c9dfebf3386b11b13810e8f2344a67bd1c206bc8f2b5142f6ba9be"
+      "bytes": 19352,
+      "sha256": "9b0c18cbf7c80b995dae43ac5327cfb557cad64ecdd68ecf7a2dfc2b5a86b292"
     }
   ],
   "validation_history": [
@@ -402,6 +504,109 @@
       "boundary": "Formatting and truthful documentation/inventory updates only; no original source, product code/test, Git state, or whitespace-configuration writes.",
       "validation_result": "PASS",
       "checked_at_utc": "2026-11-11T23:17:33.212797+00:00"
+    }
+  ],
+  "historical_checks_notice": "The existing checks, validation_history and publication_corrections objects are retained unchanged for the 2026-11-11 edition. They do not validate the larger current inventory. The full prior manifest is preserved byte-for-byte at research/publication-history/PUB-20261111-library.json. New results appear only under edition_updates.",
+  "edition_updates": [
+    {
+      "id": "2026-11-12-detailed-public-prior-art",
+      "recorded_at_utc": "2026-11-12T16:37:09.702988+00:00",
+      "status": "LOCAL_DOCUMENTATION_VALIDATED",
+      "objective": "Preserve the detailed public-source analysis of all 14 original prior-art documents with explicit exclusions, without publishing their private context or third-party captures.",
+      "baseline_manifest": {
+        "relative_path": "research/publication-history/PUB-20261111-library.json",
+        "sha256": "d9f1d2c4be76836d1791068d5bf1f7abcbaea6367474ec767a87cbb0ec2940dd"
+      },
+      "original_document_dispositions": "research/prior-art/dossier/document-dispositions.json",
+      "unchanged_preexisting_content_files": 33,
+      "preexisting_files_intentionally_updated": [
+        "research/README.md",
+        "research/prior-art/README.md",
+        "research/publication-manifest.json"
+      ],
+      "checks": [
+        {
+          "check": "Detailed public-topic preservation and document disposition",
+          "result": "PASS",
+          "method": "Manual review of all 14 original Markdown documents and their 14 detailed public counterparts, with public source notes and explicit withholding categories.",
+          "recorded_at_utc": "2026-11-12T16:41:35.610123+00:00",
+          "boundary": "Editorial review, not exhaustive semantic-equivalence or legal certification; source-specific private facts are withheld rather than anonymized."
+        },
+        {
+          "check": "Documented publication validation recipe",
+          "command": "python -B -",
+          "invocation": "PowerShell here-string recipe in research/README.md, executed from the publication root.",
+          "recorded_at_utc": "2026-11-12T16:41:35.610123+00:00",
+          "additional_leads": 7,
+          "discovery_results": 6,
+          "dossier_documents": 14,
+          "dossier_pinned_links": 188,
+          "factory_source_citations": 125,
+          "hashed_content_files": 53,
+          "historical_check_records_preserved": true,
+          "json_examples": 2,
+          "json_files": 9,
+          "local_links": 651,
+          "markdown_files": 45,
+          "prior_art_candidates": 33,
+          "prior_art_inspections": 90,
+          "published_files": 54,
+          "result": "PASS",
+          "trailing_whitespace_findings": 0,
+          "video_timestamp_topics": 21,
+          "boundary": "Local file membership, SHA-256, JSON, Markdown links/anchors, source IDs/pins/ranges, counterpart coverage, source-note consistency, timestamps and whitespace; no external URL or runtime check."
+        },
+        {
+          "check": "Original document, public pin and range consistency",
+          "command": "python -B -",
+          "invocation": "Local standard-library comparison of all 14 approved authored originals, their existing receipt, the public catalog and the rendered register; no private paths or original fingerprints retained here.",
+          "recorded_at_utc": "2026-11-12T16:41:35.610123+00:00",
+          "result": "PASS",
+          "source_documents_accounted": 14,
+          "original_authored_files_unchanged": 14,
+          "public_repository_pins_matched": 33,
+          "public_range_coordinates_matched": 90,
+          "inspection_identifiers_matched": 90,
+          "boundary": "Original authored-text integrity and public coordinates only; excluded source captures and media were not read or executed."
+        },
+        {
+          "check": "Finite publication content and portability indicators",
+          "command": "python -B -",
+          "result": "PASS",
+          "recorded_at_utc": "2026-11-12T16:41:35.610123+00:00",
+          "files_scanned": 54,
+          "findings": 0,
+          "scope": "Selected machine-specific path, excluded-context, credential-token/private-key, file-type and symlink indicators; not an exhaustive secret, security or legal audit."
+        },
+        {
+          "check": "Normal Git whitespace on owned changes",
+          "command": "git --no-pager diff --check -- research docs\\research\\SELF_IMPROVEMENT.md docs\\research\\self-improvement-sources.json",
+          "result": "PASS",
+          "recorded_at_utc": "2026-11-12T16:41:35.610123+00:00",
+          "exit_code": 0,
+          "scope": "Tracked working-tree changes without whitespace overrides; the documentation recipe also checks untracked publication text."
+        },
+        {
+          "check": "Historical publication evidence and unaffected content preservation",
+          "command": "python -B -",
+          "result": "PASS",
+          "recorded_at_utc": "2026-11-12T16:41:35.610123+00:00",
+          "previous_manifest_sha256": "d9f1d2c4be76836d1791068d5bf1f7abcbaea6367474ec767a87cbb0ec2940dd",
+          "historical_check_and_correction_objects": "UNCHANGED",
+          "unchanged_preexisting_content_files": 33,
+          "existing_research_index_line_endings": "CRLF_PRESERVED",
+          "scope": "Only two existing research indexes and the current inventory changed; all factory content, prior public source metadata and both self-improvement files retain their prior bytes."
+        }
+      ],
+      "not_run": [
+        "New upstream search or source retrieval",
+        "Raw source/media revalidation",
+        "Candidate/framework code, installations or model evaluations",
+        "Product runtime tests for this documentation-only increment",
+        "Git writes, publication or hosted CI"
+      ],
+      "boundary": "Public analysis and metadata only; no private-content clearance, new source-reading claim, source-code/media redistribution or live framework qualification.",
+      "validated_at_utc": "2026-11-12T16:41:35.610123+00:00"
     }
   ]
 }

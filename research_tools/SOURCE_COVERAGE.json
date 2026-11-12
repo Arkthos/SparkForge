@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "scope": "Selected project-authored research and checkpoint utilities only",
+  "original_file_count": 19,
+  "original_utility_scripts": 15,
+  "original_synthetic_test_files": 3,
+  "original_requirements_files": 1,
+  "source_content_or_archive_export_authorized_by_this_record": false,
+  "unknown_private_facts_cleared_by_pattern_matching": false,
+  "checkpoint_verifiers_originally_byte_identical": false,
+  "checkpoint_verifier_strategy": "Keep separate earlier/later entry points with shared stronger checks. This is consolidation of nonidentical implementations, not exact-source deduplication.",
+  "files": [
+    {
+      "source_group": "public_repositories",
+      "authored_filename": "collect_github.py",
+      "publication_path": "research_tools/public_repositories/collect_github.py",
+      "disposition": "included_adapted",
+      "adaptation": "Explicit output and token-variable selection; required network opt-in; fixed public host; public visibility checked even for cached snapshots; no login, account discovery or candidate execution."
+    },
+    {
+      "source_group": "public_repositories",
+      "authored_filename": "study.py",
+      "publication_path": "research_tools/public_repositories/study.py",
+      "disposition": "included_adapted",
+      "adaptation": "Explicit corpus and documentation roots; source-neutral runtime acceptance; preserved hashes, revisions, license classification, line ranges, video/image evidence and generated-view/link checks."
+    },
+    {
+      "source_group": "public_repositories",
+      "authored_filename": "test_study.py",
+      "publication_path": "research_tools/public_repositories/test_study.py",
+      "disposition": "included_adapted",
+      "adaptation": "All 16 original behavioral cases retained; owned synthetic directories and explicit mocked token selection; source-bearing API errors are no longer echoed."
+    },
+    {
+      "source_group": "repository_study",
+      "authored_filename": "inventory_source.py",
+      "publication_path": "research_tools/repository_study/inventory_source.py",
+      "disposition": "included_adapted",
+      "adaptation": "Removed fixed repository, revision and filesystem locations. Explicit local object store, source URL, commit/tree and output; lazy network fetch disabled; bounded blobs; relative snapshot path; no inferred visibility or branch observation."
+    },
+    {
+      "source_group": "repository_study",
+      "authored_filename": "catalog_source.py",
+      "publication_path": "research_tools/repository_study/catalog_source.py",
+      "disposition": "included_adapted",
+      "adaptation": "No import-time inventory reads. Explicit root, verified source bytes, declaration/frontmatter extraction and static Python/JSON/script/query catalogs retained. Empty CSV categories receive headers."
+    },
+    {
+      "source_group": "repository_study",
+      "authored_filename": "build_reference_views.py",
+      "publication_path": "research_tools/repository_study/build_reference_views.py",
+      "disposition": "included_adapted",
+      "adaptation": "Private source labels, package facts and fixed counts removed; computed counts and explicitly supplied reference/skill/asset notes drive source links and coverage views."
+    },
+    {
+      "source_group": "repository_study",
+      "authored_filename": "parse_powershell.ps1",
+      "publication_path": "research_tools/repository_study/parse_powershell.ps1",
+      "disposition": "included_adapted",
+      "adaptation": "Explicit source, inventory and output arguments plus passive help; source hashes checked before parsing text; no script execution; actual links rejected without rejecting ordinary synchronized files."
+    },
+    {
+      "source_group": "repository_study",
+      "authored_filename": "verify_corpus.py",
+      "publication_path": "research_tools/repository_study/verify_corpus.py",
+      "disposition": "included_adapted",
+      "adaptation": "Explicit source/object/context/host boundaries; dynamic expected parse sets; no fixed private test results or host baseline; read-only unless receipt output is selected."
+    },
+    {
+      "source_group": "wiki",
+      "authored_filename": "collect_wiki.py",
+      "publication_path": "research_tools/wiki/collect_wiki.py",
+      "disposition": "included_adapted",
+      "adaptation": "Removed embedded service/project/wiki/page identity, recorded approvals and operational events. Explicit service aliases, root and pre-provisioned token variable; no Azure CLI identity lookup; explicit network/resume/retry choices. Scoped enumeration, pinned blobs, reference parsing, accounting, escaped views and verification retained."
+    },
+    {
+      "source_group": "wiki",
+      "authored_filename": "build_corpus.py",
+      "publication_path": "research_tools/wiki/build_corpus.py",
+      "disposition": "included_adapted",
+      "adaptation": "Embedded private taxonomy, page membership, attachment findings, approval claims and observed totals withheld. Explicit source-bound notes/taxonomy drive the working assembly and rendering logic; no semantic or human approval is manufactured."
+    },
+    {
+      "source_group": "wiki",
+      "authored_filename": "prepare_review.py",
+      "publication_path": "research_tools/wiki/prepare_review.py",
+      "disposition": "included_adapted",
+      "adaptation": "Import-time writes and automatic processing approval removed. New separate output, verified bytes, bounded indexed page fragments and explicit optional readability compaction. All outputs remain REVIEW_REQUIRED; attachments remain NOT_REVIEWED."
+    },
+    {
+      "source_group": "wiki",
+      "authored_filename": "reindex_local.py",
+      "publication_path": "research_tools/wiki/reindex_local.py",
+      "disposition": "included_adapted",
+      "adaptation": "Import-time processing removed. Explicit root; hash verification before reference refinement; prior reference index preserved; new attachments fail without fetching; authorization unchanged."
+    },
+    {
+      "source_group": "wiki",
+      "authored_filename": "verify_corpus.py",
+      "publication_path": "research_tools/wiki/verify_corpus.py",
+      "disposition": "included_adapted",
+      "adaptation": "Explicit root; dynamic source/artifact/note/image counts; read-only default; optional PNG integrity checks and receipt output; no corpus promotion or approval mutation."
+    },
+    {
+      "source_group": "wiki",
+      "authored_filename": "test_collect_wiki.py",
+      "publication_path": "research_tools/wiki/test_collect_wiki.py",
+      "disposition": "included_adapted",
+      "adaptation": "All 17 original parser/classification cases retained with synthetic project aliases and page IDs; no actual exported wiki files are opened."
+    },
+    {
+      "source_group": "wiki",
+      "authored_filename": "requirements.txt",
+      "publication_path": "research_tools/wiki/requirements.txt",
+      "disposition": "included",
+      "adaptation": "Original three pinned package requirements retained as metadata. No third-party source or dependency cache is published."
+    },
+    {
+      "source_group": "checkpoint_tools",
+      "authored_filename": "freeze_workspace.py",
+      "publication_path": "research_tools/checkpoints/freeze_workspace.py",
+      "disposition": "included_adapted",
+      "adaptation": "All roots, selections, categories, receipt expectations, predecessor and identifier are explicit. No historical research metadata, automatic archive inclusion, checkpoint-local Python loading or power helpers. Bounded archive creation and read-back/working comparison retained."
+    },
+    {
+      "source_group": "checkpoint_tools",
+      "authored_filename": "test_checkpoint.py",
+      "publication_path": "research_tools/checkpoints/test_checkpoint.py",
+      "disposition": "included_adapted",
+      "adaptation": "All ten original checkpoint tests retained; package-owned verifier and newly created owned synthetic files/archives only."
+    },
+    {
+      "source_group": "checkpoint_verifier_later",
+      "authored_filename": "verify_checkpoint.py",
+      "publication_path": "research_tools/checkpoints/verify_checkpoint.py",
+      "disposition": "included_adapted_shared_implementation",
+      "adaptation": "Explicit checkpoint and optional working root; no location inference. Later duplicate/case/path/digest checks retained with bounded streaming and archive type checks; earlier size_changed reporting retained. No extraction."
+    },
+    {
+      "source_group": "checkpoint_verifier_earlier",
+      "authored_filename": "verify_checkpoint.py",
+      "publication_path": "research_tools/checkpoints/verify_checkpoint_legacy.py",
+      "disposition": "included_adapted_shared_entrypoint",
+      "adaptation": "Distinct earlier entry point delegates to the stronger package-owned verification implementation. Original files were not identical; archive-only and optional working comparison remain, without historical roots or unsafe permissive paths."
+    }
+  ],
+  "additional_owned_support": [
+    "research_tools/__init__.py",
+    "research_tools/_common.py",
+    "research_tools/public_repositories/__init__.py",
+    "research_tools/repository_study/__init__.py",
+    "research_tools/wiki/__init__.py",
+    "research_tools/checkpoints/__init__.py",
+    "research_tools/.gitignore",
+    "research_tools/README.md",
+    "research_tools/SOURCE_COVERAGE.json",
+    "tests/test_research_tools.py"
+  ],
+  "withheld_from_source_scripts": [
+    "Embedded private service, organization, project, repository, wiki and page identifiers",
+    "Fixed source/host revisions, personal filesystem locations and automatic account-selection defaults",
+    "Historical approval assertions, operational events, source-derived findings and fixed observed counts",
+    "Automatic selection of prior private archives, unrelated workspaces, support receipts or power helpers"
+  ],
+  "excluded_inputs_not_exported": [
+    "Original research/source corpora and private manifests",
+    "Checkpoint archive contents and original private Git history",
+    "Captured third-party implementation code, vendor caches and installers",
+    "Credentials, runtime state and historical operational receipts"
+  ],
+  "validation": {
+    "focused_command": "python -B -m unittest discover -s tests -p test_research_tools.py",
+    "environment": "Run from publication root with PYTHONPATH set explicitly to research_tools\\.validation-deps",
+    "focused_result": "PASS",
+    "tests_passed": 72,
+    "tests_skipped": 0,
+    "preserved_cases": 43,
+    "focused_regression_cases": 29,
+    "authored_python_files_compiled_in_memory": 24,
+    "exact_authored_output_paths_accounted": 29,
+    "powershell_help_command": "pwsh -NoProfile -NonInteractive -File research_tools\\repository_study\\parse_powershell.ps1 -Help",
+    "powershell_help_result": "PASS",
+    "powershell_source_parsing": "PASS on one newly authored synthetic script; the script was not executed",
+    "initial_failures_and_corrections": [
+      "Five preserved wiki cases initially errored because markdown_it was unavailable; declared dependencies were restored into an ignored target-owned directory and the cases passed.",
+      "The first expanded suite exposed an overbroad PowerShell reparse-point guard; it was corrected to reject actual symbolic links and junctions, and the complete suite passed."
+    ],
+    "limited_removed_default_scan": "No selected private-default patterns matched; this is NOT source/data clearance.",
+    "cleanup": "Synthetic fixtures removed. Initial shutil.rmtree of the empty read-only installation scratch directory failed with WinError 5; guarded Remove-Item -Force then removed that directory without ACL changes. Declared validation dependencies remain only in an ignored target-owned directory.",
+    "git_operations": "Read-only status, HEAD, diff/check-ignore inspection only; no staging, commits, pushes, auth or network Git operations",
+    "live_collectors_and_real_checkpoints": "NOT_RUN",
+    "full_application_suite_and_project_state_validator": "NOT_RUN by this bounded worker; coordinator integration responsibility",
+    "hosted_ci": "NOT_RUN"
+  },
+  "limitations": [
+    "This record covers the 19 selected authored inputs, not every file in the operator workspace.",
+    "Manual utility adaptation and finite pattern checks do not establish rights or privacy clearance of source data.",
+    "Network stages were exercised only with inert mocks; real service/authentication acceptance is NOT_ASSESSED.",
+    "Checkpoint tests use newly created synthetic archives only; no real checkpoint corpus was opened or frozen.",
+    "Repository publication, canonical project records and final integration belong to the coordinator."
+  ]
+}
