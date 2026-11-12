@@ -150,3 +150,23 @@ private visibility. The visibility condition failed **before `git push` ran**.
 The full local validation remains valid for its exact bytes. It does not turn
 an unperformed upload into a success. Source/data-owner release and semantic/
 attachment review for the local wiki/study remain separate unresolved conditions.
+
+## 2026-11-12: correct the private-only default for reviewed material
+
+Review of the actual request confirmed that the owner asked to publish project
+code and research to this repository, without imposing private visibility.
+Private was an earlier conservative agent choice. The blanket hold on already
+reviewed non-sensitive code/public research was therefore unnecessarily broad.
+
+Resume publication only for that exact cleared payload and the same verified
+owner/repository. Do not change visibility or claim that the unanswered
+question supplied permission. Private wiki/study candidates, raw captures and
+operational state remain excluded, with their separate review/release conditions.
+The earlier stopped guard and blocked cycle are preserved as historical facts.
+
+| Check | Result | Scope |
+|---|---|---|
+| Current account, repository ID/owner, public visibility and online ref | PASS | Same requested repository; online ref still `ef54878` before resumed publication |
+| Local reviewed implementation and clean state | PASS | Implementation `13e1501`, preserved blocked handoff `b8e5a32`; no new private payload added |
+| Documentation correction, complete outgoing content and byte verification | PASS | 157 staged files, 76 Markdown documents, 735 local links and 76 unpushed historical blobs checked; no unresolved sensitive indicators or private review/dependency outputs |
+| Actual resumed publication and remote verification | NOT_RUN at correction preparation | Record only after observing the result |

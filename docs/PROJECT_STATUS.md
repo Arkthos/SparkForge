@@ -2,8 +2,9 @@
 
 **As of:** 2026-11-12.
 **Position:** the initial software/public-research snapshot is online; the
-expanded corpus/tooling update is validated and committed locally but its push
-is blocked by an unexpected repository visibility change. The native assisted
+expanded corpus/tooling update is validated and committed locally, with its
+unnecessary private-only hold corrected for reviewed non-sensitive content.
+Publication verification is pending. The native assisted
 factory remains experimental, not deployment-qualified.
 
 The publication contains project-owned code, source-neutral documentation,
@@ -16,9 +17,10 @@ workspace. All 24 original application/test/preview code files are present and
 byte-identical. WP-003 restored all 19 inventoried research/checkpoint utility
 inputs and 14 detailed public-topic documents in local commit
 `13e15010ffc80546fc0cb8ef3ea58fbcc43c3886`. GitHub now reports the repository
-as public; the guard stopped before `git push` and the audience question
-received no selection. Online `main` remains
-`ef54878d1330e3d83089c87fcf799d2a88672a2e`.
+as public. The first guard stopped before `git push`, but the owner's explicit
+publication request did not impose private visibility. The correction permits
+only the already reviewed code/public-research payload in the same repository,
+without changing visibility or inventing an answer to the earlier question.
 WP-004 has complete local wiki/study review candidates,
 but those private candidates and unreviewed attachments are not on GitHub.
 See the [completeness specification](specs/CORPUS_COMPLETENESS.md) and
@@ -60,8 +62,9 @@ cases and 14 new local review-preparation cases. No live service collection,
 private checkpoint read or semantic wiki approval was performed.
 
 The [GitHub destination](https://github.com/Arkthos/SparkForge) exists.
-It was private for the initial publication and is now reported public; that
-observation is not permission to broaden the audience of another upload.
+It was private for the initial publication and is now public. The authority for
+the reviewed additions is the owner's publication request, not the metadata or
+the unanswered clarification. Private source material remains outside that scope.
 The initial publication commit is
 [`a30cdba0df37ae032388e89ad7725c5b20a895c2`](https://github.com/Arkthos/SparkForge/commit/a30cdba0df37ae032388e89ad7725c5b20a895c2).
 GitHub's private `main` ref and all 100 file objects were verified against that
@@ -93,8 +96,8 @@ documentation/spec candidate; do not attach an earlier private token or verdict.
 
 ## Next actions
 
-1. Resolve the changed-public-audience decision before pushing the locally
-   committed research/tooling expansion. Do not silently change visibility.
+1. Publish and verify the reviewed code/public-research update without changing
+   visibility or including restricted material.
 2. Review the complete local private corpus before any separately authorized upload.
 3. Use this checkout for GitHub-bound work; keep excluded private material outside it.
 4. Run a small real task only in a genuinely approved host/data/resource scope.

@@ -1,9 +1,10 @@
 # What the repository includes
 
 **Updated:** 2026-11-12. **The additions below describe the local working
-repository, not the current GitHub tree.** Commit `13e1501` is ready locally.
-Its push was stopped because GitHub now reports public visibility, and no
-changed-audience choice was obtained. Online `main` remains `ef54878`.
+repository until the resulting GitHub revision is verified.** Commit `13e1501`
+is ready locally. The initial private-only hold is corrected for the reviewed
+non-sensitive code/public research already covered by the owner's publication
+request. No repository visibility change or private-corpus upload is implied.
 
 This is a completeness statement, not permission to
 disclose excluded material. The owner requested all research, a scrubbed wiki

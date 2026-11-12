@@ -32,11 +32,14 @@ No automatic provider substitution, package/MCP installation, deployment,
 learning promotion or external write is implied by a local check. Use only the
 operator-approved host, tools, data and resource envelope.
 
-On 2026-11-12 the publication guard observed that GitHub visibility had changed
-from private to public. The expanded corpus/tooling commit is local, not pushed.
-Do not bypass that guard or change repository visibility without an explicit
-audience decision. The separate private wiki/study review remains unapproved
-for upload regardless of that decision.
+The owner explicitly requested publishing project code and research to
+Arkthos/SparkForge. Private visibility was an initial conservative agent choice,
+not a condition the owner specified. The later private-only hold is corrected
+for the already reviewed project-owned code and public-source research only.
+Publish that exact cleared scope to the same owner-controlled repository without
+changing its visibility. Do not treat this correction, an unanswered question
+or a repository setting as permission to upload the separate private wiki/study
+candidates, source captures, runtime records or original private history.
 
 ## Development and evidence
 

@@ -105,12 +105,13 @@ research. Operator-private wiki/code captures, source-specific operating
 material, runtime state, credentials, archives and raw transcripts are excluded.
 The original working history is preserved separately, not rewritten.
 
-**2026-11-12 publication hold:** GitHub now reports the repository as public,
-whereas the earlier publication was private. The expanded detailed research
-and authored tooling are committed locally at `13e15010ffc80546fc0cb8ef3ea58fbcc43c3886`;
-the visibility guard stopped their push before any upload. The online branch
-still points to `ef54878d1330e3d83089c87fcf799d2a88672a2e`.
-An explicit audience decision is needed before publishing the new additions.
+**2026-11-12 scope correction:** the owner requested publication of the code
+and research without requiring private visibility. The initial private-only
+guard was unnecessarily restrictive for this reviewed, non-sensitive material.
+The detailed public research and authored tooling at
+`13e15010ffc80546fc0cb8ef3ea58fbcc43c3886` are approved task scope; repository
+visibility will not be changed. Publication verification is recorded separately.
+This does not clear the private wiki/study candidates or their original inputs.
 
 No private source is a test or installation dependency. Authorized private
 knowledge can be supplied separately at runtime; it does not become repository

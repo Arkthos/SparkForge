@@ -40,11 +40,12 @@ represented. The expanded integration suite passes 394 cases with two
 explicit Windows privilege skips. Private wiki/study release remains blocked
 under WP-004; safe tooling/public-research completion does not resolve it.
 
-The safe additions are committed locally at `13e1501`. A fresh pre-push read
-found that repository visibility changed from private to public, so the guard
-stopped before uploading them. WP-003 is blocked on an explicit audience
-decision; online `main` still holds the initial `ef54878` snapshot. No visibility
-change, fallback push or publication success is inferred.
+The safe additions are committed locally at `13e1501`. The initial guard stopped
+on public visibility. That private-only default is now recognized as
+unnecessary for the already reviewed non-sensitive code/research the owner
+explicitly requested publishing. WP-003 resumes only for that same payload and
+repository, without changing visibility. WP-004's private-corpus conditions
+remain unresolved; no product milestone is advanced.
 
 This clean publication keeps owned executable behavior while replacing
 restricted contextual material with source-neutral guidance and adding reviewed

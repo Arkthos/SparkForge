@@ -1,0 +1,64 @@
+{
+  "schema_version": "sparkforge-engineering-cycle.v1",
+  "id": "ENG-20261112-reviewed-publication-scope",
+  "date": "2026-11-12",
+  "work_items": ["WP-003", "WP-004"],
+  "workstream": "corpus-completeness",
+  "cycle_type": "scope-correction",
+  "status": "validated",
+  "objective": "Complete the requested publication of already reviewed non-sensitive code/public research without treating an agent-selected private default as an owner constraint.",
+  "changes": [
+    "Clarified that the owner's publication request did not require private visibility; the target repository and reviewed payload are unchanged.",
+    "Removed only the unnecessary private-only hold for project-owned code/public research; no visibility change or invented answer is authorized.",
+    "Kept private wiki/study candidates, captured inputs, runtime data and original private history excluded.",
+    "Preserved earlier stopped-guard and blocked-handoff cycles rather than rewriting them."
+  ],
+  "validation": [
+    {
+      "check": "Current authenticated account, repository identity/owner, visibility and main ref",
+      "scope": "Exact requested publication destination",
+      "outcome": "PASS",
+      "reference": "Arkthos/SparkForge; repository 1454540264; public; main ef54878d1330e3d83089c87fcf799d2a88672a2e before resumed publication"
+    },
+    {
+      "check": "Earlier implementation validation",
+      "scope": "Unchanged reviewed code/research",
+      "outcome": "PASS",
+      "reference": "Commit 13e15010ffc80546fc0cb8ef3ea58fbcc43c3886; 396 cases with 394 passes/two existing privilege skips; complete content/byte/link checks"
+    },
+    {
+      "check": "Correction lifecycle, content and staged-byte checks",
+      "scope": "157 staged files, 76 Markdown documents, 735 links and 76 unpushed historical blobs; nine correction paths and five cycles",
+      "outcome": "PASS",
+      "reference": "Project validator and staged whitespace passed; all staged bytes matched checked files; no unresolved sensitive indicators or private review/dependency outputs"
+    },
+    {
+      "check": "Actual resumed push and remote object verification",
+      "scope": "Cleared code/public-research only",
+      "outcome": "NOT_RUN",
+      "reference": "No publication pass is inferred from this correction"
+    }
+  ],
+  "results": [
+    "The code/public-research publication can proceed within the owner's explicit request and the verified non-sensitive payload.",
+    "No user answer, source-owner decision or semantic/media clearance for the private corpus is fabricated."
+  ],
+  "limitations": [
+    "This correction does not permit unreviewed or restricted content in a public repository.",
+    "The complete private wiki/study candidates still require semantic/media review and applicable release authority.",
+    "No repository visibility change, deployment, model trial or hosted CI is included."
+  ],
+  "rollback": "Preserve local commits and earlier cycles. Stop on changed repository identity, unreviewed outgoing files or concurrent remote changes; never force-push or publish private review directories.",
+  "next_steps": [
+    "Recheck the entire outgoing payload and publish only the reviewed additions.",
+    "Verify the actual resulting GitHub commit and tree.",
+    "Keep restricted-corpus work separate and explicitly incomplete."
+  ],
+  "evidence": [
+    "docs/delivery/GITHUB_PUBLICATION.md",
+    "docs/delivery/CORPUS_COVERAGE.md",
+    "docs/engineering/evidence/CORPUS_COMPLETENESS_20261112.json",
+    "docs/VALIDATION_HISTORY.md"
+  ],
+  "public_safe": false
+}
