@@ -1,6 +1,11 @@
 # What the repository includes
 
-**Updated:** 2026-11-12. This is a completeness statement, not permission to
+**Updated:** 2026-11-12. **The additions below describe the local working
+repository, not the current GitHub tree.** Commit `13e1501` is ready locally.
+Its push was stopped because GitHub now reports public visibility, and no
+changed-audience choice was obtained. Online `main` remains `ef54878`.
+
+This is a completeness statement, not permission to
 disclose excluded material. The owner requested all research, a scrubbed wiki
 and all code; the original short publication did not include that full scope.
 

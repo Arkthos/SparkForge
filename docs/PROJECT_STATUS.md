@@ -1,8 +1,10 @@
 # SparkForge project status
 
 **As of:** 2026-11-12.
-**Position:** the clean, self-contained software and public-research snapshot
-is published. The native assisted factory remains experimental, not deployment-qualified.
+**Position:** the initial software/public-research snapshot is online; the
+expanded corpus/tooling update is validated and committed locally but its push
+is blocked by an unexpected repository visibility change. The native assisted
+factory remains experimental, not deployment-qualified.
 
 The publication contains project-owned code, source-neutral documentation,
 synthetic fixtures and reviewed public-source research. Private source captures,
@@ -12,8 +14,12 @@ are excluded. No private collection is needed to run the test suite.
 **Completeness correction:** the initial upload was not the complete research
 workspace. All 24 original application/test/preview code files are present and
 byte-identical. WP-003 restored all 19 inventoried research/checkpoint utility
-inputs and 14 detailed public-topic documents; final publication verification
-is pending. WP-004 has complete local wiki/study review candidates,
+inputs and 14 detailed public-topic documents in local commit
+`13e15010ffc80546fc0cb8ef3ea58fbcc43c3886`. GitHub now reports the repository
+as public; the guard stopped before `git push` and the audience question
+received no selection. Online `main` remains
+`ef54878d1330e3d83089c87fcf799d2a88672a2e`.
+WP-004 has complete local wiki/study review candidates,
 but those private candidates and unreviewed attachments are not on GitHub.
 See the [completeness specification](specs/CORPUS_COMPLETENESS.md) and
 [review-preparation guide](engineering/CORPUS_REVIEW.md).
@@ -53,7 +59,9 @@ two Windows symlink-privilege cases were skipped. It includes all 72 research-to
 cases and 14 new local review-preparation cases. No live service collection,
 private checkpoint read or semantic wiki approval was performed.
 
-The private [GitHub destination](https://github.com/Arkthos/SparkForge) exists.
+The [GitHub destination](https://github.com/Arkthos/SparkForge) exists.
+It was private for the initial publication and is now reported public; that
+observation is not permission to broaden the audience of another upload.
 The initial publication commit is
 [`a30cdba0df37ae032388e89ad7725c5b20a895c2`](https://github.com/Arkthos/SparkForge/commit/a30cdba0df37ae032388e89ad7725c5b20a895c2).
 GitHub's private `main` ref and all 100 file objects were verified against that
@@ -85,12 +93,13 @@ documentation/spec candidate; do not attach an earlier private token or verdict.
 
 ## Next actions
 
-1. Finish the safe research/tooling expansion and review the complete local
-   private corpus before any separately authorized upload.
-2. Use this repository for GitHub-bound work; keep excluded private material outside it.
-3. Run a small real task only in a genuinely approved host/data/resource scope.
-4. Qualify source freshness, lifecycle and actual control boundaries independently.
-5. Implement and evaluate governed learning without granting it promotion authority.
+1. Resolve the changed-public-audience decision before pushing the locally
+   committed research/tooling expansion. Do not silently change visibility.
+2. Review the complete local private corpus before any separately authorized upload.
+3. Use this checkout for GitHub-bound work; keep excluded private material outside it.
+4. Run a small real task only in a genuinely approved host/data/resource scope.
+5. Qualify source freshness, lifecycle and actual control boundaries independently.
+6. Implement and evaluate governed learning without granting it promotion authority.
 
 No hosted CI, installed-host acceptance, private-source export, cross-environment
 transfer or production release is claimed.

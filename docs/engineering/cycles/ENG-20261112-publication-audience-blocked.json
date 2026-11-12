@@ -1,0 +1,70 @@
+{
+  "schema_version": "sparkforge-engineering-cycle.v1",
+  "id": "ENG-20261112-publication-audience-blocked",
+  "date": "2026-11-12",
+  "work_items": ["WP-003", "WP-004"],
+  "workstream": "corpus-completeness",
+  "cycle_type": "blocked-handoff",
+  "status": "blocked",
+  "objective": "Preserve the validated local additions and accurately record the unexpected audience change instead of bypassing the publication guard.",
+  "changes": [
+    "Recorded local implementation commit 13e15010ffc80546fc0cb8ef3ea58fbcc43c3886 and the fact that no new upload occurred.",
+    "Updated the four living records, contributor guidance and coverage/publication pages to distinguish local additions from the unchanged online tree.",
+    "Preserved all implementation, tests, research manifests and earlier cycles."
+  ],
+  "validation": [
+    {
+      "check": "Pre-push account/repository/private-visibility guard",
+      "scope": "Before any Git upload command",
+      "outcome": "PASS",
+      "reference": "Guard correctly stopped on changed visibility; git push did not run"
+    },
+    {
+      "check": "Independent GitHub repository and main-ref read",
+      "scope": "Current identity, audience and online revision",
+      "outcome": "PASS",
+      "reference": "Repository ID 1454540264 unchanged; private=false, visibility=public; main ef54878d1330e3d83089c87fcf799d2a88672a2e; metadata updated 2026-11-12T16:07:29Z"
+    },
+    {
+      "check": "Explicit choice for public publication or a visibility change",
+      "scope": "Reviewed safe additions only",
+      "outcome": "NOT_ASSESSED",
+      "reference": "Question obtained no selection because the operator was unavailable"
+    },
+    {
+      "check": "Local handoff lifecycle and whitespace validation",
+      "scope": "Nine documentation paths; 26 project Markdown files, 84 links, 46 work packages and four cycles",
+      "outcome": "PASS",
+      "reference": "python -B scripts\\validate_plan.py --base HEAD; git --no-pager diff --cached --check; no implementation/test/research change"
+    },
+    {
+      "check": "Expanded corpus push or repository visibility modification",
+      "scope": "External changes",
+      "outcome": "NOT_RUN",
+      "reference": "No fallback or retry after the guard blocked"
+    }
+  ],
+  "results": [
+    "The 14 detailed public documents, all 19 authored tool inputs and local review preparer are implemented/tested and safely committed locally.",
+    "The GitHub repository still contains the earlier 101-file snapshot, not the 155-file local expansion.",
+    "The wiki/study review candidates are complete locally but remain unapproved for upload, independently of repository visibility."
+  ],
+  "limitations": [
+    "Observed public visibility does not itself authorize a broader audience for the next upload.",
+    "No actor or reason for the remote visibility change was established.",
+    "No semantic/media clearance or source/data-owner release decision for private wiki/study content was obtained."
+  ],
+  "rollback": "Keep local commits and private originals intact. Do not reset history, delete the repository, change visibility or retry a push without the appropriate explicit decision.",
+  "next_steps": [
+    "Obtain an explicit audience choice for the reviewed code/public-research update and then verify the live destination again.",
+    "Review all local wiki/study candidates and opaque attachments and obtain exact release authority before any restricted-content upload.",
+    "Record any eventual remote outcome in a new linked cycle without rewriting this blocked state."
+  ],
+  "evidence": [
+    "docs/PROJECT_STATUS.md",
+    "docs/delivery/GITHUB_PUBLICATION.md",
+    "docs/delivery/CORPUS_COVERAGE.md",
+    "docs/VALIDATION_HISTORY.md"
+  ],
+  "public_safe": false
+}

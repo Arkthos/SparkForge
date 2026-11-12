@@ -32,6 +32,12 @@ No automatic provider substitution, package/MCP installation, deployment,
 learning promotion or external write is implied by a local check. Use only the
 operator-approved host, tools, data and resource envelope.
 
+On 2026-11-12 the publication guard observed that GitHub visibility had changed
+from private to public. The expanded corpus/tooling commit is local, not pushed.
+Do not bypass that guard or change repository visibility without an explicit
+audience decision. The separate private wiki/study review remains unapproved
+for upload regardless of that decision.
+
 ## Development and evidence
 
 Use the smallest checks covering a change. The existing commands are:

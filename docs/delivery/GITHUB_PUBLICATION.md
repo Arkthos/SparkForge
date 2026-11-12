@@ -1,7 +1,22 @@
 # Clean repository publication
 
-**Destination:** private [Arkthos/SparkForge](https://github.com/Arkthos/SparkForge).
-**Current state:** clean private publication completed and verified.
+**Destination:** [Arkthos/SparkForge](https://github.com/Arkthos/SparkForge).
+**Current state:** initial publication verified; the later corpus/tooling
+increment is local and blocked on an audience decision. GitHub now reports
+public visibility instead of the initially verified private visibility.
+
+On 2026-11-12 the pre-push guard stopped before `git push`: repository ID and
+owner still matched, but `private` was false. A separate read confirmed
+`visibility: public`, metadata update time `2026-11-12T16:07:29Z`, and online
+`main` still at `ef54878d1330e3d83089c87fcf799d2a88672a2e`.
+No inference is made about who changed the setting. The audience question
+received no selection, so no retry or visibility edit was performed.
+
+The expanded, tested local commit is
+`13e15010ffc80546fc0cb8ef3ea58fbcc43c3886`. It contains the detailed public
+dossier, all inventoried authored research tools and local review-preparation
+code, not the private wiki/study contents. A decision to publish those safe
+additions publicly would still not approve the separate restricted-corpus upload.
 
 The initial snapshot is commit
 [`a30cdba0df37ae032388e89ad7725c5b20a895c2`](https://github.com/Arkthos/SparkForge/commit/a30cdba0df37ae032388e89ad7725c5b20a895c2),

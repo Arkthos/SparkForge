@@ -131,3 +131,22 @@ from the authored documents' own hashes. Both original source collections are
 unchanged. Local outputs have explicit `REVIEW_REQUIRED` status; opaque
 attachments remain `NOT_REVIEWED`. An unavailable clarification did not grant
 data-owner authority, and no new private material was uploaded.
+
+## 2026-11-12: corpus upload stopped on changed visibility
+
+The validated corpus/tooling implementation was committed locally as
+`13e15010ffc80546fc0cb8ef3ea58fbcc43c3886`. Immediately before publishing,
+the wrapper rechecked the authenticated account, repository identity and
+private visibility. The visibility condition failed **before `git push` ran**.
+
+| Actual operation | Result | Scope |
+|---|---|---|
+| Current account and repository metadata read | Account/ID matched; visibility guard blocked | No authentication failure, credential switch or upload retry |
+| Separate repository/ref inspection | Confirmed `private=false`, visibility `public`; remote `main=ef54878d1330e3d83089c87fcf799d2a88672a2e` | Metadata says updated `2026-11-12T16:07:29Z`; actor/cause not inferred |
+| Audience clarification | No selection: operator unavailable | Not approval to publish to a wider audience or change repository settings |
+| New corpus/code upload and visibility modification | NOT_RUN | Local additions preserved; neither remote history nor visibility was changed |
+| `python -B scripts\validate_plan.py --base HEAD` and staged whitespace | PASS | Nine documentation paths; 26 project Markdown files, 84 links, 46 work packages and four cycles; implementation/test/research bytes unchanged |
+
+The full local validation remains valid for its exact bytes. It does not turn
+an unperformed upload into a success. Source/data-owner release and semantic/
+attachment review for the local wiki/study remain separate unresolved conditions.
