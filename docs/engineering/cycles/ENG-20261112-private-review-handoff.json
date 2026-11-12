@@ -1,0 +1,71 @@
+{
+  "schema_version": "sparkforge-engineering-cycle.v1",
+  "id": "ENG-20261112-private-review-handoff",
+  "date": "2026-11-12",
+  "work_items": ["WP-003", "WP-004"],
+  "workstream": "corpus-completeness",
+  "cycle_type": "advisory-review-handoff",
+  "status": "blocked",
+  "objective": "Record the completed local advisory review and exact remaining private-corpus release conditions without exporting the reviewed inputs.",
+  "changes": [
+    "Completed advisory reading of all 131 original/candidate text pairs and accounted for all 84 attachment/ancillary records.",
+    "Verified private input/output hashes and reconstructed both revised nonempty candidates from 18 declared semantic-redaction spans.",
+    "Published only aggregate coverage/limitations in project records; private findings, source mappings, text, images and review scripts remain local.",
+    "Kept WP-003's code/public-research publication complete and WP-004's private release explicitly blocked."
+  ],
+  "validation": [
+    {
+      "check": "Private text inventory, unchanged input pairs and output hashes",
+      "scope": "131 pairs; 118 withheld, 13 empty, zero unreadable; 227 output hashes",
+      "outcome": "PASS",
+      "reference": "Private advisory inventory and coordinator revalidation; only aggregate results are included here"
+    },
+    {
+      "check": "Exact semantic-redaction reconstruction",
+      "scope": "Two full-text nonempty local candidates, 18 spans and source/input/output offsets",
+      "outcome": "PASS",
+      "reference": "Both remain withheld; no publication authority granted"
+    },
+    {
+      "check": "Private attachment/ancillary inventory and output hashes",
+      "scope": "57 attachments plus 27 ancillary records; 94 output hashes and 91 inspection-copy checks",
+      "outcome": "PASS",
+      "reference": "39 attachments and 27 ancillary items reviewed; 18 attachments partial; all 84 withheld"
+    },
+    {
+      "check": "Human/source-owner release decision and unresolved media coverage",
+      "scope": "Exact private-corpus subset and destination",
+      "outcome": "NOT_ASSESSED",
+      "reference": "No human approval fabricated; clipped/faint text and one binary metadata payload remain unresolved"
+    },
+    {
+      "check": "Aggregate-only documentation/lifecycle and outgoing content validation",
+      "scope": "Seven documentation paths; 26 project Markdown files, 87 links, 46 work packages and seven cycles; no private source payload",
+      "outcome": "PASS",
+      "reference": "python -B scripts\\validate_plan.py --base HEAD; staged whitespace, exact-byte and sensitive-indicator checks"
+    }
+  ],
+  "results": [
+    "The code and detailed public research are online; the complete private wiki/study is not.",
+    "All locally retained items have an advisory disposition and integrity evidence rather than an unreviewed summary-only claim.",
+    "No nonempty text or media item has release authorization; the remaining decision cannot be supplied by an automated reviewer."
+  ],
+  "limitations": [
+    "This is AI advisory review, not legal, human or source-owner approval.",
+    "Some media has partial readability or unassessed metadata.",
+    "No source-specific details, original hashes/identifiers, private text/media or working scripts are copied into this aggregate report."
+  ],
+  "rollback": "Preserve private originals, advisory outputs and historical cycles. Any later approved subset must retain exact byte bindings and exclusions; do not upload the private review directory wholesale.",
+  "next_steps": [
+    "Obtain the applicable source/data-owner decision for a precisely reviewed subset and destination.",
+    "Resolve unreadable media with a better source or keep it excluded.",
+    "Do not mark the complete private-wiki publication finished until it actually occurs within those conditions."
+  ],
+  "evidence": [
+    "docs/engineering/evidence/PRIVATE_CORPUS_REVIEW_SUMMARY_20261112.json",
+    "docs/delivery/CORPUS_COVERAGE.md",
+    "docs/PROJECT_STATUS.md",
+    "docs/VALIDATION_HISTORY.md"
+  ],
+  "public_safe": false
+}

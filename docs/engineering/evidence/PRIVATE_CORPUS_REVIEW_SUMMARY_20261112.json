@@ -1,0 +1,63 @@
+{
+  "schema_version": "sparkforge.private-review-summary.v1",
+  "date": "2026-11-12",
+  "scope": "Aggregate advisory-review coverage only; no private source text, media, source identifiers or detailed findings",
+  "reviewer_type": "AI_ADVISORY",
+  "publication_authorized": false,
+  "human_review_completed": false,
+  "source_owner_approved": false,
+  "text": {
+    "original_candidate_pairs_reviewed": 131,
+    "wiki_pages": 117,
+    "engineering_study_documents": 14,
+    "withheld_pending_owner_review": 118,
+    "empty_pages": 13,
+    "unreadable": 0,
+    "revised_nonempty_local_candidates": 2,
+    "revised_candidates_authorized_for_publication": 0,
+    "input_hash_pairs_reverified": 131,
+    "private_output_hashes_reverified": 227,
+    "semantic_redaction_spans_reconstructed": 18,
+    "source_input_output_offsets_verified": true,
+    "unchanged_text_preserved": true
+  },
+  "media_and_ancillary": {
+    "attachments": 57,
+    "ancillary_items": 27,
+    "attachments_reviewed": 39,
+    "attachments_partially_assessed": 18,
+    "ancillary_items_reviewed": 27,
+    "unviewable_reported": 0,
+    "all_items_withheld": 84,
+    "release_candidates": 0,
+    "original_hashes_reverified": 84,
+    "private_output_hashes_reverified": 94,
+    "inspection_derivative_hashes_checked": 91,
+    "remaining_limits": [
+      "Clipped or faint text prevents complete assessment of some attachments.",
+      "One binary metadata payload remains unassessed.",
+      "Visual inspection does not establish ownership, redistribution rights or publication approval."
+    ]
+  },
+  "coordinator_verification": {
+    "outcome": "PASS",
+    "source_originals_modified": false,
+    "private_outputs_uploaded": false,
+    "notes": [
+      "The first verification drivers assumed the wrong base for workspace-relative input paths; those assertions failed before any source modification.",
+      "A further driver assumed every output had a redaction map; the 13 faithfully retained empty pages correctly omit one.",
+      "After inspecting the actual contract, all input/output hashes and both nonempty candidates' exact redaction reconstructions passed."
+    ]
+  },
+  "release_state": {
+    "status": "BLOCKED",
+    "meaning": "Advisory reading is complete within recorded limits, but no nonempty text or media item is authorized for public release.",
+    "required_next_action": "Applicable source/data-owner review and a decision bound to the exact proposed subset and destination; unresolved media also needs a readable source or an explicit exclusion."
+  },
+  "limits": [
+    "Withheld does not mean every word is secret; it means the item has not been cleared for this release.",
+    "Empty pages are accounted for, not used to claim that a meaningful wiki was published.",
+    "Mechanical redaction and advisory classification do not declassify organizational content.",
+    "Source-specific review scripts, inventories, original/candidate text and media remain in authorized local storage."
+  ]
+}

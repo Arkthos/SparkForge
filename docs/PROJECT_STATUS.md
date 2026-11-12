@@ -21,9 +21,10 @@ verified publication commit `5242e25542f107349339b21ec8868c1a68481098`.
 All 157 remote file objects matched the local tree. Repository visibility is
 public and was not changed by the resumed upload. The earlier stopped guard
 and its correction remain recorded; no user answer was fabricated.
-WP-004 has complete local wiki/study review candidates. Advisory text/media
-review is underway locally; those candidates and attachments are not on GitHub
-and remain unapproved for release.
+WP-004 now has a completed local advisory review, within its recorded media
+limits. All 131 text pairs were read: 118 are withheld and 13 empty. All 84
+attachment/ancillary items are withheld, including 18 partially assessed
+attachments. No private text or media is on GitHub or approved for release.
 See the [completeness specification](specs/CORPUS_COMPLETENESS.md) and
 [review-preparation guide](engineering/CORPUS_REVIEW.md).
 
@@ -89,7 +90,10 @@ The full local review accounts for 117 wiki pages, 57 attachments, 27 ancillary
 files and all 14 authored engineering-study documents. Original hashes and
 full candidate reconstruction were verified; no excerpt truncation or summary
 replaced them. Mechanical redactions do not establish semantic safety or
-source/data-owner permission. That review/release decision remains a real blocker.
+source/data-owner permission. Subsequent advisory review does not supply that
+permission either; the exact release decision remains a real blocker.
+The [aggregate review result](engineering/evidence/PRIVATE_CORPUS_REVIEW_SUMMARY_20261112.json)
+records coverage without exposing private findings or sources.
 
 The self-check harness uses explicitly synthetic decisions and cannot manufacture
 a reviewer. This publication has no admitted independent review of its changed
@@ -99,8 +103,8 @@ documentation/spec candidate; do not attach an earlier private token or verdict.
 
 1. Use the published detailed research and portable tooling; preserve the
    distinction between source references and acquired/private source copies.
-2. Finish advisory review of the local private corpus, then obtain the applicable
-   exact release decision before any restricted upload.
+2. Obtain the applicable source/data-owner decision for an exact reviewed subset
+   and destination; improve unreadable media or keep it excluded.
 3. Use this checkout for GitHub-bound work; keep excluded private material outside it.
 4. Run a small real task only in a genuinely approved host/data/resource scope.
 5. Qualify source freshness, lifecycle and actual control boundaries independently.

@@ -191,3 +191,30 @@ Tree: `ba3f1cb7145eecac8e584850ae9cb88b16413ce8`.
 The detailed dossier and authored tools are now genuinely online; the local
 wiki/study candidates are not. Advisory text/media review of those private
 inputs proceeds locally and cannot grant release authority.
+
+## 2026-11-12: complete local advisory review; private release remains blocked
+
+The text reviewer inspected all 131 original/candidate pairs: 117 wiki pages
+and 14 study documents. The disposition is 118 withheld, 13 empty and zero
+unreadable. Two revised nonempty full-text candidates remain withheld.
+The media reviewer accounted for 57 attachments and 27 ancillary items:
+39 attachments and all 27 ancillary items reviewed, 18 attachments partially
+assessed, zero marked unviewable and all 84 withheld. Clipped/faint text and
+one binary metadata payload remain unresolved. No release candidate or
+human/source-owner approval was manufactured.
+
+| Check | Result | Scope |
+|---|---|---|
+| Text source/original-candidate identity and hash verification | PASS: 131 pairs | Every original and initial candidate still matches the preparation manifests |
+| Text output hash inventory and completion marker | PASS: 227 file hashes | Private working artifacts only; no source-specific findings uploaded |
+| Revised nonempty candidate reconstruction | PASS: two candidates, 18 redaction spans | Source/input/output character and byte offsets, removed-span hashes and unchanged content verified |
+| Media original records and private output hashes | PASS: 84 records, 94 file hashes | All 57 attachments and 27 ancillary items preserved; 91 inspection-copy checks retained |
+| Initial coordinator verification drivers | Failed assumptions corrected | Input paths are workspace-relative, not process/output-relative; empty pages legitimately have no redaction map. No inputs or review outputs were changed |
+| Human/legal/source-owner release and full unresolved media assessment | NOT_ASSESSED | Advisory review does not approve a private-corpus upload |
+| Aggregate-only documentation, lifecycle, staged byte and content checks | PASS | Seven documentation paths; 26 project Markdown files, 87 links, 46 work packages and seven cycles; no private inventories/content or code/research changes |
+
+The complete detailed findings, original/candidate mappings, source-specific
+review scripts and validation notes remain in authorized local review storage.
+The [public summary](engineering/evidence/PRIVATE_CORPUS_REVIEW_SUMMARY_20261112.json)
+contains only aggregate outcomes. No original source identifier, text, image,
+private manifest, policy or operational record is included.

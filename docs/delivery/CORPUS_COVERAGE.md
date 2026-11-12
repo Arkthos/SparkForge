@@ -50,6 +50,15 @@ candidate directory contains private originals and must not be uploaded as a
 bundle. The [review guide](../engineering/CORPUS_REVIEW.md) explains the actual
 mechanism and its `REVIEW_REQUIRED`/permission-false result.
 
+The subsequent full advisory text review read all 131 original/candidate pairs:
+118 records remain withheld, 13 are empty and none unreadable. Two revised
+nonempty full-text candidates were produced and remain withheld. Media review
+accounted for all 84 items: 39 attachments plus 27 ancillary items reviewed,
+18 attachments partially assessed, all withheld and no release candidates.
+See the [aggregate review summary](../engineering/evidence/PRIVATE_CORPUS_REVIEW_SUMMARY_20261112.json).
+These are advisory dispositions, not proof that every word is secret or that
+any item has source/data-owner clearance.
+
 ## Other material intentionally separate
 
 - The captured upstream repository contains 623 blobs and 223 directories.

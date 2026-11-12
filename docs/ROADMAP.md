@@ -48,6 +48,12 @@ Publication at `5242e25` was verified against all 157 remote file objects.
 WP-003 is complete. WP-004's private-corpus conditions remain unresolved;
 no product milestone is advanced.
 
+WP-004 advisory review is now complete within recorded limits: 131 text pairs
+were read, all 84 non-text records accounted for, and exact private hashes/
+redactions verified. Release remains blocked: no nonempty item is approved,
+18 attachments are partially assessed and the applicable source-owner decision
+has not been obtained. This is progress in review, not a published wiki.
+
 This clean publication keeps owned executable behavior while replacing
 restricted contextual material with source-neutral guidance and adding reviewed
 public research. It preserves the original private history separately.
