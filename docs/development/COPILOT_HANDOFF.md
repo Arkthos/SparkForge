@@ -4,13 +4,13 @@
 
 The owner wants a coordinated SPARK software factory that takes ideas/content/existing code through clarification, platform fit, planning, implementation, testing, independent review, diagnosis, bounded repair/replanning and evidenced delivery. A distinct controller protects the user's intent. Humans decide material changes; ordinary in-scope engineering continues automatically.
 
-The current package is assisted v1. Its strict spec/journal/check/review and snapshot mechanisms work under their tested limits. WP-110..112 implement pure intent/envelope, worker-exchange and workflow/replay contracts alongside it; the coordinated execution loop is not implemented. **WP-113 is the next implementation task**. See the [WP-112 cycle](../engineering/cycles/ENG-20261112-wp112-transitions.json) and [workflow API](../design/DATA_AND_STATE.md#workflow-guards-and-job-states).
+The current package is assisted v1. Its strict spec/journal/check/review and snapshot mechanisms work under their tested limits. WP-110..113 implement intent/envelope, worker-exchange, pure workflow/replay and isolated-store coexistence contracts alongside it; the coordinated execution loop is not implemented. **WP-114 is the next implementation task**. See the [WP-113 cycle](../engineering/cycles/ENG-20261112-wp113-coexistence.json) and [implemented APIs](../design/DATA_AND_STATE.md).
 
 ## Read in this order
 
 1. [AGENTS.md](../../AGENTS.md), [status](../PROJECT_STATUS.md), [roadmap](../ROADMAP.md) and [backlog](../IMPLEMENTATION_BACKLOG.csv).
 2. [Architecture](../design/ARCHITECTURE.md), [split records/state](../design/DATA_AND_STATE.md), [material decisions](../design/HUMAN_DECISIONS.md).
-3. [First task](FIRST_TASK.md) for the implemented foundation, then the next [implementation-plan section](../IMPLEMENTATION_PLAN.md#wp-113-specify-assisted-v1-coexistence-and-schema-migrations).
+3. [First task](FIRST_TASK.md) for the implemented foundation, then the next [implementation-plan section](../IMPLEMENTATION_PLAN.md#wp-114-define-host-adapter-capabilities-and-deterministic-fake-host).
 4. Relevant actual helpers/tests and the selected task's scenarios. Read research selectively through [prior-art application](PRIOR_ART_APPLICATION.md), not as instructions to install every tool.
 
 ## How to choose and finish work
@@ -37,6 +37,12 @@ For a coherent change, update the four living records plus a new append-only cyc
 ## Checkpoint at every stop
 
 Record branch/commit, exact selected task and deliverables, commands with actual outcomes, failures/corrections/skips, current candidate/evidence bindings where applicable, unresolved operations, material questions, next ready task and a concrete continuation instruction. Preserve unknown effects and inspect before replay. No runtime journals/private transcripts in the repository checkpoint.
+
+### Current continuation boundary
+
+Continue this focused P1 branch, `kerodri-microsoft-sparkforge-coordinated-contracts`, based on `3decc8bc0326b51ac312b074bfadc396185f8d5c`, until its PR is integrated. Do not restart from older main and duplicate completed WP-110..113. The append-only cycles identify each introducing commit through Git history; use `git log -1 -- docs/engineering/cycles/ENG-20261112-wp113-coexistence.json` to resolve the exact final implementation boundary. Publication/CI closure will record the observed head separately.
+
+Next concrete task: read WP-114 and `docs/integration/HOST_ADAPTER.md`, then implement the capability/dispatch/poll/cancel/reconcile/producer/usage protocol and a scripted offline fake with counters. Reuse `contracts.py`, `agent_contracts.py` and `transitions.py`; do not invent a Copilot launcher or wire real credentials. Test unsupported capability before effects, cross-environment receipts, unknown usage and unobserved cancellation. Update all four living records plus a new cycle, validate and commit before advancing to WP-115. WP-120 is dependency-ready but its journal is not already present in the WP-113 metadata header.
 
 ## Ready-to-use continuation prompt
 

@@ -302,3 +302,21 @@ WP-111 was committed as `4791068b5c9d0f27658ddcb0671a9484640cc4e5`; post-commit 
 | Current-branch CI and real runtime storage/host qualification | NOT_RUN / NOT_ASSESSED | No actual dispatch, runtime journal, crash durability or live acceptance claimed |
 
 The corrections also retain opaque observation references in each full command event, prevent configuration-free receipt replacement within an old review context and project observed failed operations as failed/diagnosing rather than completed work. There is no second independent review verdict. The [WP-112 cycle](engineering/cycles/ENG-20261112-wp112-transitions.json) records the bounded pure-engine scope. Next: WP-113 coexistence/migration boundary.
+
+## 2026-11-12: WP-113 isolated stores and assisted-v1 coexistence
+
+WP-112 was committed as `bb2ab8bc4ef75d41326ba9942637784e661fefc3`; post-commit planning/whitespace passed. The new store header is not a coordinated journal or accepted job. Legacy references use unchanged v1 validation through a read-only adapter and copy no decisions or raw source content. Only version 1 is supported; version-2 migration steps are explicitly injected test fixtures.
+
+| Actual check | Result | Boundary |
+|---|---|---|
+| First `python -B -m unittest discover -s tests -p 'test_runtime_migrations.py'` | ERROR: five cleanup errors in 12 cases, 0.492s | Test SQLite context managers committed but did not close; Windows retained file handles |
+| Explicit fixture-connection closing and rerun | PASS: 12/12 in 0.430s | Five exact owned leftover directories were inspected and removed after the failed process ended; no broad cleanup |
+| Initial full suite with README local `PYTHONPATH` | PASS: 469 collected, 467 passed, two skips in 84.814s | Before new independent review regressions |
+| Independent implementation review | Found two medium issues | `mode=ro` created WAL/SHM before rejecting WAL; a handled SQLite automatic rollback permitted a false upgraded version marker |
+| Added review reproductions | FAIL: two failures in 14 cases, 0.526s | Source sidecars changed; prepared version was 2 with migration changes absent |
+| Corrected `python -B -m unittest discover -s tests -p 'test_runtime_migrations.py'` | PASS: 14/14 in 0.489s | Header preflight rejects WAL before opening SQLite; active transaction checked after every step and before version stamping |
+| `$env:PYTHONPATH = (Resolve-Path 'research_tools\.validation-deps').Path; python -B -m unittest discover -s tests` | PASS: 471 collected, 469 passed, two skips in 86.287s | All original assisted-v1 cases unchanged; symlink-creation privilege remains unavailable for two existing cases |
+| `python -B scripts\validate_plan.py --base HEAD` and `git diff --check` | PASS | 11 changed paths; 96 Markdown files; 790 local links; 50 active tasks; 13 cycles |
+| Current-branch hosted CI, real migration, power-failure and installed-host qualification | NOT_RUN / NOT_ASSESSED | Only owned synthetic SQLite files; no live job/database conversion or activation |
+
+Source and backup bytes remain unchanged in successful, interrupted, unknown-version, automatic-rollback and early-commit/attachment refusal fixtures. Existing v1 manual approval still gates execution after reference capture. The [WP-113 cycle](engineering/cycles/ENG-20261112-wp113-coexistence.json) records the evidence and explicit supported limits. Next: WP-114 capability protocol/scripted fake; the rest of P1/P2 remains open.

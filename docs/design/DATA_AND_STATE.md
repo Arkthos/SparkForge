@@ -129,11 +129,24 @@ Only explicitly proven-independent evidence can survive a plan revision. Default
 
 ## v1 coexistence and migrations
 
+WP-113 implements `plugins.sparkforge.runtime.migrations` with these explicit APIs:
+
+| API | Implemented behavior |
+|---|---|
+| `create_store(root, workspace=..., environment=...)` | Creates a new isolated directory and `coordinated.sqlite3` header, never adopting an existing directory. The header uses SQLite application ID `0x53464752`, user version 1 and one `runtime_metadata` row (family, store ID, environment, workspace). No job, decision, worker or projection is created. |
+| `inspect_store(root)` | Reads recognized metadata only. Rejects assisted-v1 directories, foreign families/application IDs and unknown versions without changing them. |
+| `legacy_reference(job_dir)` | Uses the unchanged `factory._state` on a read-only SQLite connection after explicit filesystem/journal preflight. Returns only job/spec/state/database bindings, environment, revision and unresolved-run presence under `assisted_v1_reference_only`; no decision, approval, raw spec or source text is imported. |
+| `migrate_copy(source_root, destination_root)` | Holds a read transaction on the offline source, writes/verifies an exact `pre-migration.sqlite3` backup before the prepared working copy, and runs implemented trusted migration steps in one transaction. Source, environment, workspace and store identity remain unchanged; no replacement or activation occurs. Failure leaves inspectable owned preparation files and the preserved backup, not automatic cleanup or retry. |
+
+The storage adapter reuses v1 directory/plain-file guards and the 32-MiB file bound without changing v1 code. Candidate workspace, source store and prepared destination cannot overlap. No coordinated store is created inside the immediate assisted job directory. Only owner-quiesced, local, plain DELETE-journal snapshots are supported: pre-existing journal/WAL/SHM files and WAL header bytes are rejected before SQLite can create sidecars. Preflight/read locks are not an OS security boundary against a same-privilege actor racing file replacement or changing modes; live/WAL/storage and power-failure qualification remain separate work.
+
+Only schema version 1 ships, with no registered upgrade steps. Same-version copy preparation works now. Tests temporarily inject a trusted version-2 step to exercise backup-before-write, rollback and version rejection; that does not establish a released version 2 or convert any real operator state. Future version changes must register actual code paths and update validators with regression evidence. Migration SQL cannot accidentally commit, attach, change PRAGMAs or introduce savepoints; the transaction is checked after each step and before stamping the new version to catch SQLite automatic rollback. That guard is not a sandbox for trusted Python migration code.
+
 Do not import `job.sqlite3` as a coordinated job or fabricate acceptance for it. Coordinated stores have their own schema/version and root. A v1 journal may be referenced read-only with a clearly scoped evidence class. It does not inherit accepted intent, envelope or host independence.
 
 WP-125 must reuse the runner's mechanics without calling v1 `decide` as a fake operator. Options are a tested explicit adapter to genuinely accepted v1 jobs or a narrow shared execution extraction with both old and new admission front ends. Keep v1 public behavior and all applicable regression tests unchanged. Record the extraction decision before implementation.
 
-Future store upgrades need explicit version detection, a verified backup/copy, a transaction or new-store migration, validation and rollback. Reject unknown versions without modifying originals. No automatic migration of real operator state in synthetic tests.
+Future store upgrades must retain the implemented version detection, verified backup/copy, single transaction, metadata validation and rollback rules. Reject unknown versions without modifying originals. The WP-120 journal/event tables are not implemented by this header. No automatic migration of real operator state occurs in synthetic tests.
 
 ## Observability and retention
 

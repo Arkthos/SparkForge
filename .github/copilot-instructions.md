@@ -2,7 +2,7 @@
 
 Read `AGENTS.md`, `docs/PROJECT_STATUS.md`, `docs/development/COPILOT_HANDOFF.md`, then the selected section of `docs/IMPLEMENTATION_PLAN.md`. The active CSV backlog owns work states; archived plans do not.
 
-Build a coordinated multi-agent SPARK software factory: platform brain, independent intent controller, scoped coder/test-author/reviewer/diagnostician roles, deterministic test execution, bounded repair/replanning and materially necessary human decisions. The current shipped package is assisted v1; the coordinated design is not implemented yet.
+Build a coordinated multi-agent SPARK software factory: platform brain, independent intent controller, scoped coder/test-author/reviewer/diagnostician roles, deterministic test execution, bounded repair/replanning and materially necessary human decisions. The current shipped package is assisted v1; WP-110..113 foundations are implemented in source, but the coordinated execution loop is not.
 
 Default next task: consult `docs/development/COPILOT_HANDOFF.md` and the active backlog. WP-110 is the implemented foundation described in `docs/development/FIRST_TASK.md`. Preserve the existing v1 APIs/tests and reuse their mechanisms. No speculative empty modules, invented host launch commands or new orchestration framework. Source-neutral fake-host work does not require corp/acro access.
 

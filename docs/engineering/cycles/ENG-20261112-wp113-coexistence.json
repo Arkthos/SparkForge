@@ -1,0 +1,83 @@
+{
+  "schema_version": "sparkforge-engineering-cycle.v1",
+  "id": "ENG-20261112-wp113-coexistence",
+  "date": "2026-11-12",
+  "work_items": ["WP-113"],
+  "workstream": "Assisted-v1 coexistence and safe store-copy preparation",
+  "cycle_type": "implementation",
+  "status": "validated",
+  "objective": "Keep v1 state/approval isolated while defining explicit new-store headers, read-only references and backup-before-migration rollback.",
+  "base_commit": "bb2ab8bc4ef75d41326ba9942637784e661fefc3",
+  "branch": "kerodri-microsoft-sparkforge-coordinated-contracts",
+  "changes": [
+    "Added explicit create_store, inspect_store, legacy_reference and migrate_copy with unchanged v1 helpers behind filesystem/state adapters.",
+    "Separated coordinated.sqlite3 metadata from assisted job.sqlite3; no job, approval, role or journal is imported or created.",
+    "Implemented known-version detection, exact verified backup/copy, transaction-protected trusted migration steps, identity checks and source preservation.",
+    "Added header preflight so rejected WAL input cannot create source sidecars.",
+    "Added active-transaction checks after migration steps and before version stamping, including handled SQLite automatic rollback."
+  ],
+  "validation": [
+    {
+      "check": "python -B -m unittest discover -s tests -p 'test_runtime_migrations.py'",
+      "scope": "TC-109/110 owned synthetic SQLite fixtures",
+      "outcome": "PASS",
+      "reference": "Final 14/14 pass in 0.489s. Initial five Windows cleanup errors fixed by explicit fixture connection closing; review-added WAL/version tests each failed before correction."
+    },
+    {
+      "check": "$env:PYTHONPATH = (Resolve-Path 'research_tools\\.validation-deps').Path; python -B -m unittest discover -s tests",
+      "scope": "Full Windows/Python 3.12.10 repository regression",
+      "outcome": "PASS",
+      "reference": "Final 471 collected; 469 passed; two existing symlink-privilege skips; 86.287s. Pre-review full run was 469/467/two skips."
+    },
+    {
+      "check": "Independent migration/coexistence inspection and regression verification of both findings",
+      "scope": "Distinct code-review context on actual implementation",
+      "outcome": "PASS",
+      "reference": "WAL source-sidecar creation and false version stamping after automatic rollback were reproduced and corrected. No second independent verdict or real storage qualification claimed."
+    },
+    {
+      "check": "Inspect and remove five exact owned fixture directories after failed-process exit",
+      "scope": "Cleanup of this task's synthetic leftovers only",
+      "outcome": "PASS",
+      "reference": "Only explicit resolved test directories were removed; no wildcard or unrelated state cleanup."
+    },
+    {
+      "check": "python -B scripts\\validate_plan.py --base HEAD; git diff --check",
+      "scope": "Current lifecycle/link/archive and whitespace boundary",
+      "outcome": "PASS",
+      "reference": "11 changed paths; 96 Markdown files; 790 local links; 50 tasks; 13 cycles. Whitespace passed."
+    },
+    {
+      "check": "Current-branch hosted CI, real operator migrations, power loss and installed-host acceptance",
+      "scope": "Not established by source-neutral development",
+      "outcome": "NOT_ASSESSED",
+      "reference": "No real jobs, private sources, credentials, native launches or activation performed."
+    }
+  ],
+  "results": [
+    "Existing v1 exact-spec approval still gates execution after reference capture; legacy bytes and directory contents remain unchanged.",
+    "Unknown versions and unsafe overlaps fail before destination creation.",
+    "Source and verified backup survive successful, interrupted, auto-rolled-back and rejected SQL migration attempts.",
+    "Only version 1 ships; the future-v2 callback is a temporary test injection, not a released schema upgrade."
+  ],
+  "limitations": [
+    "The coordinated metadata header is not the WP-120 journal or a runnable coordinated factory.",
+    "Only owner-quiesced local DELETE-journal snapshots within the reused 32-MiB bound are supported; live/WAL/same-privilege race and power-failure qualification are not established.",
+    "Migration callbacks are trusted repository code, not source text; SQL authorizer guards are not a Python sandbox.",
+    "Prepared copies are never activated or substituted for the original; failure leaves named owned files for explicit inspection.",
+    "Two existing symlink-privilege cases remain skipped; actual host/model/domain acceptance remains NOT_ASSESSED."
+  ],
+  "rollback": "Retain the original and verified pre-migration backup; inspect or discard only the explicitly owned prepared destination. No in-place source replacement or automatic conversion.",
+  "next_steps": [
+    "Commit WP-113 and validate its boundary with --base HEAD~; publish the completed focused WP-110..113 PR without merging.",
+    "Record exact publication head, PR URL and observed CI status in a closure checkpoint.",
+    "Continue with WP-114 capability protocol and deterministic fake host, then WP-115 protected evaluator; WP-120 is separately dependency-ready."
+  ],
+  "evidence": [
+    "tests/test_runtime_migrations.py",
+    "plugins/sparkforge/runtime/migrations.py",
+    "docs/design/DATA_AND_STATE.md",
+    "docs/VALIDATION_HISTORY.md"
+  ],
+  "public_safe": true
+}
