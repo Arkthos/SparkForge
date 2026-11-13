@@ -285,3 +285,20 @@ WP-110 was committed as `d75c483b95dea28e09688df98bea23671f8f82b3`; 44 planning-
 | Current-branch hosted CI and actual host/independent-role qualification | NOT_RUN / NOT_ASSESSED | Scripted producer fixtures are not real authentication or independent production |
 
 The independent finding was reproduced and corrected; a second independent review verdict is not claimed. All result fields remain claims until later admission checks actual host provenance, filesystem changes, evidence inventory, revocation and budgets. The [WP-111 cycle](engineering/cycles/ENG-20261112-wp111-worker-contracts.json) preserves this boundary. Next: WP-112 pure state transitions/idempotency.
+
+## 2026-11-12: WP-112 pure transitions, events and idempotency
+
+WP-111 was committed as `4791068b5c9d0f27658ddcb0671a9484640cc4e5`; post-commit planning/whitespace checks passed. WP-112 now provides deterministic, side-effect-free projections and commands, not a journal, scheduler or evidence-authentication service.
+
+| Actual check | Result | Boundary |
+|---|---|---|
+| Initial `python -B -m unittest discover -s tests -p 'test_workflow_transitions.py'` | PASS: 12/12 in 0.016s | Expected revisions, replay, current evidence, uncertain operations and cancellation |
+| Initial full suite with README local `PYTHONPATH` | PASS: 453 collected, 451 passed, two skips in 96.002s | Before additional review regressions |
+| Independent implementation review | Found two medium issues | Reconciled completion could strand reserved/unknown work; required causes were not retained |
+| Review reproductions in the transition selector | FAIL: 14 cases, one failure and three failing subcase errors in 0.038s | No oracle weakening; both findings reproduced |
+| Corrected `python -B -m unittest discover -s tests -p 'test_workflow_transitions.py'` | PASS: 16/16 in 0.030s | Resumed observed work needs no redispatch; full command/observation/cause retained; failures and same-context receipt replacement cannot fabricate completion |
+| `$env:PYTHONPATH = (Resolve-Path 'research_tools\.validation-deps').Path; python -B -m unittest discover -s tests` | PASS: 457 collected, 455 passed, two skips in 95.020s | Existing Windows symlink-privilege skips; all original v1 tests unchanged |
+| `python -B scripts\validate_plan.py --base HEAD` and `git diff --check` | PASS | Nine changed paths; 96 Markdown files; 789 local links; 50 tasks; 12 cycles |
+| Current-branch CI and real runtime storage/host qualification | NOT_RUN / NOT_ASSESSED | No actual dispatch, runtime journal, crash durability or live acceptance claimed |
+
+The corrections also retain opaque observation references in each full command event, prevent configuration-free receipt replacement within an old review context and project observed failed operations as failed/diagnosing rather than completed work. There is no second independent review verdict. The [WP-112 cycle](engineering/cycles/ENG-20261112-wp112-transitions.json) records the bounded pure-engine scope. Next: WP-113 coexistence/migration boundary.

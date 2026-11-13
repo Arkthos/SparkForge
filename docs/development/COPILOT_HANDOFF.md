@@ -4,13 +4,13 @@
 
 The owner wants a coordinated SPARK software factory that takes ideas/content/existing code through clarification, platform fit, planning, implementation, testing, independent review, diagnosis, bounded repair/replanning and evidenced delivery. A distinct controller protects the user's intent. Humans decide material changes; ordinary in-scope engineering continues automatically.
 
-The current package is assisted v1. Its strict spec/journal/check/review and snapshot mechanisms work under their tested limits. WP-110/111 implement pure intent/envelope and worker-exchange contracts alongside it; the coordinated execution loop is not implemented. **WP-112 is the next implementation task**. See the [WP-111 cycle](../engineering/cycles/ENG-20261112-wp111-worker-contracts.json) and [worker API](../design/DATA_AND_STATE.md#wp-111-worker-contract-api).
+The current package is assisted v1. Its strict spec/journal/check/review and snapshot mechanisms work under their tested limits. WP-110..112 implement pure intent/envelope, worker-exchange and workflow/replay contracts alongside it; the coordinated execution loop is not implemented. **WP-113 is the next implementation task**. See the [WP-112 cycle](../engineering/cycles/ENG-20261112-wp112-transitions.json) and [workflow API](../design/DATA_AND_STATE.md#workflow-guards-and-job-states).
 
 ## Read in this order
 
 1. [AGENTS.md](../../AGENTS.md), [status](../PROJECT_STATUS.md), [roadmap](../ROADMAP.md) and [backlog](../IMPLEMENTATION_BACKLOG.csv).
 2. [Architecture](../design/ARCHITECTURE.md), [split records/state](../design/DATA_AND_STATE.md), [material decisions](../design/HUMAN_DECISIONS.md).
-3. [First task](FIRST_TASK.md) for the implemented foundation, then the next [implementation-plan section](../IMPLEMENTATION_PLAN.md#wp-112-specify-workflow-events-transitions-and-idempotency).
+3. [First task](FIRST_TASK.md) for the implemented foundation, then the next [implementation-plan section](../IMPLEMENTATION_PLAN.md#wp-113-specify-assisted-v1-coexistence-and-schema-migrations).
 4. Relevant actual helpers/tests and the selected task's scenarios. Read research selectively through [prior-art application](PRIOR_ART_APPLICATION.md), not as instructions to install every tool.
 
 ## How to choose and finish work

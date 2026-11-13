@@ -1,6 +1,6 @@
 # Data contracts, state and compatibility
 
-**Implemented coordinated contracts:** intent/envelope (WP-110), task/attempt/agent-result/finding/failure (WP-111). Plan, event, controller-verdict and evidence-bundle bodies remain planned. Current implemented `sparkforge.spec.v1` and assisted journals retain their own meaning.
+**Implemented coordinated contracts:** intent/envelope (WP-110), task/attempt/agent-result/finding/failure (WP-111), pure projection/command/event (WP-112). Plan, controller-verdict and evidence-bundle bodies remain planned. Current implemented `sparkforge.spec.v1` and assisted journals retain their own meaning.
 
 ## WP-110 public contract API
 
@@ -56,7 +56,24 @@ Arrays/text/identifiers use WP-110 limits; exact candidate path lists allow up t
 
 Use deterministic UTF-8 canonical JSON, stable field ordering and explicit finite numeric handling. Reject duplicate keys, unknown fields/versions, invalid enums, alias paths, missing required values and nonfinite numbers. A hash covers the full canonical record, not a selectively omitted constraint. Keep a clear distinction between user text and identifiers.
 
-## Proposed job states
+## Workflow guards and job states
+
+`plugins.sparkforge.runtime.transitions` implements `initial_projection(kind, entity_id, context_sha, required_evidence)`, `validate_projection(value)` and `apply_command(projection, command, previous_event=None)`. These functions return detached `Projection`/`Event`/`TransitionResult` values and never create a store or dispatch. `TRANSITIONS` is the exact executable table for `job`, `task` and `attempt`; the diagram below remains a conceptual overview.
+
+The closed schema family is `sparkforge.projection.v1`, `sparkforge.command.v1`, `sparkforge.event.v1`. Projections start at revision 1 with a fixed nonempty expected evidence-slot inventory, context digest, empty receipts/operations and no execution or stop claim. A context binds current intent, envelope, plan, candidate, inputs and evidence sequence as selected by the caller. Distinct failed, blocked, unknown/reconciling, cancelling and completed states preserve their meaning; full command events retain causes and opaque observation references, with the most recent bounded reason also in the projection.
+
+| Command | Deterministic behavior |
+|---|---|
+| `advance` | Enforces the per-kind table and expected revision/current context. Block/failure/decision/diagnosis transitions need a cause. No shortcut from ready to running or from unexecuted work to completion. |
+| `reserve` / `dispatch` | Reserves an unused operation identity before dispatch, one unresolved operation per projection. Dispatch requires that exact unused reservation; known, pending or uncertain IDs cannot be reused. Operation history is retained, capped at 128 per bounded pure projection; the guard rejects overflow explicitly. |
+| `result` / `reconcile` | A result needs observed dispatch; orphaned reservations instead require explicit reconciliation. Known resolutions need observation references. Unknown outcomes remain unresolved. Confirmed completed reserved/unknown work can progress without redispatch; failures project to failed/diagnosing. No-effect reconciliation remains distinct from successful execution. |
+| `evidence` | Only expected slots with current context are accepted. Within one context, a slot is immutable except an identical repeat. A different receipt requires a new evidence context; stale review evidence cannot certify a rerun. These inputs must already be admitted by the caller, not raw worker claims. |
+| `invalidate` | A reconciled job/task adopts a new context, retains old receipts as stale and requires new execution/evidence. It does not erase operation history, reset accounting or recycle an attempt. In-flight revocation/replanning is a later protocol, not silently handled as safe invalidation. |
+| `cancel` / `cancel_ack` | Stop new work and retain every outstanding reservation, including one with no observed dispatch. A cancellation acknowledgement is not proof that work never ran or stopped. Explicit reconciliation must settle effects before cancelled completion; late results cannot reopen stopped scope. |
+
+Verified/delivered/completed states require every fixed slot to have a current passing receipt, actual observed/reconciled execution and no unresolved operation. Failure, skip, unknown or missing receipt is not a pass. The pure engine neither checks real authority nor proves the evidence bytes; policy/admission must do that before supplying commands.
+
+Each event retains the complete normalized command, its full payload SHA-256, prior revision, resulting projection/digest and a deterministic event ID derived from entity kind/ID and command key. The store must look up the previous event by that identity: same key/payload returns the prior event with `replayed=true` and leaves the current projection unchanged, even if later cancellation occurred. Different payload/identity is a conflict; a revision behind the recorded event or equal revision with different bytes fails. Event/projection/command consistency is checked, not authenticated. WP-120 must persist key lookup, event and projection atomically and ensure history lineage; these pure functions cannot establish crash durability.
 
 ```mermaid
 stateDiagram-v2
@@ -85,7 +102,7 @@ stateDiagram-v2
   Cancelling --> Reconciling: Unknown effects
 ```
 
-This diagram is conceptual; WP-112 defines the exact executable enum and transition table. Blocked and failed task projections preserve their cause without conflating terminal job failure, a retryable defect and unresolved effects. Cancellation/revocation stops new admission in every nonterminal state even where the diagram omits repetitive edges.
+The pure WP-112 table now supplies the executable state guards. Later policy/dispatch/recovery tasks must connect authentic decisions, actual effects and cancellation/revocation to those guards. No implemented journal or live workflow is implied by this diagram.
 
 ## Store and command requirements
 
