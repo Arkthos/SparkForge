@@ -248,3 +248,22 @@ Published `8b8c16781be4de39e4e06c0e25b4060fb207b54c` with remote tree `5c547723a
 | windows-latest / Python 3.12 | 412 collected, all 412 passed, zero skips/failures/errors | Windows storage/network and PowerShell cases executed; plan and whitespace checks pass |
 
 The follow-up changes only current status/backlog/roadmap, this appended validation entry and new closure evidence/cycle. The tested implementation is unchanged. These are repository regressions, not actual corp/acro or model-driven factory acceptance. Next implementation task remains WP-110.
+
+## 2026-11-12: WP-110 intent and execution-envelope contracts
+
+Implemented source-neutral `IntentBaseline`/`ExecutionEnvelope` TypedDict contracts in `plugins/sparkforge/runtime/contracts.py`. Validation returns detached normalized values and typed `ContractError` codes/paths. No v1 helper/test bytes changed. The actual app trust gate initially denied an edit and Python command; no files were written or tests run by those denied attempts. Work resumed only after the app stopped reporting the gate.
+
+| Actual check | Result | Boundary |
+|---|---|---|
+| `python --version` | Python 3.12.10 | Existing local interpreter |
+| `python -B -m unittest discover -s tests -p 'test_native_*.py'` | PASS: 196 collected, 194 passed, two skipped in 46.594s | Unchanged assisted-v1 baseline; existing symlink-privilege skips |
+| First `python -B -m unittest discover -s tests -p 'test_runtime_contracts.py'` | FAIL: 13 passed, one failed in 0.320s | Deep JSON depended on the interpreter recursion limit |
+| Initial full `python -B -m unittest discover -s tests` with local dependency target in `PYTHONPATH` | FAIL: 426 collected, one failure, 17 errors, two skips in 77.444s | Same JSON-depth failure plus missing declared `markdown_it`; no tests weakened |
+| `python -m pip install --quiet --disable-pip-version-check --target research_tools\.validation-deps -r research_tools\wiki\requirements.txt` | PASS | Declared packages restored only into the ignored worktree-local target |
+| Corrected focused contract command | PASS: all 14 in 0.317s | TC-103/104; explicit depth 32, malformed values, authority fields, paths, digest/binding changes and no I/O |
+| `$env:PYTHONPATH = (Resolve-Path 'research_tools\.validation-deps').Path; python -B -m unittest discover -s tests` | PASS: 426 collected, 424 passed, two skipped in 82.855s | Windows; unchanged symlink-creation privilege limits |
+| Distinct code-review context on actual new code/tests | No significant issues found | Independent implementation inspection, not actual role execution or domain/security certification |
+| `python -B scripts\validate_plan.py --base HEAD` and `git diff --check` | PASS | 12 changed paths; 96 Markdown files; 787 local links; 50 active tasks; ten cycles |
+| Current-branch hosted CI, real model/host/domain acceptance | NOT_RUN / NOT_ASSESSED | No private input or native launcher required by this slice |
+
+The [WP-110 cycle](engineering/cycles/ENG-20261112-wp110-contracts.json) binds the base/branch, API choices and next task. Next: WP-111 task/attempt/result contracts; materiality admission, OS confinement and authenticated approval remain later work.

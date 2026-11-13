@@ -7,7 +7,7 @@
 | Milestone | Outcome | Work | Exit evidence | Current position |
 |---|---|---|---|---|
 | P0: Organized baseline | Organized baseline | WP-100 | Current architecture, traceability, cleanup, Copilot entry point and regression evidence. | Complete for planning/cleanup scope; coordinated product remains unimplemented. |
-| P1: Executable contracts and evaluator | Executable contracts and evaluator | WP-110..WP-115 | Validated baseline/envelope/task/result schemas, transitions, v1 migration policy, fake host and protected behavioral fixtures. | Ready to start WP-110. |
+| P1: Executable contracts and evaluator | Executable contracts and evaluator | WP-110..WP-115 | Validated baseline/envelope/task/result schemas, transitions, v1 migration policy, fake host and protected behavioral fixtures. | WP-110 complete; next WP-111. |
 | P2: Deterministic coordination | Deterministic coordination | WP-120..WP-126 | Transactional store, serial graph scheduler, materiality admission, job budgets, workspace ownership, check bridge and result admission. | Not started. |
 | P3: Platform brain and intent control | Platform brain and intent control | WP-130..WP-135 | Profile/context/intake/reuse pipeline, brain task planner and independent drift checkpoints. | Not started; synthetic context can proceed without private sources. |
 | P4: Complete multi-agent engineering loop | Complete multi-agent engineering loop | WP-140..WP-147 | Coder, independent test author, runner, reviewer, diagnosis, bounded repair/replanning and first full synthetic journey. | Not started; target of the first usable coordinated prototype. |
@@ -42,7 +42,7 @@ The diagram groups milestones; the CSV graph defines exact work-package dependen
 
 ## First development sequence
 
-1. Implement WP-110 as specified in [FIRST_TASK](development/FIRST_TASK.md); preserve v1 behavior.
+1. WP-110 is implemented as specified in [FIRST_TASK](development/FIRST_TASK.md); v1 behavior is preserved.
 2. Complete WP-111 and WP-112, then WP-113. WP-114 fake-host and WP-115 evaluator work can be independently selected after their prerequisites.
 3. Build P2 coordination. In parallel only when deliberately delegated with disjoint ownership, develop P3 profiles/context/intake after their contracts exist.
 4. Complete brain/controller and P4 roles. Demonstrate [FIRST_FACTORY_SLICE](specs/FIRST_FACTORY_SLICE.md) before adding a new UI or optional learning.
@@ -77,4 +77,6 @@ Any newly requested feature gets explicit intent/criterion impact, dependency an
 
 ## Latest checkpoint
 
-WP-100 completed the repository/planning reorganization. Existing core behavior remains assisted v1. The next implementation task is WP-110. Fresh local checks collected 412 Python cases: 382 passed and 30 platform-dependent cases skipped, with no failures/errors. Planning/archive/link checks pass. Hosted CI on `8b8c167` passed: Windows 412/412, Linux 383 passed with 29 Windows-only skips. Remote publication was verified. See [validation history](VALIDATION_HISTORY.md); none of these checks prefill coordinated-runtime milestone acceptance.
+WP-110 completes the strict intent/envelope contract slice on `kerodri-microsoft-sparkforge-coordinated-contracts`, based on `3decc8bc0326b51ac312b074bfadc396185f8d5c`. Next: WP-111, then WP-112; WP-114 and WP-115 remain separate bounded tasks. Current core product behavior remains assisted v1.
+
+Windows/Python 3.12.10: 14 contract cases pass; full suite collects 426, with 424 passed and two existing symlink-privilege skips. Independent implementation inspection found no significant issues. Initial missing research dependencies and excessive JSON nesting were corrected; current-branch hosted CI has not run. The [cycle](engineering/cycles/ENG-20261112-wp110-contracts.json) and [validation history](VALIDATION_HISTORY.md) retain the exact evidence and limitations.

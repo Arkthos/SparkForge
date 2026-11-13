@@ -1,0 +1,81 @@
+{
+  "schema_version": "sparkforge-engineering-cycle.v1",
+  "id": "ENG-20261112-wp110-contracts",
+  "date": "2026-11-12",
+  "work_items": ["WP-110"],
+  "workstream": "Coordinated contracts alongside assisted v1",
+  "cycle_type": "implementation",
+  "status": "validated",
+  "objective": "Implement strict source-neutral intent and execution-envelope proposals without changing v1 behavior or granting authority.",
+  "base_commit": "3decc8bc0326b51ac312b074bfadc396185f8d5c",
+  "branch": "kerodri-microsoft-sparkforge-coordinated-contracts",
+  "changes": [
+    "Added TypedDict records and validate_intent, validate_envelope, parse_json, canonical_json, record_digest and relative_path; no unused schema files or package initialization.",
+    "Required an explicit caller-supplied supported-kind vocabulary rather than inventing real platform support.",
+    "Implemented closed nested fields, full canonical binding, explicit unknown source bytes, finite positive bounds, lexical path flavors, usage-unknown and expiry/revocation representation.",
+    "Added TC-103/104 positive/negative tests and fictional fixtures; existing v1 helpers/tests unchanged.",
+    "Documented exact limits, API, boundaries and next dependency-ready task in living records and handoff."
+  ],
+  "validation": [
+    {
+      "check": "python -B -m unittest discover -s tests -p 'test_native_*.py'",
+      "scope": "Unchanged assisted-v1 Windows/Python 3.12.10 baseline",
+      "outcome": "PASS",
+      "reference": "196 collected; 194 passed; two existing symlink-privilege skips; 46.594s."
+    },
+    {
+      "check": "python -B -m unittest discover -s tests -p 'test_runtime_contracts.py'",
+      "scope": "TC-103/104 synthetic behavior and negative controls",
+      "outcome": "PASS",
+      "reference": "Final 14/14 passed in 0.317s; first run had one depth-limit failure, corrected with an explicit 32-level bound."
+    },
+    {
+      "check": "$env:PYTHONPATH = (Resolve-Path 'research_tools\\.validation-deps').Path; python -B -m unittest discover -s tests",
+      "scope": "Full Windows/Python 3.12.10 repository regression",
+      "outcome": "PASS",
+      "reference": "426 collected; 424 passed; two symlink-privilege skips; 82.855s. Initial run had the depth failure and 17 missing markdown_it errors; declared dependencies restored repo-locally, then rerun."
+    },
+    {
+      "check": "Distinct code-review agent inspected actual WP-110 code/tests and requirements",
+      "scope": "Independent implementation inspection only",
+      "outcome": "PASS",
+      "reference": "No significant issues found. Not independent live-host/domain acceptance."
+    },
+    {
+      "check": "python -B scripts\\validate_plan.py --base HEAD; git diff --check",
+      "scope": "Final lifecycle/link/archive and whitespace boundary",
+      "outcome": "PASS",
+      "reference": "12 changed paths; 96 Markdown files; 787 local links; 50 tasks; ten cycles. Whitespace check passed."
+    },
+    {
+      "check": "Current-branch hosted CI and real corp/acro/model journeys",
+      "scope": "Not established by local contract checks",
+      "outcome": "NOT_ASSESSED",
+      "reference": "CI awaits publication; no real factory job, sources, model invocation or authority ingress."
+    }
+  ],
+  "results": [
+    "Initial app trust gate denied edit/validation with no side effects; implementation resumed only after the gate cleared.",
+    "Malformed, forged, stale and oversized contract inputs fail with typed errors; meaningful prose and list order are preserved.",
+    "All observed implementation/test failures were corrected without weakening existing checks or changing v1 APIs."
+  ],
+  "limitations": [
+    "Proposal validation does not authenticate consent, certify profile vocabulary, enforce a sandbox or admit execution.",
+    "Two existing symlink privilege cases remain skipped; actual host/model/domain/release acceptance is NOT_ASSESSED.",
+    "Free-text fields are not a secret scanner; no real credentials, source records, journals or transcripts are included.",
+    "WP-111 onward, scheduler, policy accounting and current-time/revocation admission are not implemented by this slice."
+  ],
+  "rollback": "Revert this coherent contract commit if needed; keep original v1 code/stores and append-only historical cycles intact.",
+  "next_steps": [
+    "Commit the completed WP-110 boundary, validate against HEAD~, then implement WP-111 task/attempt/result/finding/failure contracts.",
+    "Continue dependency-ready work one coherent slice at a time; publish the focused branch/PR without merging.",
+    "Resume from this branch and inspect git log plus the active backlog before any further edits."
+  ],
+  "evidence": [
+    "tests/test_runtime_contracts.py",
+    "tests/runtime_fixtures.py",
+    "docs/design/DATA_AND_STATE.md",
+    "docs/VALIDATION_HISTORY.md"
+  ],
+  "public_safe": true
+}
