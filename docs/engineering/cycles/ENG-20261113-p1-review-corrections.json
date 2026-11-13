@@ -1,0 +1,92 @@
+{
+  "schema_version": "sparkforge-engineering-cycle.v1",
+  "id": "ENG-20261113-p1-review-corrections",
+  "date": "2026-11-13",
+  "work_items": ["WP-111", "WP-112", "WP-115"],
+  "workstream": "Correcting reviewed P1 execution, consumption and oracle gaps",
+  "cycle_type": "implementation",
+  "status": "validated",
+  "objective": "Reproduce and correct all three requested P1 findings before defining P2 storage, preserving history, unknown effects and accepted intent.",
+  "base_commit": "bdd1de57a7a0f068857eac0ac1d5e5f6b9934328",
+  "branch": "kerodri-microsoft-sparkforge-coordinated-contracts",
+  "changes": [
+    "Required confirmed completion of the latest reserved operation, not historical dispatch flags or older successes.",
+    "Projected observation-backed not_started as ready for unstopped jobs/tasks and failed for attempts; preserved flags, operation identities, cause and cancelled scope.",
+    "Corrected review-found replacement-job reconciliation so observed existing completion can progress without redispatch.",
+    "Kept reserved observed_usage unknown/null; required an observation for known consumption while retaining genuine unknown-completion usage and overruns.",
+    "Advanced protected oracle to revision 3 with two normal-read whitespace cases and a twelfth trimming mutant; accepted intent bytes unchanged.",
+    "Updated both active continuation prompts to preserve the existing PR and select WP-120 instead of default main/WP-110."
+  ],
+  "validation": [
+    {
+      "check": "Targeted three new user-finding regression methods via python -B -m unittest -v",
+      "scope": "Pre-fix reproduction at verified PR head with new regression assertions",
+      "outcome": "PASS",
+      "reference": "Reproduction succeeded: all three methods failed as expected, five failing checks/subcases in 0.100s. Exact selector is retained in VALIDATION_HISTORY; these were failures, not product passes."
+    },
+    {
+      "check": "$env:PYTHONPATH = (Resolve-Path 'tests').Path; python -B -m unittest test_workflow_transitions test_agent_envelopes test_protected_evaluation",
+      "scope": "Final affected contracts/workflow/evaluator behavior",
+      "outcome": "PASS",
+      "reference": "53 tests passed in 2.142s. Initial 52 passed before the additional independent-review recovery regression."
+    },
+    {
+      "check": "$env:PYTHONPATH = (Resolve-Path 'research_tools\\.validation-deps').Path; python -B -m unittest discover -s tests",
+      "scope": "Final Windows/Python 3.12.10 full repository regression",
+      "outcome": "PASS",
+      "reference": "507 collected, 505 passed, two existing symlink-privilege skips, 121.135s. Earlier full run: 506/504/two skips in 112.244s."
+    },
+    {
+      "check": "Distinct implementation inspection, failing replacement-job reproduction and correction",
+      "scope": "Independent review of this bounded correction, not a general audit",
+      "outcome": "PASS",
+      "reference": "One medium regression found. The added job replacement-reconciliation test failed with INVALID_TRANSITION in 0.005s; corrected and included in final passing suites. No second independent verdict claimed."
+    },
+    {
+      "check": "Continuation prompt equality and v1/intent path diff inspection",
+      "scope": "Current branch continuation and compatibility",
+      "outcome": "PASS",
+      "reference": "Both prompts agree and no longer restart from default main/WP-110. Original v1 helper/native-test and router-intent bytes remain unchanged."
+    },
+    {
+      "check": "python -B scripts\\validate_plan.py --base HEAD; git diff --check",
+      "scope": "Current lifecycle/link/archive and whitespace boundary",
+      "outcome": "PASS",
+      "reference": "16 changed paths; 96 Markdown files; 797 local links; 50 tasks; 17 cycles. Whitespace passed."
+    },
+    {
+      "check": "Hosted correction CI",
+      "scope": "New PR head after publication",
+      "outcome": "NOT_RUN",
+      "reference": "Earlier P1 runs do not establish this patch; inspect the new run after pushing."
+    }
+  ],
+  "results": [
+    "All three user findings were reproduced, not inferred.",
+    "No-start reconciliation cannot satisfy successful completion; actual replacement completion can proceed without another dispatch.",
+    "Allowance does not become consumed usage, nor does missing usage become an assumed zero.",
+    "Normal read whitespace trimming is detected with both absent and false audit flags; original intent remains revision 1.",
+    "P2 implementation remains not_started."
+  ],
+  "limitations": [
+    "No authentic host ingress, OS sandbox, actual model operation or live platform acceptance is established.",
+    "The sequential projection conservatively requires its latest reservation to complete; historical attempts stay retained.",
+    "Two existing local symlink-privilege tests remain skipped; new hosted results must be recorded separately.",
+    "Protected evaluation still executes trusted finite synthetic code in-process, not arbitrary untrusted workers."
+  ],
+  "rollback": "Use a new corrective/revert commit if necessary; preserve the PR branch, old events/cycles, v1 stores and original intent. Never erase uncertain operations or reset usage history.",
+  "next_steps": [
+    "Commit and publish these corrections to existing PR #1; validate --base HEAD~ and inspect exact-head CI.",
+    "Then prepare WP-120 atomic event/projection/reservation schema, revision checks, persistent idempotency, schema evolution and crash recovery in existing design/plan docs.",
+    "Do not implement P2 or blindly redispatch unknown effects during this preparation request."
+  ],
+  "evidence": [
+    "tests/test_workflow_transitions.py",
+    "tests/test_agent_envelopes.py",
+    "tests/test_protected_evaluation.py",
+    "tests/evaluation/router_cases.json",
+    "docs/VALIDATION_HISTORY.md",
+    "docs/development/COPILOT_HANDOFF.md"
+  ],
+  "public_safe": true
+}

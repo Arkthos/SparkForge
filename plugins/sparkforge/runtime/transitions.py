@@ -146,6 +146,10 @@ def _completion(projection: Projection) -> None:
         c._fail("UNRESOLVED_OPERATIONS", "projection", "Completion requires all operations to be reconciled.")
     if not projection["has_dispatched"]:
         c._fail("RESULT_BEFORE_DISPATCH", "projection", "No dispatch or reconciled execution has been observed.")
+    if not projection["operations"] or (
+        projection["operations"][-1]["status"] != "completed" or not projection["operations"][-1]["dispatched"]
+    ):
+        c._fail("EXECUTION_NOT_CONFIRMED", "projection.operations", "The latest reserved operation needs confirmed completion; dispatch history is not execution evidence.")
     evidence = {item["slot"]: item for item in projection["evidence"]}
     if any(slot not in evidence or evidence[slot]["outcome"] != "pass"
            or evidence[slot]["context_sha"] != projection["context_sha"] for slot in projection["required_evidence"]):
@@ -358,9 +362,13 @@ def apply_command(value: object, command: object, *, previous_event: Event | Non
             if resolution == "unknown":
                 state["status"] = "reconciling" if kind == "job" else "unknown"
             elif not state["stop_requested"]:
-                if resolution in ("failed", "cancelled"):
+                if resolution == "not_started":
+                    state["status"] = "failed" if kind == "attempt" else "ready"
+                elif resolution in ("failed", "cancelled"):
                     state["status"] = "diagnosing" if kind == "job" else "failed"
-                elif resolution == "completed" and status in ("reserved", "unknown", "reconciling"):
+                elif resolution == "completed" and (
+                    status in ("reserved", "unknown", "reconciling") or (kind == "job" and status == "ready")
+                ):
                     state["status"] = "running"
     elif action == "evidence":
         inventory = {item["slot"]: item for item in state["evidence"]}

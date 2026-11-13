@@ -43,8 +43,8 @@ The diagram groups milestones; the CSV graph defines exact work-package dependen
 ## First development sequence
 
 1. WP-110 is implemented as specified in [FIRST_TASK](development/FIRST_TASK.md); v1 behavior is preserved.
-2. WP-111..115 are complete, including the version-bound protected fixture evaluator.
-3. Begin P2 with WP-120 transactional journal. In parallel only when deliberately delegated with disjoint ownership, develop P3 profiles/context/intake after their contracts exist.
+2. WP-111..115 include the review corrections for confirmed execution, observed usage and protected normal-read whitespace. Preserve the existing P1 PR branch.
+3. Prepare the WP-120 atomic-storage/recovery contract from corrected P1, then implement the transactional journal as the next authorized slice. In parallel only when deliberately delegated with disjoint ownership, develop P3 profiles/context/intake after their contracts exist.
 4. Complete brain/controller and P4 roles. Demonstrate [FIRST_FACTORY_SLICE](specs/FIRST_FACTORY_SLICE.md) before adding a new UI or optional learning.
 5. Harden recovery and select a real host adapter. Qualify installed, model-driven journeys in one target.
 6. Complete P7 local release evidence. Adapt acro independently; do not export corp runtime knowledge to make it work.
@@ -79,4 +79,6 @@ Any newly requested feature gets explicit intent/criterion impact, dependency an
 
 WP-110..115 are committed through `9e8c7793f9045ceda3929d3fe7c14ff20abf6caa` on `kerodri-microsoft-sparkforge-coordinated-contracts`, based on `3decc8bc0326b51ac312b074bfadc396185f8d5c`. [The focused P1 PR](https://github.com/Arkthos/SparkForge/pull/1) is open/unmerged. Next: WP-120 transactional journal, then dependency-ready P2 slices. WP-130 profiles are independently ready. Current shipped behavior remains assisted v1; full coordinated journeys remain WP-147.
 
-Final local gate: 497 collected, 495 passed, two existing symlink-privilege skips. [Hosted implementation CI](https://github.com/Arkthos/SparkForge/actions/runs/43362930589) passed Windows 497/497 and Linux 468 passed/29 Windows-only skips; planning and whitespace passed on both. Actual publication succeeded as `Arkthos` after earlier account/base/head failures, without agent credential changes. Remote implementation tree matches local. The [closure cycle](engineering/cycles/ENG-20261112-p1-publication.json) and [validation history](VALIDATION_HISTORY.md) retain exact evidence; the documentation-only closure is not represented as a new runtime qualification.
+Review corrections start from the verified closure head `bdd1de57a7a0f068857eac0ac1d5e5f6b9934328`, not older main. All three user findings reproduced; the corrected 53 affected cases and full 507-case suite pass (505 local passes, two existing symlink-privilege skips). Independent review found and helped correct a replacement-job recovery regression. The oracle is revision 3 with 19 cases/12 mutants; accepted intent remains revision 1. Both active continuation prompts now preserve the existing PR and identify WP-120. See the [correction cycle](engineering/cycles/ENG-20261113-p1-review-corrections.json).
+
+Earlier hosted results in the [publication cycle](engineering/cycles/ENG-20261112-p1-publication.json) remain evidence only for their exact old heads. Hosted checks for these corrections await publication; no merge or P2 implementation is implied.

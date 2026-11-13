@@ -170,9 +170,101 @@ class WorkflowTransitionTests(unittest.TestCase):
         self.error("UNRESOLVED_OPERATIONS", state, "advance", target="ready")
         state = self.apply(state, "reconcile", operation_id="operation-1", resolution="not_started",
                            observation=OBSERVATION, reason="Synthetic host established no invocation.")
-        state = self.apply(state, "advance", target="ready")
+        self.assertEqual(state["status"], "ready")
         self.assertFalse(state["has_dispatched"])
         self.assertEqual(state["operations"][0]["status"], "not_started")
+
+    def test_not_started_reconciliation_cannot_complete_with_passing_receipts(self):
+        state = self.running()
+        state = self.apply(state, "reconcile", operation_id="operation-1", resolution="not_started",
+                           observation=OBSERVATION, reason="Host confirmed the dispatch did not start execution.")
+        state = self.apply(state, "evidence", evidence=[receipt(state, slot) for slot in state["required_evidence"]])
+        self.assertTrue(state["operations"][0]["dispatched"])
+        self.assertTrue(state["has_dispatched"])
+        with self.assertRaises(c.ContractError):
+            self.apply(state, "advance", target="completed")
+
+    def test_not_started_blocks_all_completion_kinds_and_preserves_history(self):
+        for kind in ("task", "attempt", "job"):
+            for unknown in (False, True):
+                with self.subTest(kind=kind, unknown=unknown):
+                    state = self.running(kind)
+                    state = self.apply(state, "evidence", evidence=[receipt(state, slot) for slot in state["required_evidence"]])
+                    if unknown:
+                        state = self.apply(state, "result", operation_id="operation-1", resolution="unknown",
+                                           reason="Dispatch response was lost.")
+                    command = command_fixture(state, "reconcile", operation_id="operation-1", resolution="not_started",
+                                              observation=OBSERVATION, reason="Host confirmed no execution occurred.")
+                    result = t.apply_command(state, command)
+                    state = result["projection"]
+                    self.assertEqual(state["status"], "failed" if kind == "attempt" else "ready")
+                    self.assertEqual(state["operations"], [{"id": "operation-1", "status": "not_started", "dispatched": True}])
+                    self.assertTrue(state["has_dispatched"])
+                    replay = t.apply_command(state, command, previous_event=result["event"])
+                    self.assertTrue(replay["replayed"])
+                    self.assertEqual(replay["projection"], state)
+                    terminal = dict(state, status="verified" if kind == "job" else "completed")
+                    with self.assertRaises(c.ContractError) as caught:
+                        t.validate_projection(terminal)
+                    self.assertEqual(caught.exception.code, "EXECUTION_NOT_CONFIRMED")
+
+    def test_no_start_retry_uses_new_identity_and_requires_confirmed_completion(self):
+        state = self.running()
+        state = self.apply(state, "reconcile", operation_id="operation-1", resolution="not_started",
+                           observation=OBSERVATION, reason="Host observed no execution.")
+        self.error("OPERATION_CONFLICT", state, "reserve", operation_id="operation-1")
+        state = self.apply(state, "reserve", operation_id="operation-2")
+        state = self.apply(state, "dispatch", operation_id="operation-2")
+        state = self.apply(state, "result", operation_id="operation-2", resolution="completed",
+                           observation=OBSERVATION, reason="Replacement execution completed.")
+        state = self.apply(state, "evidence", evidence=[receipt(state, slot) for slot in state["required_evidence"]])
+        state = self.apply(state, "advance", target="completed")
+        self.assertEqual([operation["status"] for operation in state["operations"]], ["not_started", "completed"])
+        self.assertTrue(all(operation["dispatched"] for operation in state["operations"]))
+
+    def test_job_no_start_replacement_reconciliation_resumes_without_redispatch(self):
+        state = self.running("job")
+        state = self.apply(state, "reconcile", operation_id="operation-1", resolution="not_started",
+                           observation=OBSERVATION, reason="Initial dispatch did not start.")
+        state = self.apply(state, "reserve", operation_id="operation-2")
+        state = self.apply(state, "reconcile", operation_id="operation-2", resolution="completed",
+                           observation=OBSERVATION, reason="Replacement completion observed after a lost response.")
+        state = self.apply(state, "evidence", evidence=[receipt(state, slot) for slot in state["required_evidence"]])
+        state = self.apply(state, "advance", target="checking")
+        state = self.apply(state, "advance", target="reviewing")
+        state = self.apply(state, "advance", target="verified")
+        self.assertEqual(state["status"], "verified")
+        self.assertEqual([operation["status"] for operation in state["operations"]], ["not_started", "completed"])
+
+    def test_old_completion_cannot_certify_a_later_unused_reservation(self):
+        for invalidate in (False, True):
+            with self.subTest(invalidate=invalidate):
+                state = self.evidenced()
+                if invalidate:
+                    state = self.apply(state, "invalidate", new_context_sha="f" * 64, reason="New candidate context.")
+                else:
+                    state = self.apply(state, "advance", target="blocked", reason="Required work remains.")
+                    state = self.apply(state, "advance", target="ready")
+                state = self.apply(state, "reserve", operation_id="operation-2")
+                state = self.apply(state, "dispatch", operation_id="operation-2")
+                state = self.apply(state, "reconcile", operation_id="operation-2", resolution="not_started",
+                                   observation=OBSERVATION, reason="Latest operation never ran.")
+                state = self.apply(state, "evidence", evidence=[receipt(state, slot) for slot in state["required_evidence"]])
+                with self.assertRaises(c.ContractError) as caught:
+                    t.validate_projection(dict(state, status="completed"))
+                self.assertEqual(caught.exception.code, "EXECUTION_NOT_CONFIRMED")
+                self.assertEqual(state["operations"][0]["status"], "completed")
+
+    def test_no_start_reconciliation_after_cancellation_does_not_make_work_ready(self):
+        state = self.running()
+        state = self.apply(state, "cancel", reason="Execution authority withdrawn.")
+        state = self.apply(state, "reconcile", operation_id="operation-1", resolution="not_started",
+                           observation=OBSERVATION, reason="Host confirmed cancellation preceded execution.")
+        self.assertEqual(state["status"], "cancelling")
+        self.error("STOP_REQUESTED", state, "reserve", operation_id="operation-2")
+        state = self.apply(state, "advance", target="cancelled")
+        self.assertTrue(state["operations"][0]["dispatched"])
+        self.assertTrue(state["stop_requested"])
 
     def test_observed_reconciliation_can_complete_without_dispatching_again(self):
         for kind in ("task", "attempt"):

@@ -374,3 +374,24 @@ The six implementation commits are `d75c483` (WP-110), `4791068` (WP-111), `bb2a
 | Documentation closure `python -B scripts\validate_plan.py --base HEAD` and `git diff --check` | PASS | Six documentation paths; 96 Markdown files; 797 local links; 50 active tasks; 16 cycles |
 
 [Workflow run 43362930589](https://github.com/Arkthos/SparkForge/actions/runs/43362930589) completed successfully for the implementation-head PR candidate. The following closure commit changes only records and continuation; it preserves executable/test bytes and does not claim that a future rerun already passed. No merge, automatic merge, deployment, actual model run or environment qualification occurred. The [closure cycle](engineering/cycles/ENG-20261112-p1-publication.json) and [handoff](development/COPILOT_HANDOFF.md#current-continuation-boundary) identify the exact next task: WP-120.
+
+## 2026-11-13: P1 review corrections before P2
+
+Before any edit, local HEAD, remote feature ref and open PR #1 head were verified as `bdd1de57a7a0f068857eac0ac1d5e5f6b9934328`; the worktree was clean. Main remained `3decc8b`. Work continued on the existing PR branch, with no reset or branch replacement.
+
+| Actual check | Result | Boundary |
+|---|---|---|
+| `$env:PYTHONPATH = (Resolve-Path 'tests').Path; python -B -m unittest -v test_workflow_transitions.WorkflowTransitionTests.test_not_started_reconciliation_cannot_complete_with_passing_receipts test_agent_envelopes.AgentEnvelopeTests.test_reserved_attempt_cannot_claim_unobserved_consumption test_protected_evaluation.ProtectedEvaluationTests.test_normal_read_payload_trimming_is_not_a_false_pass` | FAIL: three methods, five failing checks/subcases in 0.100s | All reported findings reproduced before production fixes: false completion; each of three consumption metrics; false evaluator PASS |
+| First affected-suite run | PASS: 52 tests in 2.312s | Initial corrections and additional history/replay/cancellation/usage controls |
+| First full suite | PASS: 506 collected, 504 passed, two skips in 112.244s | Before the independent-review recovery regression |
+| Distinct implementation review | One medium regression found | After no-start reconciliation, a job's replacement operation could be observed completed yet leave the job in ready |
+| `$env:PYTHONPATH = (Resolve-Path 'tests').Path; python -B -m unittest -v test_workflow_transitions.WorkflowTransitionTests.test_job_no_start_replacement_reconciliation_resumes_without_redispatch` | ERROR: one reproducer in 0.005s | `INVALID_TRANSITION` reproduced the review finding; no duplicate dispatch was used as a workaround |
+| `$env:PYTHONPATH = (Resolve-Path 'tests').Path; python -B -m unittest test_workflow_transitions test_agent_envelopes test_protected_evaluation` | PASS: 53 tests in 2.142s | Final 22 workflow, 18 worker-contract and 13 evaluator tests |
+| `$env:PYTHONPATH = (Resolve-Path 'research_tools\.validation-deps').Path; python -B -m unittest discover -s tests` | PASS: 507 collected, 505 passed, two skips in 121.135s | Existing symlink-privilege skips; all original v1 tests included unchanged |
+| Exact continuation-prompt comparison | PASS | Markdown embedded prompt equals COPILOT_PROMPT.txt; neither directs restart from default main or WP-110 |
+| Diff inspection of v1 helpers/native tests and protected router intent | PASS | No changes to those paths; accepted intent remains revision 1 |
+| `python -B scripts\validate_plan.py --base HEAD` and `git diff --check` | PASS | 16 changed paths; 96 Markdown files; 797 local links; 50 tasks; 17 cycles. Hosted correction results still pending |
+
+Completion now needs the latest reservation to have confirmed completion; historical dispatch flags/earlier successes are retained but are not enough. Proven no-start returns an unstopped job/task to ready or an attempt to failed, and does not reopen cancellation. A replacement's observed completion resumes job checking without redispatch. Unknown outcomes remain unresolved. Reserved attempts have unknown/null consumption even when allowance is positive; known usage requires a host observation, while observed overruns remain intact.
+
+Protected oracle revision 3 adds two padded normal-read cases (absent and false audit flag), including spaces/tab/newline, and a twelfth trimming mutant. All 12 mutants are detected. No accepted behavior, expected existing result or original v1 manual decision was weakened. Both active continuation prompts were corrected. The [new cycle](engineering/cycles/ENG-20261113-p1-review-corrections.json) retains the exact failure/correction sequence; WP-120 is next for preparation, not implemented by this patch.

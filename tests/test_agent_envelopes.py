@@ -213,6 +213,39 @@ class AgentEnvelopeTests(unittest.TestCase):
             result["usage_claim"]["tokens"] = invalid
             self.error("INVALID_USAGE", self.result, result, task=task, attempt=attempt)
 
+    def test_reserved_attempt_cannot_claim_unobserved_consumption(self):
+        task = self.task()
+        attempt = attempt_fixture(task)
+        attempt.update(status="reserved", producer=None, observation=None, started_at=None, finished_at=None)
+        for field in ("model_calls", "tokens", "wall_seconds"):
+            with self.subTest(field=field):
+                attempt["observed_usage"] = {
+                    "status": "known", "model_calls": 0, "tokens": 0, "wall_seconds": 0, "reason": None,
+                }
+                attempt["observed_usage"][field] = 1
+                self.error("INVALID_USAGE", a.validate_attempt, attempt, task=task)
+
+    def test_reserved_allowance_stays_separate_from_unknown_consumption(self):
+        task = self.task()
+        allowance = dict(task["allowance"])
+        attempt = attempt_fixture(task)
+        attempt.update(status="reserved", producer=None, observation=None, started_at=None, finished_at=None)
+        normalized = a.validate_attempt(attempt, task=task)
+        self.assertEqual(normalized["observed_usage"]["status"], "unknown")
+        self.assertIsNone(normalized["observed_usage"]["tokens"])
+        self.assertEqual(task["allowance"], allowance)
+        attempt["observed_usage"] = {"status": "known", "model_calls": 0, "tokens": 0, "wall_seconds": 0, "reason": None}
+        self.error("INVALID_USAGE", a.validate_attempt, attempt, task=task)
+
+    def test_unknown_attempt_can_retain_only_observation_backed_known_usage(self):
+        task = self.task()
+        attempt = attempt_fixture(task)
+        attempt.update(status="unknown", finished_at=None)
+        attempt["observed_usage"] = {"status": "known", "model_calls": 5, "tokens": 2500, "wall_seconds": 150, "reason": None}
+        self.assertEqual(a.validate_attempt(attempt, task=task)["observed_usage"], attempt["observed_usage"])
+        attempt["observation"] = None
+        self.error("MISSING_OBSERVATION", a.validate_attempt, attempt, task=task)
+
     def test_failed_blocked_and_unknown_results_require_causes(self):
         result = result_fixture(self.task())
         result.update(outcome="failed", next_action="repair")

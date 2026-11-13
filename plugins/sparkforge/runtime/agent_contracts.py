@@ -328,11 +328,16 @@ def validate_attempt(value: object, *, task: TaskAssignment) -> AgentAttempt:
         c._fail("INVALID_ATTEMPT", "attempt.finished_at", "Only terminal observed states have a finish timestamp.")
     if started is not None and finished is not None and finished < started:
         c._fail("INVALID_ATTEMPT", "attempt.finished_at", "Finish precedes start.")
+    usage = _usage(record["observed_usage"], "attempt.observed_usage")
+    if status == "reserved" and usage["status"] != "unknown":
+        c._fail("INVALID_USAGE", "attempt.observed_usage", "Reserved allowance is not observed consumption; usage must remain unknown.")
+    if usage["status"] == "known" and observation is None:
+        c._fail("MISSING_OBSERVATION", "attempt.observed_usage", "Known consumption requires a host observation reference.")
     result: AgentAttempt = {
         "schema_version": "sparkforge.attempt.v1", "binding": binding, "task_sha": task_sha,
         "operation_key": c._identifier(record["operation_key"], "attempt.operation_key"),
         "ordinal": ordinal, "producer": producer, "status": status, "started_at": started, "finished_at": finished,
-        "observed_usage": _usage(record["observed_usage"], "attempt.observed_usage"), "observation": observation,
+        "observed_usage": usage, "observation": observation,
     }
     c.canonical_json(result)
     return result

@@ -52,7 +52,7 @@ class ProtectedEvaluationTests(unittest.TestCase):
         self.assertEqual(report["evidence_class"], "synthetic_behavioral_fixture")
         self.assertEqual(report["evaluator"], self.binding)
         self.assertEqual(report["criteria"], {"R1": True, "R2": True, "R3": True, "R4": True})
-        self.assertEqual(len(report["observations"]), 17)
+        self.assertEqual(len(report["observations"]), 19)
         self.assertTrue(all(case["outcome"] == "PASS" for case in report["observations"]))
         self.assertEqual(report, evaluator.evaluate(self.workspace, self.binding))
 
@@ -88,6 +88,16 @@ class ProtectedEvaluationTests(unittest.TestCase):
                 self.candidate.write_text(self.reference_source.replace(old, new), encoding="utf-8")
                 report = evaluator.evaluate(self.workspace, self.binding)
                 self.assertEqual(report["outcome"], "FAIL")
+
+    def test_normal_read_payload_trimming_is_not_a_false_pass(self):
+        self.candidate.write_text(mutated_source(self.reference_source, "normal-read-trims-payload"), encoding="utf-8")
+        report = evaluator.evaluate(self.workspace, self.binding)
+        self.assertEqual(report["outcome"], "FAIL")
+        padded = [case for case in report["observations"] if case["id"].startswith("legacy-read-padded-")]
+        self.assertEqual(len(padded), 2)
+        self.assertTrue(all(case["outcome"] == "FAIL" and case["effect_calls"] == 1 for case in padded))
+        self.assertFalse(report["criteria"]["R1"])
+        self.assertFalse(report["criteria"]["R4"])
 
     def test_coder_tests_and_fabricated_passing_markers_cannot_override_the_oracle(self):
         (self.workspace / "tests").mkdir()

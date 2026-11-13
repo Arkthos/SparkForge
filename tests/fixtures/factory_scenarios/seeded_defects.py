@@ -35,6 +35,11 @@ MUTATIONS = {
     "dispatch-result-discarded": (
         '"result": dispatch(name, payload)', '"result": (dispatch(name, payload), f"{name}:{payload}")[1]', "legacy-read",
     ),
+    "normal-read-trims-payload": (
+        '"result": dispatch(name, payload)',
+        '"result": dispatch(name, payload.strip() if name == "read" else payload)',
+        "legacy-read-padded-default",
+    ),
 }
 
 

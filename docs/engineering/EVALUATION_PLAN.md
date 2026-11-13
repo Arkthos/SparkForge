@@ -4,20 +4,20 @@
 
 ## Implemented fictional routing fixture
 
-`tests/evaluation/router_intent.json` fixes four behavioral criteria (legacy compatibility, audit-only/no dispatch, invalid input/no effects, unchanged input/exact output shape). `router_cases.json` revision 2 supplies 17 explicit protected cases. `router_evaluator.py` owns the checks; the reference implementation and 11 deterministic one-fault mutants live separately under `tests/fixtures/factory_scenarios/`.
+`tests/evaluation/router_intent.json` fixes four behavioral criteria (legacy compatibility, audit-only/no dispatch, invalid input/no effects, unchanged input/exact output shape). `router_cases.json` revision 3 supplies 19 explicit protected cases. `router_evaluator.py` owns the checks; the reference implementation and 12 deterministic one-fault mutants live separately under `tests/fixtures/factory_scenarios/`. Intent remains revision 1: the additional normal-read whitespace controls strengthen the existing behavior rather than change it.
 
 The fictional `route(request, dispatch)` accepts a dictionary with `route` (`read` or `write`), nonblank string `payload`, and optional boolean `audit_only` (default false); no additional fields are allowed. Non-audit returns exactly `{"route": route, "result": dispatch_return}` after one dispatch. Audit returns exactly `{"route": route, "payload": original_payload, "audit_only": true}` with zero dispatches. Invalid input raises `ValueError` without dispatch; inputs never mutate. Opaque case-defined dispatch values must be propagated unchanged. This is not a real SPARK interface.
 
 | Rubric | Required observation |
 |---|---|
-| R1 compatibility | Both read/write with absent/false flags; exact one-call arguments and opaque returned object/list/string |
+| R1 compatibility | Both read/write with absent/false flags; padded normal reads preserve spaces/tab/newline under both flag forms; exact one-call arguments and opaque returned object/list/string |
 | R2 audit | Read and write audit outputs match exactly; effect-call count remains zero |
 | R3 invalid input | Unknown route, missing/blank payload, null request, extra field and numeric/null/string/list/object audit flags raise the declared error with zero calls |
 | R4 intent preservation | Exact returned fields/types, preserved payload whitespace and unchanged request in every case |
 
 `capture_binding()` is an evaluator-owner preparation operation before candidate access. It returns an ID/revision/intent digest and a full byte-manifest digest of the evaluator, cases, intent and imported contract/filesystem helpers. `evaluate(workspace, expected_binding)` requires that externally retained binding, verifies it before and after execution, and binds exact candidate file bytes. Recomputing a binding after a worker edit is not acceptance; an authorized oracle correction requires independent assessment and a new selected revision.
 
-Candidate ownership is limited to `src/router.py` and optional `tests/test_router.py`. The evaluator cannot be nested under that workspace; undeclared files/links are rejected. Candidate-owned tests are byte-bound but not used as the protected oracle. Passing output markers are ignored, and changing/removing expected cases or criteria invalidates the pinned binding. Negative controls cover eight initial mutants plus three independently discovered false-pass cases; all 11 are now detected. The initial false passes and their corrections remain in validation history.
+Candidate ownership is limited to `src/router.py` and optional `tests/test_router.py`. The evaluator cannot be nested under that workspace; undeclared files/links are rejected. Candidate-owned tests are byte-bound but not used as the protected oracle. Passing output markers are ignored, and changing/removing expected cases or criteria invalidates the pinned binding. Negative controls cover eight initial mutants plus four review-discovered false-pass cases, including trimming whitespace only for normal reads; all 12 are now detected. The initial false passes and their corrections remain in validation history.
 
 The returned `synthetic_behavioral_fixture` report binds oracle/candidate, per-case expected/actual digests, errors, effect counts and criterion results. Its PASS is limited to these finite observations, not proof over all inputs. Reuse/platform assessment, semantic controller execution, role independence, recovery and real delivery remain separate required evidence.
 
