@@ -1,0 +1,79 @@
+{
+  "schema_version": "sparkforge-engineering-cycle.v1",
+  "id": "ENG-20261112-p1-publication",
+  "date": "2026-11-12",
+  "work_items": ["WP-110", "WP-111", "WP-112", "WP-113", "WP-114", "WP-115"],
+  "workstream": "P1 publication evidence and precise continuation",
+  "cycle_type": "governance",
+  "status": "validated",
+  "objective": "Record actual P1 publication, hosted results, preserved limitations and the next dependency-ready work without merging.",
+  "base_commit": "3decc8bc0326b51ac312b074bfadc396185f8d5c",
+  "implementation_head": "9e8c7793f9045ceda3929d3fe7c14ff20abf6caa",
+  "implementation_tree": "1946fddc75f0b863ae196a83019ddc675b6d10c1",
+  "branch": "kerodri-microsoft-sparkforge-coordinated-contracts",
+  "pull_request": "https://github.com/Arkthos/SparkForge/pull/1",
+  "ci_run": "https://github.com/Arkthos/SparkForge/actions/runs/43362930589",
+  "changes": [
+    "Recorded six completed source-neutral P1 slices and the actual native-published open PR.",
+    "Preserved prior EMU authorization denials and diagnosed 422 base/unpublished-head failure before the successful retry.",
+    "Recorded exact local/hosted test totals, remote tree identity and unchanged v1/research/archive bytes.",
+    "Updated the four living records and exact WP-120 continuation; no executable or test changes in this closure."
+  ],
+  "validation": [
+    {
+      "check": "python -B scripts\\check_repository.py --base origin/main",
+      "scope": "Final implementation-head local repository gate",
+      "outcome": "PASS",
+      "reference": "497 collected; 495 passed; two existing symlink skips; 88.736s; planning and whitespace exit 0."
+    },
+    {
+      "check": "Changed-path and remote Git tree comparison",
+      "scope": "Exact source-only publication inventory",
+      "outcome": "PASS",
+      "reference": "36 changed paths; v1/research/archive untouched; local/remote tree both 1946fddc75f0b863ae196a83019ddc675b6d10c1."
+    },
+    {
+      "check": "git push --set-upstream origin HEAD; native PR creation against established main; GitHub PR read",
+      "scope": "Actual authorized repository publication, no merge",
+      "outcome": "PASS",
+      "reference": "Remote head 9e8c7793f9045ceda3929d3fe7c14ff20abf6caa; PR open/unmerged; native publisher author Arkthos. Previous 403/EMU and 422 attempts failed and are retained in history."
+    },
+    {
+      "check": "Hosted python -B scripts/check_repository.py --ci",
+      "scope": "Run 43362930589 tied to the implementation-head PR candidate",
+      "outcome": "PASS",
+      "reference": "Windows 497 passed/zero skips in 31.565s; Linux 468 passed/29 Windows-only skips in 13.530s; planning/whitespace exit 0 on both."
+    },
+    {
+      "check": "python -B scripts\\validate_plan.py --base HEAD; git diff --check",
+      "scope": "Documentation-only closure boundary",
+      "outcome": "PASS",
+      "reference": "Six documentation paths; 96 Markdown files; 797 local links; 50 tasks; 16 cycles. Whitespace passed."
+    }
+  ],
+  "results": [
+    "P1 source-neutral foundation is implemented, published and observed passing hosted regression checks.",
+    "The account used by the app publisher is confirmed from the PR author; no agent credential/visibility/destination changes occurred.",
+    "PR remains open; no merge, Agent merge, deployment or factory job occurred.",
+    "All actual implementation/review failures and corrections remain in append-only historical cycles and validation history."
+  ],
+  "limitations": [
+    "This cycle records CI for the exact implementation head, not a future documentation-closure run.",
+    "Local symlink privilege and Linux Windows-only skips are excluded from pass counts.",
+    "P1 is not the coordinated execution loop, real host/model/domain qualification or a production release.",
+    "Protected evaluation runs trusted finite fixtures in-process; it is not an OS sandbox."
+  ],
+  "rollback": "Preserve the open PR and commit history; any correction is a new bounded commit. Do not merge or rewrite history automatically.",
+  "next_steps": [
+    "Commit/push this documentation closure and inspect its actual latest CI separately.",
+    "Continue WP-120 transactional coordinated journal with atomic key/event/projection storage, rollback, bounded writers and restart reconstruction.",
+    "Reuse completed P1 code and maintain assisted-v1 isolation; proceed to WP-121 only after WP-120 is evidenced."
+  ],
+  "evidence": [
+    "docs/VALIDATION_HISTORY.md",
+    "docs/development/COPILOT_HANDOFF.md",
+    "https://github.com/Arkthos/SparkForge/pull/1",
+    "https://github.com/Arkthos/SparkForge/actions/runs/43362930589"
+  ],
+  "public_safe": true
+}

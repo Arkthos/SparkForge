@@ -354,3 +354,23 @@ WP-114 was committed as `d0a028f8f21bf96a1ace2050844fc6652924f568`; post-commit 
 | Actual model/controller/domain trials and current-branch CI | NOT_RUN / NOT_ASSESSED | No real factory job or platform inputs; publication not yet observed |
 
 Oracle corrections did not weaken or redefine accepted behavior: the original intent is still revision 1. Added controls exercise all legacy audit-default combinations, numeric/null/string/list/object malformed flags, and opaque object/list/string dispatch returns. Evaluator revision 2 records that correction. PASS means all bound fixture observations match exact outputs/errors/call counts and unchanged inputs, not exhaustive correctness or release acceptance. See the [cycle](engineering/cycles/ENG-20261112-wp115-protected-evaluator.json). Next: WP-120, after the focused P1 publication/checkpoint.
+
+## 2026-11-12: P1 publication and hosted closure
+
+The six implementation commits are `d75c483` (WP-110), `4791068` (WP-111), `bb2ab8b` (WP-112), `3abed59` (WP-113), `d0a028f` (WP-114) and `9e8c779` (WP-115). Exact implementation head: `9e8c7793f9045ceda3929d3fe7c14ff20abf6caa`; base: `3decc8bc0326b51ac312b074bfadc396185f8d5c`.
+
+| Actual operation | Result | Scope |
+|---|---|---|
+| `python -B scripts\check_repository.py --base origin/main` | PASS | 497 collected; 495 passed; two existing local symlink skips in 88.736s; planning and whitespace exit 0 |
+| Complete changed-path inventory against base | PASS | 36 source/test/living-record paths; v1 helpers/tests, research and archives unchanged; no database/credential/private-record file included |
+| Initial publication under EMU account | FAIL, retained | Git 403 and native publisher's EMU restriction; no branch or PR created |
+| Read-only account reconciliation | Observed `Arkthos`, repository ADMIN | Agent did not change credential configuration, audience or destination |
+| First native retry after account change | FAIL: 422 | Head not yet published; app supplied `origin/main` as base; actual `main` and absence of an existing PR verified before correction |
+| `git push --set-upstream origin HEAD` and remote ref read | PASS | Remote feature head equals exact implementation head; no force push |
+| Native PR creation with established `base_branch=main` | PASS | [Open PR](https://github.com/Arkthos/SparkForge/pull/1), author `Arkthos`, base `main`, exact head verified; unmerged |
+| Local/remote implementation tree comparison | PASS | Both equal `1946fddc75f0b863ae196a83019ddc675b6d10c1`; clean checkout |
+| Hosted `python -B scripts/check_repository.py --ci`, Windows/Python 3.12 | PASS | 497/497, zero skips, 31.565s; planning and whitespace exit 0 |
+| Hosted same command, Ubuntu/Python 3.12 | PASS | 497 collected; 468 passed; 29 Windows-only skips; 13.530s; planning and whitespace exit 0 |
+| Documentation closure `python -B scripts\validate_plan.py --base HEAD` and `git diff --check` | PASS | Six documentation paths; 96 Markdown files; 797 local links; 50 active tasks; 16 cycles |
+
+[Workflow run 43362930589](https://github.com/Arkthos/SparkForge/actions/runs/43362930589) completed successfully for the implementation-head PR candidate. The following closure commit changes only records and continuation; it preserves executable/test bytes and does not claim that a future rerun already passed. No merge, automatic merge, deployment, actual model run or environment qualification occurred. The [closure cycle](engineering/cycles/ENG-20261112-p1-publication.json) and [handoff](development/COPILOT_HANDOFF.md#current-continuation-boundary) identify the exact next task: WP-120.
