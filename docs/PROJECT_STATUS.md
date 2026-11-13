@@ -1,6 +1,6 @@
 # Project status
 
-**As of 2026-11-12.** WP-110 through WP-113 implement strict intent/envelope and worker-exchange contracts, pure workflow/replay guards and a separate-store coexistence boundary. The coordinated factory loop is **not implemented yet**. Current shipped product behavior and package inventory remain experimental assisted v1.
+**As of 2026-11-12.** WP-110 through WP-114 implement strict contracts, pure workflow/replay guards, separate-store coexistence and a host protocol with a deterministic scripted fake. The coordinated factory loop is **not implemented yet**. Current shipped product behavior and package inventory remain experimental assisted v1.
 
 ## Implemented foundation
 
@@ -13,6 +13,7 @@
 - Typed assignments, attempts, results, findings and failures with current bindings, protected write scopes, separate worker usage claims/host observations and producer-context checks. No worker claim admits evidence or completes a job.
 - Pure job/task/attempt projections, legal transitions, expected revisions, command/event bindings, no-op replay, current-evidence completion and explicit unknown-effect/cancellation recovery. No journal or scheduler is created by these functions.
 - Explicit new coordinated store headers, read-only assisted-v1 references and verified copy-before-migration transactions. Only store version 1 is shipped; future upgrades are exercised with injected synthetic test steps, never real operator conversion or automatic activation.
+- Source-neutral host capability/observation protocol and a scripted test fake with dispatch/cancel counters, lost-response reconciliation and explicit unknown usage. No native launcher or real worker/model execution is implemented.
 
 These are reusable mechanisms. They do not yet supply agent task orchestration, an independent running intent controller, autonomous diagnosis/repair, job-wide model accounting, live connectors or installed environment qualification.
 
@@ -24,14 +25,14 @@ The fictional disconnected browser preview and its Node suite were retired. Curr
 
 ## Next development action
 
-**Implement WP-114**, the host capability protocol and deterministic scripted fake, using the [Copilot handoff](development/COPILOT_HANDOFF.md) and detailed plan. WP-110 through WP-113 are complete. WP-115 protected evaluation and WP-120 coordinated journal are also dependency-ready; keep each slice independently evidenced. No private corp/acro access, actual model call or invented launcher is needed.
+**Implement WP-115**, protected behavioral fixtures and evaluation, using the [Copilot handoff](development/COPILOT_HANDOFF.md) and detailed plan. WP-110 through WP-114 are complete; WP-120 is also dependency-ready but the complete P1 exit is not yet claimed. No private corp/acro access, actual model call or invented launcher is needed.
 
 Do not interpret planning completion as runtime completion. Agent role documents are design contracts until actual adapter/package tasks ship them. The existing v1 exact-spec manual approval semantics remain unchanged; target materiality policy is future implementation.
 
 ## Evidence and limits
 
-Fresh Windows/Python 3.12.10 validation: **471 collected, 469 passed and two skipped** (existing symlink-privilege cases). All 14 migration/coexistence cases pass. Independent inspection exposed read-only WAL sidecar creation and false version stamping after automatic rollback; both were reproduced and corrected. Earlier failures, fixture cleanup corrections and all independent inspections remain recorded. See [validation history](VALIDATION_HISTORY.md) and [WP-113 cycle](engineering/cycles/ENG-20261112-wp113-coexistence.json). These checks are not live/domain or power-failure acceptance.
+Fresh Windows/Python 3.12.10 validation: **485 collected, 483 passed and two skipped** (existing symlink-privilege cases). All 14 host-protocol cases pass. Independent review exposed boolean/float receipt revisions accepted by equality; those six negative subcases and a pre-dispatch usage-capability correction now pass. See [validation history](VALIDATION_HISTORY.md) and [WP-114 cycle](engineering/cycles/ENG-20261112-wp114-fake-host.json). These checks are not live-host qualification.
 
-Hosted [Linux/Windows CI](https://github.com/Arkthos/SparkForge/actions/runs/43293165473) passed on the earlier `8b8c167` baseline; it is not evidence for this change. Current-branch CI remains pending publication.
+Hosted [Linux/Windows CI](https://github.com/Arkthos/SparkForge/actions/runs/43293165473) passed on the earlier `8b8c167` baseline; it is not evidence for this change. Initial Git/native-PR publication was denied under the EMU account. A fresh CLI read now identifies an authorized account, but app-publisher selection is unverified and no feature branch/PR existed at the last read. Current-branch CI remains pending publication.
 
 Real corp and acro host/build capability, installed lifecycle, actual model-driven journeys, independent domain/control acceptance, production release, external platform submission and governed learning promotion remain NOT_ASSESSED. corp/acro credentials, source snapshots, journals and model routes stay isolated and outside Git. No private material or new license/organizational policy is inferred.

@@ -7,7 +7,7 @@
 | Milestone | Outcome | Work | Exit evidence | Current position |
 |---|---|---|---|---|
 | P0: Organized baseline | Organized baseline | WP-100 | Current architecture, traceability, cleanup, Copilot entry point and regression evidence. | Complete for planning/cleanup scope; coordinated product remains unimplemented. |
-| P1: Executable contracts and evaluator | Executable contracts and evaluator | WP-110..WP-115 | Validated baseline/envelope/task/result schemas, transitions, v1 migration policy, fake host and protected behavioral fixtures. | WP-110..113 complete; next WP-114, then WP-115. |
+| P1: Executable contracts and evaluator | Executable contracts and evaluator | WP-110..WP-115 | Validated baseline/envelope/task/result schemas, transitions, v1 migration policy, fake host and protected behavioral fixtures. | WP-110..114 complete; next WP-115. |
 | P2: Deterministic coordination | Deterministic coordination | WP-120..WP-126 | Transactional store, serial graph scheduler, materiality admission, job budgets, workspace ownership, check bridge and result admission. | Not started. |
 | P3: Platform brain and intent control | Platform brain and intent control | WP-130..WP-135 | Profile/context/intake/reuse pipeline, brain task planner and independent drift checkpoints. | Not started; synthetic context can proceed without private sources. |
 | P4: Complete multi-agent engineering loop | Complete multi-agent engineering loop | WP-140..WP-147 | Coder, independent test author, runner, reviewer, diagnosis, bounded repair/replanning and first full synthetic journey. | Not started; target of the first usable coordinated prototype. |
@@ -43,7 +43,7 @@ The diagram groups milestones; the CSV graph defines exact work-package dependen
 ## First development sequence
 
 1. WP-110 is implemented as specified in [FIRST_TASK](development/FIRST_TASK.md); v1 behavior is preserved.
-2. WP-111..113 are complete. Implement WP-114 fake-host and WP-115 evaluator as separate bounded tasks.
+2. WP-111..114 are complete. Implement WP-115 protected evaluator before claiming the complete P1 exit.
 3. Build P2 coordination. In parallel only when deliberately delegated with disjoint ownership, develop P3 profiles/context/intake after their contracts exist.
 4. Complete brain/controller and P4 roles. Demonstrate [FIRST_FACTORY_SLICE](specs/FIRST_FACTORY_SLICE.md) before adding a new UI or optional learning.
 5. Harden recovery and select a real host adapter. Qualify installed, model-driven journeys in one target.
@@ -77,6 +77,6 @@ Any newly requested feature gets explicit intent/criterion impact, dependency an
 
 ## Latest checkpoint
 
-WP-110 is committed as `d75c483b95dea28e09688df98bea23671f8f82b3`, WP-111 as `4791068b5c9d0f27658ddcb0671a9484640cc4e5`, WP-112 as `bb2ab8bc4ef75d41326ba9942637784e661fefc3`; WP-113 completes the separate-store boundary on `kerodri-microsoft-sparkforge-coordinated-contracts`, originally based on `3decc8bc0326b51ac312b074bfadc396185f8d5c`. Next: WP-114 scripted fake host, then WP-115 protected evaluator. WP-120 is also dependency-ready but the complete P1 exit is not yet claimed. Current shipped behavior remains assisted v1.
+WP-110..113 are committed through `3abed591526b4c0dc7bbcdc3c15101412c200233`; WP-114 adds the host protocol/scripted fake on `kerodri-microsoft-sparkforge-coordinated-contracts`, originally based on `3decc8bc0326b51ac312b074bfadc396185f8d5c`. Next: WP-115 protected evaluator. WP-120 is also dependency-ready but the complete P1 exit is not yet claimed. Current shipped behavior remains assisted v1.
 
-Windows/Python 3.12.10: full suite collects 471, with 469 passed and two existing symlink-privilege skips. Independent inspections were performed on all four slices; actual findings and correction evidence are preserved. Current-branch hosted CI has not run. The [cycle](engineering/cycles/ENG-20261112-wp113-coexistence.json) and [validation history](VALIDATION_HISTORY.md) retain exact evidence and limitations.
+Windows/Python 3.12.10: full suite collects 485, with 483 passed and two existing symlink-privilege skips. Independent inspections and actual corrections are preserved. Publication initially failed under an EMU account; current CLI access changed, but native publisher selection remains unverified. Current-branch CI has not run. The [cycle](engineering/cycles/ENG-20261112-wp114-fake-host.json) and [validation history](VALIDATION_HISTORY.md) retain exact evidence and limitations.

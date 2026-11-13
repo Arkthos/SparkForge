@@ -320,3 +320,20 @@ WP-112 was committed as `bb2ab8bc4ef75d41326ba9942637784e661fefc3`; post-commit 
 | Current-branch hosted CI, real migration, power-failure and installed-host qualification | NOT_RUN / NOT_ASSESSED | Only owned synthetic SQLite files; no live job/database conversion or activation |
 
 Source and backup bytes remain unchanged in successful, interrupted, unknown-version, automatic-rollback and early-commit/attachment refusal fixtures. Existing v1 manual approval still gates execution after reference capture. The [WP-113 cycle](engineering/cycles/ENG-20261112-wp113-coexistence.json) records the evidence and explicit supported limits. Next: WP-114 capability protocol/scripted fake; the rest of P1/P2 remains open.
+
+## 2026-11-12: WP-114 host protocol and scripted fake
+
+WP-113 was committed as `3abed591526b4c0dc7bbcdc3c15101412c200233`; post-commit planning/whitespace passed. Initial `git push --set-upstream origin HEAD` returned HTTP 403 under `kerodri_microsoft`; the native PR tool also returned an Enterprise Managed User restriction while attempting a fork. No remote branch or PR was created. A later read-only check identified CLI account `Arkthos` with repository ADMIN access; it did not verify the app publisher. No agent changed credentials, destination or repository visibility.
+
+| Actual check | Result | Boundary |
+|---|---|---|
+| Initial `python -B -m unittest discover -s tests -p 'test_host_adapter.py'` | PASS: 12/12 in 0.050s | Scripted capability/discovery/dispatch/poll/cancel/reconcile and counters only |
+| Initial full suite with README local `PYTHONPATH` | PASS: 483 collected, 481 passed, two skips in 98.890s | Before new review regressions |
+| Independent implementation review | One medium finding | Receipt context equality accepted boolean/float revisions as integer revision 1 |
+| Added receipt/pre-effect regressions | FAIL: seven subcase failures in 14 tests, 0.065s | Six malformed revisions; one scripted usage capability refusal occurred after dispatch counter increment |
+| Corrected `python -B -m unittest discover -s tests -p 'test_host_adapter.py'` | PASS: 14/14 in 0.056s | Strict reference validation and required usage/cancellation observation capability preflight |
+| `$env:PYTHONPATH = (Resolve-Path 'research_tools\.validation-deps').Path; python -B -m unittest discover -s tests` | PASS: 485 collected, 483 passed, two skips in 96.001s | Existing symlink-privilege skips; unchanged v1 code/tests |
+| `python -B scripts\validate_plan.py --base HEAD` and `git diff --check` | PASS | Ten changed paths; 96 Markdown files; 791 local links; 50 active tasks; 14 cycles |
+| Current-branch CI and actual native host qualification | NOT_RUN / NOT_ASSESSED | No model invocation, credentials, worker execution or supported vendor API inferred |
+
+The fake can script accepted/running/completed/failed/cancel-requested/stopped/not-started/unknown observations. Lost dispatch responses preserve a single operation; retry is refused until inspection rather than incrementing simulated effects. Cancellation acknowledgement remains distinct from observed stop and late completion. The [cycle](engineering/cycles/ENG-20261112-wp114-fake-host.json) records the exact source-neutral boundary. Next: WP-115.
