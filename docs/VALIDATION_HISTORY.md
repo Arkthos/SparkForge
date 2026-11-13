@@ -337,3 +337,20 @@ WP-113 was committed as `3abed591526b4c0dc7bbcdc3c15101412c200233`; post-commit 
 | Current-branch CI and actual native host qualification | NOT_RUN / NOT_ASSESSED | No model invocation, credentials, worker execution or supported vendor API inferred |
 
 The fake can script accepted/running/completed/failed/cancel-requested/stopped/not-started/unknown observations. Lost dispatch responses preserve a single operation; retry is refused until inspection rather than incrementing simulated effects. Cancellation acknowledgement remains distinct from observed stop and late completion. The [cycle](engineering/cycles/ENG-20261112-wp114-fake-host.json) records the exact source-neutral boundary. Next: WP-115.
+
+## 2026-11-12: WP-115 protected fictional routing evaluation
+
+WP-114 was committed as `d0a028f8f21bf96a1ace2050844fc6652924f568`; post-commit planning/whitespace passed. The protected intent/cases/evaluator were authored separately from and before the reference candidate and seeded mutations. A caller-pinned manifest binds evaluator code, protected inputs and shared helpers outside the candidate-owned inventory. This is a trusted synthetic in-process harness, not a production runner, hidden-from-repository-reader secret, authenticated oracle or sandbox.
+
+| Actual check | Result | Boundary |
+|---|---|---|
+| Initial `python -B -m unittest discover -s tests -p 'test_protected_evaluation.py'` | PASS: 11/11 in 1.843s | Initial 11 behavioral cases/eight seeded variants; not the final sufficient oracle |
+| Initial full suite with README local `PYTHONPATH` | PASS: 496 collected, 494 passed, two skips in 89.862s | Before independent oracle findings |
+| Distinct evaluator/behavior review | Three medium findings | Missing write/default and read/false combinations; null audit flag accepted by a bad candidate; predictable effect return could be reconstructed instead of preserved |
+| Added independent-review reproductions | FAIL: three false-pass subcases in 12 tests, 1.686s | All three defective candidates initially returned PASS, retained as failed controls |
+| Corrected `python -B -m unittest discover -s tests -p 'test_protected_evaluation.py'` | PASS: 12/12 in 1.802s | Revision-2 oracle: 17 cases; all 11 seeded variants rejected; changed evaluator/tests/criteria, removed negatives and fabricated passing markers cannot satisfy acceptance |
+| `$env:PYTHONPATH = (Resolve-Path 'research_tools\.validation-deps').Path; python -B -m unittest discover -s tests` | PASS: 497 collected, 495 passed, two skips in 88.070s | Existing Windows symlink-privilege skips; all original v1 tests unchanged |
+| `python -B scripts\validate_plan.py --base HEAD` and `git diff --check` | PASS | 16 changed paths; 96 Markdown files; 794 local links; 50 active tasks; 15 cycles |
+| Actual model/controller/domain trials and current-branch CI | NOT_RUN / NOT_ASSESSED | No real factory job or platform inputs; publication not yet observed |
+
+Oracle corrections did not weaken or redefine accepted behavior: the original intent is still revision 1. Added controls exercise all legacy audit-default combinations, numeric/null/string/list/object malformed flags, and opaque object/list/string dispatch returns. Evaluator revision 2 records that correction. PASS means all bound fixture observations match exact outputs/errors/call counts and unchanged inputs, not exhaustive correctness or release acceptance. See the [cycle](engineering/cycles/ENG-20261112-wp115-protected-evaluator.json). Next: WP-120, after the focused P1 publication/checkpoint.
