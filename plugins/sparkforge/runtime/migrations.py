@@ -15,10 +15,71 @@ from . import contracts as c
 
 APPLICATION_ID = 0x53464752
 STORE_FAMILY = "sparkforge.coordinated-store"
-CURRENT_VERSION = 1
+CURRENT_VERSION = 2
 DATABASE_NAME = "coordinated.sqlite3"
 BACKUP_NAME = "pre-migration.sqlite3"
-MIGRATIONS: dict[int, Callable[[sqlite3.Connection], None]] = {}
+JOURNAL_TABLES = {
+    "records": (
+        "CREATE TABLE records(sha TEXT PRIMARY KEY, kind TEXT NOT NULL, record_id TEXT NOT NULL, "
+        "revision INTEGER NOT NULL CHECK(revision>0), body TEXT NOT NULL, UNIQUE(kind,record_id,revision))"
+    ),
+    "job": (
+        "CREATE TABLE job(singleton INTEGER PRIMARY KEY CHECK(singleton=1), job_id TEXT NOT NULL UNIQUE, "
+        "intent_sha TEXT NOT NULL REFERENCES records(sha), envelope_sha TEXT NOT NULL REFERENCES records(sha), "
+        "supported_kinds TEXT NOT NULL)"
+    ),
+    "entities": (
+        "CREATE TABLE entities(kind TEXT NOT NULL, entity_id TEXT NOT NULL, parent_kind TEXT, parent_id TEXT, "
+        "task_sha TEXT REFERENCES records(sha), initial TEXT NOT NULL, initial_sha TEXT NOT NULL, "
+        "revision INTEGER NOT NULL CHECK(revision>0), body TEXT NOT NULL, sha TEXT NOT NULL, event_id TEXT, "
+        "PRIMARY KEY(kind,entity_id), FOREIGN KEY(parent_kind,parent_id) REFERENCES entities(kind,entity_id), "
+        "FOREIGN KEY(event_id) REFERENCES events(event_id) DEFERRABLE INITIALLY DEFERRED)"
+    ),
+    "commands": (
+        "CREATE TABLE commands(seq INTEGER PRIMARY KEY CHECK(seq>0), command_key TEXT NOT NULL UNIQUE, "
+        "request TEXT NOT NULL, request_sha TEXT NOT NULL, result TEXT NOT NULL, result_sha TEXT NOT NULL, "
+        "event_id TEXT REFERENCES events(event_id) DEFERRABLE INITIALLY DEFERRED)"
+    ),
+    "events": (
+        "CREATE TABLE events(event_id TEXT PRIMARY KEY, kind TEXT NOT NULL, entity_id TEXT NOT NULL, "
+        "revision INTEGER NOT NULL CHECK(revision>1), command_key TEXT NOT NULL UNIQUE, before_sha TEXT NOT NULL, "
+        "body TEXT NOT NULL, sha TEXT NOT NULL, UNIQUE(kind,entity_id,revision), "
+        "FOREIGN KEY(kind,entity_id) REFERENCES entities(kind,entity_id), "
+        "FOREIGN KEY(command_key) REFERENCES commands(command_key) DEFERRABLE INITIALLY DEFERRED)"
+    ),
+    "reservations": (
+        "CREATE TABLE reservations(operation_key TEXT PRIMARY KEY, kind TEXT NOT NULL, entity_id TEXT NOT NULL, "
+        "task_sha TEXT NOT NULL REFERENCES records(sha), context_sha TEXT NOT NULL, status TEXT NOT NULL, "
+        "body TEXT NOT NULL, sha TEXT NOT NULL, event_id TEXT NOT NULL REFERENCES events(event_id), "
+        "observation_sha TEXT REFERENCES records(sha), FOREIGN KEY(kind,entity_id) REFERENCES entities(kind,entity_id))"
+    ),
+}
+SERIAL_INDEX = (
+    "CREATE UNIQUE INDEX one_unresolved_operation ON reservations((1)) "
+    "WHERE status IN ('reserved','dispatched','unknown','cancel_requested')"
+)
+
+
+def initialize_journal_schema(connection: sqlite3.Connection) -> None:
+    """The same transactional initializer is used by new stores and the v1 copy upgrade."""
+    for statement in JOURNAL_TABLES.values():
+        connection.execute(statement)
+    connection.execute(SERIAL_INDEX)
+
+
+def validate_journal_schema(connection: sqlite3.Connection, *, exact: bool = True) -> None:
+    actual = {row["name"]: row["sql"] for row in connection.execute(
+        "SELECT name,sql FROM sqlite_schema WHERE name NOT LIKE 'sqlite_%'"
+    )}
+    expected = {**JOURNAL_TABLES, "one_unresolved_operation": SERIAL_INDEX}
+    if exact and set(actual) != set(expected) | {"runtime_metadata"}:
+        c._fail("INVALID_STORE_SCHEMA", "store.schema", "Missing or unexpected journal tables, indexes or triggers.")
+    for name, statement in expected.items():
+        if " ".join((actual.get(name) or "").lower().split()) != " ".join(statement.lower().split()):
+            c._fail("INVALID_STORE_SCHEMA", "store.schema", "Journal schema/constraints differ from the supported version.")
+
+
+MIGRATIONS: dict[int, Callable[[sqlite3.Connection], None]] = {1: initialize_journal_schema}
 
 
 class StoreMetadata(TypedDict):
@@ -141,6 +202,8 @@ def _metadata(connection: sqlite3.Connection) -> StoreMetadata:
     record = c._object(dict(rows[0]), {"singleton", "family", "store_id", "environment", "workspace"}, "store.metadata")
     if record["singleton"] != 1 or record["family"] != STORE_FAMILY:
         c._fail("FOREIGN_STORE", "store.metadata", "Store family or identity row is invalid.")
+    if version >= 2:
+        validate_journal_schema(connection, exact=version == 2)
     return {
         "family": STORE_FAMILY, "version": version,
         "store_id": c._identifier(record["store_id"], "store.store_id"),
@@ -165,7 +228,7 @@ def inspect_store(root: Path) -> StoreMetadata:
 
 
 def create_store(root: Path, *, workspace: Path, environment: str) -> StoreMetadata:
-    """Create only a new store header. No job, decision, projection or legacy import."""
+    """Create an empty versioned journal, with no job, authority or legacy import."""
     environment = c._enum(environment, ("LOCAL_DEVELOPMENT", "CORP", "ACRO"), "store.environment")
     try:
         root = _new_directory(root, workspace)
@@ -175,15 +238,19 @@ def create_store(root: Path, *, workspace: Path, environment: str) -> StoreMetad
         connection = sqlite3.connect(path.as_uri() + "?mode=rw", uri=True, timeout=0, isolation_level=None)
         connection.row_factory = sqlite3.Row
         try:
+            connection.execute("PRAGMA foreign_keys=ON")
+            connection.execute("PRAGMA synchronous=FULL")
             connection.execute("BEGIN IMMEDIATE")
             connection.execute(f"PRAGMA application_id={APPLICATION_ID}")
-            connection.execute(f"PRAGMA user_version={CURRENT_VERSION}")
             connection.execute(
                 "CREATE TABLE runtime_metadata(singleton INTEGER PRIMARY KEY CHECK(singleton=1), "
                 "family TEXT NOT NULL, store_id TEXT NOT NULL, environment TEXT NOT NULL, workspace TEXT NOT NULL)"
             )
             connection.execute("INSERT INTO runtime_metadata VALUES(1, ?, ?, ?, ?)",
                                (STORE_FAMILY, str(uuid.uuid4()), environment, str(_directory(workspace))))
+            if CURRENT_VERSION >= 2:
+                initialize_journal_schema(connection)
+            connection.execute(f"PRAGMA user_version={CURRENT_VERSION}")
             metadata = _metadata(connection)
             connection.execute("COMMIT")
         except BaseException:
@@ -258,6 +325,8 @@ def migrate_copy(source_root: Path, destination_root: Path) -> MigrationReceipt:
             connection = sqlite3.connect(prepared.as_uri() + "?mode=rw", uri=True, timeout=0, isolation_level=None)
             connection.row_factory = sqlite3.Row
             try:
+                connection.execute("PRAGMA foreign_keys=ON")
+                connection.execute("PRAGMA synchronous=FULL")
                 connection.execute("BEGIN IMMEDIATE")
                 connection.set_authorizer(_migration_sql)
                 for version in range(source_version, CURRENT_VERSION):

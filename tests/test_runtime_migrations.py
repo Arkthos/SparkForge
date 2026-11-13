@@ -40,15 +40,57 @@ class RuntimeMigrationTests(unittest.TestCase):
             v1.decide(self.legacy, state["spec_sha"], "accept", "synthetic-operator")
         return self.legacy / "job.sqlite3"
 
-    def test_new_store_is_a_separate_header_without_job_or_decision(self):
+    def test_new_store_is_a_separate_empty_v2_journal_without_job_or_decision(self):
         metadata = self.create()
         self.assertEqual(m.inspect_store(self.source), metadata)
-        self.assertEqual(metadata["version"], 1)
+        self.assertEqual(metadata["version"], 2)
         self.assertEqual(metadata["environment"], "LOCAL_DEVELOPMENT")
         self.assertFalse((self.source / "job.sqlite3").exists())
         with closing(sqlite3.connect(self.source / m.DATABASE_NAME)) as connection, connection:
             tables = [row[0] for row in connection.execute("SELECT name FROM sqlite_schema WHERE type='table'")]
-        self.assertEqual(tables, ["runtime_metadata"])
+            self.assertEqual(connection.execute("SELECT COUNT(*) FROM job").fetchone()[0], 0)
+        self.assertEqual(set(tables), {"runtime_metadata", *m.JOURNAL_TABLES})
+
+    def test_real_v1_header_copy_upgrade_uses_the_same_v2_initializer(self):
+        with patch.object(m, "CURRENT_VERSION", 1):
+            old_metadata = self.create()
+        original = (self.source / m.DATABASE_NAME).read_bytes()
+        destination = self.base / "version-two"
+        receipt = m.migrate_copy(self.source, destination)
+        self.assertEqual(receipt["source_version"], 1)
+        self.assertEqual(receipt["target_version"], 2)
+        self.assertEqual(m.inspect_store(destination), {**old_metadata, "version": 2})
+        with closing(sqlite3.connect(destination / m.DATABASE_NAME)) as connection, connection:
+            connection.row_factory = sqlite3.Row
+            m.validate_journal_schema(connection)
+            self.assertEqual(connection.execute("SELECT COUNT(*) FROM commands").fetchone()[0], 0)
+        self.assertEqual((self.source / m.DATABASE_NAME).read_bytes(), original)
+        self.assertEqual((destination / m.BACKUP_NAME).read_bytes(), original)
+
+    def test_stamped_v2_header_without_tables_is_rejected(self):
+        with patch.object(m, "CURRENT_VERSION", 1):
+            self.create()
+        with closing(sqlite3.connect(self.source / m.DATABASE_NAME)) as connection, connection:
+            connection.execute("PRAGMA user_version=2")
+        self.error("INVALID_STORE_SCHEMA", m.inspect_store, self.source)
+
+    def test_interrupted_real_v2_initialization_rolls_back_to_preserved_header(self):
+        with patch.object(m, "CURRENT_VERSION", 1):
+            self.create()
+        original = (self.source / m.DATABASE_NAME).read_bytes()
+        destination = self.base / "interrupted-v2"
+        def interrupted(connection):
+            connection.execute(m.JOURNAL_TABLES["records"])
+            self.assertEqual((destination / m.BACKUP_NAME).read_bytes(), original)
+            raise RuntimeError("Interrupted actual journal initialization")
+        with patch.dict(m.MIGRATIONS, {1: interrupted}):
+            with self.assertRaisesRegex(RuntimeError, "Interrupted actual"):
+                m.migrate_copy(self.source, destination)
+        self.assertEqual(m.inspect_store(destination)["version"], 1)
+        with closing(sqlite3.connect(destination / m.DATABASE_NAME)) as connection, connection:
+            self.assertIsNone(connection.execute("SELECT name FROM sqlite_schema WHERE name='records'").fetchone())
+        self.assertEqual((self.source / m.DATABASE_NAME).read_bytes(), original)
+        self.assertEqual((destination / m.BACKUP_NAME).read_bytes(), original)
 
     def test_legacy_references_preserve_bytes_and_do_not_import_approval(self):
         path = self.legacy_job(approve=True)
@@ -134,16 +176,16 @@ class RuntimeMigrationTests(unittest.TestCase):
         def migrate(connection):
             self.assertEqual((destination / m.BACKUP_NAME).read_bytes(), original)
             self.assertEqual((self.source / m.DATABASE_NAME).read_bytes(), original)
-            connection.execute("CREATE TABLE fixture_revision_two(value TEXT NOT NULL)")
-            connection.execute("INSERT INTO fixture_revision_two VALUES('synthetic')")
+            connection.execute("CREATE TABLE fixture_revision_three(value TEXT NOT NULL)")
+            connection.execute("INSERT INTO fixture_revision_three VALUES('synthetic')")
             calls.append("migration")
 
-        with patch.object(m, "CURRENT_VERSION", 2), patch.dict(m.MIGRATIONS, {1: migrate}):
+        with patch.object(m, "CURRENT_VERSION", 3), patch.dict(m.MIGRATIONS, {2: migrate}):
             receipt = m.migrate_copy(self.source, destination)
-            self.assertEqual(m.inspect_store(destination), {**metadata, "version": 2})
+            self.assertEqual(m.inspect_store(destination), {**metadata, "version": 3})
         self.assertEqual(calls, ["migration"])
-        self.assertEqual(receipt["source_version"], 1)
-        self.assertEqual(receipt["target_version"], 2)
+        self.assertEqual(receipt["source_version"], 2)
+        self.assertEqual(receipt["target_version"], 3)
         self.assertEqual((self.source / m.DATABASE_NAME).read_bytes(), original)
         self.assertEqual((destination / m.BACKUP_NAME).read_bytes(), original)
         self.error("UNSUPPORTED_STORE_VERSION", m.inspect_store, destination)
@@ -158,11 +200,11 @@ class RuntimeMigrationTests(unittest.TestCase):
             connection.execute("INSERT INTO partial_change VALUES('must roll back')")
             raise RuntimeError("Synthetic migration interruption")
 
-        with patch.object(m, "CURRENT_VERSION", 2), patch.dict(m.MIGRATIONS, {1: migrate}):
+        with patch.object(m, "CURRENT_VERSION", 3), patch.dict(m.MIGRATIONS, {2: migrate}):
             with self.assertRaisesRegex(RuntimeError, "Synthetic migration interruption"):
                 m.migrate_copy(self.source, destination)
         with closing(sqlite3.connect(destination / m.DATABASE_NAME)) as connection, connection:
-            self.assertEqual(connection.execute("PRAGMA user_version").fetchone()[0], 1)
+            self.assertEqual(connection.execute("PRAGMA user_version").fetchone()[0], 2)
             self.assertIsNone(connection.execute("SELECT name FROM sqlite_schema WHERE name='partial_change'").fetchone())
         self.assertEqual((self.source / m.DATABASE_NAME).read_bytes(), original)
         self.assertEqual((destination / m.BACKUP_NAME).read_bytes(), original)
@@ -181,7 +223,7 @@ class RuntimeMigrationTests(unittest.TestCase):
                 connection.execute("CREATE TABLE partial_change(value TEXT)")
                 connection.execute(statement)
 
-            with patch.object(m, "CURRENT_VERSION", 2), patch.dict(m.MIGRATIONS, {1: migrate}):
+            with patch.object(m, "CURRENT_VERSION", 3), patch.dict(m.MIGRATIONS, {2: migrate}):
                 self.error(code, m.migrate_copy, self.source, destination)
             with closing(sqlite3.connect(destination / m.DATABASE_NAME)) as connection, connection:
                 self.assertIsNone(connection.execute("SELECT name FROM sqlite_schema WHERE name='partial_change'").fetchone())
@@ -191,7 +233,7 @@ class RuntimeMigrationTests(unittest.TestCase):
     def test_missing_migration_and_unverified_copy_never_run_a_step(self):
         self.create()
         destination = self.base / "missing-step"
-        with patch.object(m, "CURRENT_VERSION", 2):
+        with patch.object(m, "CURRENT_VERSION", 3):
             self.error("MIGRATION_UNAVAILABLE", m.migrate_copy, self.source, destination)
         self.assertFalse(destination.exists())
         destination = self.base / "bad-copy"
@@ -238,11 +280,11 @@ class RuntimeMigrationTests(unittest.TestCase):
             except sqlite3.IntegrityError:
                 pass
 
-        with patch.object(m, "CURRENT_VERSION", 2), patch.dict(m.MIGRATIONS, {1: migrate}):
+        with patch.object(m, "CURRENT_VERSION", 3), patch.dict(m.MIGRATIONS, {2: migrate}):
             with self.assertRaises(c.ContractError):
                 m.migrate_copy(self.source, destination)
         with closing(sqlite3.connect(destination / m.DATABASE_NAME)) as connection, connection:
-            self.assertEqual(connection.execute("PRAGMA user_version").fetchone()[0], 1)
+            self.assertEqual(connection.execute("PRAGMA user_version").fetchone()[0], 2)
             self.assertIsNone(connection.execute("SELECT name FROM sqlite_schema WHERE name='partial_change'").fetchone())
         self.assertEqual((self.source / m.DATABASE_NAME).read_bytes(), original)
         self.assertEqual((destination / m.BACKUP_NAME).read_bytes(), original)

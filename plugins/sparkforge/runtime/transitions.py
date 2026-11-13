@@ -283,9 +283,11 @@ def _event(value: object) -> Event:
     }
 
 
-def apply_command(value: object, command: object, *, previous_event: Event | None = None) -> TransitionResult:
+def apply_command(value: object, command: object, *, previous_event: Event | None = None,
+                  unresolved_descendants: bool = False) -> TransitionResult:
     """Return a new projection/event or a no-op replay. Never write a journal or dispatch."""
     state, command = validate_projection(value), _command(command)
+    _boolean(unresolved_descendants, "unresolved_descendants")
     payload_sha = c.record_digest(command)
     if command["entity_id"] != state["id"]:
         c._fail("ENTITY_MISMATCH", "command.entity_id", "Command targets a different entity.")
@@ -315,7 +317,7 @@ def apply_command(value: object, command: object, *, previous_event: Event | Non
                 c._fail("STOP_REQUESTED", "command.target", "Late results cannot resurrect cancelled scope.")
         elif target not in TRANSITIONS[kind][status]:
             c._fail("INVALID_TRANSITION", "command.target", "The requested transition is not legal.")
-        if _unresolved(state) and not (kind == "attempt" and status == "accepted" and target == "running"):
+        if (_unresolved(state) or unresolved_descendants) and not (kind == "attempt" and status == "accepted" and target == "running"):
             c._fail("UNRESOLVED_OPERATIONS", "projection", "Resolve operations before advancing the workflow.")
         if target in ("blocked", "failed", "needs_decision", "diagnosing") and command["reason"] is None:
             c._fail("MISSING_CAUSE", "command.reason", "This transition must retain its cause.")
@@ -393,7 +395,9 @@ def apply_command(value: object, command: object, *, previous_event: Event | Non
         for operation in state["operations"]:
             if operation["status"] in OPEN_OPERATIONS:
                 operation["status"] = "cancel_requested"
-        state["status"] = ("cancel_requested" if kind == "attempt" else "cancelling") if _unresolved(state) else "cancelled"
+        state["status"] = ("cancel_requested" if kind == "attempt" else "cancelling") if (
+            _unresolved(state) or unresolved_descendants
+        ) else "cancelled"
     before_revision = state["revision"]
     if command["reason"] is not None:
         state["cause"] = command["reason"]

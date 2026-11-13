@@ -412,3 +412,24 @@ Corrections were committed and pushed on the existing PR branch as `b2f25eb43163
 | Runtime/test diff, prompt equality and WP-120 state inspection | PASS | No executable/test changes from correction commit; prompts agree; WP-120 remains not_started; no store module/test placeholder |
 
 The [prepared contract](design/DATA_AND_STATE.md#wp-120-prepared-storage-and-recovery-contract) explicitly distinguishes storage rollback from unknown external effects and reserves dispatch before host invocation. Recovery never infers unused work from missing receipts, rewrites historical failures, or resets allowance/observed-consumption history. The [new preparation cycle](engineering/cycles/ENG-20261113-wp120-preparation.json) keeps WP-120 `not_started`. Its later hosted run must be read separately rather than recursively creating CI-only commits.
+
+## 2026-11-13: WP-120 implemented atomic journal and recovery
+
+The implementation request resumed after a coordinator-reported DNS/model-request interruption. No code/test failure or implementation delta was observed from that interruption; clean local/upstream/PR head was reverified as `f61a33ddc928fcb2dbf43abc02f4a25979089670`. No model/provider/network/account switch occurred.
+
+| Actual check | Result | Boundary |
+|---|---|---|
+| First combined journal/migration/workflow/worker selector | FAIL: 70 tests, one failure in 4.206s | Process-crash recovery left a cold journal, blocking the next write |
+| First recovery correction | FAIL: 70 tests, one failure in 3.087s | No-op metadata update did not force SQLite to finalize its journal |
+| Targeted owned-process crash test after version-restamp correction | PASS: one case in 0.654s | SQLite finalizes the journal itself; no manual deletion or host effect |
+| Expanded affected suite before review | PASS: 73 tests in 4.016s | Added exact observation, immutable-record, writer and real-v2-copy controls |
+| First full suite | PASS: 526 collected, 524 passed, two skips in 103.078s | Before the two independent-review regression cases |
+| Required independent implementation review | Two high findings | Follow-up observation snapshots conflicted; exact-reference rebinding was ambiguous; parent cancellation ignored unresolved child-owned effects |
+| Two new review reproduction methods | FAIL: two failures in 0.246s | Exact observation payload conflict and parent cancellation reproduced |
+| `$env:PYTHONPATH = (Resolve-Path 'tests').Path; python -B -m unittest test_runtime_store test_runtime_migrations test_workflow_transitions test_agent_envelopes` | PASS: 75 tests in 3.978s | Final 18 journal/17 migration/22 workflow/18 worker cases |
+| `$env:PYTHONPATH = (Resolve-Path 'research_tools\.validation-deps').Path; python -B -m unittest discover -s tests` | PASS: 528 collected, 526 passed, two skips in 97.081s | Existing symlink-privilege skips; original v1 code/tests preserved |
+| `python -B scripts\validate_plan.py --base HEAD` and `git diff --check` | PASS | 15 changed paths; 96 Markdown files; 807 links; 50 tasks; 19 cycles; new hosted CI not yet inferred |
+
+Schema v2 and the real v1-header-to-v2 copy initializer share the same tested SQL/constraints. Transactions persist records, full command receipts, events, CAS projections and globally unique serial reservations together. Reconstruction compares every materialized table to deterministic history and never invokes the host. Tests inject failures after every table write and before commit, compare competing writers, detect corrupt rows/duplicate IDs, and abruptly exit owned child processes before commit and after commit/before reply.
+
+Review corrections allow revisioned snapshots from hosts that reuse an observation ID while each exact ID/digest remains bound to one immutable payload. Parent cancellation now derives unresolved descendant reservations and stays pending until reconciliation, without duplicating effect ownership. Lost responses, unknown consumption and actual overruns remain visible; no blind replay or assumed-zero use. These are local/synthetic observations, not power-loss, remote-storage or native-host qualification. See [WP-120 cycle](engineering/cycles/ENG-20261113-wp120-journal.json). Next: WP-121.
