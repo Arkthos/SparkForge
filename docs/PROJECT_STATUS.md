@@ -1,6 +1,6 @@
 # Project status
 
-**As of 2026-11-13.** Corrected P1 and WP-120 are implemented: the coordinated SQLite journal now persists and reconstructs source-neutral job/task/attempt state. The serial coordinator and full engineering loop are not yet implemented. Current shipped package behavior remains assisted v1.
+**As of 2026-11-13.** Corrected P1 plus WP-120/121 are implemented: a transactional coordinated journal and serial scripted-host coordinator now preserve task graph, dispatch and reconciliation state. This is not the full model-driven engineering loop. Current shipped package behavior remains assisted v1.
 
 ## Implemented foundation
 
@@ -14,6 +14,7 @@
 - Pure job/task/attempt projections, legal transitions, expected revisions, command/event bindings, no-op replay, current-evidence completion and explicit unknown-effect/cancellation recovery. No journal or scheduler is created by these functions.
 - Coordinated schema-v2 initializer and explicit v1-header copy migration, verified backups, immutable records/commands/events, revision-guarded projections and uniquely owned reservations. Read-only reconstruction detects divergence; explicit SQLite recovery preserves unknown host effects. Assisted-v1 stores remain separate and unchanged.
 - Source-neutral host capability/observation protocol and a scripted test fake with dispatch/cancel counters, lost-response reconciliation and explicit unknown usage. No native launcher or real worker/model execution is implemented.
+- Pinned serial DAG with mandatory coder/test-author/runner/reviewer/final-controller barriers, durable operation identities, restartable installation and structured result gates. Only scripted hosts and unchanged pinned candidates are supported at this stage; whole-job acceptance remains false until later gates exist.
 - Version-bound protected routing evaluator outside candidate ownership: revision 3 has 19 behavioral cases and 12 seeded defects/drift variants. Normal-read payload whitespace is checked with absent and false audit flags; intent remains unchanged at revision 1. This evaluates trusted finite synthetic code, not arbitrary workers in an enforced sandbox.
 
 These are reusable mechanisms. They do not yet supply agent task orchestration, an independent running intent controller, autonomous diagnosis/repair, job-wide model accounting, live connectors or installed environment qualification.
@@ -26,16 +27,16 @@ The fictional disconnected browser preview and its Node suite were retired. Curr
 
 ## Next development action
 
-**Continue with WP-121**, the serial dependency scheduler/coordinator, using the completed [journal API](design/DATA_AND_STATE.md#implemented-wp-120-api-and-boundaries) on [PR #1](https://github.com/Arkthos/SparkForge/pull/1). WP-120 is complete; the remaining P2 tasks are not. Source-neutral fake observations are sufficient. Unknown external effects remain unresolved until observation-backed reconciliation; journal replay never invokes a host.
+**Next: WP-122**, materiality classification and decision admission, using the completed [journal/coordinator APIs](design/DATA_AND_STATE.md#implemented-wp-121-serial-coordinator) on the existing PR branch. WP-120 and WP-121 are complete; the rest of P2 is not. Workspace integration, real result/effect mediation, aggregate accounting and final intent acceptance remain explicit later tasks.
 
 Do not interpret planning completion as runtime completion. Agent role documents are design contracts until actual adapter/package tasks ship them. The existing v1 exact-spec manual approval semantics remain unchanged; target materiality policy is future implementation.
 
 ## Evidence and limits
 
-Fresh WP-120 Windows/Python 3.12.10 validation: **528 collected, 526 passed, two existing symlink-privilege skips**. All **75 affected tests** pass, including 18 journal tests and 17 migration tests. Owned process exits exercise rollback before commit and persistent replay after a lost commit reply. Distinct review found observation-version and parent-cancellation defects; both were reproduced and fixed. Initial cold-journal recovery failures and corrections remain in [validation history](VALIDATION_HISTORY.md) and the [WP-120 cycle](engineering/cycles/ENG-20261113-wp120-journal.json).
+Fresh WP-121 Windows/Python 3.12.10 validation: **547 collected, 545 passed, two existing symlink-privilege skips**. All **73 affected tests** pass, including 19 scheduler/coordinator cases. Distinct review exposed a stale-snapshot cancellation race, blocked reconciliation without cancel support, and cross-kind command-key collisions; each reproduced before correction. Additional job-context guards stop stale graph execution and prevent invalidation while descendant effects remain unresolved. See [validation history](VALIDATION_HISTORY.md) and [WP-121 cycle](engineering/cycles/ENG-20261113-wp121-coordinator.json).
 
 [The P1 pull request](https://github.com/Arkthos/SparkForge/pull/1) is open and unmerged, published through the native PR tool. Original P1 implementation head `9e8c7793f9045ceda3929d3fe7c14ff20abf6caa` and tree `1946fddc75f0b863ae196a83019ddc675b6d10c1` had [passing hosted CI](https://github.com/Arkthos/SparkForge/actions/runs/43362930589): Windows 497/497; Linux 468 passed/29 skipped. Those are historical results, not the current correction count. Earlier EMU denials and a corrected unpublished-head/base validation error remain recorded; no agent changed credentials, destination or visibility.
 
-The [P1 publication](engineering/cycles/ENG-20261112-p1-publication.json), [correction](engineering/cycles/ENG-20261113-p1-review-corrections.json) and [preparation](engineering/cycles/ENG-20261113-wp120-preparation.json) cycles remain immutable. WP-120 began from verified clean local/upstream/PR head `f61a33ddc928fcb2dbf43abc02f4a25979089670`; its new hosted results await publication. A reported DNS/model-request interruption preceded this work and made no implementation delta. No route/credential changes, merge, Agent merge or deployment occurred.
+WP-120 was committed/published as `1999ac26351488fbf42ed626e0a191bdc09f44bb`; [its hosted run](https://github.com/Arkthos/SparkForge/actions/runs/43526649270) passed Windows 528/528 and Linux 499 passed/29 skipped, including planning/whitespace. WP-121's hosted results await its publication. Historical cycles remain immutable. The earlier reported DNS/model interruption produced no implementation delta or route changes. No merge, Agent merge, deployment or actual model/tenant operation occurred.
 
 Real corp and acro host/build capability, installed lifecycle, actual model-driven journeys, independent domain/control acceptance, production release, external platform submission and governed learning promotion remain NOT_ASSESSED. corp/acro credentials, source snapshots, journals and model routes stay isolated and outside Git. No private material or new license/organizational policy is inferred.

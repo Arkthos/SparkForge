@@ -191,6 +191,8 @@ Coordinated schema v2 and the tested v1-header copy upgrade are implemented with
 
 **Implementation:** Validate acyclic task dependencies and required role barriers; admit ready tasks; persist selected task and attempt identity; dispatch through host protocol; distinguish task success from job readiness; stop on cancellation or unresolved reservations.
 
+**Implemented boundary:** See [the serial coordinator API](design/DATA_AND_STATE.md#implemented-wp-121-serial-coordinator). A closed pinned schedule is persisted as an immutable record with capability/job-context bindings. Restartable registration and serial ticks use WP-120's operation ownership and command replay. This initial profile only accepts scripted hosts and unchanged pinned candidates; candidate integration, policy/accounting, dynamic replanning and actual host/whole-job acceptance remain explicit later tasks. Required code/test/runner/reviewer/final-controller barriers cannot be removed to finish early. Unsupported host cancellation still permits read-only outcome reconciliation.
+
 **Owned/proposed paths:** `plugins/sparkforge/runtime/coordinator.py`; `plugins/sparkforge/runtime/scheduler.py`; `tests/test_scheduler.py`. Inspect shared helpers first; coordinate shared-file changes explicitly.
 
 **Positive acceptance:** Repeated scheduler ticks produce one dispatch per admitted operation and never skip required dependency or review work.

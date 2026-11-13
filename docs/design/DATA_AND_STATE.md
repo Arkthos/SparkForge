@@ -198,6 +198,30 @@ Ordinary reads/writes refuse leftover journals and WAL. `recover(root, expected_
 
 The implementation uses bounded full-history replay rather than an unchecked cache. Store limit remains 32 MiB, individual JSON input 2 MiB, and P1 operation/list/revision limits remain enforced. Busy writers fail immediately; there is no internal infinite retry. A commit acknowledgement error is `COMMIT_UNCERTAIN`, requiring inspection/replay by the original key. Full coherent malicious rewriting of a same-privilege store is not authenticated by these hashes. No runtime database or real-source payload is committed.
 
+### Implemented WP-121 serial coordinator
+
+`scheduler.validate_schedule(value, intent=..., envelope=...)` defines the closed `sparkforge.schedule.v1` record and `ready_task` performs deterministic input-order selection. The graph binds one job, exact job context, intent/envelope/plan/candidate and full assignments. It requires unique task/attempt IDs, known acyclic dependencies, one workspace, disjoint writes outside every task's protected paths and all declared role/criterion barriers.
+
+This initial serial engineering profile requires coder, test author, deterministic runner, reviewer and final controller tasks. Test authors follow coders in distinct contexts; runners depend on all code/test production; reviewers on all runners; final controllers on all reviewers; delivery, when present, follows controllers. Runner/reviewer/controller assignments cover every baseline criterion. This is a conservative static profile, not the later initial-plan controller protocol, dynamic repair graph or actual model roles.
+
+`Coordinator(root, adapter)` supplies:
+
+| API | Implemented behavior |
+|---|---|
+| `install(schedule)` | Validate graph and current job context, require explicitly `scripted_fake` capabilities, persist pinned capability/schedule records, then register exact assignments idempotently. Interrupted registration resumes by the same keys; incomplete/extra/changed inventories block ticks. A changed graph requires the later explicit replanning protocol. |
+| `status()` | Pure journal read plus graph state; no host calls. Reports ready, awaiting result, blocked, uncertain/reconciliation required, unknown usage, retry-requires-plan, cancelling/cancelled or awaiting whole-job acceptance. `job_ready` is always false in this slice. |
+| `tick()` | Select from one consistent snapshot, enforce required completed dependencies, reserve an exact deterministic operation ID and commit dispatch before calling the adapter. Only the newly committed dispatch claimant may invoke; replayed reservations/dispatch never do. Existing operations are polled/reconciled, not redispatched. Races surface typed busy/revision/scope conflicts without guessing success. |
+| `submit_result(result, attempt)` | Requires stored observed completion and exact result digest, observation-backed attempt and P1-validated current result. Independent roles compare prior producer contexts from all graph ancestors. Blocking findings/failures or candidate changes block; they do not silently satisfy dependencies. Persist result/evidence before task completion; lost replies resume without duplicate evidence. |
+| `cancel(reason)` | Persist parent stop before effect requests. Required child operations settle only through observation; an acknowledgement is not stopped work. If host cancellation is unsupported, the limitation is explicit and polling/reconciliation still proceeds without pretending to cancel. No new work is admitted. |
+
+Generated command IDs include entity kind, ID and revision; job/task ID namespaces cannot collide. Parent invalidation is refused while descendant effects are unresolved. After a legitimate job-context change, the old pinned schedule is stale and cannot execute.
+
+Only unchanged pinned candidates are eligible for this first coordinator's task-completion path. Actual changed-path inspection/integration, re-binding dependent tasks and validated controller/evaluator bodies belong to WP-124/125/126 and P3/P4. An unassessed result artifact is not domain approval. The tests drive all five logical roles with explicit fake receipts and structured results, but no real implementation edits, worker/model calls or platform effects are performed.
+
+Unknown usage with envelope policy `stop` blocks subsequent admission; the journal retains other observed consumption and reserved allowances. This is not job-wide budget accounting (WP-123). Observed no-start retains its operation ID and returns retry-requires-plan, never silently allocates another attempt. The coordinator is intentionally stateless across calls: it reconstructs current truth from the journal, while the scripted fake represents the independently inspectable host side.
+
+WP-121's completion means deterministic serial dispatch/result/control plumbing under those limits. Even all required role tasks finishing yields `AWAITING_JOB_ACCEPTANCE`, not verified/delivered. Real-host adapters are explicitly refused until qualification/admission tasks implement their missing boundaries.
+
 ## Invalidation and replay
 
 | Change | Required effect |

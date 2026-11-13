@@ -12,6 +12,7 @@ from . import agent_contracts as a
 from . import contracts as c
 from . import host as h
 from . import migrations as m
+from . import scheduler as s
 from . import transitions as t
 
 
@@ -82,7 +83,7 @@ def record_value(kind: str, identifier: str, revision: int, value: object, *, co
 def _record(model: Model, raw: object, metadata: m.StoreMetadata) -> str:
     record = c._object(raw, {"kind", "id", "revision", "value", "context"}, "record")
     kind = c._enum(record["kind"], (
-        "intent", "envelope", "task", "attempt", "result", "finding", "failure", "capabilities", "observation", "artifact",
+        "intent", "envelope", "task", "attempt", "result", "finding", "failure", "capabilities", "observation", "artifact", "schedule",
     ), "record.kind")
     identifier = c._identifier(record["id"], "record.id")
     revision = c._integer(record["revision"], "record.revision")
@@ -131,6 +132,21 @@ def _record(model: Model, raw: object, metadata: m.StoreMetadata) -> str:
         value = h.validate_capabilities(value)
         if value["environment"] != metadata["environment"]:
             c._fail("ENVIRONMENT_MISMATCH", "record.capabilities", "Host belongs to another store environment.")
+    elif kind == "schedule":
+        context = c._object(context, {"capabilities_sha"}, "record.context")
+        value = s.validate_schedule(value, intent=_value(model, value["intent_sha"], "intent"),
+                                    envelope=_value(model, value["envelope_sha"], "envelope"))
+        if value["job_id"] != _job(model)["job_id"]:
+            c._fail("BINDING_MISMATCH", "schedule", "Graph belongs to another job.")
+        if value["job_context_sha"] != _decode(_entity(model, "job", value["job_id"])["body"])["context_sha"]:
+            c._fail("STALE_CONTEXT", "schedule", "Graph belongs to an earlier job context.")
+        capabilities = _value(model, context["capabilities_sha"], "capabilities")
+        if capabilities["evidence_class"] != "scripted_fake":
+            c._fail("HOST_NOT_QUALIFIED", "schedule", "This coordinator slice supports only explicitly scripted hosts.")
+        for task in value["tasks"]:
+            h.require_capabilities(capabilities, task, ("dispatch", "poll", "reconcile", "producer_context"))
+        if any(row["kind"] == kind and _value(model, sha) != value for sha, row in model["records"].items()):
+            c._fail("SCHEDULE_EXISTS", "schedule", "Replacing an installed graph requires a future explicit replan protocol.")
     elif kind == "observation":
         context = c._object(context, {"capabilities_sha"}, "record.context")
         task = _task(model, value["task_sha"])
@@ -153,7 +169,7 @@ def _record(model: Model, raw: object, metadata: m.StoreMetadata) -> str:
     actual_id = (value["binding"]["attempt_id"] if kind in ("task", "attempt") else
                  value["host"]["id"] if kind == "capabilities" else
                  value["observation"]["id"] if kind == "observation" else value["id"])
-    if (identifier != actual_id or (kind in ("intent", "envelope") and revision != value["revision"])
+    if (identifier != actual_id or (kind in ("intent", "envelope", "schedule") and revision != value["revision"])
             or (kind == "capabilities" and revision != value["host"]["revision"])):
         c._fail("BINDING_MISMATCH", "record", "Record identity/revision differs from its value.")
     body = c.canonical_json(record_value(kind, identifier, revision, value, context=context))

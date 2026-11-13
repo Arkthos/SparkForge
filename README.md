@@ -2,7 +2,7 @@
 
 SparkForge turns ideas, existing code and knowledge into software components that fit an existing SPARK platform. Its target is a coordinated multi-agent factory with a platform-aware brain, an independent intent controller, coding/testing/review/diagnosis roles, bounded correction loops, durable recovery and human decisions when scope or authority materially changes.
 
-**Current implementation:** an experimental assisted native Copilot agent/skill, verified local snapshot lookup, strict v1 specifications, SQLite job state, bounded real check execution and revision-bound review evidence. P1 coordinated contracts, pure workflow/replay guards, isolated-store coexistence, a scripted host protocol and protected behavioral fixtures are implemented in source alongside v1; the coordinated execution loop and native role packaging remain **planned**. Neither corp nor acro has been deployment-qualified here.
+**Current implementation:** an experimental assisted native Copilot agent/skill with verified snapshots, strict v1 specs, journal/check/review helpers. Alongside v1, corrected P1 plus WP-120/121 now provide coordinated contracts, a schema-v2 transactional journal, serial scripted-host scheduling and protected behavioral fixtures. The complete model-driven engineering loop, policy/accounting/candidate integration and native role packaging remain **planned**. Neither corp nor acro has been deployment-qualified here.
 
 ## Start development here
 
@@ -17,7 +17,7 @@ The [documentation index](docs/README.md) identifies the owner of each kind of f
 
 | Path | Purpose |
 |---|---|
-| `plugins/sparkforge/` | Existing assisted package and deterministic helpers; future coordinated runtime goes here without silently replacing v1 |
+| `plugins/sparkforge/` | Assisted package/helpers and the separate source-neutral coordinated runtime; no silent v1 replacement |
 | `tests/` | Executable synthetic unit, contract, integration and engineering-tool checks |
 | `scripts/` | Package builder, self-check, plan validation, host/storage probes and review preparation |
 | `docs/design/` | Target architecture, role/data contracts, decision policy and technical decisions |

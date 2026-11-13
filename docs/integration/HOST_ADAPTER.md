@@ -21,7 +21,9 @@ Receipts bind exact operation/task/input/role digests and context references, in
 
 The test-owned `tests/fakes/fake_host.py` executes only finite observation scripts, capped at 128 operations and 128 steps each. It exposes method-call, simulated-dispatch and cancellation counters; no worker code, file/process/network I/O, clock-based execution or real model is invoked. Poll/reconcile advances scripted observations. Reusing an operation key cannot create another simulated effect; lost responses require reconciliation. Acknowledged cancel can end in observed stopped or late completion. Unsupported observation capabilities are checked before the fake increments its effect counter.
 
-Protocol objects and a fake's declared scope support are not host authentication, an OS sandbox, durable restart state or accumulated budget enforcement. Actual ingress/admission, persistence and host qualification remain later tasks. TC-111/112 are implemented in `tests/test_host_adapter.py`.
+Protocol objects and a fake's declared scope support are not host authentication, an OS sandbox or accumulated budget enforcement. WP-120 now supplies durable local persistence and WP-121 connects the scripted protocol to serial scheduling; actual ingress/admission and live-host qualification remain later tasks. TC-111/112 are implemented in `tests/test_host_adapter.py`; TC-117/118 in `tests/test_scheduler.py`.
+
+The [WP-121 coordinator](../design/DATA_AND_STATE.md#implemented-wp-121-serial-coordinator) pins capability/context before effects, commits operation reservation/dispatch first, and preserves uncertain responses rather than retrying. It accepts only `scripted_fake` hosts at this stage. Unsupported cancellation is reported explicitly while polling/reconciliation stays available; it does not invent a cancel mechanism or assume work stopped. Structured results must match the completed host result digest; host completion alone cannot satisfy a task or job.
 
 ## Qualification procedure
 

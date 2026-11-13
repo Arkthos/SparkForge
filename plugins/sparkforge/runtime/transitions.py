@@ -385,7 +385,7 @@ def apply_command(value: object, command: object, *, previous_event: Event | Non
             inventory[item["slot"]] = item
         state["evidence"] = list(inventory.values())
     elif action == "invalidate":
-        if kind == "attempt" or _unresolved(state) or command["new_context_sha"] == state["context_sha"]:
+        if kind == "attempt" or _unresolved(state) or unresolved_descendants or command["new_context_sha"] == state["context_sha"]:
             c._fail("INVALID_INVALIDATION", "command", "Use a new context on a reconciled job/task; attempts are not recycled.")
         state["context_sha"] = command["new_context_sha"]
         state["status"] = "planning" if kind == "job" else "ready"

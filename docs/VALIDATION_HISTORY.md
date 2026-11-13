@@ -433,3 +433,24 @@ The implementation request resumed after a coordinator-reported DNS/model-reques
 Schema v2 and the real v1-header-to-v2 copy initializer share the same tested SQL/constraints. Transactions persist records, full command receipts, events, CAS projections and globally unique serial reservations together. Reconstruction compares every materialized table to deterministic history and never invokes the host. Tests inject failures after every table write and before commit, compare competing writers, detect corrupt rows/duplicate IDs, and abruptly exit owned child processes before commit and after commit/before reply.
 
 Review corrections allow revisioned snapshots from hosts that reuse an observation ID while each exact ID/digest remains bound to one immutable payload. Parent cancellation now derives unresolved descendant reservations and stays pending until reconciliation, without duplicating effect ownership. Lost responses, unknown consumption and actual overruns remain visible; no blind replay or assumed-zero use. These are local/synthetic observations, not power-loss, remote-storage or native-host qualification. See [WP-120 cycle](engineering/cycles/ENG-20261113-wp120-journal.json). Next: WP-121.
+
+## 2026-11-13: WP-121 serial scripted-host coordination
+
+WP-120 was committed/pushed as `1999ac26351488fbf42ed626e0a191bdc09f44bb`. [Hosted run43526649270](https://github.com/Arkthos/SparkForge/actions/runs/43526649270) passed Windows528/528 (27.002s), Linux499 passed/29 skipped (13.618s), planning and whitespace. WP-121 started only after that slice was locally validated, reviewed and committed.
+
+| Actual check | Result | Boundary |
+|---|---|---|
+| Initial combined scheduler/store/transition/host suite | PASS: 69 tests in22.914s | Before independent review controls |
+| Initial full suite | PASS: 543 collected, 541 passed, two skips in114.397s | No new v1 failures |
+| Required distinct coordinator review | Three findings | Stale-snapshot cancellation race; unsupported cancel blocked reconciliation; job/task command-key collision |
+| Three explicit review reproducers | FAIL: one assertion failure and two errors in2.985s | Missing cancel call, HOST_UNSUPPORTED and IDEMPOTENCY_CONFLICT reproduced |
+| Corrected affected and full suites | PASS: 72 affected20.880s; full546/544/two skips112.688s | All three review fixes included |
+| `$env:PYTHONPATH = (Resolve-Path 'tests').Path; python -B -m unittest test_scheduler test_runtime_store test_workflow_transitions test_host_adapter` | PASS: 73 tests in23.932s | Final19 scheduler,18 journal,22 workflow,14 host cases; includes pinned job-context/descendant invalidation guards |
+| `$env:PYTHONPATH = (Resolve-Path 'research_tools\.validation-deps').Path; python -B -m unittest discover -s tests` | PASS: 547 collected,545 passed,two skips in121.309s | Existing local symlink-privilege skips; original v1 code/tests preserved |
+| `python -B -m unittest discover -s tests -p 'test_validate_plan.py'` | PASS:44 tests14.697s | Final documentation/governance regression |
+| `python -B scripts\validate_plan.py --base HEAD` and `git diff --check` | PASS | 17 changed paths;96 Markdown files;808 links;50 tasks;20 cycles |
+| Active prompt equality and retained-byte diff inspection | PASS | Next WP-122 matches both prompts; v1/native tests, accepted router intent, research and archives unchanged |
+
+Tests drive a pinned five-role graph through serial fake dispatch, separate structured result submission, retry/restart/lost reply, interrupted installation, concurrent ticks, cancellation and graph completion without job readiness. The graph cannot drop role/criterion barriers, alter host/job/candidate context, overlap protected ownership or silently allocate a replacement attempt. Task results proposing changed candidates block for the later integration protocol; no actual code/model action is claimed.
+
+Corrections derive tick status and action from one snapshot; command identities include entity kind; unsupported cancel stays explicit but does not prevent polling/reconciliation. Unknown outcomes and unknown-usage `stop` remain blockers. Required independent review covered the actual implementation; reported issues were corrected and rerun, not replaced by a fabricated second verdict. See the [WP-121 cycle](engineering/cycles/ENG-20261113-wp121-coordinator.json). Next WP-122; the full engineering loop remains unimplemented.
