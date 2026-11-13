@@ -267,3 +267,21 @@ Implemented source-neutral `IntentBaseline`/`ExecutionEnvelope` TypedDict contra
 | Current-branch hosted CI, real model/host/domain acceptance | NOT_RUN / NOT_ASSESSED | No private input or native launcher required by this slice |
 
 The [WP-110 cycle](engineering/cycles/ENG-20261112-wp110-contracts.json) binds the base/branch, API choices and next task. Next: WP-111 task/attempt/result contracts; materiality admission, OS confinement and authenticated approval remain later work.
+
+## 2026-11-12: WP-111 worker assignments and result contracts
+
+WP-110 was committed as `d75c483b95dea28e09688df98bea23671f8f82b3`; 44 planning-validator tests and post-commit `--base HEAD~`/whitespace checks passed. WP-111 builds on that exact boundary. Worker-specific types/validators live in a cohesive `agent_contracts.py` sibling, reusing WP-110 helpers rather than growing the intent/envelope module or creating unused schemas. Result artifacts are opaque digest references; body schemas for actual plans/verdicts belong to their later tasks.
+
+| Actual check | Result | Boundary |
+|---|---|---|
+| Initial `python -B -m unittest discover -s tests -p 'test_agent_envelopes.py'` | PASS: all 14 in 0.109s | Every logical role; exact task/producer/scope/evidence matching; known/unknown distinction |
+| Initial full suite with README local `PYTHONPATH` | PASS: 440 collected, 438 passed, two skipped in 86.985s | Before the independent review regression |
+| Distinct implementation review | Found one medium issue | Host reference revision incorrectly formed part of the independence identity |
+| Added host-revision-only separation regression | FAIL: one failure in 15 cases, 0.104s | Same actual host/context was accepted after only configuration revision changed |
+| Corrected `python -B -m unittest discover -s tests -p 'test_agent_envelopes.py'` | PASS: 15/15 in 0.099s | Separation now compares stable host ID and context, not host configuration revision |
+| `python -B -m unittest discover -s tests -p 'test_runtime_contracts.py'` | PASS: 14/14 in 0.340s | WP-110 behavior preserved |
+| `$env:PYTHONPATH = (Resolve-Path 'research_tools\.validation-deps').Path; python -B -m unittest discover -s tests` | PASS: 441 collected, 439 passed, two skipped in 84.603s | Existing symlink-privilege skips; no v1 code/test changes |
+| `python -B scripts\validate_plan.py --base HEAD` and `git diff --check` | PASS | 11 changed paths; 96 Markdown files; 788 local links; 50 active tasks; 11 cycles |
+| Current-branch hosted CI and actual host/independent-role qualification | NOT_RUN / NOT_ASSESSED | Scripted producer fixtures are not real authentication or independent production |
+
+The independent finding was reproduced and corrected; a second independent review verdict is not claimed. All result fields remain claims until later admission checks actual host provenance, filesystem changes, evidence inventory, revocation and budgets. The [WP-111 cycle](engineering/cycles/ENG-20261112-wp111-worker-contracts.json) preserves this boundary. Next: WP-112 pure state transitions/idempotency.

@@ -69,7 +69,7 @@ Milestone exit: Validated baseline/envelope/task/result schemas, transitions, v1
 
 **Implementation:** Define TaskAssignment, AgentAttempt, AgentResult, Finding and Failure records; bind task/role/intent/plan/candidate/input digests; allowed paths/effects, acceptance IDs, deadline, allowance, evidence references and uncertainty; implement producer-role validation.
 
-**Owned/proposed paths:** `plugins/sparkforge/runtime/contracts.py`; `plugins/sparkforge/runtime/schemas/`; `tests/test_agent_envelopes.py`. Inspect shared helpers first; coordinate shared-file changes explicitly.
+**Owned/implemented paths:** `plugins/sparkforge/runtime/agent_contracts.py`; shared helpers in `runtime/contracts.py`; `tests/test_agent_envelopes.py`; shared synthetic `tests/runtime_fixtures.py`. WP-111 keeps worker records in a cohesive sibling module instead of enlarging the intent/envelope module; no unused schema copies. See the [record API](design/DATA_AND_STATE.md#wp-111-worker-contract-api).
 
 **Positive acceptance:** Every planned role can exchange a bounded result whose claims are distinct from host observations and accepted evidence.
 

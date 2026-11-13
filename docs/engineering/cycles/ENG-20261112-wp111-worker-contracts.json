@@ -1,0 +1,81 @@
+{
+  "schema_version": "sparkforge-engineering-cycle.v1",
+  "id": "ENG-20261112-wp111-worker-contracts",
+  "date": "2026-11-12",
+  "work_items": ["WP-111"],
+  "workstream": "Bounded logical-role exchanges",
+  "cycle_type": "implementation",
+  "status": "validated",
+  "objective": "Define typed assignments, attempts, results, findings and failures without trusting worker claims as authority or evidence.",
+  "base_commit": "d75c483b95dea28e09688df98bea23671f8f82b3",
+  "branch": "kerodri-microsoft-sparkforge-coordinated-contracts",
+  "changes": [
+    "Implemented TaskAssignment, AgentAttempt, AgentResult, Finding and Failure in a cohesive agent_contracts.py sibling using WP-110 helpers; documented the justified module adjustment.",
+    "Bound job/task/attempt/role, intent/envelope/plan/candidate/input identities and digests; validated envelope scope, finite allowances, protected paths and deadlines.",
+    "Separated worker usage/evidence claims from caller-supplied host observations; preserved unknown effects and cancellation uncertainty.",
+    "Validated role result kinds and producer/context separation, including configuration-revision-only reuse.",
+    "Updated living records, public API, detailed plan and next-task handoff; v1 helpers/tests remain unchanged."
+  ],
+  "validation": [
+    {
+      "check": "python -B -m unittest discover -s tests -p 'test_agent_envelopes.py'",
+      "scope": "TC-105/106 source-neutral logical roles",
+      "outcome": "PASS",
+      "reference": "Final 15/15 pass in 0.099s. Initial 14 passed; review-added host-revision bypass regression failed before correction."
+    },
+    {
+      "check": "python -B -m unittest discover -s tests -p 'test_runtime_contracts.py'",
+      "scope": "WP-110 regression",
+      "outcome": "PASS",
+      "reference": "14/14 pass in 0.340s."
+    },
+    {
+      "check": "$env:PYTHONPATH = (Resolve-Path 'research_tools\\.validation-deps').Path; python -B -m unittest discover -s tests",
+      "scope": "Complete Windows/Python 3.12.10 repository regression",
+      "outcome": "PASS",
+      "reference": "Final 441 collected; 439 passed; two existing symlink-privilege skips; 84.603s. Earlier pre-review full run: 440 collected/438 passed/two skips."
+    },
+    {
+      "check": "Independent implementation inspection and reproduction/correction of its finding",
+      "scope": "Actual distinct code-review context; no runtime/domain acceptance",
+      "outcome": "PASS",
+      "reference": "Reviewer found one medium host-revision separation bypass. Negative test reproduced it; stable host ID/context comparison corrected it. No second independent review verdict claimed."
+    },
+    {
+      "check": "python -B scripts\\validate_plan.py --base HEAD; git diff --check",
+      "scope": "Current lifecycle/link/archive and whitespace boundary",
+      "outcome": "PASS",
+      "reference": "11 changed paths; 96 Markdown files; 788 links; 50 active tasks; 11 cycles. Whitespace passed."
+    },
+    {
+      "check": "Current-branch hosted CI and actual native-host role qualification",
+      "scope": "Not established by these synthetic records",
+      "outcome": "NOT_ASSESSED",
+      "reference": "No actual dispatch, authentic host ingress, installed roles or live corp/acro/model run."
+    }
+  ],
+  "results": [
+    "Every planned logical role exchanges bounded current records; wrong-task/role/candidate/producer/evidence and scope expansion fail closed.",
+    "Configuration revision changes do not create a separate producer context.",
+    "Worker usage cannot overwrite observed usage; unresolved effects cannot become completed work or a safe retry."
+  ],
+  "limitations": [
+    "Host observations and prior-producer inventory still require genuine trusted ingress; hashes and labels do not authenticate them.",
+    "No graph admission, actual candidate file inspection, evaluator, job-wide accounting or revocation enforcement exists yet.",
+    "Two symlink privilege tests remain skipped; no private data, journals or transcripts were used.",
+    "Result artifact body schemas for actual plans/verdicts are implemented in their own later tasks."
+  ],
+  "rollback": "Revert this coherent worker-contract change if necessary; retain WP-110 and assisted-v1 records without adopting or rewriting stores.",
+  "next_steps": [
+    "Commit WP-111 and validate its boundary with --base HEAD~.",
+    "Implement WP-112 pure job/task/attempt transition guards, expected revisions, idempotency and current-evidence completion rules.",
+    "Keep WP-113 migrations, WP-114 fake host and WP-115 evaluator as separate dependency-ready bounded slices."
+  ],
+  "evidence": [
+    "tests/test_agent_envelopes.py",
+    "tests/runtime_fixtures.py",
+    "docs/design/DATA_AND_STATE.md",
+    "docs/VALIDATION_HISTORY.md"
+  ],
+  "public_safe": true
+}

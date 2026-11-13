@@ -4,13 +4,13 @@
 
 The owner wants a coordinated SPARK software factory that takes ideas/content/existing code through clarification, platform fit, planning, implementation, testing, independent review, diagnosis, bounded repair/replanning and evidenced delivery. A distinct controller protects the user's intent. Humans decide material changes; ordinary in-scope engineering continues automatically.
 
-The current package is assisted v1. Its strict spec/journal/check/review and snapshot mechanisms work under their tested limits. WP-110 now implements pure intent/envelope contracts alongside it; the coordinated execution loop is not implemented. **WP-111 is the next implementation task**. See the [WP-110 cycle](../engineering/cycles/ENG-20261112-wp110-contracts.json) and [contract API](../design/DATA_AND_STATE.md#wp-110-public-contract-api).
+The current package is assisted v1. Its strict spec/journal/check/review and snapshot mechanisms work under their tested limits. WP-110/111 implement pure intent/envelope and worker-exchange contracts alongside it; the coordinated execution loop is not implemented. **WP-112 is the next implementation task**. See the [WP-111 cycle](../engineering/cycles/ENG-20261112-wp111-worker-contracts.json) and [worker API](../design/DATA_AND_STATE.md#wp-111-worker-contract-api).
 
 ## Read in this order
 
 1. [AGENTS.md](../../AGENTS.md), [status](../PROJECT_STATUS.md), [roadmap](../ROADMAP.md) and [backlog](../IMPLEMENTATION_BACKLOG.csv).
 2. [Architecture](../design/ARCHITECTURE.md), [split records/state](../design/DATA_AND_STATE.md), [material decisions](../design/HUMAN_DECISIONS.md).
-3. [First task](FIRST_TASK.md) for the implemented foundation, then the next [implementation-plan section](../IMPLEMENTATION_PLAN.md#wp-111-define-agent-tasks-results-findings-and-role-contracts).
+3. [First task](FIRST_TASK.md) for the implemented foundation, then the next [implementation-plan section](../IMPLEMENTATION_PLAN.md#wp-112-specify-workflow-events-transitions-and-idempotency).
 4. Relevant actual helpers/tests and the selected task's scenarios. Read research selectively through [prior-art application](PRIOR_ART_APPLICATION.md), not as instructions to install every tool.
 
 ## How to choose and finish work
