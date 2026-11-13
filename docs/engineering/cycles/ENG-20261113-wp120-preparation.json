@@ -1,0 +1,79 @@
+{
+  "schema_version": "sparkforge-engineering-cycle.v1",
+  "id": "ENG-20261113-wp120-preparation",
+  "date": "2026-11-13",
+  "work_items": ["WP-120"],
+  "workstream": "Preparing deterministic storage from corrected P1",
+  "cycle_type": "governance",
+  "status": "validated",
+  "objective": "Define atomic journal/reservation persistence and safe recovery without claiming P2 implementation or redispatching unknown effects.",
+  "base_commit": "b2f25eb43163be5deefa3c9477a0150677f1bcbc",
+  "branch": "kerodri-microsoft-sparkforge-coordinated-contracts",
+  "pull_request": "https://github.com/Arkthos/SparkForge/pull/1",
+  "correction_ci": "https://github.com/Arkthos/SparkForge/actions/runs/43474250710",
+  "changes": [
+    "Defined a prepared one-job coordinated schema-v2 contract with immutable records/initial snapshots, projections, persistent commands/events and uniquely owned reservations.",
+    "Specified exact atomic write order, revision compare-and-swap, duplicate/conflicting key behavior and replay that preserves current cancelled/invalidated state.",
+    "Separated held allowance from observation-backed usage and SQLite transaction recovery from host-effect reconciliation.",
+    "Specified explicit versioned copy migration, bounded local DELETE-journal writers, unknown-schema refusal and owned-process failure/crash exit cases.",
+    "Updated detailed plan, continuation and living records; WP-120 remains not_started and no runtime module/schema was created."
+  ],
+  "validation": [
+    {
+      "check": "Correction commit push, remote/PR head read and post-commit --base HEAD~/whitespace",
+      "scope": "Published corrected P1 foundation",
+      "outcome": "PASS",
+      "reference": "Remote and open PR head b2f25eb43163be5deefa3c9477a0150677f1bcbc; post-commit planning and whitespace passed."
+    },
+    {
+      "check": "Hosted python -B scripts/check_repository.py --ci on run 43474250710",
+      "scope": "Exact corrected P1 candidate, not an implemented journal",
+      "outcome": "PASS",
+      "reference": "Windows 507 passed/zero skips29.637s; Linux478 passed/29 Windows-only skips12.460s; planning and whitespace exit0 on both."
+    },
+    {
+      "check": "Prepared contract traced to actual P1 code and WP-120 requirements",
+      "scope": "Design definition only",
+      "outcome": "PASS",
+      "reference": "Atomic event/projection/reservation, revisions, persistent idempotency, schema evolution and crash recovery all defined in DATA_AND_STATE and linked from the detailed plan."
+    },
+    {
+      "check": "python -B -m unittest discover -s tests -p 'test_validate_plan.py'; python -B scripts\\validate_plan.py --base HEAD; git diff --check",
+      "scope": "Preparation lifecycle/link/archive and whitespace",
+      "outcome": "PASS",
+      "reference": "44 documentation tests pass in 22.955s; eight changed documentation paths; 96 Markdown files; 804 links; 50 tasks; 18 cycles; whitespace pass. Runtime/test diff empty; prompts agree and WP-120 remains not_started."
+    },
+    {
+      "check": "WP-120 store implementation/concurrency/crash acceptance",
+      "scope": "Future source-neutral implementation",
+      "outcome": "NOT_RUN",
+      "reference": "No store.py, actual v2 migration or store tests implemented in this preparation."
+    }
+  ],
+  "results": [
+    "Corrections are published and hosted-validated before P2 preparation.",
+    "The next implementation has a concrete storage model, transaction order, idempotency/revision rules, migration boundary and crash matrix.",
+    "Unknown external effects remain unresolved; missing responses/cancel acknowledgements never authorize blind redispatch.",
+    "WP-120 state remains not_started rather than equating a design with implemented persistence."
+  ],
+  "limitations": [
+    "No coordinated journal, scheduler, real host, model call or factory job has been run.",
+    "The planned local SQLite mode and process-crash tests do not establish power-loss, remote-storage or OS-sandbox qualification.",
+    "Schema version 2 is a prepared implementation target; current executable migrations still ship only version 1.",
+    "This cycle records the correction-head CI, not a future run of this documentation-only preparation commit."
+  ],
+  "rollback": "Revise the preparation through a new documented change; preserve corrected P1 commits, source records and the existing PR. Do not execute migrations or activate copies from design text.",
+  "next_steps": [
+    "Publish this documentation-only preparation on the same PR and inspect exact final-head CI without recursive CI-only commits.",
+    "Report both correction and preparation commit identities, actual checks and unchanged v1/intent scope.",
+    "On the next implementation request, follow the prepared WP-120 exit tests, keeping unknown effects reserved and P1 regressions mandatory."
+  ],
+  "evidence": [
+    "docs/design/DATA_AND_STATE.md",
+    "docs/IMPLEMENTATION_PLAN.md",
+    "docs/development/COPILOT_HANDOFF.md",
+    "docs/VALIDATION_HISTORY.md",
+    "https://github.com/Arkthos/SparkForge/actions/runs/43474250710"
+  ],
+  "public_safe": true
+}

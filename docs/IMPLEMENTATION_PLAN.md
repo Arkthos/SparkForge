@@ -168,7 +168,11 @@ Milestone exit: Transactional store, serial graph scheduler, materiality admissi
 
 **Implementation:** Use SQLite with explicit schema/version and optimistic revision guards; atomically commit event plus projection; reserve dispatch before calling a host; retain prior plans and failures; offer read-only status reconstruction.
 
-**Owned/proposed paths:** `plugins/sparkforge/runtime/store.py`; `tests/test_runtime_store.py`. Inspect shared helpers first; coordinate shared-file changes explicitly.
+**Prepared execution contract (2026-11-13; not implemented):** Follow the [atomic storage and recovery definition](design/DATA_AND_STATE.md#wp-120-prepared-storage-and-recovery-contract), starting from corrected P1 commit `b2f25eb43163be5deefa3c9477a0150677f1bcbc` or a verified descendant on PR #1. Define one job per coordinated store; immutable records and initial snapshots; persistent command receipts/events; revision-guarded projections; and uniquely owned reservations. A command and all its record/event/projection/reservation writes commit together. Look up durable idempotency before stale-revision rejection; replay cannot restore old state or repeat an effect.
+
+Implement coordinated schema v2 with an explicit tested v1-header copy migration, not an in-place assisted-store conversion. Keep read-only status distinct from explicit SQLite rollback recovery. Pending dispatch, lost response and cancel acknowledgement remain unresolved until observation-backed reconciliation by the original operation key; no blind redispatch or assumed-zero consumption. Preserve P1's confirmed-execution, allowance/usage and protected-oracle corrections. The linked contract defines concrete failure-injection, concurrent-writer, process-crash and migration exit tests; preparation does not mark this work package in progress or done.
+
+**Owned/proposed paths:** `plugins/sparkforge/runtime/store.py`; the directly dependent schema/version implementation in `runtime/migrations.py`; `tests/test_runtime_store.py`; affected migration/transition tests and living records. Do not create empty modules during preparation. Inspect shared helpers first; coordinate shared-file changes explicitly.
 
 **Positive acceptance:** Restart reconstructs the same state and pending reservations; rejected updates do not partially persist.
 

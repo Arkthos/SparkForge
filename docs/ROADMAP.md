@@ -8,7 +8,7 @@
 |---|---|---|---|---|
 | P0: Organized baseline | Organized baseline | WP-100 | Current architecture, traceability, cleanup, Copilot entry point and regression evidence. | Complete for planning/cleanup scope; coordinated product remains unimplemented. |
 | P1: Executable contracts and evaluator | Executable contracts and evaluator | WP-110..WP-115 | Validated baseline/envelope/task/result schemas, transitions, v1 migration policy, fake host and protected behavioral fixtures. | Complete for source-neutral foundation scope; no coordinated loop/live acceptance implied. |
-| P2: Deterministic coordination | Deterministic coordination | WP-120..WP-126 | Transactional store, serial graph scheduler, materiality admission, job budgets, workspace ownership, check bridge and result admission. | Not started. |
+| P2: Deterministic coordination | Deterministic coordination | WP-120..WP-126 | Transactional store, serial graph scheduler, materiality admission, job budgets, workspace ownership, check bridge and result admission. | WP-120 storage/recovery contract prepared; implementation not started. |
 | P3: Platform brain and intent control | Platform brain and intent control | WP-130..WP-135 | Profile/context/intake/reuse pipeline, brain task planner and independent drift checkpoints. | Not started; synthetic context can proceed without private sources. |
 | P4: Complete multi-agent engineering loop | Complete multi-agent engineering loop | WP-140..WP-147 | Coder, independent test author, runner, reviewer, diagnosis, bounded repair/replanning and first full synthetic journey. | Not started; target of the first usable coordinated prototype. |
 | P5: Recovery feedback and usability | Recovery feedback and usability | WP-150..WP-155 | Restart/cancel/revocation, feedback, readable status, combined faults and material-approval usability. | Not started. |
@@ -44,7 +44,7 @@ The diagram groups milestones; the CSV graph defines exact work-package dependen
 
 1. WP-110 is implemented as specified in [FIRST_TASK](development/FIRST_TASK.md); v1 behavior is preserved.
 2. WP-111..115 include the review corrections for confirmed execution, observed usage and protected normal-read whitespace. Preserve the existing P1 PR branch.
-3. Prepare the WP-120 atomic-storage/recovery contract from corrected P1, then implement the transactional journal as the next authorized slice. In parallel only when deliberately delegated with disjoint ownership, develop P3 profiles/context/intake after their contracts exist.
+3. Implement WP-120 from the [prepared atomic-storage/recovery contract](design/DATA_AND_STATE.md#wp-120-prepared-storage-and-recovery-contract) on corrected P1. Preparation is complete; journal implementation is not. In parallel only when deliberately delegated with disjoint ownership, develop P3 profiles/context/intake after their contracts exist.
 4. Complete brain/controller and P4 roles. Demonstrate [FIRST_FACTORY_SLICE](specs/FIRST_FACTORY_SLICE.md) before adding a new UI or optional learning.
 5. Harden recovery and select a real host adapter. Qualify installed, model-driven journeys in one target.
 6. Complete P7 local release evidence. Adapt acro independently; do not export corp runtime knowledge to make it work.
@@ -81,4 +81,6 @@ WP-110..115 are committed through `9e8c7793f9045ceda3929d3fe7c14ff20abf6caa` on 
 
 Review corrections start from the verified closure head `bdd1de57a7a0f068857eac0ac1d5e5f6b9934328`, not older main. All three user findings reproduced; the corrected 53 affected cases and full 507-case suite pass (505 local passes, two existing symlink-privilege skips). Independent review found and helped correct a replacement-job recovery regression. The oracle is revision 3 with 19 cases/12 mutants; accepted intent remains revision 1. Both active continuation prompts now preserve the existing PR and identify WP-120. See the [correction cycle](engineering/cycles/ENG-20261113-p1-review-corrections.json).
 
-Earlier hosted results in the [publication cycle](engineering/cycles/ENG-20261112-p1-publication.json) remain evidence only for their exact old heads. Hosted checks for these corrections await publication; no merge or P2 implementation is implied.
+Correction commit `b2f25eb43163be5deefa3c9477a0150677f1bcbc` is published on the existing PR. [Hosted correction CI](https://github.com/Arkthos/SparkForge/actions/runs/43474250710) passed Windows 507/507 and Linux 478 passed/29 Windows-only skips; planning/whitespace passed on both. Earlier publication cycles remain immutable.
+
+WP-120 preparation now defines one-job local schema v2, explicit copy migration, immutable records, atomic command/event/projection/reservation updates, persistent replay, bounded writers and non-effectful restart reconstruction. Its crash matrix forbids blind redispatch or assumed-zero usage. See [preparation cycle](engineering/cycles/ENG-20261113-wp120-preparation.json); no store module, schema-v2 code or P2 acceptance exists yet.

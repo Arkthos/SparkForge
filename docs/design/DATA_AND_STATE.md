@@ -112,6 +112,78 @@ The pure WP-112 table now supplies the executable state guards. Later policy/dis
 - Append historical attempts, plans, findings and decisions. A changed projection does not rewrite earlier evidence. A local SQLite journal remains same-privilege mutable; do not claim tamper-proof audit.
 - Store role/session/producer receipts as observations. Authentication and per-role privilege enforcement depend on actual host capabilities.
 
+## WP-120 prepared storage and recovery contract
+
+**Prepared, not implemented.** This is the next bounded slice after corrected P1 commit `b2f25eb43163be5deefa3c9477a0150677f1bcbc`. `runtime/store.py` and its tests do not exist yet. This preparation defines their required behavior; it does not supply a scheduler, host invocation, approval ingress, budget policy or successful crash-recovery evidence.
+
+### Store scope and schema evolution
+
+Start with one job per environment-local coordinated store and the existing owned-directory/plain-file boundaries. Do not adopt assisted `job.sqlite3` or infer approval from a stored intent/envelope. Preserve the SQLite application ID/family and store/environment/workspace identity. Keep the existing 32-MiB inspection/copy limit and two-MiB canonical-record limit; exceeding them must fail explicitly, not truncate or prune history.
+
+Implement a real coordinated schema version 2 for the journal, distinct from assisted-v1 and from the unchanged P1 JSON record versions. New v2 stores and the explicit v1-header-to-v2 migration must share one tested table initializer. Upgrade only through `migrations.migrate_copy`: verify the backup before writes, create/validate tables in the still-active transaction, stamp version 2 last, and never activate or overwrite the original automatically. Unknown versions, missing migration steps, identity changes and interrupted upgrades fail closed. Do not stamp a v1 header as v2 without all tables/constraints. The current temporary v2 test injection is not the implementation of this upgrade.
+
+Use local SQLite DELETE-journal mode, `foreign_keys=ON`, `synchronous=FULL` and explicit transactions. Initially use the existing fail-fast writer policy (`timeout=0`); return a typed busy result instead of unbounded waits/retry loops. WAL and remote storage remain unsupported unless separately implemented/qualified. Migration/snapshot inspection remains offline/read-only; runtime crash recovery needs its own explicit owned-store opener rather than weakening the existing legacy inspector's sidecar refusal.
+
+### Required persistent records
+
+The table names below are proposed implementation names. Keys, ownership and atomicity are required invariants, not a second unchecked schema copy.
+
+| Table | Required identity/content and invariant |
+|---|---|
+| `runtime_metadata` and `job` | Existing store identity plus exactly one job ID and immutable initial intent/envelope bindings. Job creation starts at intake; it is not acceptance or execution permission. Enforce environment/workspace consistency. |
+| `records` | Immutable canonical body/digest, schema, kind, stable ID and revision. Unique kind/ID/revision and content binding; same identity with different bytes is a conflict. Persist intent/envelope, assignments, attempts/results/findings, observations and required evidence references without rewriting old revisions. Until full plan/evidence schemas exist, store their explicitly typed digest references as unassessed artifacts, not arbitrary blobs admitted as plans or success evidence. |
+| `entities` | Key `(kind, entity_id)` for job/task/attempt, parent/job association, immutable initial projection reference, current revision/body/digest and latest event reference. Projected columns must match the validated body. Initialization is revision 1; transitions cannot silently create missing entities. |
+| `commands` | Store/job-scoped unique command key, operation type, exact normalized request digest, target identity, committed result/digest and optional transition event ID. The digest includes the complete command and associated record/reservation bindings. Retain bootstrap/register command receipts too; duplicate initialization cannot create another job/entity. |
+| `events` | Unique deterministic event ID, unique entity/after-revision and command reference, prior projection digest/revision, complete validated P1 event body/digest. Append-only. Events start after the immutable revision-1 initialization snapshot; do not fabricate a P1 revision-0 transition. |
+| `reservations` | Store/job-scoped unique operation key, one authoritative owning entity/attempt, exact assignment/context/effect-scope bindings, reserved allowance reference, current state, historical dispatch-attempt flag and latest event/observation references. A key cannot move to another owner or payload. Parent projections reference the reservation rather than duplicating an external invocation. Consumption stays in observation records, never copied from the allowance hold. |
+
+Use foreign keys/uniqueness constraints plus P1 validation; SQL indexes are not substitutes for canonical digest/binding checks. Source and producer claims stay labeled, including `scripted_fake` and unknown usage. Persist observation IDs/digests once per operation; conflicting observations with the same identity fail, while later observations append history. WP-123 will define accounting: WP-120 must retain unknown consumption and actual overruns without summing guesses, resetting totals or interpreting allowance as use.
+
+For transition requests, the store's full request digest additionally binds associated record/reservation input; the P1 event's `command_sha` still hashes its exact inner `Command`. Persist and validate both identities rather than replacing one with the other. Bootstrap/register requests have durable command receipts and immutable initial records, not invented transition events.
+
+### Atomic command application and persistent idempotency
+
+The planned public surface is a minimal initialize/register operation, a bounded command-application operation, read-only status/history, and an explicit recovery operation. Exact function names may follow the implementation's cohesion; no caller supplies arbitrary SQL.
+
+1. Validate bounded input and canonical request digest before effects. Open only the selected recognized v2 store; no host, process or external tool call occurs inside these APIs.
+2. `BEGIN IMMEDIATE`; look up the durable command key **before** rejecting a stale expected revision. Same key/same full payload returns the previously committed event/result with replay indicated and the current projection, without writes or revision increments. It must not restore an older projection over later cancellation/invalidation. Same key/different payload or entity is an explicit conflict.
+3. For a new key, load and verify the current entity projection, initial/history bindings and expected revision. Validate context, immutable input references and reservation ownership. Reuse corrected `transitions.apply_command` rather than implementing a second state machine.
+4. In the **same transaction**, append referenced immutable records/observations, insert command receipt and event, update the projection with `WHERE revision = expected_revision`, and insert/update its reservation. Require exactly one projection row updated. Unique event/key/operation conflicts or any rejected record roll back the entire set. No `INSERT OR REPLACE` or partial-success fallback.
+5. Commit before acknowledging success. A failure at any earlier write must leave either the complete old state or the complete new committed state, never a partial event/projection/reservation. If commit acknowledgement is lost or uncertain, return an explicit unresolved persistence result and inspect the same durable key on reopen; do not assume rollback or generate another key.
+
+The current one-entity transition contract is the minimum WP-120 boundary. A caller must not split one effect reservation and its owning event/projection across transactions. If a later coordinator needs atomic parent/child advancement, add a bounded batch with all expected revisions validated and committed together, rather than inventing that multi-entity scheduler inside WP-120.
+
+### Dispatch boundary and recovery rules
+
+The journal never launches the host. A dispatcher must commit the reservation and its dispatch-attempt transition before calling the adapter. That marker records intent/attempt to dispatch, not proof execution occurred. On restart, **every** nonterminal reservation is inspected by its original operation key; a timestamp, missing response, cancel acknowledgement or absent usage is not proof nothing happened.
+
+| Crash/observation boundary | Required reconstruction and next action |
+|---|---|
+| Before a local transaction commits | SQLite rolls back the incomplete transaction; no partial command/event/projection/reservation is admitted. Retry of that local storage command uses the same key. No host call was authorized by an uncommitted reservation. |
+| After reservation/dispatch commit, before or during a host call, or before its response is saved | Preserve reserved/dispatched/unknown state and allowance. The caller cannot distinguish these crash positions reliably from missing local completion; reconcile the same key. Do not redispatch it or allocate a new key to evade uncertainty. |
+| After a completion transaction commits but its reply is lost | Read the committed command receipt; return replay without duplicate events, consumption or host invocation. |
+| Reconciliation reports unknown or only cancel acknowledgement | Leave effects unresolved and stop new conflicting work. Persist any genuinely observed consumption with its reference; unknown usage remains null, not zero. |
+| Reconciliation proves `not_started` | Append the observation, close that reservation as unused, preserve historical dispatch/command records and do not claim successful execution. Unstopped work may later receive a new identity within policy/allowance; stopped work remains stopped. |
+| Reconciliation confirms completed/failed/stopped | Persist the exact observation and event atomically. Apply corrected P1 transitions; completion still requires the latest reserved operation to have completed plus all current required evidence. Known failure cannot become a pass, and late completion cannot reopen revoked/cancelled scope. |
+| Corrupt/missing record, digest mismatch, divergent projection/event lineage or unknown schema | Return explicit invalid/unavailable state; do not skip events, invent empty success, rewrite history or dispatch. Preserve the store for diagnosis. |
+
+Read-only status must reconstruct the same projection, latest observations and unresolved reservation inventory after process restart. Verify initial snapshot plus contiguous event revisions, before/after hashes, command/payload identity and matching reservation projection. Replaying a journal is computation only: never invoke an adapter while replaying events. Projection rebuild is not silent corruption repair; any repair must first verify complete history and preserve the original.
+
+SQLite transaction recovery and external-effect reconciliation are separate. A read-only inspector that encounters a hot rollback journal reports recovery required. An explicit recovery opener may allow SQLite's own rollback recovery only for the already-owned, recognized coordinated v2 store under its locking policy; it must not delete journals manually, recover an assisted store, accept unknown schemas or convert pending host operations to unused. Test this with owned child processes; process-crash tests do not establish power-loss, remote-filesystem or hardware durability.
+
+### Required WP-120 exit cases
+
+Implement these under TC-115/116 before marking WP-120 done:
+
+- Round-trip all supported record families/references and reconstruct projections, earlier revisions, failures, known/unknown consumption and pending reservations after reopening.
+- Two writers with the same expected revision: one complete commit wins, the other gets conflict/busy with no partial writes. Same key/payload yields one event/effect reservation across processes/restarts; different payload/owner conflicts.
+- Inject failure after each record/event/projection/reservation write and around commit. Compare all tables and revisions before/after; reject duplicate event IDs and inconsistent foreign/digest bindings without silent overwrite.
+- Kill owned child processes before commit and after commit/before acknowledgement; verify SQLite recovery plus persistent idempotency. Simulate loss after a fake host's effect with counters: restart must reconcile, not increment dispatch again.
+- Retain cancellation, unknown effects and reserved allowance through recovery; do not convert reserved usage to known consumption. Proven no-start cannot complete from historical dispatch or earlier receipts; observed replacement completion can progress without redispatch.
+- Exercise real v1-header-to-v2 copy migration, verified backup, interrupted/automatic rollback, unknown future versions and preserved assisted-v1 bytes/approval semantics.
+
+The protected oracle and all corrected P1 negative cases remain mandatory regressions. Run the new targeted store suite, affected migration/transition/worker suites, the full repository suite, planning/whitespace and required independent inspection. No WP-120 runtime result exists at preparation time.
+
 ## Invalidation and replay
 
 | Change | Required effect |

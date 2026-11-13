@@ -395,3 +395,20 @@ Before any edit, local HEAD, remote feature ref and open PR #1 head were verifie
 Completion now needs the latest reservation to have confirmed completion; historical dispatch flags/earlier successes are retained but are not enough. Proven no-start returns an unstopped job/task to ready or an attempt to failed, and does not reopen cancellation. A replacement's observed completion resumes job checking without redispatch. Unknown outcomes remain unresolved. Reserved attempts have unknown/null consumption even when allowance is positive; known usage requires a host observation, while observed overruns remain intact.
 
 Protected oracle revision 3 adds two padded normal-read cases (absent and false audit flag), including spaces/tab/newline, and a twelfth trimming mutant. All 12 mutants are detected. No accepted behavior, expected existing result or original v1 manual decision was weakened. Both active continuation prompts were corrected. The [new cycle](engineering/cycles/ENG-20261113-p1-review-corrections.json) retains the exact failure/correction sequence; WP-120 is next for preparation, not implemented by this patch.
+
+## 2026-11-13: corrected P1 publication and WP-120 preparation
+
+Corrections were committed and pushed on the existing PR branch as `b2f25eb43163be5deefa3c9477a0150677f1bcbc`; remote and PR heads matched. Post-commit `python -B scripts\validate_plan.py --base HEAD~` and `git diff --check HEAD~` passed. PR #1 remained open/unmerged.
+
+| Actual check | Result | Scope |
+|---|---|---|
+| `gh run watch 43474250710 --repo Arkthos/SparkForge --exit-status --interval 20` plus exact run logs | PASS | Correction-head workflow completed successfully |
+| Hosted `python -B scripts/check_repository.py --ci`, Windows/Python 3.12 | PASS: 507/507, zero skips, 29.637s | Planning and whitespace exit 0 |
+| Hosted same command, Ubuntu/Python 3.12 | PASS: 507 collected, 478 passed, 29 Windows-only skips, 12.460s | Planning and whitespace exit 0 |
+| WP-120 design trace against actual contracts/transitions/migrations and detailed plan | Prepared, not implemented | Defined immutable records/init snapshots, atomic commands/events/projections/reservations, revisions, persistent replay, explicit coordinated schema-v2 copy evolution and crash matrix |
+| WP-120 store/concurrency/crash tests | NOT_RUN | `store.py`, schema-v2 implementation and its tests do not exist; no acceptance claim |
+| `python -B -m unittest discover -s tests -p 'test_validate_plan.py'` | PASS: 44 tests in 22.955s | Existing documentation/governance tests |
+| `python -B scripts\validate_plan.py --base HEAD` and `git diff --check` | PASS | Eight documentation paths; 96 Markdown files; 804 links; 50 tasks; 18 cycles |
+| Runtime/test diff, prompt equality and WP-120 state inspection | PASS | No executable/test changes from correction commit; prompts agree; WP-120 remains not_started; no store module/test placeholder |
+
+The [prepared contract](design/DATA_AND_STATE.md#wp-120-prepared-storage-and-recovery-contract) explicitly distinguishes storage rollback from unknown external effects and reserves dispatch before host invocation. Recovery never infers unused work from missing receipts, rewrites historical failures, or resets allowance/observed-consumption history. The [new preparation cycle](engineering/cycles/ENG-20261113-wp120-preparation.json) keeps WP-120 `not_started`. Its later hosted run must be read separately rather than recursively creating CI-only commits.
