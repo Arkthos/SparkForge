@@ -1,0 +1,69 @@
+{
+  "schema_version": "sparkforge-engineering-cycle.v1",
+  "id": "ENG-20261113-transactional-admission-fixes",
+  "date": "2026-11-13",
+  "work_items": ["WP-120", "WP-121"],
+  "workstream": "Transactional terminal-parent and cancellation admission",
+  "cycle_type": "implementation",
+  "status": "validated",
+  "objective": "Block new work/successful credit after terminal parent scope or concurrent cancellation while preserving historical outcomes and reconciliation.",
+  "base_commit": "08b45dd18fc7957a6adfe0db76911d3658a7618c",
+  "branch": "kerodri-microsoft-sparkforge-coordinated-contracts",
+  "changes": [
+    "Reproduced both reported defects with deterministic failure/cancellation commits at reservation, evidence and completion boundaries.",
+    "Added transactional ancestor/job eligibility guards for new work and certifying evidence/completion, independent of coordinator preflight.",
+    "Kept observation/history recording, non-passing evidence and reconciliation available after cancellation.",
+    "Versioned journal command semantics so legacy unsafe history remains readable/recoverable/reconcilable without admitting new v1 work.",
+    "Reported terminal jobs without dispatch while retaining historical dispatch and execution outcomes."
+  ],
+  "validation": [
+    {
+      "check": "Three focused test_scheduler reproducer methods",
+      "scope": "Pre-fix admission defects",
+      "outcome": "PASS",
+      "reference": "Reproduction succeeded as four failing checks/subcases2.516s, not product passes; exact methods and outcomes retained in tests/validation history."
+    },
+    {
+      "check": "$env:PYTHONPATH = (Resolve-Path 'tests').Path; python -B -m unittest test_scheduler test_runtime_store test_workflow_transitions",
+      "scope": "Final affected admission/recovery behavior",
+      "outcome": "PASS",
+      "reference": "64 tests26.637s. Earlier selector had one unexpected competing-writer outcome; diagnostic assertion added,25 bounded repetitions passed2.065s without weakening the oracle."
+    },
+    {
+      "check": "$env:PYTHONPATH = (Resolve-Path 'research_tools\\.validation-deps').Path; python -B -m unittest discover -s tests",
+      "scope": "Complete Windows/Python3.12.10 regression",
+      "outcome": "PASS",
+      "reference": "552 collected550 passed,two existing symlink-privilege skips122.393s."
+    },
+    {
+      "check": "Independent correction review and legacy-history reproduction",
+      "scope": "Bounded control-plane review",
+      "outcome": "PASS",
+      "reference": "One high history-compatibility finding reproduced as CORRUPT_STORE0.210s, then corrected with versioned replay/new-admission semantics. No second independent verdict claimed."
+    },
+    {
+      "check": "python -B scripts\\validate_plan.py --base HEAD; git diff --check",
+      "scope": "Lifecycle/link/archive/whitespace",
+      "outcome": "PASS",
+      "reference": "12 changed paths;96 Markdown files;810 links;50 tasks;21 cycles. Whitespace passed."
+    }
+  ],
+  "results": [
+    "Failed jobs without stop_requested can no longer admit child dispatch.",
+    "Cancellation committed after a result snapshot but before journal admission prevents new passing evidence/completion credit.",
+    "Historical results and unresolved effects are preserved instead of being erased or stranded by new validation."
+  ],
+  "limitations": [
+    "The earlier unexpected competing-writer result did not recur after diagnostics; its unobserved code/root cause is not invented.",
+    "Legacy unsafe admissions remain historical, not retroactively approved; new commands cannot select legacy semantics.",
+    "No real host, authority authentication, OS sandbox or deployment acceptance is claimed.",
+    "Two existing local symlink-privilege cases remain skipped; new hosted CI awaits publication."
+  ],
+  "rollback": "Use a new corrective/revert commit. Preserve journal command versions, operation keys and original outcomes; reconcile rather than redispatch unknown effects.",
+  "next_steps": [
+    "Commit/publish this focused fix to PR1 and inspect its exact-head CI.",
+    "Implement WP-122 materiality, exact decisions, envelope membership and revocation as a separate coherent slice."
+  ],
+  "evidence": ["tests/test_scheduler.py", "tests/test_runtime_store.py", "docs/VALIDATION_HISTORY.md", "docs/design/DATA_AND_STATE.md"],
+  "public_safe": true
+}

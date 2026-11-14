@@ -187,7 +187,7 @@ class RuntimeStoreTests(unittest.TestCase):
         with ThreadPoolExecutor(max_workers=2) as pool:
             outcomes = list(pool.map(writer, (1, 2)))
         self.assertEqual(outcomes.count("committed"), 1)
-        self.assertTrue(set(outcomes) <= {"committed", "STORE_BUSY", "REVISION_CONFLICT"})
+        self.assertTrue(set(outcomes) <= {"committed", "STORE_BUSY", "REVISION_CONFLICT"}, outcomes)
         self.assertEqual(projection(self.root, self.task)["revision"], state["revision"] + 1)
         self.assertEqual(len(store.read(self.root)["events"]), 1)
 
@@ -283,6 +283,69 @@ class RuntimeStoreTests(unittest.TestCase):
         job = store.read(self.root)["entities"]["job:fixture-job"]["projection"]
         self.assertEqual(store.apply(self.root, "job", command(job, "advance", target="cancelled"))["projection"]["status"], "cancelled")
         self.error("STOP_REQUESTED", self.apply, "reserve", operation_id="late-op")
+
+    def test_cancelled_scope_retains_late_observations_without_certifying_success(self):
+        self.reserve()
+        self.apply("dispatch", operation_id="op-1")
+        job = store.read(self.root)["entities"]["job:fixture-job"]["projection"]
+        store.apply(self.root, "job", command(job, "cancel", reason="Withdraw before response."))
+        caps = capability_fixture()
+        caps_sha = store.append_record(self.root, "caps", "fixture-job",
+                                      store.record_value("capabilities", "scripted-fake", 1, caps))["record_sha"]
+        fake = FakeHost(caps, {"op-1": Script(("accepted", "completed"))})
+        fake.dispatch(self.task, "op-1")
+        observed = fake.reconcile(self.task, "op-1")
+        state = projection(self.root, self.task)
+        store.apply(self.root, "task", command(state, "reconcile", operation_id="op-1", resolution="completed",
+                                               observation=observed["observation"], reason="Late completion retained, not accepted."),
+                    records=(store.record_value("observation", observed["observation"]["id"], 1, observed,
+                                                context={"capabilities_sha": caps_sha}),))
+        evidence = artifact()
+        state = projection(self.root, self.task)
+        receipt = {"slot": "behavior", "receipt": {"id": evidence["value"]["id"], "sha256": evidence["value"]["sha256"]},
+                   "context_sha": state["context_sha"], "outcome": "fail"}
+        store.apply(self.root, "task", command(state, "evidence", evidence=[receipt]), records=(evidence,))
+        self.assertEqual(store.read(self.root)["reservations"]["op-1"]["status"], "completed")
+        self.assertNotEqual(projection(self.root, self.task)["status"], "completed")
+        before = store.read(self.root)
+        self.error("STOP_REQUESTED", self.apply, "evidence", evidence=[dict(receipt, outcome="pass")])
+        self.error("STOP_REQUESTED", self.apply, "advance", target="completed")
+        self.assertEqual(store.read(self.root), before)
+
+    def test_legacy_unsafe_admission_history_remains_readable_and_reconcilable(self):
+        # Reproduce the old version's synthetic journal, not a new permitted admission.
+        with patch.object(store, "COMMAND_VERSION", "sparkforge.store-command.v1", create=True), patch.object(store, "_admit_work"):
+            self.apply("advance", target="ready")
+            job = store.read(self.root)["entities"]["job:fixture-job"]["projection"]
+            job = store.apply(self.root, "job", command(job, "advance", target="blocked", reason="Legacy failure."))["projection"]
+            store.apply(self.root, "job", command(job, "advance", target="failed", reason="Legacy terminal job."))
+            self.apply("reserve", operation_id="op-1")
+            legacy_dispatch = command(projection(self.root, self.task), "dispatch", operation_id="op-1")
+            store.apply(self.root, "task", legacy_dispatch)
+        snapshot = store.read(self.root)
+        self.assertEqual(snapshot["reservations"]["op-1"]["status"], "dispatched")
+        self.assertEqual(store.recover(self.root, expected_store_id=self.metadata["store_id"]), snapshot)
+        self.assertTrue(store.apply(self.root, "task", legacy_dispatch)["replayed"])
+        self.assertEqual(store.read(self.root), snapshot)
+        self.error("PARENT_TERMINAL", self.apply, "reserve", operation_id="new-op")
+        caps = capability_fixture()
+        caps_sha = store.append_record(self.root, "caps", "fixture-job",
+                                      store.record_value("capabilities", "scripted-fake", 1, caps))["record_sha"]
+        fake = FakeHost(caps, {"op-1": Script(("accepted", "completed"))})
+        fake.dispatch(self.task, "op-1")
+        observed = fake.reconcile(self.task, "op-1")
+        state = projection(self.root, self.task)
+        store.apply(self.root, "task", command(state, "reconcile", operation_id="op-1", resolution="completed",
+                                               observation=observed["observation"], reason="Settle old effects without new success credit."),
+                    records=(store.record_value("observation", observed["observation"]["id"], 1, observed,
+                                                context={"capabilities_sha": caps_sha}),))
+        self.assertEqual(store.read(self.root)["reservations"]["op-1"]["status"], "completed")
+        self.error("PARENT_TERMINAL", self.apply, "advance", target="completed")
+        self.assertEqual(fake.dispatch_count, 1)
+        legacy_request = store._input("new-legacy-admission", "transition", "task", self.task["binding"]["task_id"],
+                                      {"command": legacy_dispatch, "records": []})
+        legacy_request["schema_version"] = store.LEGACY_COMMAND_VERSION
+        self.error("UNSUPPORTED_SCHEMA", store._execute, self.root, legacy_request)
 
     def test_replay_never_calls_host_and_unknown_effects_remain_reserved(self):
         self.reserve()

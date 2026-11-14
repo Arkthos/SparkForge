@@ -115,6 +115,8 @@ class Coordinator:
         if unresolved:
             return _report("RECONCILIATION_REQUIRED", task_id=unresolved[0]["binding"]["task_id"],
                            operation_key=unresolved[0]["operation_key"], reason="An existing reservation must be observed before any new dispatch.")
+        if t.is_terminal(job):
+            return _report("TERMINAL_JOB", reason=job["cause"] or "Terminal jobs cannot admit further work.")
         states = {task["binding"]["task_id"]: _task_projection(snapshot, task) for task in schedule["tasks"]}
         if all(state["status"] == "completed" for state in states.values()):
             return _report("AWAITING_JOB_ACCEPTANCE", reason="All required role tasks finished; live policy/controller/delivery admission is not implemented.")
@@ -216,7 +218,7 @@ class Coordinator:
             return self.status()
         # A committed dispatch marker is not proof the host ran; failure must remain reconcilable.
         latest_job = store.read(self.root)["entities"]["job:" + schedule["job_id"]]["projection"]
-        if latest_job["stop_requested"]:
+        if latest_job["stop_requested"] or t.is_terminal(latest_job):
             return self.status()
         try:
             receipt = self.adapter.dispatch(task, key)
@@ -244,6 +246,8 @@ class Coordinator:
         state = _task_projection(snapshot, task)
         if job["stop_requested"] or state["stop_requested"]:
             c._fail("STOP_REQUESTED", "result", "Late results cannot resurrect stopped work.")
+        if t.is_terminal(job):
+            c._fail("PARENT_TERMINAL", "result", "Terminal jobs cannot accept successful child work.")
         reservation = snapshot["reservations"].get(s.operation_key(task))
         if reservation is None or reservation["status"] != "completed" or reservation["observation_sha"] is None:
             c._fail("RESULT_BEFORE_COMPLETION", "result", "The exact host operation must be observed completed first.")

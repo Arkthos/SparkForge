@@ -454,3 +454,20 @@ WP-120 was committed/pushed as `1999ac26351488fbf42ed626e0a191bdc09f44bb`. [Host
 Tests drive a pinned five-role graph through serial fake dispatch, separate structured result submission, retry/restart/lost reply, interrupted installation, concurrent ticks, cancellation and graph completion without job readiness. The graph cannot drop role/criterion barriers, alter host/job/candidate context, overlap protected ownership or silently allocate a replacement attempt. Task results proposing changed candidates block for the later integration protocol; no actual code/model action is claimed.
 
 Corrections derive tick status and action from one snapshot; command identities include entity kind; unsupported cancel stays explicit but does not prevent polling/reconciliation. Unknown outcomes and unknown-usage `stop` remain blockers. Required independent review covered the actual implementation; reported issues were corrected and rerun, not replaced by a fabricated second verdict. See the [WP-121 cycle](engineering/cycles/ENG-20261113-wp121-coordinator.json). Next WP-122; the full engineering loop remains unimplemented.
+
+## 2026-11-13: transactional terminal/cancellation admission fixes
+
+Local/upstream/open PR head was clean and exactly `08b45dd18fc7957a6adfe0db76911d3658a7618c` before edits. The two requested admission defects were reproduced in three regression methods, including actual failure/cancellation commits interleaved immediately before journal writes.
+
+| Actual check | Result | Boundary |
+|---|---|---|
+| Three focused reproducer methods in `test_scheduler` | FAIL: four checks/subcases in2.516s | Failed-job tick, failure before reservation, cancellation before passing evidence and before completion all admitted incorrectly |
+| First affected selector | FAIL: one competing-writer case in63 tests25.880s | Unexpected outcome code was not printed by the old assertion; diagnostic output added without loosening its allowed results |
+| Bounded competing-writer diagnostic run | PASS:25 repetitions2.065s | Failure did not recur; no root cause or concurrency guarantee inferred from repetition |
+| Required independent correction review | One high compatibility finding | Reapplying new admission semantics during history reconstruction stranded old unsafe journals and outstanding effects |
+| Legacy-history reproduction | ERROR: one case0.210s | Old unsafe admission replay failed as CORRUPT_STORE before the versioned-semantics correction |
+| `$env:PYTHONPATH = (Resolve-Path 'tests').Path; python -B -m unittest test_scheduler test_runtime_store test_workflow_transitions` | PASS:64 tests26.637s | New admission guards plus late-observation retention and legacy read/recovery/idempotency/reconciliation |
+| `$env:PYTHONPATH = (Resolve-Path 'research_tools\.validation-deps').Path; python -B -m unittest discover -s tests` | PASS:552 collected550 passed,two skips122.393s | Existing symlink-privilege skips; competing-writer test also passed in the full rerun |
+| `python -B scripts\validate_plan.py --base HEAD` and `git diff --check` | PASS | 12 changed paths;96 Markdown files;810 links;50 tasks;21 cycles. New hosted checks not yet inferred |
+
+The journal now revalidates ancestor/job eligibility inside the atomic transaction for new reservations, dispatch, passing evidence and successful completion. It still records historical observations and reconciles outcomes after cancellation. Command-v2 semantics govern new writes; command-v1 history remains replayable and its exact keys can be inspected/replayed without new effects. No old commands or outcomes are rewritten. The [new cycle](engineering/cycles/ENG-20261113-transactional-admission-fixes.json) records this focused fix; WP-122 implementation follows separately.

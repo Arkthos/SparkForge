@@ -141,6 +141,10 @@ def _unresolved(projection: Projection) -> bool:
     return any(operation["status"] in OPEN_OPERATIONS for operation in projection["operations"])
 
 
+def is_terminal(projection: Projection) -> bool:
+    return not TRANSITIONS[projection["kind"]][projection["status"]] and projection["status"] != INITIAL[projection["kind"]]
+
+
 def _completion(projection: Projection) -> None:
     if _unresolved(projection):
         c._fail("UNRESOLVED_OPERATIONS", "projection", "Completion requires all operations to be reconciled.")
@@ -306,7 +310,7 @@ def apply_command(value: object, command: object, *, previous_event: Event | Non
     if command["context_sha"] != state["context_sha"]:
         c._fail("STALE_CONTEXT", "command.context_sha", "Command uses a superseded intent/plan/candidate/evidence context.")
     action, kind, status = command["action"], state["kind"], state["status"]
-    if not TRANSITIONS[kind][status] and status != INITIAL[kind]:
+    if is_terminal(state):
         c._fail("TERMINAL_STATE", "projection.status", "Terminal work cannot admit a new command.")
     if state["stop_requested"] and action not in ("result", "reconcile", "cancel_ack", "advance"):
         c._fail("STOP_REQUESTED", "command", "Cancellation stops new work.")

@@ -379,6 +379,74 @@ class SchedulerTests(unittest.TestCase):
                    co._command(job, "invalidate", new_context_sha="f" * 64, reason="Cannot discard outstanding effects."))
         self.assertEqual(store.read(other_root)["reservations"][s.operation_key(task)]["status"], "unknown")
 
+    def fail_job(self):
+        state = store.read(self.root)["entities"]["job:fixture-job"]["projection"]
+        state = store.apply(self.root, "job", co._command(state, "advance", target="blocked",
+                                                         reason="Synthetic unrecoverable prerequisite."))["projection"]
+        state = store.apply(self.root, "job", co._command(state, "advance", target="failed",
+                                                         reason="Job cannot continue."))["projection"]
+        self.assertFalse(state["stop_requested"])
+        return state
+
+    def test_failed_job_does_not_dispatch_without_a_stop_flag(self):
+        self.setup_coordinator()
+        self.fail_job()
+        self.assertEqual(self.coordinator.tick()["status"], "TERMINAL_JOB")
+        self.assertEqual(self.fake.dispatch_count, 0)
+        self.assertFalse(store.read(self.root)["reservations"])
+
+    def test_job_failure_between_tick_snapshot_and_reservation_blocks_transaction(self):
+        self.setup_coordinator()
+        original_apply = store.apply
+        interleaved = False
+        def fail_before_reserve(root, kind, command, **kwargs):
+            nonlocal interleaved
+            if not interleaved and command["action"] == "reserve":
+                interleaved = True
+                self.fail_job()
+            return original_apply(root, kind, command, **kwargs)
+        with patch.object(store, "apply", side_effect=fail_before_reserve):
+            with self.assertRaises(c.ContractError) as caught:
+                self.coordinator.tick()
+        self.assertEqual(caught.exception.code, "PARENT_TERMINAL")
+        self.assertTrue(interleaved)
+        self.assertEqual(self.fake.dispatch_count, 0)
+        self.assertFalse(store.read(self.root)["reservations"])
+
+    def test_cancel_between_result_snapshot_and_journal_admission_never_credits_completion(self):
+        for boundary in ("evidence", "completed"):
+            with self.subTest(boundary=boundary):
+                if boundary == "completed":
+                    self.root = self.base / "second-journal"
+                    self.metadata, self.intent, self.envelope = create_job(self.root, self.workspace)
+                    self.schedule = schedule_fixture(self.intent, self.envelope)
+                self.setup_coordinator()
+                task = self.schedule["tasks"][0]
+                self.complete_host(task)
+                before = store.read(self.root)
+                original_apply = store.apply
+                interleaved = False
+                def cancel_before_admission(root, kind, command, **kwargs):
+                    nonlocal interleaved
+                    matches = command["action"] == "evidence" if boundary == "evidence" else (
+                        command["action"] == "advance" and command["target"] == "completed")
+                    if not interleaved and kind == "task" and matches:
+                        interleaved = True
+                        job = store.read(root)["entities"]["job:fixture-job"]["projection"]
+                        original_apply(root, "job", co._command(job, "cancel", reason="Withdraw before admission commits."))
+                    return original_apply(root, kind, command, **kwargs)
+                with patch.object(store, "apply", side_effect=cancel_before_admission):
+                    with self.assertRaises(c.ContractError) as caught:
+                        self.submit(task)
+                self.assertEqual(caught.exception.code, "STOP_REQUESTED")
+                self.assertTrue(interleaved)
+                after = store.read(self.root)
+                state = after["entities"]["task:" + task["binding"]["task_id"]]["projection"]
+                self.assertNotEqual(state["status"], "completed")
+                self.assertEqual(len(state["evidence"]), 0 if boundary == "evidence" else 1)
+                self.assertEqual(after["reservations"], before["reservations"])
+                self.assertTrue(after["entities"]["job:fixture-job"]["projection"]["stop_requested"])
+
 
 if __name__ == "__main__":
     unittest.main()

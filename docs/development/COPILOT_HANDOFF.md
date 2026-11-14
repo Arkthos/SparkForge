@@ -52,6 +52,8 @@ WP-120 is committed as `1999ac26351488fbf42ed626e0a191bdc09f44bb`; [its hosted r
 
 Next bounded task on a new implementation request: WP-122 in `runtime/policy.py` with materiality/envelope membership, current-object decision bindings and revocation tests. Keep decisions as explicit host/operator assertions until authentic ingress is qualified; never automate v1 `decide` or accept model confidence/silence as consent. Preserve unknown operations, immutable observations, current context and the mandatory role graph. WP-123 accounting, WP-124 candidate integration, WP-125 checks and WP-126 full dispatch/result admission remain separately scoped. Do not silently relax the current scripted-only/unchanged-candidate boundary to pretend those gates exist.
 
+The current request first corrects terminal-parent and result/cancellation races from verified `08b45dd18fc7957a6adfe0db76911d3658a7618c`, then implements WP-122. Resolve the focused fix with `git log -1 -- docs/engineering/cycles/ENG-20261113-transactional-admission-fixes.json`. Journal admission—not preflight—must gate reservation, dispatch and successful credit. Preserve command-v1 historical replay/reconciliation while applying tightened semantics to new commands; never strand old pending effects by reclassifying their history as corruption.
+
 ## Ready-to-use continuation prompt
 
 ```text

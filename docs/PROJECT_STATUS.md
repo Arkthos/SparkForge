@@ -1,6 +1,6 @@
 # Project status
 
-**As of 2026-11-13.** Corrected P1 plus WP-120/121 are implemented: a transactional coordinated journal and serial scripted-host coordinator now preserve task graph, dispatch and reconciliation state. This is not the full model-driven engineering loop. Current shipped package behavior remains assisted v1.
+**As of 2026-11-13.** Corrected P1 plus WP-120/121 are implemented, including transactional terminal-parent and cancellation admission guards. The journal preserves historical outcomes without granting new successful-work credit after scope ends. This is not the full model-driven engineering loop. Current shipped package behavior remains assisted v1.
 
 ## Implemented foundation
 
@@ -33,10 +33,10 @@ Do not interpret planning completion as runtime completion. Agent role documents
 
 ## Evidence and limits
 
-Fresh WP-121 Windows/Python 3.12.10 validation: **547 collected, 545 passed, two existing symlink-privilege skips**. All **73 affected tests** pass, including 19 scheduler/coordinator cases. Distinct review exposed a stale-snapshot cancellation race, blocked reconciliation without cancel support, and cross-kind command-key collisions; each reproduced before correction. Additional job-context guards stop stale graph execution and prevent invalidation while descendant effects remain unresolved. See [validation history](VALIDATION_HISTORY.md) and [WP-121 cycle](engineering/cycles/ENG-20261113-wp121-coordinator.json).
+Fresh admission-fix Windows/Python 3.12.10 validation: **552 collected, 550 passed, two existing symlink-privilege skips**; all **64 affected tests** pass. Failed jobs with no stop flag can no longer reserve/dispatch, and cancellation between result snapshot and evidence/completion writes rejects successful credit transactionally. Late observations/reconciliation and non-passing evidence remain retainable. New command-v2 admission semantics preserve read/recovery/idempotent reconciliation of legacy command-v1 history. See [validation history](VALIDATION_HISTORY.md) and the [admission-fix cycle](engineering/cycles/ENG-20261113-transactional-admission-fixes.json).
 
 [The P1 pull request](https://github.com/Arkthos/SparkForge/pull/1) is open and unmerged, published through the native PR tool. Original P1 implementation head `9e8c7793f9045ceda3929d3fe7c14ff20abf6caa` and tree `1946fddc75f0b863ae196a83019ddc675b6d10c1` had [passing hosted CI](https://github.com/Arkthos/SparkForge/actions/runs/43362930589): Windows 497/497; Linux 468 passed/29 skipped. Those are historical results, not the current correction count. Earlier EMU denials and a corrected unpublished-head/base validation error remain recorded; no agent changed credentials, destination or visibility.
 
-WP-120 was committed/published as `1999ac26351488fbf42ed626e0a191bdc09f44bb`; [its hosted run](https://github.com/Arkthos/SparkForge/actions/runs/43526649270) passed Windows 528/528 and Linux 499 passed/29 skipped, including planning/whitespace. WP-121's hosted results await its publication. Historical cycles remain immutable. The earlier reported DNS/model interruption produced no implementation delta or route changes. No merge, Agent merge, deployment or actual model/tenant operation occurred.
+WP-121 was published at `08b45dd18fc7957a6adfe0db76911d3658a7618c`; [its hosted run](https://github.com/Arkthos/SparkForge/actions/runs/43530368564) passed Windows547/547 and Linux518 passed/29 skipped, including planning/whitespace. The admission fixes begin from that verified clean PR head; their new hosted results await publication. Historical cycles remain immutable. No merge, Agent merge, deployment or actual model/tenant operation occurred.
 
 Real corp and acro host/build capability, installed lifecycle, actual model-driven journeys, independent domain/control acceptance, production release, external platform submission and governed learning promotion remain NOT_ASSESSED. corp/acro credentials, source snapshots, journals and model routes stay isolated and outside Git. No private material or new license/organizational policy is inferred.

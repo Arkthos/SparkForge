@@ -18,6 +18,8 @@ from . import transitions as t
 
 TABLES = ("records", "job", "entities", "events", "reservations")
 Model = dict[str, dict[str, dict]]
+LEGACY_COMMAND_VERSION = "sparkforge.store-command.v1"
+COMMAND_VERSION = "sparkforge.store-command.v2"
 
 
 def _checkpoint(stage: str) -> None:
@@ -203,6 +205,19 @@ def _unresolved_descendants(model: Model, kind: str, identifier: str) -> bool:
     return False
 
 
+def _admit_work(model: Model, entity: dict) -> None:
+    ancestors = [_entity(model, "job", _job(model)["job_id"])]
+    while entity["parent_kind"] is not None:
+        entity = _entity(model, entity["parent_kind"], entity["parent_id"])
+        ancestors.append(entity)
+    for ancestor in ancestors:
+        projection = _decode(ancestor["body"])
+        if projection["stop_requested"]:
+            c._fail("STOP_REQUESTED", "admission", "Stopped parent/job scope cannot admit new work or successful credit.")
+        if t.is_terminal(projection) or projection["status"] == "failed":
+            c._fail("PARENT_TERMINAL", "admission", "A finished or failed parent/job cannot admit new work or successful credit.")
+
+
 def _entity_row(projection: t.Projection, parent: tuple[str, str] | None, task_sha: str | None) -> dict:
     body = c.canonical_json(projection)
     return {"kind": projection["kind"], "entity_id": projection["id"],
@@ -213,7 +228,7 @@ def _entity_row(projection: t.Projection, parent: tuple[str, str] | None, task_s
 
 def _request(value: object) -> dict:
     request = c._object(value, {"schema_version", "key", "action", "kind", "entity_id", "data"}, "request")
-    if request["schema_version"] != "sparkforge.store-command.v1":
+    if request["schema_version"] not in (LEGACY_COMMAND_VERSION, "sparkforge.store-command.v2"):
         c._fail("UNSUPPORTED_SCHEMA", "request", "Unsupported journal command schema.")
     c._identifier(request["key"], "request.key")
     c._identifier(request["entity_id"], "request.entity_id")
@@ -275,12 +290,10 @@ def _reduce(model: Model, request: dict, metadata: m.StoreMetadata) -> dict:
         operation_key = command["operation_id"]
         operation = model["reservations"].get(operation_key)
         observation_sha = None
-        if command["action"] in ("reserve", "dispatch"):
-            job_projection = _decode(_entity(model, "job", _job(model)["job_id"])["body"])
-            parent = None if entity["parent_kind"] is None else _decode(
-                _entity(model, entity["parent_kind"], entity["parent_id"])["body"])
-            if job_projection["stop_requested"] or (parent is not None and parent["stop_requested"]):
-                c._fail("STOP_REQUESTED", "reservation", "A stopped parent/job cannot admit new work.")
+        certifies = (command["action"] == "evidence" and any(item["outcome"] == "pass" for item in command["evidence"])) or (
+            command["action"] == "advance" and command["target"] in ("completed", "verified", "delivered"))
+        if request["schema_version"] != LEGACY_COMMAND_VERSION and (command["action"] in ("reserve", "dispatch") or certifies):
+            _admit_work(model, entity)
         if command["action"] == "reserve":
             if task_sha is None:
                 c._fail("ASSIGNMENT_REQUIRED", "reservation", "External work must be owned by an assigned task/attempt, not a parent job.")
@@ -473,11 +486,14 @@ def _persist(connection: sqlite3.Connection, before: Model, after: Model) -> Non
 
 def _execute(root: Path, request: dict) -> dict:
     request = _request(request)
+    if request["schema_version"] != COMMAND_VERSION:
+        c._fail("UNSUPPORTED_SCHEMA", "request", "Legacy command semantics are replay-only, not a new admission route.")
     with _connection(root, write=True) as (connection, metadata):
         model, commands = _reconstruct(connection, metadata)
         prior = next((row for row in commands if row["command_key"] == request["key"]), None)
         if prior is not None:
-            if prior["request_sha"] != c.record_digest(request) or prior["request"] != c.canonical_json(request):
+            replay_request = dict(request, schema_version=_decode(prior["request"])["schema_version"])
+            if prior["request_sha"] != c.record_digest(replay_request) or prior["request"] != c.canonical_json(replay_request):
                 c._fail("IDEMPOTENCY_CONFLICT", "request.key", "Durable command key is already bound to another payload.")
             result = _decode(prior["result"])
             if result["projection"] is not None:
@@ -500,7 +516,7 @@ def _execute(root: Path, request: dict) -> dict:
 
 
 def _input(key: str, action: str, kind: str, identifier: str, data: dict) -> dict:
-    return {"schema_version": "sparkforge.store-command.v1", "key": key, "action": action,
+    return {"schema_version": COMMAND_VERSION, "key": key, "action": action,
             "kind": kind, "entity_id": identifier, "data": data}
 
 
