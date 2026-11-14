@@ -1,6 +1,6 @@
 # Project status
 
-**As of 2026-11-13.** Corrected P1 plus WP-120/121 are implemented, including transactional terminal-parent and cancellation admission guards. The journal preserves historical outcomes without granting new successful-work credit after scope ends. This is not the full model-driven engineering loop. Current shipped package behavior remains assisted v1.
+**As of 2026-11-14.** Corrected P1 plus WP-120..122 are implemented: durable serial coordination now includes exact policy decisions, envelope membership and transactional expiry/revocation admission. Historical observations remain recordable after scope ends. This is not the full model-driven engineering loop; shipped assisted-v1 behavior remains unchanged.
 
 ## Implemented foundation
 
@@ -15,6 +15,7 @@
 - Coordinated schema-v2 initializer and explicit v1-header copy migration, verified backups, immutable records/commands/events, revision-guarded projections and uniquely owned reservations. Read-only reconstruction detects divergence; explicit SQLite recovery preserves unknown host effects. Assisted-v1 stores remain separate and unchanged.
 - Source-neutral host capability/observation protocol and a scripted test fake with dispatch/cancel counters, lost-response reconciliation and explicit unknown usage. No native launcher or real worker/model execution is implemented.
 - Pinned serial DAG with mandatory coder/test-author/runner/reviewer/final-controller barriers, durable operation identities, restartable installation and structured result gates. Only scripted hosts and unchanged pinned candidates are supported at this stage; whole-job acceptance remains false until later gates exist.
+- Structural materiality against accepted baselines, immutable exact request/response bindings, separate intent/execution-owner ingress assertions, chained accepted scope, expiry/deadline and revocation checks. New command-v3 transactions govern admission; old command history remains readable/reconcilable.
 - Version-bound protected routing evaluator outside candidate ownership: revision 3 has 19 behavioral cases and 12 seeded defects/drift variants. Normal-read payload whitespace is checked with absent and false audit flags; intent remains unchanged at revision 1. This evaluates trusted finite synthetic code, not arbitrary workers in an enforced sandbox.
 
 These are reusable mechanisms. They do not yet supply agent task orchestration, an independent running intent controller, autonomous diagnosis/repair, job-wide model accounting, live connectors or installed environment qualification.
@@ -27,16 +28,16 @@ The fictional disconnected browser preview and its Node suite were retired. Curr
 
 ## Next development action
 
-**Next: WP-122**, materiality classification and decision admission, using the completed [journal/coordinator APIs](design/DATA_AND_STATE.md#implemented-wp-121-serial-coordinator) on the existing PR branch. WP-120 and WP-121 are complete; the rest of P2 is not. Workspace integration, real result/effect mediation, aggregate accounting and final intent acceptance remain explicit later tasks.
+**Next: WP-123**, job/agent resource accounting, using the completed [policy and journal APIs](design/DATA_AND_STATE.md#implemented-wp-122-policy-and-decisions) on the existing PR branch. WP-120..122 are complete; aggregate accounting, actual workspace integration, real effect/result mediation and final semantic acceptance remain later tasks.
 
-Do not interpret planning completion as runtime completion. Agent role documents are design contracts until actual adapter/package tasks ship them. The existing v1 exact-spec manual approval semantics remain unchanged; target materiality policy is future implementation.
+Do not interpret policy records or structural scope checks as authenticated human consent or semantic proof. Real role packaging/ingress qualification remain future work. Existing v1 exact-spec manual approval semantics remain unchanged.
 
 ## Evidence and limits
 
-Fresh admission-fix Windows/Python 3.12.10 validation: **552 collected, 550 passed, two existing symlink-privilege skips**; all **64 affected tests** pass. Failed jobs with no stop flag can no longer reserve/dispatch, and cancellation between result snapshot and evidence/completion writes rejects successful credit transactionally. Late observations/reconciliation and non-passing evidence remain retainable. New command-v2 admission semantics preserve read/recovery/idempotent reconciliation of legacy command-v1 history. See [validation history](VALIDATION_HISTORY.md) and the [admission-fix cycle](engineering/cycles/ENG-20261113-transactional-admission-fixes.json).
+Fresh WP-122 Windows/Python 3.12.10 validation: **569 collected, 567 passed, two existing symlink-privilege skips**; all **59 affected tests** pass. Required review found that clock rollback blocked cancellation/reconciliation; it was reproduced and corrected so only new work/authority/success admission is clock-gated. The full run reported unusually long elapsed time (18,376.938s); no cause or performance claim is inferred. See [validation history](VALIDATION_HISTORY.md) and [policy cycle](engineering/cycles/ENG-20261114-wp122-policy.json).
 
 [The P1 pull request](https://github.com/Arkthos/SparkForge/pull/1) is open and unmerged, published through the native PR tool. Original P1 implementation head `9e8c7793f9045ceda3929d3fe7c14ff20abf6caa` and tree `1946fddc75f0b863ae196a83019ddc675b6d10c1` had [passing hosted CI](https://github.com/Arkthos/SparkForge/actions/runs/43362930589): Windows 497/497; Linux 468 passed/29 skipped. Those are historical results, not the current correction count. Earlier EMU denials and a corrected unpublished-head/base validation error remain recorded; no agent changed credentials, destination or visibility.
 
-WP-121 was published at `08b45dd18fc7957a6adfe0db76911d3658a7618c`; [its hosted run](https://github.com/Arkthos/SparkForge/actions/runs/43530368564) passed Windows547/547 and Linux518 passed/29 skipped, including planning/whitespace. The admission fixes begin from that verified clean PR head; their new hosted results await publication. Historical cycles remain immutable. No merge, Agent merge, deployment or actual model/tenant operation occurred.
+The focused admission fix is published at `586bb821256c3aaa34d63ddba02f6e53e2c089bf`; [its hosted run](https://github.com/Arkthos/SparkForge/actions/runs/43533941040) passed Windows552/552 and Linux523 passed/29 skipped, including planning/whitespace. Policy implementation builds on that commit; its hosted results await publication. Historical cycles remain immutable. No merge, Agent merge, deployment or actual model/tenant operation occurred.
 
 Real corp and acro host/build capability, installed lifecycle, actual model-driven journeys, independent domain/control acceptance, production release, external platform submission and governed learning promotion remain NOT_ASSESSED. corp/acro credentials, source snapshots, journals and model routes stay isolated and outside Git. No private material or new license/organizational policy is inferred.

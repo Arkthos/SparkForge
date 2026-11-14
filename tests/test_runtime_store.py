@@ -345,6 +345,7 @@ class RuntimeStoreTests(unittest.TestCase):
         legacy_request = store._input("new-legacy-admission", "transition", "task", self.task["binding"]["task_id"],
                                       {"command": legacy_dispatch, "records": []})
         legacy_request["schema_version"] = store.LEGACY_COMMAND_VERSION
+        legacy_request.pop("admitted_at", None)
         self.error("UNSUPPORTED_SCHEMA", store._execute, self.root, legacy_request)
 
     def test_replay_never_calls_host_and_unknown_effects_remain_reserved(self):

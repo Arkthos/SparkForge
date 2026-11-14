@@ -117,6 +117,9 @@ class Coordinator:
                            operation_key=unresolved[0]["operation_key"], reason="An existing reservation must be observed before any new dispatch.")
         if t.is_terminal(job):
             return _report("TERMINAL_JOB", reason=job["cause"] or "Terminal jobs cannot admit further work.")
+        authority = store.authority_status(snapshot)
+        if not authority["allowed"]:
+            return _report("POLICY_BLOCKED", reason=authority["code"] + ": " + authority["reason"])
         states = {task["binding"]["task_id"]: _task_projection(snapshot, task) for task in schedule["tasks"]}
         if all(state["status"] == "completed" for state in states.values()):
             return _report("AWAITING_JOB_ACCEPTANCE", reason="All required role tasks finished; live policy/controller/delivery admission is not implemented.")
@@ -133,6 +136,10 @@ class Coordinator:
         if s.operation_key(candidate) in snapshot["reservations"]:
             return _report("RETRY_REQUIRES_PLAN", task_id=candidate["binding"]["task_id"],
                            reason="An unused/failed operation is retained; this fixed graph cannot silently allocate another attempt.")
+        authority = store.authority_status(snapshot, task=candidate)
+        if not authority["allowed"]:
+            return _report("POLICY_BLOCKED", task_id=candidate["binding"]["task_id"],
+                           reason=authority["code"] + ": " + authority["reason"])
         envelope = snapshot["records"][schedule["envelope_sha"]]["value"]
         if envelope["unknown_usage"] == "stop" and any(
             item["observation_sha"] is not None and

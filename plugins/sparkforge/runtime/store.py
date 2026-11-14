@@ -12,6 +12,7 @@ from . import agent_contracts as a
 from . import contracts as c
 from . import host as h
 from . import migrations as m
+from . import policy as p
 from . import scheduler as s
 from . import transitions as t
 
@@ -19,7 +20,8 @@ from . import transitions as t
 TABLES = ("records", "job", "entities", "events", "reservations")
 Model = dict[str, dict[str, dict]]
 LEGACY_COMMAND_VERSION = "sparkforge.store-command.v1"
-COMMAND_VERSION = "sparkforge.store-command.v2"
+COMMAND_VERSION = "sparkforge.store-command.v3"
+ADMISSION_COMMAND_VERSION = "sparkforge.store-command.v2"
 
 
 def _checkpoint(stage: str) -> None:
@@ -82,15 +84,42 @@ def record_value(kind: str, identifier: str, revision: int, value: object, *, co
             "context": {} if context is None else context}
 
 
-def _record(model: Model, raw: object, metadata: m.StoreMetadata) -> str:
+def _policy_records(model: Model) -> dict[str, dict]:
+    return {sha: _decode(row["body"]) for sha, row in model["records"].items()}
+
+
+def _record(model: Model, raw: object, metadata: m.StoreMetadata, *, at: str | None = None) -> str:
     record = c._object(raw, {"kind", "id", "revision", "value", "context"}, "record")
     kind = c._enum(record["kind"], (
         "intent", "envelope", "task", "attempt", "result", "finding", "failure", "capabilities", "observation", "artifact", "schedule",
+        "decision_request", "decision", "policy_binding", "revocation",
     ), "record.kind")
     identifier = c._identifier(record["id"], "record.id")
     revision = c._integer(record["revision"], "record.revision")
     value, context = record["value"], record["context"]
-    if kind == "intent":
+    if kind in ("decision_request", "decision", "policy_binding", "revocation"):
+        c._object(context, set(), "record.context")
+        at = c._timestamp(at, "record.admitted_at")
+        job = _job(model)
+        if value["job_id"] != job["job_id"]:
+            c._fail("BINDING_MISMATCH", "policy", "Policy records belong to one exact job.")
+        records = _policy_records(model)
+        _, accepted = p.current_binding(records, job["job_id"])
+        if kind in ("decision_request", "decision"):
+            request = value if kind == "decision_request" else _value(model, value["request_sha"], "decision_request")
+            target_kind = request["target"]["kind"]
+            request = p.validate_request(request, _value(model, request["target"]["sha256"], target_kind))
+            baseline_sha = None if accepted is None else accepted[target_kind + "_sha"]
+            if request["baseline_sha"] != baseline_sha:
+                c._fail("STALE_DECISION", "policy", "Request/response refers to a superseded accepted baseline.")
+            value = request if kind == "decision_request" else p.validate_decision(
+                value, request, environment=metadata["environment"], at=at)
+        elif kind == "policy_binding":
+            value = p.validate_binding(value, records, job_id=job["job_id"], environment=metadata["environment"], at=at,
+                                       workspace=metadata["workspace"])
+        else:
+            value = p.validate_revocation(value, records, job_id=job["job_id"], environment=metadata["environment"], at=at)
+    elif kind == "intent":
         context = c._object(context, {"supported_kinds"}, "record.context")
         kinds = c._strings(context["supported_kinds"], "record.supported_kinds", identifiers=True, minimum=1)
         value = c.validate_intent(value, supported_component_kinds=tuple(kinds))
@@ -171,7 +200,7 @@ def _record(model: Model, raw: object, metadata: m.StoreMetadata) -> str:
     actual_id = (value["binding"]["attempt_id"] if kind in ("task", "attempt") else
                  value["host"]["id"] if kind == "capabilities" else
                  value["observation"]["id"] if kind == "observation" else value["id"])
-    if (identifier != actual_id or (kind in ("intent", "envelope", "schedule") and revision != value["revision"])
+    if (identifier != actual_id or (kind in ("intent", "envelope", "schedule", "policy_binding") and revision != value["revision"])
             or (kind == "capabilities" and revision != value["host"]["revision"])):
         c._fail("BINDING_MISMATCH", "record", "Record identity/revision differs from its value.")
     body = c.canonical_json(record_value(kind, identifier, revision, value, context=context))
@@ -218,6 +247,26 @@ def _admit_work(model: Model, entity: dict) -> None:
             c._fail("PARENT_TERMINAL", "admission", "A finished or failed parent/job cannot admit new work or successful credit.")
 
 
+def _certifying(command: t.Command) -> bool:
+    return command["action"] in ("reserve", "dispatch") or (
+        command["action"] == "evidence" and any(item["outcome"] == "pass" for item in command["evidence"])
+    ) or (command["action"] == "advance" and command["target"] in ("completed", "verified", "delivered"))
+
+
+def _request_admits(request: dict) -> bool:
+    if request["action"] == "policy_bind":
+        return True
+    if request["action"] == "transition":
+        data = c._object(request["data"], {"command", "records"}, "transition")
+        return _certifying(t._command(data["command"])) or any(
+            type(record) is dict and record.get("kind") == "policy_binding"
+            for record in c._list(data["records"], "transition.records"))
+    if request["action"] == "record":
+        record = c._object(request["data"], {"record"}, "record_command")["record"]
+        return type(record) is dict and record.get("kind") == "policy_binding"
+    return False
+
+
 def _entity_row(projection: t.Projection, parent: tuple[str, str] | None, task_sha: str | None) -> dict:
     body = c.canonical_json(projection)
     return {"kind": projection["kind"], "entity_id": projection["id"],
@@ -227,12 +276,16 @@ def _entity_row(projection: t.Projection, parent: tuple[str, str] | None, task_s
 
 
 def _request(value: object) -> dict:
-    request = c._object(value, {"schema_version", "key", "action", "kind", "entity_id", "data"}, "request")
-    if request["schema_version"] not in (LEGACY_COMMAND_VERSION, "sparkforge.store-command.v2"):
+    version = value.get("schema_version") if type(value) is dict else None
+    fields = {"schema_version", "key", "action", "kind", "entity_id", "data"}
+    request = c._object(value, fields | ({"admitted_at"} if version == "sparkforge.store-command.v3" else set()), "request")
+    if version not in (LEGACY_COMMAND_VERSION, ADMISSION_COMMAND_VERSION, "sparkforge.store-command.v3"):
         c._fail("UNSUPPORTED_SCHEMA", "request", "Unsupported journal command schema.")
+    if version == "sparkforge.store-command.v3" and request["admitted_at"] is not None:
+        c._timestamp(request["admitted_at"], "request.admitted_at")
     c._identifier(request["key"], "request.key")
     c._identifier(request["entity_id"], "request.entity_id")
-    c._enum(request["action"], ("initialize", "register", "record", "transition"), "request.action")
+    c._enum(request["action"], ("initialize", "register", "record", "transition", "policy_decision", "policy_bind", "policy_revoke"), "request.action")
     c._enum(request["kind"], ("job", "task", "attempt"), "request.kind")
     c.canonical_json(request)
     return deepcopy(request)
@@ -240,6 +293,7 @@ def _request(value: object) -> dict:
 
 def _reduce(model: Model, request: dict, metadata: m.StoreMetadata) -> dict:
     action, kind, identifier, data = request["action"], request["kind"], request["entity_id"], request["data"]
+    at = c._timestamp(request["admitted_at"], "request.admitted_at") if request["schema_version"] == "sparkforge.store-command.v3" else None
     event, projection, record_sha = None, None, None
     if action == "initialize":
         data = c._object(data, {"intent", "envelope", "supported_kinds", "context_sha", "required_evidence"}, "initialize")
@@ -248,11 +302,11 @@ def _reduce(model: Model, request: dict, metadata: m.StoreMetadata) -> dict:
         intent = c.validate_intent(data["intent"], supported_component_kinds=tuple(c._strings(
             data["supported_kinds"], "supported_kinds", identifiers=True, minimum=1)))
         intent_sha = _record(model, record_value("intent", intent["id"], intent["revision"], intent,
-                             context={"supported_kinds": data["supported_kinds"]}), metadata)
+                             context={"supported_kinds": data["supported_kinds"]}), metadata, at=at)
         envelope = c.validate_envelope(data["envelope"], intent=intent)
         if not any(root["path"] == metadata["workspace"] for root in envelope["workspace_roots"]):
             c._fail("ENVIRONMENT_MISMATCH", "initialize.workspace", "Envelope must explicitly include this store's workspace.")
-        envelope_sha = _record(model, record_value("envelope", envelope["id"], envelope["revision"], envelope), metadata)
+        envelope_sha = _record(model, record_value("envelope", envelope["id"], envelope["revision"], envelope), metadata, at=at)
         model["job"]["1"] = {"singleton": 1, "job_id": identifier, "intent_sha": intent_sha, "envelope_sha": envelope_sha,
                              "supported_kinds": c.canonical_json(data["supported_kinds"])}
         projection = t.initial_projection("job", identifier, data["context_sha"], data["required_evidence"])
@@ -265,35 +319,59 @@ def _reduce(model: Model, request: dict, metadata: m.StoreMetadata) -> dict:
             c._fail("BINDING_MISMATCH", "register", "Entity must match the assignment's task or attempt ID.")
         if _key(kind, identifier) in model["entities"]:
             c._fail("ENTITY_EXISTS", "register", "Existing entities cannot be overwritten.")
-        task_sha = _record(model, record_value("task", task["binding"]["attempt_id"], 1, task), metadata)
+        task_sha = _record(model, record_value("task", task["binding"]["attempt_id"], 1, task), metadata, at=at)
         parent = ("job", job["job_id"]) if kind == "task" else ("task", task["binding"]["task_id"])
         parent_row = _entity(model, *parent)
         if kind == "attempt" and parent_row["task_sha"] != task_sha:
             c._fail("BINDING_MISMATCH", "register", "Attempt and parent task need the same assignment.")
         projection = t.initial_projection(kind, identifier, c.record_digest(task["binding"]), data["required_evidence"])
         model["entities"][_key(kind, identifier)] = _entity_row(projection, parent, task_sha)
+    elif action in ("policy_decision", "policy_bind", "policy_revoke"):
+        job = _job(model)
+        if kind != "job" or identifier != job["job_id"] or at is None:
+            c._fail("BINDING_MISMATCH", "policy", "Policy writes need this job and current journal semantics.")
+        if action == "policy_decision":
+            data = c._object(data, {"request_sha", "response", "ingress"}, "policy_decision")
+            value = p.decide(_value(model, data["request_sha"], "decision_request"), data["response"],
+                             ingress=data["ingress"], environment=metadata["environment"], at=at)
+            record = record_value("decision", value["id"], 1, value)
+        elif action == "policy_bind":
+            data = c._object(data, {"previous_sha", "intent_sha", "envelope_sha", "intent_decision_sha", "envelope_decision_sha"}, "policy_bind")
+            previous_sha, previous = p.current_binding(_policy_records(model), job["job_id"])
+            if data["previous_sha"] != previous_sha:
+                c._fail("POLICY_BINDING_MISMATCH", "policy_bind", "Accepted scope changed since the requested binding.")
+            value = {"schema_version": "sparkforge.policy-binding.v1", "id": p.binding_id(job["job_id"]),
+                     "revision": 1 if previous is None else previous["revision"] + 1, "job_id": job["job_id"], **data}
+            record = record_value("policy_binding", value["id"], value["revision"], value)
+        else:
+            data = c._object(data, {"subject_kind", "subject_sha", "reason", "ingress"}, "policy_revoke")
+            value = p.revocation(request["key"], job["job_id"], data["subject_kind"], data["subject_sha"],
+                                 reason=data["reason"], ingress=data["ingress"], at=at)
+            record = record_value("revocation", value["id"], 1, value)
+        record_sha = _record(model, record, metadata, at=at)
     elif action == "record":
         c._object(data, {"record"}, "record_command")
         if kind != "job" or _job(model)["job_id"] != identifier:
             c._fail("BINDING_MISMATCH", "record_command", "Records must belong to the initialized job.")
-        record_sha = _record(model, data["record"], metadata)
+        record_sha = _record(model, data["record"], metadata, at=at)
     else:
         data = c._object(data, {"command", "records"}, "transition")
         command = t._command(data["command"])
         if command["key"] != request["key"] or command["entity_id"] != identifier:
             c._fail("BINDING_MISMATCH", "transition", "Outer request and inner command identities differ.")
         for raw in c._list(data["records"], "transition.records"):
-            _record(model, raw, metadata)
+            _record(model, raw, metadata, at=at)
         entity = _entity(model, kind, identifier)
         before = t.validate_projection(_decode(entity["body"]))
         task_sha = entity["task_sha"]
         operation_key = command["operation_id"]
         operation = model["reservations"].get(operation_key)
         observation_sha = None
-        certifies = (command["action"] == "evidence" and any(item["outcome"] == "pass" for item in command["evidence"])) or (
-            command["action"] == "advance" and command["target"] in ("completed", "verified", "delivered"))
-        if request["schema_version"] != LEGACY_COMMAND_VERSION and (command["action"] in ("reserve", "dispatch") or certifies):
+        if request["schema_version"] != LEGACY_COMMAND_VERSION and _certifying(command):
             _admit_work(model, entity)
+            if at is not None:
+                p.authorize(_policy_records(model), job_id=_job(model)["job_id"], environment=metadata["environment"], at=at,
+                            task=None if task_sha is None else _task(model, task_sha), workspace=metadata["workspace"])
         if command["action"] == "reserve":
             if task_sha is None:
                 c._fail("ASSIGNMENT_REQUIRED", "reservation", "External work must be owned by an assigned task/attempt, not a parent job.")
@@ -488,17 +566,30 @@ def _execute(root: Path, request: dict) -> dict:
     request = _request(request)
     if request["schema_version"] != COMMAND_VERSION:
         c._fail("UNSUPPORTED_SCHEMA", "request", "Legacy command semantics are replay-only, not a new admission route.")
+    if request.get("admitted_at") is not None:
+        c._fail("INVALID_TIME", "request.admitted_at", "Admission time is assigned inside the journal transaction, not by a worker.")
     with _connection(root, write=True) as (connection, metadata):
         model, commands = _reconstruct(connection, metadata)
         prior = next((row for row in commands if row["command_key"] == request["key"]), None)
         if prior is not None:
-            replay_request = dict(request, schema_version=_decode(prior["request"])["schema_version"])
+            prior_request = _decode(prior["request"])
+            replay_request = dict(request, schema_version=prior_request["schema_version"])
+            if prior_request["schema_version"] == "sparkforge.store-command.v3":
+                replay_request["admitted_at"] = prior_request["admitted_at"]
+            else:
+                replay_request.pop("admitted_at", None)
             if prior["request_sha"] != c.record_digest(replay_request) or prior["request"] != c.canonical_json(replay_request):
                 c._fail("IDEMPOTENCY_CONFLICT", "request.key", "Durable command key is already bound to another payload.")
             result = _decode(prior["result"])
             if result["projection"] is not None:
                 result["projection"] = _decode(_entity(model, request["kind"], request["entity_id"])["body"])
             return {**result, "replayed": True}
+        if request["schema_version"] == "sparkforge.store-command.v3":
+            request["admitted_at"] = p.now()
+            prior_times = [_decode(row["request"]).get("admitted_at") for row in commands]
+            latest = max((value for value in prior_times if value is not None), default=request["admitted_at"])
+            if _request_admits(request) and request["admitted_at"] < latest:
+                c._fail("ADMISSION_CLOCK_REVERSED", "request", "Journal clock moved behind committed admission time; inspect rather than backdate work.")
         before = deepcopy(model)
         try:
             result = _reduce(model, request, metadata)
@@ -516,8 +607,11 @@ def _execute(root: Path, request: dict) -> dict:
 
 
 def _input(key: str, action: str, kind: str, identifier: str, data: dict) -> dict:
-    return {"schema_version": COMMAND_VERSION, "key": key, "action": action,
-            "kind": kind, "entity_id": identifier, "data": data}
+    request = {"schema_version": COMMAND_VERSION, "key": key, "action": action,
+               "kind": kind, "entity_id": identifier, "data": data}
+    if COMMAND_VERSION == "sparkforge.store-command.v3":
+        request["admitted_at"] = None
+    return request
 
 
 def initialize(root: Path, key: str, job_id: str, *, intent: c.IntentBaseline, envelope: c.ExecutionEnvelope,
@@ -537,6 +631,62 @@ def register(root: Path, key: str, kind: str, task: a.TaskAssignment, *, require
 
 def append_record(root: Path, key: str, job_id: str, record: dict) -> dict:
     return _execute(root, _input(key, "record", "job", job_id, {"record": record}))
+
+
+def record_decision(root: Path, key: str, request_sha: str, response: dict, *, ingress: p.Ingress) -> dict:
+    snapshot = read(root)
+    request = p._lookup(snapshot["records"], request_sha, "decision_request")
+    return _execute(root, _input(key, "policy_decision", "job", request["job_id"],
+                                {"request_sha": request_sha, "response": response, "ingress": ingress}))
+
+
+def bind_policy(root: Path, key: str, *, intent_sha: str, envelope_sha: str,
+                intent_decision_sha: str, envelope_decision_sha: str, previous_sha: str | None = None) -> dict:
+    snapshot = read(root)
+    if snapshot["job"] is None:
+        c._fail("JOB_REQUIRED", "policy_binding", "Initialize a job before binding accepted scope.")
+    job_id = snapshot["job"]["job_id"]
+    return _execute(root, _input(key, "policy_bind", "job", job_id, {
+        "previous_sha": previous_sha, "intent_sha": intent_sha, "envelope_sha": envelope_sha,
+        "intent_decision_sha": intent_decision_sha, "envelope_decision_sha": envelope_decision_sha,
+    }))
+
+
+def revoke(root: Path, key: str, subject_kind: str, subject_sha: str, *, reason: str, ingress: p.Ingress) -> dict:
+    snapshot = read(root)
+    if snapshot["job"] is None:
+        c._fail("JOB_REQUIRED", "revocation", "Initialize a job before recording revocation.")
+    return _execute(root, _input(key, "policy_revoke", "job", snapshot["job"]["job_id"],
+                                {"subject_kind": subject_kind, "subject_sha": subject_sha, "reason": reason, "ingress": ingress}))
+
+
+def authority_status(snapshot: dict, *, task: a.TaskAssignment | None = None) -> dict:
+    if snapshot["job"] is None:
+        return {"allowed": False, "code": "POLICY_REQUIRED", "reason": "No initialized job authority."}
+    try:
+        result = p.authorize(snapshot["records"], job_id=snapshot["job"]["job_id"],
+                             environment=snapshot["metadata"]["environment"], at=p.now(), task=task,
+                             workspace=snapshot["metadata"]["workspace"])
+        return {"allowed": True, **result}
+    except c.ContractError as error:
+        if error.code not in p.DENIALS:
+            raise
+        return {"allowed": False, "code": error.code, "reason": str(error)}
+
+
+def classify(root: Path, *, proposed_intent: dict, proposed_envelope: dict, label: str = "technical change",
+             current_task_sha: str | None = None, proposed_task: dict | None = None) -> dict:
+    snapshot = read(root)
+    authority = authority_status(snapshot)
+    if not authority["allowed"]:
+        c._fail(authority["code"], "policy", authority["reason"])
+    records = snapshot["records"]
+    return p.classify_change(
+        accepted_intent=records[authority["intent_sha"]]["value"], accepted_envelope=records[authority["envelope_sha"]]["value"],
+        proposed_intent=proposed_intent, proposed_envelope=proposed_envelope, label=label,
+        current_task=None if current_task_sha is None else p._lookup(records, current_task_sha, "task"),
+        proposed_task=proposed_task,
+        unresolved_effects=any(row["status"] in t.OPEN_OPERATIONS for row in snapshot["reservations"].values()))
 
 
 def apply(root: Path, kind: str, command: t.Command, *, records: tuple[dict, ...] = ()) -> dict:

@@ -2,7 +2,7 @@
 
 SparkForge turns ideas, existing code and knowledge into software components that fit an existing SPARK platform. Its target is a coordinated multi-agent factory with a platform-aware brain, an independent intent controller, coding/testing/review/diagnosis roles, bounded correction loops, durable recovery and human decisions when scope or authority materially changes.
 
-**Current implementation:** an experimental assisted native Copilot agent/skill with verified snapshots, strict v1 specs, journal/check/review helpers. Alongside v1, corrected P1 plus WP-120/121 now provide coordinated contracts, a schema-v2 transactional journal, serial scripted-host scheduling and protected behavioral fixtures. The complete model-driven engineering loop, policy/accounting/candidate integration and native role packaging remain **planned**. Neither corp nor acro has been deployment-qualified here.
+**Current implementation:** an experimental assisted native Copilot agent/skill with verified snapshots, strict v1 specs and journal/check/review helpers. Alongside v1, corrected P1 plus WP-120..122 provide a schema-v2 journal, serial scripted scheduling, structural materiality/exact decision admission and protected behavioral fixtures. Authentic ingress, aggregate accounting, candidate integration and the complete model-driven engineering loop remain **planned**. Neither corp nor acro has been deployment-qualified here.
 
 ## Start development here
 

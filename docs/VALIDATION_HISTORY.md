@@ -471,3 +471,25 @@ Local/upstream/open PR head was clean and exactly `08b45dd18fc7957a6adfe0db76911
 | `python -B scripts\validate_plan.py --base HEAD` and `git diff --check` | PASS | 12 changed paths;96 Markdown files;810 links;50 tasks;21 cycles. New hosted checks not yet inferred |
 
 The journal now revalidates ancestor/job eligibility inside the atomic transaction for new reservations, dispatch, passing evidence and successful completion. It still records historical observations and reconciles outcomes after cancellation. Command-v2 semantics govern new writes; command-v1 history remains replayable and its exact keys can be inspected/replayed without new effects. No old commands or outcomes are rewritten. The [new cycle](engineering/cycles/ENG-20261113-transactional-admission-fixes.json) records this focused fix; WP-122 implementation follows separately.
+
+## 2026-11-14: WP-122 implemented structural policy and exact admission
+
+The prerequisite focused fix was published as `586bb821256c3aaa34d63ddba02f6e53e2c089bf`; [hosted run43533941040](https://github.com/Arkthos/SparkForge/actions/runs/43533941040) passed Windows552/552 (45.530s), Linux523 passed/29 skipped (41.101s), planning and whitespace. WP-122 implements policy.py plus journal/coordinator integration, not another preparation. Test-owned jobs now explicitly seed separately labeled synthetic intent/execution decisions; no real approval was manufactured.
+
+| Actual check | Result | Scope |
+|---|---|---|
+| Initial narrow three-case integration check | FAIL: one assertion mismatch in13.910s | Legacy-forgery test mixed the new timestamp field with old schema; updated fixture to form a valid old-shaped request, preserving rejection |
+| Initial policy/store/scheduler selector | PASS:57 tests48.407s | Working decisions, materiality, revocation and normal continuation |
+| First full suite | PASS:567 collected565 passed,two skips159.233s | Before the independent clock-rollback regression and workspace guard case |
+| Required independent policy implementation review | One medium finding | Clock regression incorrectly blocked cancellation and factual reconciliation, not just admission |
+| Clock-rollback reproduction | ERROR: one case0.282s | ADMISSION_CLOCK_REVERSED prevented job cancellation before the fix |
+| `$env:PYTHONPATH = (Resolve-Path 'tests').Path; python -B -m unittest test_materiality_policy test_runtime_store test_scheduler` | PASS:59 tests50.499s | Final17 policy/20 journal/22 scheduler cases, including interleaved revocation and clock rollback |
+| `$env:PYTHONPATH = (Resolve-Path 'research_tools\.validation-deps').Path; python -B -m unittest discover -s tests` | PASS:569 collected567 passed,two skips | Reported elapsed18,376.938s; unusually long wall time retained, cause not established and not a performance benchmark |
+| Existing v1/native-test, accepted router-intent, research/archive diff | PASS | No changes to these paths |
+| `python -B -m unittest discover -s tests -p 'test_validate_plan.py'` | PASS:44 tests15.121s | Current documentation/governance checks |
+| `python -B scripts\validate_plan.py --base HEAD` and `git diff --check` | PASS | 18 changed paths;96 Markdown files;814 links;50 tasks;22 cycles |
+| Prompt equality and retained-byte inspection | PASS | Both prompts select WP-123; v1/native tests, accepted router intent, research/archive unchanged |
+
+New command-v3 admission captures time in the writer transaction, enforces the exact accepted binding and current parent/job eligibility, and preserves old command-v1/v2 replay. Immutable policy requests include target, accepted baseline, impact and alternatives; responses require the corresponding separately supplied ingress assertion. Revocation/expiry block new work or successful credit without erasing observation history. Clock rollback cannot block cancellation or non-authorizing reconciliation.
+
+Ordinary structurally in-scope repair/refactor/test/replan proposals do not create new decisions. Material intent/envelope/control changes are recomputed against accepted objects, regardless of labels or intermediate proposals. Acceptance changes do not rewrite frozen tasks, silently move store workspaces or reset consumption. Full ingress authentication, semantic controller judgment, aggregate accounting and actual graph/candidate integration remain unimplemented. See [WP-122 cycle](engineering/cycles/ENG-20261114-wp122-policy.json). Next: WP-123.

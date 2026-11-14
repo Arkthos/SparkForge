@@ -212,6 +212,8 @@ Coordinated schema v2 and the tested v1-header copy upgrade are implemented with
 
 **Implementation:** Implement materiality rules, decision requests, current-object binding, revocation and envelope membership; independently verify proposed deltas; keep human decisions as host ingress assertions until authentic origin is qualified.
 
+**Implemented boundary:** [WP-122 policy](design/HUMAN_DECISIONS.md#implemented-policy-boundary) recomputes structural deltas against the active accepted pair and persists exact requests/responses, scoped ingress assertions, chained accepted bindings and revocations through the journal. Command-v3 assigns admission time inside the writer transaction and checks eligibility, expiry and membership for new work/success credit. Cancellation and factual reconciliation remain available after revocation or clock rollback. Old command-v1/v2 history remains replayable but cannot grant new work. Ordinary structurally in-scope tactics need no new acceptance; semantic equivalence, control-rule approval, graph replanning, aggregate accounting and authentic host identity remain their own gates.
+
 **Owned/proposed paths:** `plugins/sparkforge/runtime/policy.py`; `tests/test_materiality_policy.py`; `docs/design/HUMAN_DECISIONS.md`. Inspect shared helpers first; coordinate shared-file changes explicitly.
 
 **Positive acceptance:** An in-scope repair or internal plan adjustment continues without another intent approval; a changed acceptance condition or permission envelope cannot.
