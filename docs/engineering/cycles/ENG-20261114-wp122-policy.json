@@ -1,0 +1,79 @@
+{
+  "schema_version": "sparkforge-engineering-cycle.v1",
+  "id": "ENG-20261114-wp122-policy",
+  "date": "2026-11-14",
+  "work_items": ["WP-122"],
+  "workstream": "Structural materiality and exact policy admission",
+  "cycle_type": "implementation",
+  "status": "validated",
+  "objective": "Implement ordinary in-scope continuation and exact scoped decisions/revocation without treating model labels or missing evidence as authority.",
+  "base_commit": "586bb821256c3aaa34d63ddba02f6e53e2c089bf",
+  "branch": "kerodri-microsoft-sparkforge-coordinated-contracts",
+  "changes": [
+    "Implemented structural materiality against accepted intent/envelope and locked task-control fields, not worker-supplied diffs or intermediate proposals.",
+    "Added closed exact request/response/ingress, immutable decisions, chained accepted bindings and scoped revocation records.",
+    "Integrated working policy APIs and admission in the journal/coordinator; new work requires explicit intent/execution acceptance.",
+    "Added command-v3 transaction-owned admission time, expiry/deadline and selected workspace membership; preserved legacy command replay.",
+    "Kept observation/history/cancellation/reconciliation available after withdrawal and clock rollback; blocked only new authority/work/success admission.",
+    "Updated test-owned helpers with explicit synthetic fixture decisions, leaving all assisted-v1 approval/API/test bytes unchanged."
+  ],
+  "validation": [
+    {
+      "check": "$env:PYTHONPATH = (Resolve-Path 'tests').Path; python -B -m unittest test_materiality_policy test_runtime_store test_scheduler",
+      "scope": "TC-119/120 and affected journal/coordinator behavior",
+      "outcome": "PASS",
+      "reference": "Final59 tests50.499s;17 policy cases. Initial57 passed48.407s. A narrow legacy test-shape mismatch was corrected without weakening its rejection."
+    },
+    {
+      "check": "$env:PYTHONPATH = (Resolve-Path 'research_tools\\.validation-deps').Path; python -B -m unittest discover -s tests",
+      "scope": "Full Windows/Python3.12.10 repository regression",
+      "outcome": "PASS",
+      "reference": "Final569 collected567 passed,two existing symlink-privilege skips. Reported elapsed18,376.938s is retained; unusually long duration has no established cause or performance implication. Earlier full567/565/two skips159.233s."
+    },
+    {
+      "check": "Required distinct policy review and explicit clock-rollback reproduction",
+      "scope": "Independent implementation inspection",
+      "outcome": "PASS",
+      "reference": "One medium finding reproduced as cancellation error0.282s. Clock guard narrowed to admission; final tests prove stop/reconciliation still work. No second independent verdict claimed."
+    },
+    {
+      "check": "Hosted focused admission-fix run43533941040",
+      "scope": "Prerequisite commit586bb821256c3aaa34d63ddba02f6e53e2c089bf",
+      "outcome": "PASS",
+      "reference": "Windows552/0skips45.530s;Linux523 passed/29 skipped41.101s;planning/whitespace exit0. Not a result for the new policy head."
+    },
+    {
+      "check": "python -B -m unittest discover -s tests -p 'test_validate_plan.py'; python -B scripts\\validate_plan.py --base HEAD; git diff --check",
+      "scope": "Current lifecycle/link/archive/whitespace",
+      "outcome": "PASS",
+      "reference": "44 documentation tests15.121s;18 changed paths;96 Markdown files;814 links;50 tasks;22 cycles. Whitespace/prompt equality and preserved v1/intent/research/archive bytes verified."
+    }
+  ],
+  "results": [
+    "Ordinary structurally in-scope work reuses valid accepted scope without another decision.",
+    "Changed intent/permissions, wrong owners, stale responses, revoked targets, deadline/expiry and workspace mismatches cannot authorize new work.",
+    "Revocation interleaved after preflight is enforced by the journal transaction while historical outcomes remain recordable.",
+    "Legacy reads/recovery/replay remain available; new command-v3 work does not inherit absent policy acceptance."
+  ],
+  "limitations": [
+    "Ingress remains explicitly unauthenticated host/operator assertions; synthetic_fixture assertions cannot authorize real environments.",
+    "Structural classification is not semantic equivalence, an approved graph replan, authentic controller judgment or control-rule/oracle approval.",
+    "Aggregate usage accounting is WP-123; native effects, actual candidate integration and full model-driven acceptance remain later work.",
+    "Two local symlink-privilege tests remain skipped; the unusually long full-run duration is not explained or benchmarked.",
+    "Current scripted-host/unchanged-candidate and no-whole-job-acceptance boundaries remain intact."
+  ],
+  "rollback": "Use new corrective commits, preserve accepted binding/decision/revocation history and command versions, and reconcile uncertain effects instead of resetting authority or replaying blindly.",
+  "next_steps": [
+    "Publish the validated policy commit to existing PR1 and inspect exact-head hosted CI; do not merge or deploy.",
+    "Continue next with WP-123 job/agent budgets using immutable observation and reservation identities.",
+    "Preserve transaction-level parent/terminal/revocation/time guards and legacy recovery compatibility."
+  ],
+  "evidence": [
+    "plugins/sparkforge/runtime/policy.py",
+    "tests/test_materiality_policy.py",
+    "docs/design/HUMAN_DECISIONS.md",
+    "docs/VALIDATION_HISTORY.md",
+    "docs/development/COPILOT_HANDOFF.md"
+  ],
+  "public_safe": true
+}

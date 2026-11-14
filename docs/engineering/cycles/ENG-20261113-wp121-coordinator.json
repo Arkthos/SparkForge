@@ -1,0 +1,86 @@
+{
+  "schema_version": "sparkforge-engineering-cycle.v1",
+  "id": "ENG-20261113-wp121-coordinator",
+  "date": "2026-11-13",
+  "work_items": ["WP-121"],
+  "workstream": "Serial graph scheduling over durable journal and scripted host",
+  "cycle_type": "implementation",
+  "status": "validated",
+  "objective": "Implement dependency/role barriers and one durable scripted invocation at a time without equating a worker turn with job readiness.",
+  "base_commit": "1999ac26351488fbf42ed626e0a191bdc09f44bb",
+  "branch": "kerodri-microsoft-sparkforge-coordinated-contracts",
+  "changes": [
+    "Added closed schedule validation with exact context/assignment bindings, unique IDs, acyclic dependencies, required roles/criteria and disjoint protected ownership.",
+    "Persisted pinned schedule/capabilities and restartable task registration before serial reserve/dispatch.",
+    "Implemented stateless ticks that inspect existing operations after lost replies rather than redispatching.",
+    "Added exact structured-result/attempt/producer gates, resumable result persistence and explicit changed-candidate blocking.",
+    "Preserved cancellation/reconciliation when host cancellation is unsupported; fixed snapshot races and cross-kind command-key collisions.",
+    "Pinned job context and refused invalidation while descendant effects remain unresolved.",
+    "Kept whole-job readiness false, with actual policy/accounting/candidate integration/live-host gates explicitly future."
+  ],
+  "validation": [
+    {
+      "check": "$env:PYTHONPATH = (Resolve-Path 'tests').Path; python -B -m unittest test_scheduler test_runtime_store test_workflow_transitions test_host_adapter",
+      "scope": "TC-117/118 and affected journal/P1 behavior",
+      "outcome": "PASS",
+      "reference": "Final73 tests pass23.932s. Initial69 passed22.914s; three review reproducers then failed1 assertion+2 errors2.985s; corrected72 passed20.880s before context guards."
+    },
+    {
+      "check": "$env:PYTHONPATH = (Resolve-Path 'research_tools\\.validation-deps').Path; python -B -m unittest discover -s tests",
+      "scope": "Full Windows/Python3.12.10 repository regression",
+      "outcome": "PASS",
+      "reference": "Final547 collected545 passed/two existing symlink-privilege skips121.309s. Earlier full runs543/541/two skips and546/544/two skips also recorded."
+    },
+    {
+      "check": "Distinct required coordinator implementation review and explicit reproductions",
+      "scope": "Independent implementation inspection, not model/domain acceptance",
+      "outcome": "PASS",
+      "reference": "Three findings reproduced and fixed: cancellation snapshot race, unsupported cancel blocking reads, cross-kind command keys. No second independent verdict claimed."
+    },
+    {
+      "check": "Hosted WP-120 run43526649270",
+      "scope": "Committed prerequisite1999ac26351488fbf42ed626e0a191bdc09f44bb",
+      "outcome": "PASS",
+      "reference": "Windows528/0skips27.002s; Linux499 passed/29 skipped13.618s; planning/whitespace exit0 both. Not evidence for unpushed WP-121."
+    },
+    {
+      "check": "python -B -m unittest discover -s tests -p 'test_validate_plan.py'; python -B scripts\\validate_plan.py --base HEAD; git diff --check",
+      "scope": "Current lifecycle/link/archive and whitespace",
+      "outcome": "PASS",
+      "reference": "44 documentation tests14.697s;17 changed paths;96 Markdown files;808 links;50 tasks;20 cycles; whitespace passed. Prompt equality and unchanged v1/intent/research/archive bytes verified."
+    },
+    {
+      "check": "WP-121 hosted CI and live model/platform journeys",
+      "scope": "Separate publication and qualification",
+      "outcome": "NOT_ASSESSED",
+      "reference": "New exact-head hosted results pending publication; no real host/model/platform operation performed."
+    }
+  ],
+  "results": [
+    "Every required logical role is scheduled in the validated dependency order; repeated/restarted ticks do not duplicate dispatch.",
+    "Completed host work requires its exact structured result; required reviewers/controllers cannot be omitted and job readiness remains false.",
+    "Lost replies, unknown effects and unsupported cancel remain explicit; supported observation can settle existing work without replay.",
+    "Both requested work packages are implemented in sequential coherent commits, not another preparation-only handoff."
+  ],
+  "limitations": [
+    "Only scripted_fake hosts and unchanged pinned candidates are supported; no native launcher or live-host authority is inferred.",
+    "Actual file integration, dynamic replanning/repair, policy, aggregate budgets and full result/effect mediation remain later work.",
+    "The five-role serial profile is conservative; test author follows coder in a distinct context, not a simultaneous hidden-test service.",
+    "Whole-job acceptance requires later authentic policy/controller/evaluator/delivery gates; graph completion alone is insufficient.",
+    "Two existing local symlink-privilege cases remain skipped; host power-loss/domain acceptance remains unassessed."
+  ],
+  "rollback": "Preserve the durable journal and operation keys. Use a new corrective/revert commit; reconcile outstanding effects before changing graph/authority, never erase reservations or silently repeat calls.",
+  "next_steps": [
+    "Commit/push WP-121 to the existing PR; verify exact final-head hosted results and update the PR evidence without merging.",
+    "Next bounded implementation: WP-122 materiality/decision admission; preserve corrected P1 and WP-120/121 boundaries.",
+    "Keep WP-123 accounting, WP-124 workspace integration, WP-125 checks and WP-126 admission separately evidenced."
+  ],
+  "evidence": [
+    "plugins/sparkforge/runtime/scheduler.py",
+    "plugins/sparkforge/runtime/coordinator.py",
+    "tests/test_scheduler.py",
+    "docs/VALIDATION_HISTORY.md",
+    "https://github.com/Arkthos/SparkForge/actions/runs/43526649270"
+  ],
+  "public_safe": true
+}

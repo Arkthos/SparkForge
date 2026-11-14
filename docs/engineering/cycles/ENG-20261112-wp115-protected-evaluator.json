@@ -1,0 +1,78 @@
+{
+  "schema_version": "sparkforge-engineering-cycle.v1",
+  "id": "ENG-20261112-wp115-protected-evaluator",
+  "date": "2026-11-12",
+  "work_items": ["WP-115"],
+  "workstream": "Protected behavioral acceptance before coordinated implementation",
+  "cycle_type": "implementation",
+  "status": "validated",
+  "objective": "Bind an independently inspectable fictional routing oracle outside coder ownership and detect known-bad implementations without trusting success prose.",
+  "base_commit": "d0a028f8f21bf96a1ace2050844fc6652924f568",
+  "branch": "kerodri-microsoft-sparkforge-coordinated-contracts",
+  "changes": [
+    "Authored protected intent, exact scenario definitions and evaluator before the reference candidate/mutants.",
+    "Bound evaluator code, criteria, scenarios and shared helpers through a pre-candidate owner-selected manifest; candidate bytes are separately bound.",
+    "Implemented exact output/error/effect-count/input-preservation checks with required criterion and positive/negative coverage.",
+    "Added 11 seeded defects/drift variants and ownership, criterion deletion, oracle modification and fabricated success controls.",
+    "Corrected three independently discovered oracle false passes with revision-2 scenarios, without changing revision-1 accepted intent."
+  ],
+  "validation": [
+    {
+      "check": "python -B -m unittest discover -s tests -p 'test_protected_evaluation.py'",
+      "scope": "TC-113/114 trusted synthetic behavioral fixture",
+      "outcome": "PASS",
+      "reference": "Final 12/12 in 1.802s; 17 protected cases; all 11 mutants detected. Initial 11 tests passed, then three review false-pass subcases failed before correction."
+    },
+    {
+      "check": "$env:PYTHONPATH = (Resolve-Path 'research_tools\\.validation-deps').Path; python -B -m unittest discover -s tests",
+      "scope": "Full Windows/Python 3.12.10 repository regression",
+      "outcome": "PASS",
+      "reference": "497 collected; 495 passed; two existing symlink-privilege skips; 88.070s. Pre-review full run was 496/494/two skips."
+    },
+    {
+      "check": "Distinct protected-evaluator implementation and behavior review",
+      "scope": "Independent review context, not live controller/domain acceptance",
+      "outcome": "PASS",
+      "reference": "Three medium findings: missing legacy flag combinations, null audit acceptance and discarded dispatch return. Each reproduced as a false pass; expanded cases now reject each. No second review verdict claimed."
+    },
+    {
+      "check": "python -B scripts\\validate_plan.py --base HEAD; git diff --check",
+      "scope": "Lifecycle/link/archive and whitespace boundary",
+      "outcome": "PASS",
+      "reference": "16 changed paths; 96 Markdown files; 794 local links; 50 tasks; 15 cycles. Whitespace passed."
+    },
+    {
+      "check": "Hosted CI and real model/controller/domain journeys",
+      "scope": "Separate publication and later runtime acceptance",
+      "outcome": "NOT_ASSESSED",
+      "reference": "No real source/profile/worker/model operation or native capability assumed."
+    }
+  ],
+  "results": [
+    "Reference behavior passes every protected case; all 11 defective/drifting candidates fail.",
+    "Worker tests/markers cannot replace protected behavior; deleted cases, changed criteria/code and ownership violations block evaluation.",
+    "Oracle revision 2 records independently assessed sensitivity fixes; accepted user behavior remained unchanged.",
+    "P1 source-neutral foundation is complete; the coordinated engineering loop remains unimplemented."
+  ],
+  "limitations": [
+    "In-process execution is restricted to trusted finite owned fixtures; this is not an OS sandbox or a bounded production runner.",
+    "Repository-visible scenarios are independent/protected by ownership and binding, not secret from repository readers or malicious same-process code.",
+    "Fixture PASS covers finite observed behavior, not exhaustive correctness, actual platform reuse, independent role execution, recovery or release.",
+    "Two existing symlink-privilege cases remain skipped; actual host/domain/installed acceptance remains NOT_ASSESSED."
+  ],
+  "rollback": "Revert the isolated fixture/evaluator implementation if needed; retain prior P1 commits, source-neutral failure history and original v1 behavior.",
+  "next_steps": [
+    "Commit WP-115 and validate --base HEAD~; publish the focused P1 branch/PR without merging.",
+    "Record exact remote/PR/CI observations and final continuation head.",
+    "Next implementation: WP-120 transactional coordinated journal using the existing contracts, pure transitions and explicit migration boundary; then WP-121."
+  ],
+  "evidence": [
+    "tests/evaluation/router_intent.json",
+    "tests/evaluation/router_cases.json",
+    "tests/evaluation/router_evaluator.py",
+    "tests/fixtures/factory_scenarios/seeded_defects.py",
+    "tests/test_protected_evaluation.py",
+    "docs/VALIDATION_HISTORY.md"
+  ],
+  "public_safe": true
+}

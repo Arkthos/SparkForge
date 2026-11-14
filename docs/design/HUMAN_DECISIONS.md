@@ -1,6 +1,28 @@
 # Human decisions and delegated autonomy
 
-**Target policy; not yet implemented in assisted v1.** The goal is ordinary engineering without repeated interruption, while preserving meaningful control over changed outcomes, authority and consequential effects. Human involvement is driven by materiality, not every agent handoff or check invocation.
+**WP-122 structural policy is implemented alongside assisted v1.** Materiality comparison, exact decision bindings, envelope membership, expiry and revocation now run through the coordinated journal. Authentic ingress identity, semantic controller judgment and the full live factory remain separate qualification/implementation work. Assisted-v1 manual exact-spec semantics are unchanged.
+
+## Implemented policy boundary
+
+`runtime/policy.py` supplies `classify_change`, `decision_request`/`validate_request`, `decide`/`validate_decision`, `validate_binding`, `revocation`/`validate_revocation`, `envelope_membership` and `authorize`. These are deterministic record/scope operations, not a model reasoning service or an identity provider.
+
+| Behavior | Implemented rule |
+|---|---|
+| Materiality | Compare complete proposed intent/envelope records with the accepted pair, not a worker-supplied diff or previous unaccepted proposal. Changed intent needs its owner; changed envelope needs its execution owner. Task criterion/protected-path/result-kind/role changes are control changes, not ordinary replans. Labels such as repair or refactor cannot hide those differences. |
+| Ordinary continuation | Identical accepted intent/envelope with structurally in-scope task tactics yields `IN_SCOPE_STRUCTURAL` without a new decision. Scope/allowances are still checked; this does not certify semantic equivalence, approve a changed scheduler graph or integrate code. Unknown external effects yield `RECONCILE`. |
+| Exact requests/responses | A request contains job, full target kind/ID/revision/digest, accepted-baseline digest, reason, alternatives and impact. A response binds the complete request digest and explicitly accepts/rejects/requests changes. Altering target, impact or accepted baseline makes an old response stale. |
+| Separate authority owners | Intent and execution-envelope decisions require separate scoped ingress assertions (`intent_owner` / `execution_owner`). Response JSON cannot carry self-issued actor/approved/confidence fields. Ingress is separately supplied and constrained to host/operator assertions; explicit `synthetic_fixture` assertions are valid only for LOCAL_DEVELOPMENT tests. None of these labels authenticates its producer. |
+| Accepted policy binding | A `sparkforge.policy-binding.v1` record chains the previous accepted binding and exact intent/envelope decisions. No resetting revision/history, stale baseline or rejected/revoked grant. An unchanged target can reuse its still-valid existing decision; changed scope requires a new exact acceptance. |
+| Membership/time | Reuse P1 validation for environment/profile/provider, selected workspace/data roots, tools/effects, protected writes, criteria, finite allowances and task bindings. Journal admission checks current envelope expiry and task deadline, and cannot silently move the store workspace. |
+| Revocation | Append an exact target/decision revocation with its scoped origin and reason. It blocks new effect and success admission, but does not delete decisions/observations, mark unknown effects unused or forbid factual reconciliation. A committed revocation remains effective despite later clock rollback. |
+
+Journal `record_decision`, `bind_policy`, `revoke`, `classify` and `authority_status` provide working persistence/admission paths. New command-v3 writes assign `admitted_at` inside the writer transaction; callers cannot supply a backdated value. Records, decisions and replay outcomes remain immutable/idempotent. Clock regression blocks new work or authority/success admission, not cancellation, observation storage or non-authorizing reconciliation.
+
+New reservations, dispatch and passing evidence/completion require both an accepted live policy binding and eligible parent/job state in the same transaction. Coordinator preflight only explains blockers; it is not the enforcement boundary. Unaccepted/expired/revoked/stale scope reports `POLICY_BLOCKED`. Existing v1/v2 command history remains replayable; it does not grant new command-v3 work permission. Old jobs without policy decisions can still be inspected/reconciled, but need explicit scoped acceptance before new work.
+
+The active policy pair is separate from immutable initial job records. Updating accepted scope does not automatically rewrite assignments, adopt another schedule, reset allowance/consumption or migrate a workspace. Superseded assignments stop with `POLICY_BINDING_MISMATCH`; the later replanning/integration protocol must produce current work.
+
+**Limits:** classification is structural, not proof that arbitrary prose/code preserves intent. Control-policy/oracle/reviewer changes remain material and are not auto-approved by the intent/envelope decision API. Host/operator assertions remain `authenticated: false`; genuine ingress authentication is outside this slice. Aggregate resource accounting is WP-123. Native effects, actual code integration and full model-driven acceptance remain later work. Tests seed only explicitly labeled fictional decisions; no real approval is manufactured.
 
 ## Establish the initial envelope
 
@@ -41,4 +63,4 @@ Cumulative small changes are assessed against the accepted intent/envelope, not 
 
 ## Existing assisted-v1 behavior
 
-The shipped `sparkforge.spec.v1` freezes behavior, commands, files and bounds in one record. Its manual `decide` binds the exact digest, and `revise` clears approval. Those remain current implementation facts. Do not bypass them, automate a fake operator, or claim the target policy works before WP-110/WP-122/WP-125 and relevant integration evidence exist.
+The shipped `sparkforge.spec.v1` freezes behavior, commands, files and bounds in one record. Its manual `decide` binds the exact digest, and `revise` clears approval. Those remain unchanged. WP-122 now implements coordinated structural policy, not a bypass of v1 decisions or completion of the WP-125 check bridge. Full policy/host/engineering-loop acceptance still requires its relevant integration evidence.

@@ -1,0 +1,74 @@
+{
+  "schema_version": "sparkforge-engineering-cycle.v1",
+  "id": "ENG-20261112-wp114-fake-host",
+  "date": "2026-11-12",
+  "work_items": ["WP-114"],
+  "workstream": "Source-neutral host protocol and scripted observations",
+  "cycle_type": "implementation",
+  "status": "validated",
+  "objective": "Enable offline host protocol exercises with explicit unsupported capabilities, producer context, uncertain effects and usage.",
+  "base_commit": "3abed591526b4c0dc7bbcdc3c15101412c200233",
+  "branch": "kerodri-microsoft-sparkforge-coordinated-contracts",
+  "changes": [
+    "Added HostAdapter protocol, strict capability/context/receipt validation and pre-effect capability admission.",
+    "Implemented a test-owned finite scripted fake with call/effect counters, lost responses, polling, cancellation acknowledgements and reconciliation.",
+    "Kept fake evidence class, unknown usage and completed host turns distinct from live observations or admitted results.",
+    "Corrected equality-based acceptance of boolean/float context revisions and preflighted scripted usage/cancellation support before simulated effects."
+  ],
+  "validation": [
+    {
+      "check": "python -B -m unittest discover -s tests -p 'test_host_adapter.py'",
+      "scope": "TC-111/112 source-neutral protocol and scripted fake",
+      "outcome": "PASS",
+      "reference": "Final 14/14 in 0.056s. Initial 12 passed; added negative cases produced seven subcase failures before correction."
+    },
+    {
+      "check": "$env:PYTHONPATH = (Resolve-Path 'research_tools\\.validation-deps').Path; python -B -m unittest discover -s tests",
+      "scope": "Full Windows/Python 3.12.10 repository regression",
+      "outcome": "PASS",
+      "reference": "Final 485 collected; 483 passed; two existing symlink-privilege skips; 96.001s. Pre-review full run was 483/481/two skips."
+    },
+    {
+      "check": "Distinct protocol implementation review and regression reproduction",
+      "scope": "Independent implementation inspection, not host qualification",
+      "outcome": "PASS",
+      "reference": "One medium malformed-reference equality finding reproduced in six subcases and fixed. No second review verdict claimed."
+    },
+    {
+      "check": "python -B scripts\\validate_plan.py --base HEAD; git diff --check",
+      "scope": "Lifecycle/link/archive and whitespace boundary",
+      "outcome": "PASS",
+      "reference": "Ten changed paths; 96 Markdown files; 791 local links; 50 tasks; 14 cycles. Whitespace passed."
+    },
+    {
+      "check": "Current-branch publication and hosted CI completion",
+      "scope": "Authorized repository publication attempt, not runtime effect",
+      "outcome": "NOT_RUN",
+      "reference": "Publication blocked by HTTP 403/EMU restrictions; no branch or PR created. Later CLI read reports Arkthos/ADMIN, but the app publisher remains unverified. No credentials changed by this agent."
+    }
+  ],
+  "results": [
+    "Required capability absence rejects before simulated dispatch; accepted/running work is not completion.",
+    "Unknown effects, cancellation acknowledgements and lost responses do not authorize replay or zero usage.",
+    "Existing v1 code/tests/package inventory remain unchanged."
+  ],
+  "limitations": [
+    "No native launcher, actual agent/model call, host identity authentication or OS confinement is supplied.",
+    "Fake scripts/counters are deterministic tests, not durable restart, live delegation or independent domain acceptance.",
+    "Two existing symlink-privilege cases remain skipped; current-branch hosted CI is pending publication.",
+    "Earlier publication failures remain historical; account selection must be observed rather than inferred."
+  ],
+  "rollback": "Revert the isolated protocol/fake commit if necessary; preserve prior contracts, v1 stores and append-only cycles.",
+  "next_steps": [
+    "Commit WP-114 with post-commit --base HEAD~ validation.",
+    "Implement WP-115 protected fictional routing evaluation and known-bad controls before P2 integration.",
+    "Reconcile actual publication account/remote state at the next coherent boundary without changing credentials or destinations."
+  ],
+  "evidence": [
+    "plugins/sparkforge/runtime/host.py",
+    "tests/fakes/fake_host.py",
+    "tests/test_host_adapter.py",
+    "docs/VALIDATION_HISTORY.md"
+  ],
+  "public_safe": true
+}

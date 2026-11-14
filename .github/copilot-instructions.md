@@ -2,9 +2,9 @@
 
 Read `AGENTS.md`, `docs/PROJECT_STATUS.md`, `docs/development/COPILOT_HANDOFF.md`, then the selected section of `docs/IMPLEMENTATION_PLAN.md`. The active CSV backlog owns work states; archived plans do not.
 
-Build a coordinated multi-agent SPARK software factory: platform brain, independent intent controller, scoped coder/test-author/reviewer/diagnostician roles, deterministic test execution, bounded repair/replanning and materially necessary human decisions. The current shipped package is assisted v1; the coordinated design is not implemented yet.
+Build a coordinated multi-agent SPARK software factory: platform brain, independent intent controller, scoped coder/test-author/reviewer/diagnostician roles, deterministic test execution, bounded repair/replanning and materially necessary human decisions. The shipped package is assisted v1; corrected P1 and WP-120..122 journal/scripted coordination/structural policy are implemented in source, but authenticated ingress and the full model-driven engineering loop are not.
 
-Default next task: WP-110, described in `docs/development/FIRST_TASK.md`. Work through dependencies in the active backlog. Preserve the existing v1 APIs/tests and reuse their mechanisms. No speculative empty modules, invented host launch commands or new orchestration framework. Source-neutral fake-host work does not require corp/acro access.
+Default next task: consult `docs/development/COPILOT_HANDOFF.md` and the active backlog. WP-110 is the implemented foundation described in `docs/development/FIRST_TASK.md`. Preserve the existing v1 APIs/tests and reuse their mechanisms. No speculative empty modules, invented host launch commands or new orchestration framework. Source-neutral fake-host work does not require corp/acro access.
 
 For each task: inspect actual state; implement one complete slice; run meaningful positive/negative tests; fix observed failures; update the four living records and append an engineering cycle; report exact results and next task. Proceed through ordinary in-scope corrections without repeated permission questions. Material decisions follow `docs/design/HUMAN_DECISIONS.md`. Never invent approvals, independent reviews, source coverage, usage or test results.
 

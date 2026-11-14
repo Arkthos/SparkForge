@@ -1,0 +1,32 @@
+{
+  "schema_version": "sparkforge.intent.v1",
+  "id": "fictional-audit-router",
+  "revision": 1,
+  "problem": "Add audit-only routing to an existing fictional Python component without changing normal routing.",
+  "outcome": "Describe an audit-only request without invoking its action; preserve existing reads and writes and reject malformed input.",
+  "audience": "Synthetic platform component callers",
+  "component_kind": "fictional-python-router",
+  "acceptance": [
+    {"id": "R1", "behavior": "Read and write routes preserve their exact dispatch result and call the supplied effect stub exactly once when audit_only is absent or false."},
+    {"id": "R2", "behavior": "Audit-only read and write requests return the exact route, original payload and audit_only true without calling the effect stub."},
+    {"id": "R3", "behavior": "Unknown routes, extra fields, missing or blank payloads, non-object input and non-boolean audit flags raise ValueError with no effect calls."},
+    {"id": "R4", "behavior": "Requests remain unchanged and returned records contain only the declared fields; whitespace in nonblank payloads is preserved."}
+  ],
+  "non_goals": [
+    "No web UI, provider, background service, network traffic, actual tenant access or deployment.",
+    "No claim of platform reuse inspection, controller reasoning, host independence or complete factory recovery from this behavioral fixture."
+  ],
+  "material_constraints": [
+    "Use only the supplied dispatch stub for the fictional route action.",
+    "Candidate-owned tests cannot replace the protected evaluator or its required cases."
+  ],
+  "source_assumptions": [
+    {
+      "id": "fictional-interface",
+      "status": "known",
+      "statement": "This fixture defines a fictional component contract; it does not describe private SPARK APIs.",
+      "reason": "Source-neutral evaluation for WP-115; real platform comparison remains NOT_ASSESSED.",
+      "references": [{"id": "first-factory-slice", "revision": "fixture-v1", "sha256": null}]
+    }
+  ]
+}

@@ -21,7 +21,7 @@ The component accepts a supported routing request and returns the declared resul
 | Recoverability | Restart/lost response cannot duplicate an effectful operation | Durable operation key and fake-host call counter |
 | Honest handoff | Complete current checks/reviews/controller evidence and scoped limitations | Exact local bundle and readable status |
 
-The evaluator defines exact inputs/outputs/errors before implementation. These fixture details belong to WP-115; the coder cannot choose an easier oracle after seeing a failure.
+WP-115 now defines the exact fictional inputs/outputs/errors and protected evaluator described in the [evaluation plan](../engineering/EVALUATION_PLAN.md#implemented-fictional-routing-fixture). The coder cannot choose an easier oracle after seeing a failure. This completes the behavioral fixture foundation, not this WP-147 coordinated journey.
 
 ## Expected coordinated journey
 

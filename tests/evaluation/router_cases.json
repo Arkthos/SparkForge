@@ -1,0 +1,122 @@
+{
+  "schema_version": "sparkforge.router-oracle.v1",
+  "id": "fictional-audit-router-oracle",
+  "revision": 3,
+  "intent_id": "fictional-audit-router",
+  "cases": [
+    {
+      "id": "legacy-read", "kind": "positive", "criteria": ["R1", "R4"],
+      "request": {"route": "read", "payload": "one"},
+      "dispatch_result": {"receipt": "read-observation", "version": 1},
+      "expected": {"value": {"route": "read", "result": {"receipt": "read-observation", "version": 1}}, "error": null, "calls": [["read", "one"]]}
+    },
+    {
+      "id": "legacy-write", "kind": "positive", "criteria": ["R1", "R4"],
+      "request": {"route": "write", "payload": " two ", "audit_only": false},
+      "dispatch_result": "receipt#73",
+      "expected": {"value": {"route": "write", "result": "receipt#73"}, "error": null, "calls": [["write", " two "]]}
+    },
+    {
+      "id": "legacy-read-false", "kind": "positive", "criteria": ["R1", "R4"],
+      "request": {"route": "read", "payload": "one", "audit_only": false},
+      "dispatch_result": ["opaque", 2],
+      "expected": {"value": {"route": "read", "result": ["opaque", 2]}, "error": null, "calls": [["read", "one"]]}
+    },
+    {
+      "id": "legacy-read-padded-default", "kind": "positive", "criteria": ["R1", "R4"],
+      "request": {"route": "read", "payload": " \tone \n"},
+      "dispatch_result": {"receipt": "padded-read-default"},
+      "expected": {"value": {"route": "read", "result": {"receipt": "padded-read-default"}}, "error": null, "calls": [["read", " \tone \n"]]}
+    },
+    {
+      "id": "legacy-read-padded-false", "kind": "positive", "criteria": ["R1", "R4"],
+      "request": {"route": "read", "payload": "\n two\t ", "audit_only": false},
+      "dispatch_result": ["padded-read-false", 3],
+      "expected": {"value": {"route": "read", "result": ["padded-read-false", 3]}, "error": null, "calls": [["read", "\n two\t "]]}
+    },
+    {
+      "id": "legacy-write-default", "kind": "positive", "criteria": ["R1", "R4"],
+      "request": {"route": "write", "payload": "one"},
+      "dispatch_result": {"ok": true, "receipt": "write-no-audit"},
+      "expected": {"value": {"route": "write", "result": {"ok": true, "receipt": "write-no-audit"}}, "error": null, "calls": [["write", "one"]]}
+    },
+    {
+      "id": "audit-read", "kind": "positive", "criteria": ["R2", "R4"],
+      "request": {"route": "read", "payload": " one ", "audit_only": true},
+      "dispatch_result": null,
+      "expected": {"value": {"route": "read", "payload": " one ", "audit_only": true}, "error": null, "calls": []}
+    },
+    {
+      "id": "audit-write", "kind": "positive", "criteria": ["R2", "R4"],
+      "request": {"route": "write", "payload": "two", "audit_only": true},
+      "dispatch_result": null,
+      "expected": {"value": {"route": "write", "payload": "two", "audit_only": true}, "error": null, "calls": []}
+    },
+    {
+      "id": "unknown-route", "kind": "negative", "criteria": ["R3", "R4"],
+      "request": {"route": "delete", "payload": "one"},
+      "dispatch_result": null,
+      "expected": {"value": null, "error": "ValueError", "calls": []}
+    },
+    {
+      "id": "missing-payload", "kind": "negative", "criteria": ["R3", "R4"],
+      "request": {"route": "read"},
+      "dispatch_result": null,
+      "expected": {"value": null, "error": "ValueError", "calls": []}
+    },
+    {
+      "id": "blank-payload", "kind": "negative", "criteria": ["R3", "R4"],
+      "request": {"route": "read", "payload": " \t "},
+      "dispatch_result": null,
+      "expected": {"value": null, "error": "ValueError", "calls": []}
+    },
+    {
+      "id": "numeric-audit-one", "kind": "negative", "criteria": ["R3", "R4"],
+      "request": {"route": "write", "payload": "one", "audit_only": 1},
+      "dispatch_result": null,
+      "expected": {"value": null, "error": "ValueError", "calls": []}
+    },
+    {
+      "id": "numeric-audit-zero", "kind": "negative", "criteria": ["R3", "R4"],
+      "request": {"route": "read", "payload": "one", "audit_only": 0},
+      "dispatch_result": null,
+      "expected": {"value": null, "error": "ValueError", "calls": []}
+    },
+    {
+      "id": "null-audit", "kind": "negative", "criteria": ["R3", "R4"],
+      "request": {"route": "write", "payload": "one", "audit_only": null},
+      "dispatch_result": null,
+      "expected": {"value": null, "error": "ValueError", "calls": []}
+    },
+    {
+      "id": "string-audit", "kind": "negative", "criteria": ["R3", "R4"],
+      "request": {"route": "read", "payload": "one", "audit_only": "false"},
+      "dispatch_result": null,
+      "expected": {"value": null, "error": "ValueError", "calls": []}
+    },
+    {
+      "id": "list-audit", "kind": "negative", "criteria": ["R3", "R4"],
+      "request": {"route": "write", "payload": "one", "audit_only": []},
+      "dispatch_result": null,
+      "expected": {"value": null, "error": "ValueError", "calls": []}
+    },
+    {
+      "id": "object-audit", "kind": "negative", "criteria": ["R3", "R4"],
+      "request": {"route": "read", "payload": "one", "audit_only": {}},
+      "dispatch_result": null,
+      "expected": {"value": null, "error": "ValueError", "calls": []}
+    },
+    {
+      "id": "null-request", "kind": "negative", "criteria": ["R3", "R4"],
+      "request": null,
+      "dispatch_result": null,
+      "expected": {"value": null, "error": "ValueError", "calls": []}
+    },
+    {
+      "id": "extra-field", "kind": "negative", "criteria": ["R3", "R4"],
+      "request": {"route": "read", "payload": "one", "deploy": true},
+      "dispatch_result": null,
+      "expected": {"value": null, "error": "ValueError", "calls": []}
+    }
+  ]
+}

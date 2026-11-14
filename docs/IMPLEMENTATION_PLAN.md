@@ -69,7 +69,7 @@ Milestone exit: Validated baseline/envelope/task/result schemas, transitions, v1
 
 **Implementation:** Define TaskAssignment, AgentAttempt, AgentResult, Finding and Failure records; bind task/role/intent/plan/candidate/input digests; allowed paths/effects, acceptance IDs, deadline, allowance, evidence references and uncertainty; implement producer-role validation.
 
-**Owned/proposed paths:** `plugins/sparkforge/runtime/contracts.py`; `plugins/sparkforge/runtime/schemas/`; `tests/test_agent_envelopes.py`. Inspect shared helpers first; coordinate shared-file changes explicitly.
+**Owned/implemented paths:** `plugins/sparkforge/runtime/agent_contracts.py`; shared helpers in `runtime/contracts.py`; `tests/test_agent_envelopes.py`; shared synthetic `tests/runtime_fixtures.py`. WP-111 keeps worker records in a cohesive sibling module instead of enlarging the intent/envelope module; no unused schema copies. See the [record API](design/DATA_AND_STATE.md#wp-111-worker-contract-api).
 
 **Positive acceptance:** Every planned role can exchange a bounded result whose claims are distinct from host observations and accepted evidence.
 
@@ -168,7 +168,11 @@ Milestone exit: Transactional store, serial graph scheduler, materiality admissi
 
 **Implementation:** Use SQLite with explicit schema/version and optimistic revision guards; atomically commit event plus projection; reserve dispatch before calling a host; retain prior plans and failures; offer read-only status reconstruction.
 
-**Owned/proposed paths:** `plugins/sparkforge/runtime/store.py`; `tests/test_runtime_store.py`. Inspect shared helpers first; coordinate shared-file changes explicitly.
+**Implemented execution contract (WP-120):** The [atomic storage and recovery definition](design/DATA_AND_STATE.md#wp-120-prepared-storage-and-recovery-contract) is now implemented from corrected P1 head `f61a33ddc928fcb2dbf43abc02f4a25979089670`. It supplies one job per coordinated store, immutable records/initial snapshots, persistent command receipts/events, revision-guarded projections and uniquely owned reservations. Each command and all record/event/projection/reservation writes commit together. Durable idempotency is checked before stale-revision rejection; replay cannot restore old state or repeat effects. See the [API/limits](design/DATA_AND_STATE.md#implemented-wp-120-api-and-boundaries).
+
+Coordinated schema v2 and the tested v1-header copy upgrade are implemented without converting assisted stores. Read-only reconstruction is distinct from explicit SQLite recovery. Pending dispatch/lost response/cancel acknowledgement remains unresolved until observation-backed reconciliation; no blind redispatch or assumed-zero consumption. Concrete write-boundary, writer-conflict, owned-process crash, observation-version and parent-cancellation tests exercise these boundaries; real host/power-loss acceptance remains unassessed.
+
+**Owned/proposed paths:** `plugins/sparkforge/runtime/store.py`; the directly dependent schema/version implementation in `runtime/migrations.py`; `tests/test_runtime_store.py`; affected migration/transition tests and living records. Do not create empty modules during preparation. Inspect shared helpers first; coordinate shared-file changes explicitly.
 
 **Positive acceptance:** Restart reconstructs the same state and pending reservations; rejected updates do not partially persist.
 
@@ -186,6 +190,8 @@ Milestone exit: Transactional store, serial graph scheduler, materiality admissi
 **Goal:** Run a deterministic task graph with one active worker initially.
 
 **Implementation:** Validate acyclic task dependencies and required role barriers; admit ready tasks; persist selected task and attempt identity; dispatch through host protocol; distinguish task success from job readiness; stop on cancellation or unresolved reservations.
+
+**Implemented boundary:** See [the serial coordinator API](design/DATA_AND_STATE.md#implemented-wp-121-serial-coordinator). A closed pinned schedule is persisted as an immutable record with capability/job-context bindings. Restartable registration and serial ticks use WP-120's operation ownership and command replay. This initial profile only accepts scripted hosts and unchanged pinned candidates; candidate integration, policy/accounting, dynamic replanning and actual host/whole-job acceptance remain explicit later tasks. Required code/test/runner/reviewer/final-controller barriers cannot be removed to finish early. Unsupported host cancellation still permits read-only outcome reconciliation.
 
 **Owned/proposed paths:** `plugins/sparkforge/runtime/coordinator.py`; `plugins/sparkforge/runtime/scheduler.py`; `tests/test_scheduler.py`. Inspect shared helpers first; coordinate shared-file changes explicitly.
 
@@ -205,6 +211,8 @@ Milestone exit: Transactional store, serial graph scheduler, materiality admissi
 **Goal:** Allow ordinary bounded work while escalating actual changes to intent or authority.
 
 **Implementation:** Implement materiality rules, decision requests, current-object binding, revocation and envelope membership; independently verify proposed deltas; keep human decisions as host ingress assertions until authentic origin is qualified.
+
+**Implemented boundary:** [WP-122 policy](design/HUMAN_DECISIONS.md#implemented-policy-boundary) recomputes structural deltas against the active accepted pair and persists exact requests/responses, scoped ingress assertions, chained accepted bindings and revocations through the journal. Command-v3 assigns admission time inside the writer transaction and checks eligibility, expiry and membership for new work/success credit. Cancellation and factual reconciliation remain available after revocation or clock rollback. Old command-v1/v2 history remains replayable but cannot grant new work. Ordinary structurally in-scope tactics need no new acceptance; semantic equivalence, control-rule approval, graph replanning, aggregate accounting and authentic host identity remain their own gates.
 
 **Owned/proposed paths:** `plugins/sparkforge/runtime/policy.py`; `tests/test_materiality_policy.py`; `docs/design/HUMAN_DECISIONS.md`. Inspect shared helpers first; coordinate shared-file changes explicitly.
 

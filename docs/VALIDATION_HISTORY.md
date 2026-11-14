@@ -248,3 +248,248 @@ Published `8b8c16781be4de39e4e06c0e25b4060fb207b54c` with remote tree `5c547723a
 | windows-latest / Python 3.12 | 412 collected, all 412 passed, zero skips/failures/errors | Windows storage/network and PowerShell cases executed; plan and whitespace checks pass |
 
 The follow-up changes only current status/backlog/roadmap, this appended validation entry and new closure evidence/cycle. The tested implementation is unchanged. These are repository regressions, not actual corp/acro or model-driven factory acceptance. Next implementation task remains WP-110.
+
+## 2026-11-12: WP-110 intent and execution-envelope contracts
+
+Implemented source-neutral `IntentBaseline`/`ExecutionEnvelope` TypedDict contracts in `plugins/sparkforge/runtime/contracts.py`. Validation returns detached normalized values and typed `ContractError` codes/paths. No v1 helper/test bytes changed. The actual app trust gate initially denied an edit and Python command; no files were written or tests run by those denied attempts. Work resumed only after the app stopped reporting the gate.
+
+| Actual check | Result | Boundary |
+|---|---|---|
+| `python --version` | Python 3.12.10 | Existing local interpreter |
+| `python -B -m unittest discover -s tests -p 'test_native_*.py'` | PASS: 196 collected, 194 passed, two skipped in 46.594s | Unchanged assisted-v1 baseline; existing symlink-privilege skips |
+| First `python -B -m unittest discover -s tests -p 'test_runtime_contracts.py'` | FAIL: 13 passed, one failed in 0.320s | Deep JSON depended on the interpreter recursion limit |
+| Initial full `python -B -m unittest discover -s tests` with local dependency target in `PYTHONPATH` | FAIL: 426 collected, one failure, 17 errors, two skips in 77.444s | Same JSON-depth failure plus missing declared `markdown_it`; no tests weakened |
+| `python -m pip install --quiet --disable-pip-version-check --target research_tools\.validation-deps -r research_tools\wiki\requirements.txt` | PASS | Declared packages restored only into the ignored worktree-local target |
+| Corrected focused contract command | PASS: all 14 in 0.317s | TC-103/104; explicit depth 32, malformed values, authority fields, paths, digest/binding changes and no I/O |
+| `$env:PYTHONPATH = (Resolve-Path 'research_tools\.validation-deps').Path; python -B -m unittest discover -s tests` | PASS: 426 collected, 424 passed, two skipped in 82.855s | Windows; unchanged symlink-creation privilege limits |
+| Distinct code-review context on actual new code/tests | No significant issues found | Independent implementation inspection, not actual role execution or domain/security certification |
+| `python -B scripts\validate_plan.py --base HEAD` and `git diff --check` | PASS | 12 changed paths; 96 Markdown files; 787 local links; 50 active tasks; ten cycles |
+| Current-branch hosted CI, real model/host/domain acceptance | NOT_RUN / NOT_ASSESSED | No private input or native launcher required by this slice |
+
+The [WP-110 cycle](engineering/cycles/ENG-20261112-wp110-contracts.json) binds the base/branch, API choices and next task. Next: WP-111 task/attempt/result contracts; materiality admission, OS confinement and authenticated approval remain later work.
+
+## 2026-11-12: WP-111 worker assignments and result contracts
+
+WP-110 was committed as `d75c483b95dea28e09688df98bea23671f8f82b3`; 44 planning-validator tests and post-commit `--base HEAD~`/whitespace checks passed. WP-111 builds on that exact boundary. Worker-specific types/validators live in a cohesive `agent_contracts.py` sibling, reusing WP-110 helpers rather than growing the intent/envelope module or creating unused schemas. Result artifacts are opaque digest references; body schemas for actual plans/verdicts belong to their later tasks.
+
+| Actual check | Result | Boundary |
+|---|---|---|
+| Initial `python -B -m unittest discover -s tests -p 'test_agent_envelopes.py'` | PASS: all 14 in 0.109s | Every logical role; exact task/producer/scope/evidence matching; known/unknown distinction |
+| Initial full suite with README local `PYTHONPATH` | PASS: 440 collected, 438 passed, two skipped in 86.985s | Before the independent review regression |
+| Distinct implementation review | Found one medium issue | Host reference revision incorrectly formed part of the independence identity |
+| Added host-revision-only separation regression | FAIL: one failure in 15 cases, 0.104s | Same actual host/context was accepted after only configuration revision changed |
+| Corrected `python -B -m unittest discover -s tests -p 'test_agent_envelopes.py'` | PASS: 15/15 in 0.099s | Separation now compares stable host ID and context, not host configuration revision |
+| `python -B -m unittest discover -s tests -p 'test_runtime_contracts.py'` | PASS: 14/14 in 0.340s | WP-110 behavior preserved |
+| `$env:PYTHONPATH = (Resolve-Path 'research_tools\.validation-deps').Path; python -B -m unittest discover -s tests` | PASS: 441 collected, 439 passed, two skipped in 84.603s | Existing symlink-privilege skips; no v1 code/test changes |
+| `python -B scripts\validate_plan.py --base HEAD` and `git diff --check` | PASS | 11 changed paths; 96 Markdown files; 788 local links; 50 active tasks; 11 cycles |
+| Current-branch hosted CI and actual host/independent-role qualification | NOT_RUN / NOT_ASSESSED | Scripted producer fixtures are not real authentication or independent production |
+
+The independent finding was reproduced and corrected; a second independent review verdict is not claimed. All result fields remain claims until later admission checks actual host provenance, filesystem changes, evidence inventory, revocation and budgets. The [WP-111 cycle](engineering/cycles/ENG-20261112-wp111-worker-contracts.json) preserves this boundary. Next: WP-112 pure state transitions/idempotency.
+
+## 2026-11-12: WP-112 pure transitions, events and idempotency
+
+WP-111 was committed as `4791068b5c9d0f27658ddcb0671a9484640cc4e5`; post-commit planning/whitespace checks passed. WP-112 now provides deterministic, side-effect-free projections and commands, not a journal, scheduler or evidence-authentication service.
+
+| Actual check | Result | Boundary |
+|---|---|---|
+| Initial `python -B -m unittest discover -s tests -p 'test_workflow_transitions.py'` | PASS: 12/12 in 0.016s | Expected revisions, replay, current evidence, uncertain operations and cancellation |
+| Initial full suite with README local `PYTHONPATH` | PASS: 453 collected, 451 passed, two skips in 96.002s | Before additional review regressions |
+| Independent implementation review | Found two medium issues | Reconciled completion could strand reserved/unknown work; required causes were not retained |
+| Review reproductions in the transition selector | FAIL: 14 cases, one failure and three failing subcase errors in 0.038s | No oracle weakening; both findings reproduced |
+| Corrected `python -B -m unittest discover -s tests -p 'test_workflow_transitions.py'` | PASS: 16/16 in 0.030s | Resumed observed work needs no redispatch; full command/observation/cause retained; failures and same-context receipt replacement cannot fabricate completion |
+| `$env:PYTHONPATH = (Resolve-Path 'research_tools\.validation-deps').Path; python -B -m unittest discover -s tests` | PASS: 457 collected, 455 passed, two skips in 95.020s | Existing Windows symlink-privilege skips; all original v1 tests unchanged |
+| `python -B scripts\validate_plan.py --base HEAD` and `git diff --check` | PASS | Nine changed paths; 96 Markdown files; 789 local links; 50 tasks; 12 cycles |
+| Current-branch CI and real runtime storage/host qualification | NOT_RUN / NOT_ASSESSED | No actual dispatch, runtime journal, crash durability or live acceptance claimed |
+
+The corrections also retain opaque observation references in each full command event, prevent configuration-free receipt replacement within an old review context and project observed failed operations as failed/diagnosing rather than completed work. There is no second independent review verdict. The [WP-112 cycle](engineering/cycles/ENG-20261112-wp112-transitions.json) records the bounded pure-engine scope. Next: WP-113 coexistence/migration boundary.
+
+## 2026-11-12: WP-113 isolated stores and assisted-v1 coexistence
+
+WP-112 was committed as `bb2ab8bc4ef75d41326ba9942637784e661fefc3`; post-commit planning/whitespace passed. The new store header is not a coordinated journal or accepted job. Legacy references use unchanged v1 validation through a read-only adapter and copy no decisions or raw source content. Only version 1 is supported; version-2 migration steps are explicitly injected test fixtures.
+
+| Actual check | Result | Boundary |
+|---|---|---|
+| First `python -B -m unittest discover -s tests -p 'test_runtime_migrations.py'` | ERROR: five cleanup errors in 12 cases, 0.492s | Test SQLite context managers committed but did not close; Windows retained file handles |
+| Explicit fixture-connection closing and rerun | PASS: 12/12 in 0.430s | Five exact owned leftover directories were inspected and removed after the failed process ended; no broad cleanup |
+| Initial full suite with README local `PYTHONPATH` | PASS: 469 collected, 467 passed, two skips in 84.814s | Before new independent review regressions |
+| Independent implementation review | Found two medium issues | `mode=ro` created WAL/SHM before rejecting WAL; a handled SQLite automatic rollback permitted a false upgraded version marker |
+| Added review reproductions | FAIL: two failures in 14 cases, 0.526s | Source sidecars changed; prepared version was 2 with migration changes absent |
+| Corrected `python -B -m unittest discover -s tests -p 'test_runtime_migrations.py'` | PASS: 14/14 in 0.489s | Header preflight rejects WAL before opening SQLite; active transaction checked after every step and before version stamping |
+| `$env:PYTHONPATH = (Resolve-Path 'research_tools\.validation-deps').Path; python -B -m unittest discover -s tests` | PASS: 471 collected, 469 passed, two skips in 86.287s | All original assisted-v1 cases unchanged; symlink-creation privilege remains unavailable for two existing cases |
+| `python -B scripts\validate_plan.py --base HEAD` and `git diff --check` | PASS | 11 changed paths; 96 Markdown files; 790 local links; 50 active tasks; 13 cycles |
+| Current-branch hosted CI, real migration, power-failure and installed-host qualification | NOT_RUN / NOT_ASSESSED | Only owned synthetic SQLite files; no live job/database conversion or activation |
+
+Source and backup bytes remain unchanged in successful, interrupted, unknown-version, automatic-rollback and early-commit/attachment refusal fixtures. Existing v1 manual approval still gates execution after reference capture. The [WP-113 cycle](engineering/cycles/ENG-20261112-wp113-coexistence.json) records the evidence and explicit supported limits. Next: WP-114 capability protocol/scripted fake; the rest of P1/P2 remains open.
+
+## 2026-11-12: WP-114 host protocol and scripted fake
+
+WP-113 was committed as `3abed591526b4c0dc7bbcdc3c15101412c200233`; post-commit planning/whitespace passed. Initial `git push --set-upstream origin HEAD` returned HTTP 403 under `kerodri_microsoft`; the native PR tool also returned an Enterprise Managed User restriction while attempting a fork. No remote branch or PR was created. A later read-only check identified CLI account `Arkthos` with repository ADMIN access; it did not verify the app publisher. No agent changed credentials, destination or repository visibility.
+
+| Actual check | Result | Boundary |
+|---|---|---|
+| Initial `python -B -m unittest discover -s tests -p 'test_host_adapter.py'` | PASS: 12/12 in 0.050s | Scripted capability/discovery/dispatch/poll/cancel/reconcile and counters only |
+| Initial full suite with README local `PYTHONPATH` | PASS: 483 collected, 481 passed, two skips in 98.890s | Before new review regressions |
+| Independent implementation review | One medium finding | Receipt context equality accepted boolean/float revisions as integer revision 1 |
+| Added receipt/pre-effect regressions | FAIL: seven subcase failures in 14 tests, 0.065s | Six malformed revisions; one scripted usage capability refusal occurred after dispatch counter increment |
+| Corrected `python -B -m unittest discover -s tests -p 'test_host_adapter.py'` | PASS: 14/14 in 0.056s | Strict reference validation and required usage/cancellation observation capability preflight |
+| `$env:PYTHONPATH = (Resolve-Path 'research_tools\.validation-deps').Path; python -B -m unittest discover -s tests` | PASS: 485 collected, 483 passed, two skips in 96.001s | Existing symlink-privilege skips; unchanged v1 code/tests |
+| `python -B scripts\validate_plan.py --base HEAD` and `git diff --check` | PASS | Ten changed paths; 96 Markdown files; 791 local links; 50 active tasks; 14 cycles |
+| Current-branch CI and actual native host qualification | NOT_RUN / NOT_ASSESSED | No model invocation, credentials, worker execution or supported vendor API inferred |
+
+The fake can script accepted/running/completed/failed/cancel-requested/stopped/not-started/unknown observations. Lost dispatch responses preserve a single operation; retry is refused until inspection rather than incrementing simulated effects. Cancellation acknowledgement remains distinct from observed stop and late completion. The [cycle](engineering/cycles/ENG-20261112-wp114-fake-host.json) records the exact source-neutral boundary. Next: WP-115.
+
+## 2026-11-12: WP-115 protected fictional routing evaluation
+
+WP-114 was committed as `d0a028f8f21bf96a1ace2050844fc6652924f568`; post-commit planning/whitespace passed. The protected intent/cases/evaluator were authored separately from and before the reference candidate and seeded mutations. A caller-pinned manifest binds evaluator code, protected inputs and shared helpers outside the candidate-owned inventory. This is a trusted synthetic in-process harness, not a production runner, hidden-from-repository-reader secret, authenticated oracle or sandbox.
+
+| Actual check | Result | Boundary |
+|---|---|---|
+| Initial `python -B -m unittest discover -s tests -p 'test_protected_evaluation.py'` | PASS: 11/11 in 1.843s | Initial 11 behavioral cases/eight seeded variants; not the final sufficient oracle |
+| Initial full suite with README local `PYTHONPATH` | PASS: 496 collected, 494 passed, two skips in 89.862s | Before independent oracle findings |
+| Distinct evaluator/behavior review | Three medium findings | Missing write/default and read/false combinations; null audit flag accepted by a bad candidate; predictable effect return could be reconstructed instead of preserved |
+| Added independent-review reproductions | FAIL: three false-pass subcases in 12 tests, 1.686s | All three defective candidates initially returned PASS, retained as failed controls |
+| Corrected `python -B -m unittest discover -s tests -p 'test_protected_evaluation.py'` | PASS: 12/12 in 1.802s | Revision-2 oracle: 17 cases; all 11 seeded variants rejected; changed evaluator/tests/criteria, removed negatives and fabricated passing markers cannot satisfy acceptance |
+| `$env:PYTHONPATH = (Resolve-Path 'research_tools\.validation-deps').Path; python -B -m unittest discover -s tests` | PASS: 497 collected, 495 passed, two skips in 88.070s | Existing Windows symlink-privilege skips; all original v1 tests unchanged |
+| `python -B scripts\validate_plan.py --base HEAD` and `git diff --check` | PASS | 16 changed paths; 96 Markdown files; 794 local links; 50 active tasks; 15 cycles |
+| Actual model/controller/domain trials and current-branch CI | NOT_RUN / NOT_ASSESSED | No real factory job or platform inputs; publication not yet observed |
+
+Oracle corrections did not weaken or redefine accepted behavior: the original intent is still revision 1. Added controls exercise all legacy audit-default combinations, numeric/null/string/list/object malformed flags, and opaque object/list/string dispatch returns. Evaluator revision 2 records that correction. PASS means all bound fixture observations match exact outputs/errors/call counts and unchanged inputs, not exhaustive correctness or release acceptance. See the [cycle](engineering/cycles/ENG-20261112-wp115-protected-evaluator.json). Next: WP-120, after the focused P1 publication/checkpoint.
+
+## 2026-11-12: P1 publication and hosted closure
+
+The six implementation commits are `d75c483` (WP-110), `4791068` (WP-111), `bb2ab8b` (WP-112), `3abed59` (WP-113), `d0a028f` (WP-114) and `9e8c779` (WP-115). Exact implementation head: `9e8c7793f9045ceda3929d3fe7c14ff20abf6caa`; base: `3decc8bc0326b51ac312b074bfadc396185f8d5c`.
+
+| Actual operation | Result | Scope |
+|---|---|---|
+| `python -B scripts\check_repository.py --base origin/main` | PASS | 497 collected; 495 passed; two existing local symlink skips in 88.736s; planning and whitespace exit 0 |
+| Complete changed-path inventory against base | PASS | 36 source/test/living-record paths; v1 helpers/tests, research and archives unchanged; no database/credential/private-record file included |
+| Initial publication under EMU account | FAIL, retained | Git 403 and native publisher's EMU restriction; no branch or PR created |
+| Read-only account reconciliation | Observed `Arkthos`, repository ADMIN | Agent did not change credential configuration, audience or destination |
+| First native retry after account change | FAIL: 422 | Head not yet published; app supplied `origin/main` as base; actual `main` and absence of an existing PR verified before correction |
+| `git push --set-upstream origin HEAD` and remote ref read | PASS | Remote feature head equals exact implementation head; no force push |
+| Native PR creation with established `base_branch=main` | PASS | [Open PR](https://github.com/Arkthos/SparkForge/pull/1), author `Arkthos`, base `main`, exact head verified; unmerged |
+| Local/remote implementation tree comparison | PASS | Both equal `1946fddc75f0b863ae196a83019ddc675b6d10c1`; clean checkout |
+| Hosted `python -B scripts/check_repository.py --ci`, Windows/Python 3.12 | PASS | 497/497, zero skips, 31.565s; planning and whitespace exit 0 |
+| Hosted same command, Ubuntu/Python 3.12 | PASS | 497 collected; 468 passed; 29 Windows-only skips; 13.530s; planning and whitespace exit 0 |
+| Documentation closure `python -B scripts\validate_plan.py --base HEAD` and `git diff --check` | PASS | Six documentation paths; 96 Markdown files; 797 local links; 50 active tasks; 16 cycles |
+
+[Workflow run 43362930589](https://github.com/Arkthos/SparkForge/actions/runs/43362930589) completed successfully for the implementation-head PR candidate. The following closure commit changes only records and continuation; it preserves executable/test bytes and does not claim that a future rerun already passed. No merge, automatic merge, deployment, actual model run or environment qualification occurred. The [closure cycle](engineering/cycles/ENG-20261112-p1-publication.json) and [handoff](development/COPILOT_HANDOFF.md#current-continuation-boundary) identify the exact next task: WP-120.
+
+## 2026-11-13: P1 review corrections before P2
+
+Before any edit, local HEAD, remote feature ref and open PR #1 head were verified as `bdd1de57a7a0f068857eac0ac1d5e5f6b9934328`; the worktree was clean. Main remained `3decc8b`. Work continued on the existing PR branch, with no reset or branch replacement.
+
+| Actual check | Result | Boundary |
+|---|---|---|
+| `$env:PYTHONPATH = (Resolve-Path 'tests').Path; python -B -m unittest -v test_workflow_transitions.WorkflowTransitionTests.test_not_started_reconciliation_cannot_complete_with_passing_receipts test_agent_envelopes.AgentEnvelopeTests.test_reserved_attempt_cannot_claim_unobserved_consumption test_protected_evaluation.ProtectedEvaluationTests.test_normal_read_payload_trimming_is_not_a_false_pass` | FAIL: three methods, five failing checks/subcases in 0.100s | All reported findings reproduced before production fixes: false completion; each of three consumption metrics; false evaluator PASS |
+| First affected-suite run | PASS: 52 tests in 2.312s | Initial corrections and additional history/replay/cancellation/usage controls |
+| First full suite | PASS: 506 collected, 504 passed, two skips in 112.244s | Before the independent-review recovery regression |
+| Distinct implementation review | One medium regression found | After no-start reconciliation, a job's replacement operation could be observed completed yet leave the job in ready |
+| `$env:PYTHONPATH = (Resolve-Path 'tests').Path; python -B -m unittest -v test_workflow_transitions.WorkflowTransitionTests.test_job_no_start_replacement_reconciliation_resumes_without_redispatch` | ERROR: one reproducer in 0.005s | `INVALID_TRANSITION` reproduced the review finding; no duplicate dispatch was used as a workaround |
+| `$env:PYTHONPATH = (Resolve-Path 'tests').Path; python -B -m unittest test_workflow_transitions test_agent_envelopes test_protected_evaluation` | PASS: 53 tests in 2.142s | Final 22 workflow, 18 worker-contract and 13 evaluator tests |
+| `$env:PYTHONPATH = (Resolve-Path 'research_tools\.validation-deps').Path; python -B -m unittest discover -s tests` | PASS: 507 collected, 505 passed, two skips in 121.135s | Existing symlink-privilege skips; all original v1 tests included unchanged |
+| Exact continuation-prompt comparison | PASS | Markdown embedded prompt equals COPILOT_PROMPT.txt; neither directs restart from default main or WP-110 |
+| Diff inspection of v1 helpers/native tests and protected router intent | PASS | No changes to those paths; accepted intent remains revision 1 |
+| `python -B scripts\validate_plan.py --base HEAD` and `git diff --check` | PASS | 16 changed paths; 96 Markdown files; 797 local links; 50 tasks; 17 cycles. Hosted correction results still pending |
+
+Completion now needs the latest reservation to have confirmed completion; historical dispatch flags/earlier successes are retained but are not enough. Proven no-start returns an unstopped job/task to ready or an attempt to failed, and does not reopen cancellation. A replacement's observed completion resumes job checking without redispatch. Unknown outcomes remain unresolved. Reserved attempts have unknown/null consumption even when allowance is positive; known usage requires a host observation, while observed overruns remain intact.
+
+Protected oracle revision 3 adds two padded normal-read cases (absent and false audit flag), including spaces/tab/newline, and a twelfth trimming mutant. All 12 mutants are detected. No accepted behavior, expected existing result or original v1 manual decision was weakened. Both active continuation prompts were corrected. The [new cycle](engineering/cycles/ENG-20261113-p1-review-corrections.json) retains the exact failure/correction sequence; WP-120 is next for preparation, not implemented by this patch.
+
+## 2026-11-13: corrected P1 publication and WP-120 preparation
+
+Corrections were committed and pushed on the existing PR branch as `b2f25eb43163be5deefa3c9477a0150677f1bcbc`; remote and PR heads matched. Post-commit `python -B scripts\validate_plan.py --base HEAD~` and `git diff --check HEAD~` passed. PR #1 remained open/unmerged.
+
+| Actual check | Result | Scope |
+|---|---|---|
+| `gh run watch 43474250710 --repo Arkthos/SparkForge --exit-status --interval 20` plus exact run logs | PASS | Correction-head workflow completed successfully |
+| Hosted `python -B scripts/check_repository.py --ci`, Windows/Python 3.12 | PASS: 507/507, zero skips, 29.637s | Planning and whitespace exit 0 |
+| Hosted same command, Ubuntu/Python 3.12 | PASS: 507 collected, 478 passed, 29 Windows-only skips, 12.460s | Planning and whitespace exit 0 |
+| WP-120 design trace against actual contracts/transitions/migrations and detailed plan | Prepared, not implemented | Defined immutable records/init snapshots, atomic commands/events/projections/reservations, revisions, persistent replay, explicit coordinated schema-v2 copy evolution and crash matrix |
+| WP-120 store/concurrency/crash tests | NOT_RUN | `store.py`, schema-v2 implementation and its tests do not exist; no acceptance claim |
+| `python -B -m unittest discover -s tests -p 'test_validate_plan.py'` | PASS: 44 tests in 22.955s | Existing documentation/governance tests |
+| `python -B scripts\validate_plan.py --base HEAD` and `git diff --check` | PASS | Eight documentation paths; 96 Markdown files; 804 links; 50 tasks; 18 cycles |
+| Runtime/test diff, prompt equality and WP-120 state inspection | PASS | No executable/test changes from correction commit; prompts agree; WP-120 remains not_started; no store module/test placeholder |
+
+The [prepared contract](design/DATA_AND_STATE.md#wp-120-prepared-storage-and-recovery-contract) explicitly distinguishes storage rollback from unknown external effects and reserves dispatch before host invocation. Recovery never infers unused work from missing receipts, rewrites historical failures, or resets allowance/observed-consumption history. The [new preparation cycle](engineering/cycles/ENG-20261113-wp120-preparation.json) keeps WP-120 `not_started`. Its later hosted run must be read separately rather than recursively creating CI-only commits.
+
+## 2026-11-13: WP-120 implemented atomic journal and recovery
+
+The implementation request resumed after a coordinator-reported DNS/model-request interruption. No code/test failure or implementation delta was observed from that interruption; clean local/upstream/PR head was reverified as `f61a33ddc928fcb2dbf43abc02f4a25979089670`. No model/provider/network/account switch occurred.
+
+| Actual check | Result | Boundary |
+|---|---|---|
+| First combined journal/migration/workflow/worker selector | FAIL: 70 tests, one failure in 4.206s | Process-crash recovery left a cold journal, blocking the next write |
+| First recovery correction | FAIL: 70 tests, one failure in 3.087s | No-op metadata update did not force SQLite to finalize its journal |
+| Targeted owned-process crash test after version-restamp correction | PASS: one case in 0.654s | SQLite finalizes the journal itself; no manual deletion or host effect |
+| Expanded affected suite before review | PASS: 73 tests in 4.016s | Added exact observation, immutable-record, writer and real-v2-copy controls |
+| First full suite | PASS: 526 collected, 524 passed, two skips in 103.078s | Before the two independent-review regression cases |
+| Required independent implementation review | Two high findings | Follow-up observation snapshots conflicted; exact-reference rebinding was ambiguous; parent cancellation ignored unresolved child-owned effects |
+| Two new review reproduction methods | FAIL: two failures in 0.246s | Exact observation payload conflict and parent cancellation reproduced |
+| `$env:PYTHONPATH = (Resolve-Path 'tests').Path; python -B -m unittest test_runtime_store test_runtime_migrations test_workflow_transitions test_agent_envelopes` | PASS: 75 tests in 3.978s | Final 18 journal/17 migration/22 workflow/18 worker cases |
+| `$env:PYTHONPATH = (Resolve-Path 'research_tools\.validation-deps').Path; python -B -m unittest discover -s tests` | PASS: 528 collected, 526 passed, two skips in 97.081s | Existing symlink-privilege skips; original v1 code/tests preserved |
+| `python -B scripts\validate_plan.py --base HEAD` and `git diff --check` | PASS | 15 changed paths; 96 Markdown files; 807 links; 50 tasks; 19 cycles; new hosted CI not yet inferred |
+
+Schema v2 and the real v1-header-to-v2 copy initializer share the same tested SQL/constraints. Transactions persist records, full command receipts, events, CAS projections and globally unique serial reservations together. Reconstruction compares every materialized table to deterministic history and never invokes the host. Tests inject failures after every table write and before commit, compare competing writers, detect corrupt rows/duplicate IDs, and abruptly exit owned child processes before commit and after commit/before reply.
+
+Review corrections allow revisioned snapshots from hosts that reuse an observation ID while each exact ID/digest remains bound to one immutable payload. Parent cancellation now derives unresolved descendant reservations and stays pending until reconciliation, without duplicating effect ownership. Lost responses, unknown consumption and actual overruns remain visible; no blind replay or assumed-zero use. These are local/synthetic observations, not power-loss, remote-storage or native-host qualification. See [WP-120 cycle](engineering/cycles/ENG-20261113-wp120-journal.json). Next: WP-121.
+
+## 2026-11-13: WP-121 serial scripted-host coordination
+
+WP-120 was committed/pushed as `1999ac26351488fbf42ed626e0a191bdc09f44bb`. [Hosted run43526649270](https://github.com/Arkthos/SparkForge/actions/runs/43526649270) passed Windows528/528 (27.002s), Linux499 passed/29 skipped (13.618s), planning and whitespace. WP-121 started only after that slice was locally validated, reviewed and committed.
+
+| Actual check | Result | Boundary |
+|---|---|---|
+| Initial combined scheduler/store/transition/host suite | PASS: 69 tests in22.914s | Before independent review controls |
+| Initial full suite | PASS: 543 collected, 541 passed, two skips in114.397s | No new v1 failures |
+| Required distinct coordinator review | Three findings | Stale-snapshot cancellation race; unsupported cancel blocked reconciliation; job/task command-key collision |
+| Three explicit review reproducers | FAIL: one assertion failure and two errors in2.985s | Missing cancel call, HOST_UNSUPPORTED and IDEMPOTENCY_CONFLICT reproduced |
+| Corrected affected and full suites | PASS: 72 affected20.880s; full546/544/two skips112.688s | All three review fixes included |
+| `$env:PYTHONPATH = (Resolve-Path 'tests').Path; python -B -m unittest test_scheduler test_runtime_store test_workflow_transitions test_host_adapter` | PASS: 73 tests in23.932s | Final19 scheduler,18 journal,22 workflow,14 host cases; includes pinned job-context/descendant invalidation guards |
+| `$env:PYTHONPATH = (Resolve-Path 'research_tools\.validation-deps').Path; python -B -m unittest discover -s tests` | PASS: 547 collected,545 passed,two skips in121.309s | Existing local symlink-privilege skips; original v1 code/tests preserved |
+| `python -B -m unittest discover -s tests -p 'test_validate_plan.py'` | PASS:44 tests14.697s | Final documentation/governance regression |
+| `python -B scripts\validate_plan.py --base HEAD` and `git diff --check` | PASS | 17 changed paths;96 Markdown files;808 links;50 tasks;20 cycles |
+| Active prompt equality and retained-byte diff inspection | PASS | Next WP-122 matches both prompts; v1/native tests, accepted router intent, research and archives unchanged |
+
+Tests drive a pinned five-role graph through serial fake dispatch, separate structured result submission, retry/restart/lost reply, interrupted installation, concurrent ticks, cancellation and graph completion without job readiness. The graph cannot drop role/criterion barriers, alter host/job/candidate context, overlap protected ownership or silently allocate a replacement attempt. Task results proposing changed candidates block for the later integration protocol; no actual code/model action is claimed.
+
+Corrections derive tick status and action from one snapshot; command identities include entity kind; unsupported cancel stays explicit but does not prevent polling/reconciliation. Unknown outcomes and unknown-usage `stop` remain blockers. Required independent review covered the actual implementation; reported issues were corrected and rerun, not replaced by a fabricated second verdict. See the [WP-121 cycle](engineering/cycles/ENG-20261113-wp121-coordinator.json). Next WP-122; the full engineering loop remains unimplemented.
+
+## 2026-11-13: transactional terminal/cancellation admission fixes
+
+Local/upstream/open PR head was clean and exactly `08b45dd18fc7957a6adfe0db76911d3658a7618c` before edits. The two requested admission defects were reproduced in three regression methods, including actual failure/cancellation commits interleaved immediately before journal writes.
+
+| Actual check | Result | Boundary |
+|---|---|---|
+| Three focused reproducer methods in `test_scheduler` | FAIL: four checks/subcases in2.516s | Failed-job tick, failure before reservation, cancellation before passing evidence and before completion all admitted incorrectly |
+| First affected selector | FAIL: one competing-writer case in63 tests25.880s | Unexpected outcome code was not printed by the old assertion; diagnostic output added without loosening its allowed results |
+| Bounded competing-writer diagnostic run | PASS:25 repetitions2.065s | Failure did not recur; no root cause or concurrency guarantee inferred from repetition |
+| Required independent correction review | One high compatibility finding | Reapplying new admission semantics during history reconstruction stranded old unsafe journals and outstanding effects |
+| Legacy-history reproduction | ERROR: one case0.210s | Old unsafe admission replay failed as CORRUPT_STORE before the versioned-semantics correction |
+| `$env:PYTHONPATH = (Resolve-Path 'tests').Path; python -B -m unittest test_scheduler test_runtime_store test_workflow_transitions` | PASS:64 tests26.637s | New admission guards plus late-observation retention and legacy read/recovery/idempotency/reconciliation |
+| `$env:PYTHONPATH = (Resolve-Path 'research_tools\.validation-deps').Path; python -B -m unittest discover -s tests` | PASS:552 collected550 passed,two skips122.393s | Existing symlink-privilege skips; competing-writer test also passed in the full rerun |
+| `python -B scripts\validate_plan.py --base HEAD` and `git diff --check` | PASS | 12 changed paths;96 Markdown files;810 links;50 tasks;21 cycles. New hosted checks not yet inferred |
+
+The journal now revalidates ancestor/job eligibility inside the atomic transaction for new reservations, dispatch, passing evidence and successful completion. It still records historical observations and reconciles outcomes after cancellation. Command-v2 semantics govern new writes; command-v1 history remains replayable and its exact keys can be inspected/replayed without new effects. No old commands or outcomes are rewritten. The [new cycle](engineering/cycles/ENG-20261113-transactional-admission-fixes.json) records this focused fix; WP-122 implementation follows separately.
+
+## 2026-11-14: WP-122 implemented structural policy and exact admission
+
+The prerequisite focused fix was published as `586bb821256c3aaa34d63ddba02f6e53e2c089bf`; [hosted run43533941040](https://github.com/Arkthos/SparkForge/actions/runs/43533941040) passed Windows552/552 (45.530s), Linux523 passed/29 skipped (41.101s), planning and whitespace. WP-122 implements policy.py plus journal/coordinator integration, not another preparation. Test-owned jobs now explicitly seed separately labeled synthetic intent/execution decisions; no real approval was manufactured.
+
+| Actual check | Result | Scope |
+|---|---|---|
+| Initial narrow three-case integration check | FAIL: one assertion mismatch in13.910s | Legacy-forgery test mixed the new timestamp field with old schema; updated fixture to form a valid old-shaped request, preserving rejection |
+| Initial policy/store/scheduler selector | PASS:57 tests48.407s | Working decisions, materiality, revocation and normal continuation |
+| First full suite | PASS:567 collected565 passed,two skips159.233s | Before the independent clock-rollback regression and workspace guard case |
+| Required independent policy implementation review | One medium finding | Clock regression incorrectly blocked cancellation and factual reconciliation, not just admission |
+| Clock-rollback reproduction | ERROR: one case0.282s | ADMISSION_CLOCK_REVERSED prevented job cancellation before the fix |
+| `$env:PYTHONPATH = (Resolve-Path 'tests').Path; python -B -m unittest test_materiality_policy test_runtime_store test_scheduler` | PASS:59 tests50.499s | Final17 policy/20 journal/22 scheduler cases, including interleaved revocation and clock rollback |
+| `$env:PYTHONPATH = (Resolve-Path 'research_tools\.validation-deps').Path; python -B -m unittest discover -s tests` | PASS:569 collected567 passed,two skips | Reported elapsed18,376.938s; unusually long wall time retained, cause not established and not a performance benchmark |
+| Existing v1/native-test, accepted router-intent, research/archive diff | PASS | No changes to these paths |
+| `python -B -m unittest discover -s tests -p 'test_validate_plan.py'` | PASS:44 tests15.121s | Current documentation/governance checks |
+| `python -B scripts\validate_plan.py --base HEAD` and `git diff --check` | PASS | 18 changed paths;96 Markdown files;814 links;50 tasks;22 cycles |
+| Prompt equality and retained-byte inspection | PASS | Both prompts select WP-123; v1/native tests, accepted router intent, research/archive unchanged |
+
+New command-v3 admission captures time in the writer transaction, enforces the exact accepted binding and current parent/job eligibility, and preserves old command-v1/v2 replay. Immutable policy requests include target, accepted baseline, impact and alternatives; responses require the corresponding separately supplied ingress assertion. Revocation/expiry block new work or successful credit without erasing observation history. Clock rollback cannot block cancellation or non-authorizing reconciliation.
+
+Ordinary structurally in-scope repair/refactor/test/replan proposals do not create new decisions. Material intent/envelope/control changes are recomputed against accepted objects, regardless of labels or intermediate proposals. Acceptance changes do not rewrite frozen tasks, silently move store workspaces or reset consumption. Full ingress authentication, semantic controller judgment, aggregate accounting and actual graph/candidate integration remain unimplemented. See [WP-122 cycle](engineering/cycles/ENG-20261114-wp122-policy.json). Next: WP-123.

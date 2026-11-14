@@ -1,0 +1,76 @@
+{
+  "schema_version": "sparkforge-engineering-cycle.v1",
+  "id": "ENG-20261112-wp112-transitions",
+  "date": "2026-11-12",
+  "work_items": ["WP-112"],
+  "workstream": "Deterministic workflow and replay contracts",
+  "cycle_type": "implementation",
+  "status": "validated",
+  "objective": "Implement pure guarded job/task/attempt progression, idempotent commands and current-evidence completion without a scheduler or store.",
+  "base_commit": "4791068b5c9d0f27658ddcb0671a9484640cc4e5",
+  "branch": "kerodri-microsoft-sparkforge-coordinated-contracts",
+  "changes": [
+    "Added explicit state tables, closed projections/commands/events, expected revisions, full payload digests and deterministic event IDs.",
+    "Implemented reservation-before-dispatch, retained operation IDs, no-op command replay, conflict rejection and current-context completion barriers.",
+    "Preserved unknown effects and cancellation acknowledgements until observed reconciliation; late results never reopen stopped scope.",
+    "Retained full command causes/observation references and added guarded progression after successful reconciliation without another dispatch.",
+    "Kept expected evidence inventory fixed; changed receipts require a new review/evidence context."
+  ],
+  "validation": [
+    {
+      "check": "python -B -m unittest discover -s tests -p 'test_workflow_transitions.py'",
+      "scope": "TC-107/108 pure source-neutral workflow behavior",
+      "outcome": "PASS",
+      "reference": "Final 16/16 passed in 0.030s. Initial 12 passed; review reproductions then produced one failure and three subcase errors in 14 cases before correction."
+    },
+    {
+      "check": "$env:PYTHONPATH = (Resolve-Path 'research_tools\\.validation-deps').Path; python -B -m unittest discover -s tests",
+      "scope": "Full Windows/Python 3.12.10 regression",
+      "outcome": "PASS",
+      "reference": "Final 457 collected; 455 passed; two existing symlink-privilege skips; 95.020s. Earlier pre-review full run was 453/451/two skips."
+    },
+    {
+      "check": "Independent control-plane implementation inspection and correction of both findings",
+      "scope": "Distinct review context; not actual runtime or domain acceptance",
+      "outcome": "PASS",
+      "reference": "Reviewer identified stranded reconciled completion and discarded causes. Both reproduced; regression tests verified fixes. No second independent review verdict claimed."
+    },
+    {
+      "check": "python -B scripts\\validate_plan.py --base HEAD; git diff --check",
+      "scope": "Current lifecycle/link/archive and whitespace boundary",
+      "outcome": "PASS",
+      "reference": "Nine changed paths; 96 Markdown files; 789 local links; 50 tasks; 12 cycles. Whitespace passed."
+    },
+    {
+      "check": "Current-branch CI, journal crash durability and actual host journeys",
+      "scope": "Separate later integration/qualification",
+      "outcome": "NOT_ASSESSED",
+      "reference": "No real store, dispatch, model invocation or environment acceptance performed."
+    }
+  ],
+  "results": [
+    "Current passing inventory and reconciled operations are required for completion; missing, skipped, stale or failed evidence cannot pass.",
+    "Replay does not create an event, increment a revision, repeat an operation or restore a pre-cancellation projection.",
+    "Confirmed existing execution can finish after reconciliation without another dispatch; causes and observation references remain recoverable."
+  ],
+  "limitations": [
+    "Callers must supply admitted evidence, genuine observations and current context; pure validation cannot authenticate a mutable input/store.",
+    "The future store must atomically look up command keys and persist events/projections with history lineage.",
+    "Bounded pure projections retain at most 128 operation identities; no accounting reset or larger-history support is implied.",
+    "In-flight authority revocation, actual cancellation capabilities, persistence and OS isolation remain later tasks.",
+    "Two existing symlink-privilege cases remain skipped."
+  ],
+  "rollback": "Revert the isolated transition implementation if necessary; retain earlier contract commits, v1 APIs/stores and append-only cycles.",
+  "next_steps": [
+    "Commit WP-112 and validate its boundary using --base HEAD~.",
+    "Implement WP-113 explicit separate-store creation, read-only v1 references, version rejection and copy/backup-before-migration failure controls.",
+    "Keep fake-host/evaluator and deterministic coordination work in subsequent bounded tasks."
+  ],
+  "evidence": [
+    "tests/test_workflow_transitions.py",
+    "plugins/sparkforge/runtime/transitions.py",
+    "docs/design/DATA_AND_STATE.md",
+    "docs/VALIDATION_HISTORY.md"
+  ],
+  "public_safe": true
+}

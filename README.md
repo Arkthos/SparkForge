@@ -2,13 +2,13 @@
 
 SparkForge turns ideas, existing code and knowledge into software components that fit an existing SPARK platform. Its target is a coordinated multi-agent factory with a platform-aware brain, an independent intent controller, coding/testing/review/diagnosis roles, bounded correction loops, durable recovery and human decisions when scope or authority materially changes.
 
-**Current implementation:** an experimental assisted native Copilot agent/skill, verified local snapshot lookup, strict v1 specifications, SQLite job state, bounded real check execution and revision-bound review evidence. The coordinated runtime described below is **planned**. Neither corp nor acro has been deployment-qualified here.
+**Current implementation:** an experimental assisted native Copilot agent/skill with verified snapshots, strict v1 specs and journal/check/review helpers. Alongside v1, corrected P1 plus WP-120..122 provide a schema-v2 journal, serial scripted scheduling, structural materiality/exact decision admission and protected behavioral fixtures. Authentic ingress, aggregate accounting, candidate integration and the complete model-driven engineering loop remain **planned**. Neither corp nor acro has been deployment-qualified here.
 
 ## Start development here
 
 1. Read [AGENTS.md](AGENTS.md) and the [current status](docs/PROJECT_STATUS.md).
 2. Read the [target architecture](docs/design/ARCHITECTURE.md) and [milestone roadmap](docs/ROADMAP.md).
-3. Follow the [Copilot handoff](docs/development/COPILOT_HANDOFF.md). The first implementation task is **WP-110** in the [detailed plan](docs/IMPLEMENTATION_PLAN.md#wp-110-define-intent-baseline-and-delegated-execution-envelope).
+3. Follow the [Copilot handoff](docs/development/COPILOT_HANDOFF.md) for the next dependency-ready task. **WP-110** is the implemented first slice in the [detailed plan](docs/IMPLEMENTATION_PLAN.md#wp-110-define-intent-baseline-and-delegated-execution-envelope).
 4. Track work in the [active backlog](docs/IMPLEMENTATION_BACKLOG.csv); use [acceptance scenarios](docs/engineering/ACCEPTANCE_MATRIX.csv) and the [first factory slice](docs/specs/FIRST_FACTORY_SLICE.md) to decide whether it works.
 
 The [documentation index](docs/README.md) identifies the owner of each kind of fact. Historical planning and publication material is under [archive](docs/archive/README.md); it is not the active backlog.
@@ -17,7 +17,7 @@ The [documentation index](docs/README.md) identifies the owner of each kind of f
 
 | Path | Purpose |
 |---|---|
-| `plugins/sparkforge/` | Existing assisted package and deterministic helpers; future coordinated runtime goes here without silently replacing v1 |
+| `plugins/sparkforge/` | Assisted package/helpers and the separate source-neutral coordinated runtime; no silent v1 replacement |
 | `tests/` | Executable synthetic unit, contract, integration and engineering-tool checks |
 | `scripts/` | Package builder, self-check, plan validation, host/storage probes and review preparation |
 | `docs/design/` | Target architecture, role/data contracts, decision policy and technical decisions |

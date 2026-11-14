@@ -1,0 +1,79 @@
+{
+  "schema_version": "sparkforge-engineering-cycle.v1",
+  "id": "ENG-20261113-wp120-journal",
+  "date": "2026-11-13",
+  "work_items": ["WP-120"],
+  "workstream": "Atomic coordinated persistence and explicit recovery",
+  "cycle_type": "implementation",
+  "status": "validated",
+  "objective": "Implement the prepared SQLite journal and v2 copy upgrade, preserving immutable history and unresolved external effects.",
+  "base_commit": "f61a33ddc928fcb2dbf43abc02f4a25979089670",
+  "branch": "kerodri-microsoft-sparkforge-coordinated-contracts",
+  "changes": [
+    "Implemented schema-v2 initializer and explicit v1-header copy migration using the same tables/constraints and verified backup.",
+    "Added immutable typed records, persistent full-payload command receipts, events, CAS projections, uniquely owned serial reservations and bounded complete replay.",
+    "Implemented read-only reconstruction/corruption detection and explicit SQLite recovery, including lost commit replies and owned process crashes.",
+    "Separated usage/allowance and claims/observations; bound later observation snapshots without rebinding exact references.",
+    "Kept parent cancellation pending for unresolved descendant effects without duplicating reservation ownership.",
+    "Preserved assisted-v1 helper/API/test bytes and all historical cycles; no actual host dispatch occurs in the journal."
+  ],
+  "validation": [
+    {
+      "check": "$env:PYTHONPATH = (Resolve-Path 'tests').Path; python -B -m unittest test_runtime_store test_runtime_migrations test_workflow_transitions test_agent_envelopes",
+      "scope": "TC-115/116 and affected P1/migration regressions",
+      "outcome": "PASS",
+      "reference": "Final 75 passed in 3.978s. Initial 70-case runs each had one cold-journal failure; SQLite version-restamp recovery corrected it. Pre-review expanded 73 passed."
+    },
+    {
+      "check": "$env:PYTHONPATH = (Resolve-Path 'research_tools\\.validation-deps').Path; python -B -m unittest discover -s tests",
+      "scope": "Full Windows/Python 3.12.10 repository regression",
+      "outcome": "PASS",
+      "reference": "528 collected; 526 passed; two existing symlink-privilege skips; 97.081s. Pre-review full run was 526/524/two skips."
+    },
+    {
+      "check": "Distinct required journal review and two explicit failing reproductions",
+      "scope": "Independent implementation review, not live qualification",
+      "outcome": "PASS",
+      "reference": "Observation identity/version and parent cancellation findings were reproduced as two failures in0.246s, corrected and covered in final suites. No second independent verdict claimed."
+    },
+    {
+      "check": "python -B scripts\\validate_plan.py --base HEAD; git diff --check",
+      "scope": "Lifecycle/link/archive and whitespace",
+      "outcome": "PASS",
+      "reference": "15 changed paths; 96 Markdown files; 807 links; 50 tasks; 19 cycles. Whitespace passed."
+    },
+    {
+      "check": "Hosted WP-120 CI and actual power-loss/remote-storage/native-host qualification",
+      "scope": "Separate publication and environment evidence",
+      "outcome": "NOT_ASSESSED",
+      "reference": "No new hosted run observed before publication; owned local process exits are not hardware durability or actual host execution."
+    }
+  ],
+  "results": [
+    "Atomic rollback and persistent replay preserve exactly one committed local command/event/reservation under tested failures and races.",
+    "A lost reply is inspected using its original key; unknown host effects remain unresolved and read/recovery never invokes a host.",
+    "Real v2 copy upgrade preserves source/backup; malformed or unknown schemas fail closed.",
+    "The earlier reported DNS/model interruption produced no implementation delta and required no route change."
+  ],
+  "limitations": [
+    "Full-history replay is bounded by the existing 32-MiB store and JSON/operation limits; this is not an unbounded production service.",
+    "Hashes and local SQLite do not authenticate a coherent malicious same-privilege rewrite.",
+    "Entity assignments are fixed in this slice; later replanning requires an explicit protocol.",
+    "No scheduler, authenticated authority ingress, job-budget policy, native model delegation or full engineering loop is supplied by WP-120.",
+    "Two existing local symlink-privilege cases remain skipped."
+  ],
+  "rollback": "Preserve the original store and verified migration backup. Revert code only with a new commit; inspect/reconcile outstanding operations before replay, never reset history or delete journals manually.",
+  "next_steps": [
+    "Commit and publish the verified WP-120 boundary; validate --base HEAD~ and actual hosted CI.",
+    "Continue dependency-ready WP-121 serial DAG scheduler/coordinator using the durable journal and scripted host.",
+    "Keep whole-job readiness separate from worker completion and retain all required role barriers."
+  ],
+  "evidence": [
+    "plugins/sparkforge/runtime/store.py",
+    "plugins/sparkforge/runtime/migrations.py",
+    "tests/test_runtime_store.py",
+    "tests/test_runtime_migrations.py",
+    "docs/VALIDATION_HISTORY.md"
+  ],
+  "public_safe": true
+}
